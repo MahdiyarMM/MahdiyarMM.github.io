@@ -1,3 +1,168 @@
 layout: page
 title: "CV"
 permalink: /CV/
+<html>
+<head><meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+span.cls_002{font-family:Times,serif;font-size:27.9px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_002{font-family:Times,serif;font-size:27.9px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_003{font-family:Times,serif;font-size:27.9px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}
+div.cls_003{font-family:Times,serif;font-size:27.9px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}
+span.cls_004{font-family:Times,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_004{font-family:Times,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_005{font-family:Times,serif;font-size:9.0px;color:rgb(0,0,0);font-weight:normal;font-style:italic;text-decoration: none}
+div.cls_005{font-family:Times,serif;font-size:9.0px;color:rgb(0,0,0);font-weight:normal;font-style:italic;text-decoration: none}
+span.cls_006{font-family:Arial,serif;font-size:8.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_006{font-family:Arial,serif;font-size:8.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_007{font-family:Times,serif;font-size:8.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_007{font-family:Times,serif;font-size:8.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_008{font-family:Times,serif;font-size:14.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_008{font-family:Times,serif;font-size:14.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_009{font-family:Times,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}
+div.cls_009{font-family:Times,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}
+span.cls_010{font-family:Times,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:normal;font-style:italic;text-decoration: none}
+div.cls_010{font-family:Times,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:normal;font-style:italic;text-decoration: none}
+span.cls_011{font-family:Times,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}
+div.cls_011{font-family:Times,serif;font-size:10.0px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}
+span.cls_012{font-family:Times,serif;font-size:11.0px;color:rgb(93,93,93);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_012{font-family:Times,serif;font-size:11.0px;color:rgb(93,93,93);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_013{font-family:"Modern No. 20",serif;font-size:7.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_013{font-family:"Modern No. 20",serif;font-size:7.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_014{font-family:Times,serif;font-size:10.0px;color:rgb(93,93,93);font-weight:normal;font-style:italic;text-decoration: none}
+div.cls_014{font-family:Times,serif;font-size:10.0px;color:rgb(93,93,93);font-weight:normal;font-style:italic;text-decoration: none}
+span.cls_015{font-family:Times,serif;font-size:12.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_015{font-family:Times,serif;font-size:12.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_016{font-family:Arial,serif;font-size:9.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_016{font-family:Arial,serif;font-size:9.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_017{font-family:Times,serif;font-size:9.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_017{font-family:Times,serif;font-size:9.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+-->
+</style>
+<script type="text/javascript" src="d539a9c2-a0eb-11ec-a980-0cc47a792c0a_id_d539a9c2-a0eb-11ec-a980-0cc47a792c0a_files/wz_jsgraphics.js"></script>
+</head>
+<body>
+<div style="position:absolute;left:50%;margin-left:-306px;top:0px;width:612px;height:792px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="d539a9c2-a0eb-11ec-a980-0cc47a792c0a_id_d539a9c2-a0eb-11ec-a980-0cc47a792c0a_files/background1.jpg" width=612 height=792></div>
+<div style="position:absolute;left:175.06px;top:47.35px" class="cls_002"><span class="cls_002">Mahdiyar</span><span class="cls_003"> Molahasani</span></div>
+<div style="position:absolute;left:190.72px;top:84.56px" class="cls_004"><span class="cls_004">PHD STUDENT · ELECTRICAL AND COMPUTER ENGINEERING</span></div>
+<div style="position:absolute;left:216.36px;top:102.13px" class="cls_005"><span class="cls_005">Queen's University, Kingston, Ontario, Canada</span></div>
+<div style="position:absolute;left:125.35px;top:115.26px" class="cls_006"><span class="cls_006"></span><span class="cls_007"> m.molahasani@queensu.ca</span></div>
+<div style="position:absolute;left:242.70px;top:115.26px" class="cls_007"><span class="cls_007">|</span></div>
+<div style="position:absolute;left:252.65px;top:115.26px" class="cls_006"><span class="cls_006"></span><span class="cls_007"> <A HREF="https://mahdiyarmm.github.io">www.molahasani.ca</A> </span></div>
+<div style="position:absolute;left:344.30px;top:115.26px" class="cls_007"><span class="cls_007">|</span></div>
+<div style="position:absolute;left:354.24px;top:115.26px" class="cls_006"><span class="cls_006"></span><span class="cls_007"> MahdiyarMM</span></div>
+<div style="position:absolute;left:418.36px;top:115.26px" class="cls_007"><span class="cls_007">|</span></div>
+<div style="position:absolute;left:428.31px;top:115.26px" class="cls_006"><span class="cls_006"></span><span class="cls_007"> m-molahasani</span></div>
+<div style="position:absolute;left:54.00px;top:137.25px" class="cls_008"><span class="cls_008">Education</span></div>
+<div style="position:absolute;left:54.00px;top:160.08px" class="cls_009"><span class="cls_009">Queen’s University</span></div>
+<div style="position:absolute;left:489.64px;top:160.08px" class="cls_010"><span class="cls_010">Kingston, Ontario</span></div>
+<div style="position:absolute;left:54.00px;top:173.64px" class="cls_004"><span class="cls_004">PHD ELECTRICAL AND COMPUTER ENGINEERING</span></div>
+<div style="position:absolute;left:486.66px;top:173.64px" class="cls_010"><span class="cls_010">May 2021 - present</span></div>
+<div style="position:absolute;left:55.31px;top:186.78px" class="cls_004"><span class="cls_004">• Advisor: Dr. Michael Greenspan and Dr. Ali Etemad</span></div>
+<div style="position:absolute;left:55.31px;top:197.69px" class="cls_004"><span class="cls_004">• Working on lifelong pedestrian behaviour understanding</span></div>
+<div style="position:absolute;left:54.00px;top:215.55px" class="cls_009"><span class="cls_009">University of Saskatchewan</span></div>
+<div style="position:absolute;left:454.85px;top:215.55px" class="cls_010"><span class="cls_010">Saskatoon, Saskatchewan</span></div>
+<div style="position:absolute;left:54.00px;top:229.12px" class="cls_004"><span class="cls_004">MS ELECTRICAL ENGINEERING</span></div>
+<div style="position:absolute;left:481.05px;top:229.12px" class="cls_010"><span class="cls_010">May 2019 - May 2021</span></div>
+<div style="position:absolute;left:55.31px;top:242.26px" class="cls_004"><span class="cls_004">• Advisor: Dr. Seok-bum Ko</span></div>
+<div style="position:absolute;left:55.31px;top:253.16px" class="cls_004"><span class="cls_004">• GPA 91.3 (4/4)</span></div>
+<div style="position:absolute;left:55.31px;top:264.07px" class="cls_004"><span class="cls_004">• Thesis: ”Deep Learning for Robust Super-Resolution”</span></div>
+<div style="position:absolute;left:54.00px;top:292.57px" class="cls_008"><span class="cls_008">Honors and Awards</span></div>
+<div style="position:absolute;left:83.67px;top:315.39px" class="cls_004"><span class="cls_004">2021</span></div>
+<div style="position:absolute;left:113.53px;top:314.45px" class="cls_011"><span class="cls_011">Devolved Scholarship</span><span class="cls_012">,</span><span class="cls_004"> Department of Electrical and Computer Engineering, USASK</span></div>
+<div style="position:absolute;left:527.22px;top:315.39px" class="cls_010"><span class="cls_010">$ 16,000</span></div>
+<div style="position:absolute;left:83.13px;top:328.96px" class="cls_004"><span class="cls_004">2019</span></div>
+<div style="position:absolute;left:113.53px;top:328.01px" class="cls_011"><span class="cls_011">Best Poster Award</span><span class="cls_012">,</span><span class="cls_004"> 4th Annual P2IRC Symposium</span></div>
+<div style="position:absolute;left:83.47px;top:342.53px" class="cls_004"><span class="cls_004">2017</span></div>
+<div style="position:absolute;left:113.53px;top:341.58px" class="cls_011"><span class="cls_011">90</span><span class="cls_013"><sup>ՙՍ</sup></span><span class="cls_011"> percentile</span><span class="cls_012">,</span><span class="cls_004"> School of Electrical Engineering, IUST</span></div>
+<div style="position:absolute;left:83.41px;top:356.09px" class="cls_004"><span class="cls_004">2013</span></div>
+<div style="position:absolute;left:113.53px;top:355.15px" class="cls_011"><span class="cls_011">Top 0.75%</span><span class="cls_012">,</span><span class="cls_004"> The Iranian nationwide university entrance exam</span></div>
+<div style="position:absolute;left:54.00px;top:382.40px" class="cls_008"><span class="cls_008">Selected Publications</span></div>
+<div style="position:absolute;left:54.00px;top:398.20px" class="cls_014"><span class="cls_014">For the full list of publications, see </span><A HREF="https://scholar.google.com/citations?user=cXDt3NQAAAAJ&hl=en">Google Scholar</A>.</div>
+<div style="position:absolute;left:54.00px;top:415.12px" class="cls_015"><span class="cls_015">JOURNAL</span></div>
+<div style="position:absolute;left:54.00px;top:436.21px" class="cls_004"><span class="cls_004">Haghanifar A,</span><span class="cls_009"> Molahasani M</span><span class="cls_004">, Choi Y, Deivalakshmi S, Ko S. ”Covid-cxnet: Detecting covid-19 in frontal chest x-ray images</span></div>
+<div style="position:absolute;left:73.84px;top:447.12px" class="cls_004"><span class="cls_004">using deep learning.” Multimedia Tools and Applications. 2022 (Accepted)</span></div>
+<div style="position:absolute;left:54.00px;top:464.80px" class="cls_009"><span class="cls_009">Molahasani M</span><span class="cls_004">, Choi Y, Deivalakshmi S, Ko S. ”Capsule GAN for prostate MRI super-resolution.” Multimedia Tools and Appli-</span></div>
+<div style="position:absolute;left:73.84px;top:475.71px" class="cls_004"><span class="cls_004">cations. 2021 Nov 29:1-23.</span></div>
+<div style="position:absolute;left:54.00px;top:493.40px" class="cls_009"><span class="cls_009">Molahasani M</span><span class="cls_004">, Ko SB. ”Capsule GAN for robust face super resolution.” Multimedia Tools and Applications. 2020 Nov; 79(41)</span></div>
+<div style="position:absolute;left:73.84px;top:504.30px" class="cls_004"><span class="cls_004">: 31205-18.</span></div>
+<div style="position:absolute;left:54.00px;top:524.05px" class="cls_015"><span class="cls_015">CONFERENCE</span></div>
+<div style="position:absolute;left:54.00px;top:545.15px" class="cls_004"><span class="cls_004">Zand M, Damirchi H, Farley A,</span><span class="cls_009"> Molahasani M</span><span class="cls_004">, Greenspan M, Etemad A. ”Multiscale Crowd Counting and Localization By</span></div>
+<div style="position:absolute;left:73.84px;top:556.06px" class="cls_004"><span class="cls_004">Multitask Point Supervision.” In International Conference on Acoustics, Speech, and Signal Processing (ICASSP). IEEE.</span></div>
+<div style="position:absolute;left:73.84px;top:566.96px" class="cls_004"><span class="cls_004">(Accepted)</span></div>
+<div style="position:absolute;left:54.00px;top:584.65px" class="cls_009"><span class="cls_009">Molahasani M</span><span class="cls_004">, Ko SB. ”Msg-capsgan: Multi-scale gradient capsule gan for face super resolution.” In International Confer-</span></div>
+<div style="position:absolute;left:73.84px;top:595.56px" class="cls_004"><span class="cls_004">ence on Electronics, Information, and Communication (ICEIC) 2020 Jan 19 (pp. 1-3). IEEE.</span></div>
+<div style="position:absolute;left:54.00px;top:613.24px" class="cls_004"><span class="cls_004">Haghanifar A,</span><span class="cls_009"> Molahasani M</span><span class="cls_004">, Ko SB. ”Automated teeth extraction from dental panoramic x-ray images using genetic algo-</span></div>
+<div style="position:absolute;left:73.84px;top:624.15px" class="cls_004"><span class="cls_004">rithm.” In IEEE International Symposium on Circuits and Systems (ISCAS) 2020 Oct 10 (pp. 1-5). IEEE.</span></div>
+<div style="position:absolute;left:54.00px;top:641.83px" class="cls_004"><span class="cls_004">Sharifi R,</span><span class="cls_009"> Molahasani M</span><span class="cls_004">, Vakili VT. ”Mobile user-activity prediction utilizing LSTM recurrent neural network.” In IEEE Pacific</span></div>
+<div style="position:absolute;left:73.84px;top:652.74px" class="cls_004"><span class="cls_004">Rim Conference on Communications, Computers and Signal Processing (PACRIM) 2019 Aug 21 (pp. 1-7). IEEE.</span></div>
+<div style="position:absolute;left:54.00px;top:753.69px" class="cls_007"><span class="cls_007">MARCH 2022</span></div>
+<div style="position:absolute;left:231.48px;top:753.69px" class="cls_007"><span class="cls_007">MAHDIYAR MOLAHASANI</span></div>
+<div style="position:absolute;left:312.07px;top:753.69px" class="cls_007"><span class="cls_007">· CURRICULUM VITAE</span></div>
+<div style="position:absolute;left:555.15px;top:753.69px" class="cls_007"><span class="cls_007">1</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-306px;top:802px;width:612px;height:792px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="d539a9c2-a0eb-11ec-a980-0cc47a792c0a_id_d539a9c2-a0eb-11ec-a980-0cc47a792c0a_files/background2.jpg" width=612 height=792></div>
+<div style="position:absolute;left:54.00px;top:51.01px" class="cls_008"><span class="cls_008">Professional Experience</span></div>
+<div style="position:absolute;left:62.61px;top:75.58px" class="cls_004"><span class="cls_004">2021-now</span><span class="cls_011">   Graduate Research Assistant</span><span class="cls_012">,</span><span class="cls_004"> Department of ECE, Queen’s University</span></div>
+<div style="position:absolute;left:61.51px;top:90.09px" class="cls_004"><span class="cls_004">2019-2021</span></div>
+<div style="position:absolute;left:112.79px;top:89.15px" class="cls_011"><span class="cls_011">Graduate Research Assistant</span><span class="cls_012">,</span><span class="cls_004"> Department of ECE, University of Saskatchewan</span></div>
+<div style="position:absolute;left:60.97px;top:103.66px" class="cls_004"><span class="cls_004">2016-2018</span></div>
+<div style="position:absolute;left:112.79px;top:102.71px" class="cls_011"><span class="cls_011">Research Intern</span><span class="cls_012">,</span><span class="cls_004"> Machine Vision Lab, IUST</span></div>
+<div style="position:absolute;left:54.00px;top:129.96px" class="cls_008"><span class="cls_008">Technical Skills</span></div>
+<div style="position:absolute;left:57.64px;top:155.83px" class="cls_014"><span class="cls_014">Programming Languages:</span></div>
+<div style="position:absolute;left:220.35px;top:156.01px" class="cls_014"><span class="cls_014">Python Libraries:</span></div>
+<div style="position:absolute;left:394.68px;top:156.99px" class="cls_014"><span class="cls_014">General Tools:</span></div>
+<div style="position:absolute;left:57.64px;top:173.18px" class="cls_012"><span class="cls_012">Python 3.x</span></div>
+<div style="position:absolute;left:220.35px;top:173.18px" class="cls_012"><span class="cls_012">PyTorch</span></div>
+<div style="position:absolute;left:394.68px;top:174.15px" class="cls_012"><span class="cls_012">Git</span></div>
+<div style="position:absolute;left:57.64px;top:192.13px" class="cls_012"><span class="cls_012">MATLAB</span></div>
+<div style="position:absolute;left:220.35px;top:191.63px" class="cls_012"><span class="cls_012">Tensorflow 2.x/Keras</span></div>
+<div style="position:absolute;left:394.68px;top:192.06px" class="cls_012"><span class="cls_012">LaTeX</span></div>
+<div style="position:absolute;left:57.64px;top:209.41px" class="cls_012"><span class="cls_012">Verilog/VHDL</span></div>
+<div style="position:absolute;left:220.35px;top:209.49px" class="cls_012"><span class="cls_012">Numpy/Scipy/Pandas</span></div>
+<div style="position:absolute;left:394.68px;top:210.56px" class="cls_012"><span class="cls_012">MS Excel</span></div>
+<div style="position:absolute;left:57.64px;top:228.80px" class="cls_012"><span class="cls_012">HSPICE</span></div>
+<div style="position:absolute;left:220.35px;top:227.89px" class="cls_012"><span class="cls_012">OpenCV/Scikit-image</span></div>
+<div style="position:absolute;left:394.68px;top:227.99px" class="cls_012"><span class="cls_012">Adobe Photoshop</span></div>
+<div style="position:absolute;left:54.00px;top:274.75px" class="cls_008"><span class="cls_008">Teaching Experience</span></div>
+<div style="position:absolute;left:60.63px;top:300.53px" class="cls_004"><span class="cls_004">2021-2022</span></div>
+<div style="position:absolute;left:113.53px;top:299.58px" class="cls_011"><span class="cls_011">Computer Architecture</span><span class="cls_012">,</span><span class="cls_004"> Teaching Assistant</span></div>
+<div style="position:absolute;left:60.21px;top:314.10px" class="cls_004"><span class="cls_004">2020-2021</span></div>
+<div style="position:absolute;left:113.53px;top:313.15px" class="cls_011"><span class="cls_011">Microprocessor Interfacing and Embedded Systems</span><span class="cls_012">,</span><span class="cls_004"> Teaching Assistant</span></div>
+<div style="position:absolute;left:61.31px;top:327.66px" class="cls_004"><span class="cls_004">2017-2018</span></div>
+<div style="position:absolute;left:113.53px;top:326.72px" class="cls_011"><span class="cls_011">Microprocessors</span><span class="cls_012">,</span><span class="cls_004"> Teaching Assistant</span></div>
+<div style="position:absolute;left:54.00px;top:354.13px" class="cls_008"><span class="cls_008">Outreach & Professional Development</span></div>
+<div style="position:absolute;left:54.00px;top:375.03px" class="cls_015"><span class="cls_015">PEER REVIEW</span></div>
+<div style="position:absolute;left:54.00px;top:397.35px" class="cls_004"><span class="cls_004">Imaging Science Journal, Taylor & Francis</span></div>
+<div style="position:absolute;left:54.00px;top:427.81px" class="cls_015"><span class="cls_015">SERVICE AND OUTREACH</span></div>
+<div style="position:absolute;left:113.53px;top:447.67px" class="cls_011"><span class="cls_011">Engineering Graduate Community Council at the University of Saskatchewan (EGCC)</span><span class="cls_012">,</span><span class="cls_004"> VP</span></div>
+<div style="position:absolute;left:81.82px;top:455.40px" class="cls_004"><span class="cls_004">2020</span></div>
+<div style="position:absolute;left:113.53px;top:462.17px" class="cls_004"><span class="cls_004">of student affairs</span></div>
+<div style="position:absolute;left:83.13px;top:475.72px" class="cls_004"><span class="cls_004">2019</span></div>
+<div style="position:absolute;left:113.53px;top:474.77px" class="cls_011"><span class="cls_011">Iranian Students’ Council at the University of Saskatchewan (ISC)</span><span class="cls_012">,</span><span class="cls_004"> VP of administration</span></div>
+<div style="position:absolute;left:54.00px;top:492.01px" class="cls_015"><span class="cls_015">DEVELOPMENT</span></div>
+<div style="position:absolute;left:54.00px;top:513.10px" class="cls_009"><span class="cls_009">Engineering three minuet thesis</span><span class="cls_004">, Competing in the 2nd EGCC three-minute thesis (3MT) competition and organizing the</span></div>
+<div style="position:absolute;left:73.84px;top:524.01px" class="cls_004"><span class="cls_004">3rd EGCC 3MT event.</span></div>
+<div style="position:absolute;left:54.00px;top:551.69px" class="cls_008"><span class="cls_008">Research Experience</span></div>
+<div style="position:absolute;left:54.00px;top:574.77px" class="cls_009"><span class="cls_009">Michael Greenspan</span><span class="cls_004">, Professor at the Department of Electrical and Computer Engineering, Queen’s University</span></div>
+<div style="position:absolute;left:73.84px;top:586.68px" class="cls_016"><span class="cls_016"></span><span class="cls_017"> michael.greenspan@queensu.ca</span></div>
+<div style="position:absolute;left:54.00px;top:607.62px" class="cls_009"><span class="cls_009">Ali Etemad</span><span class="cls_004">, Assistant Professor at the Department of Electrical and Computer Engineering, Queen’s University</span></div>
+<div style="position:absolute;left:73.84px;top:619.52px" class="cls_016"><span class="cls_016"></span><span class="cls_017"> ali.etemad@queensu.ca</span></div>
+<div style="position:absolute;left:54.00px;top:640.46px" class="cls_009"><span class="cls_009">Seok-bum Ko</span><span class="cls_004">, Professor at the department of Electrical and Computer Engineering and the Department of Biomedical</span></div>
+<div style="position:absolute;left:73.84px;top:651.37px" class="cls_004"><span class="cls_004">Engineering, University of Saskatchewan</span></div>
+<div style="position:absolute;left:73.84px;top:663.28px" class="cls_016"><span class="cls_016"></span><span class="cls_017"> seokbum.ko@usask.ca</span></div>
+<div style="position:absolute;left:54.00px;top:684.22px" class="cls_009"><span class="cls_009">Shahriar B. Shokouhi</span><span class="cls_004">, Associate Professor at School of Electrical Engineering, Iran University of Science and Technology,</span></div>
+<div style="position:absolute;left:73.84px;top:695.12px" class="cls_004"><span class="cls_004">Queen’s University</span></div>
+<div style="position:absolute;left:73.84px;top:707.03px" class="cls_016"><span class="cls_016"></span><span class="cls_017"> bshokouhi@iust.ac.ir</span></div>
+<div style="position:absolute;left:54.00px;top:753.69px" class="cls_007"><span class="cls_007">MARCH 2022</span></div>
+<div style="position:absolute;left:231.48px;top:753.69px" class="cls_007"><span class="cls_007">MAHDIYAR MOLAHASANI</span></div>
+<div style="position:absolute;left:312.07px;top:753.69px" class="cls_007"><span class="cls_007">· CURRICULUM VITAE</span></div>
+<div style="position:absolute;left:554.39px;top:753.69px" class="cls_007"><span class="cls_007">2</span></div>
+</div>
+
+</body>
+</html>
