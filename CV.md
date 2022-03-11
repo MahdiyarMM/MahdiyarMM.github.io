@@ -44,7 +44,7 @@ div.cls_017{font-family:Times,serif;font-size:9.0px;color:rgb(0,0,0);font-weight
 <body>
 <div style="position:absolute;left:50%;margin-left:-306px;top:0px;width:612px;height:792px;border-style:outset;overflow:hidden">
 <div style="position:absolute;left:0px;top:0px">
-<img src="d539a9c2-a0eb-11ec-a980-0cc47a792c0a_id_d539a9c2-a0eb-11ec-a980-0cc47a792c0a_files/background1.jpg" width=612 height=792></div>
+<img src="data/background1.jpg" width=612 height=792></div>
 <div style="position:absolute;left:175.06px;top:47.35px" class="cls_002"><span class="cls_002">Mahdiyar</span><span class="cls_003"> Molahasani</span></div>
 <div style="position:absolute;left:190.72px;top:84.56px" class="cls_004"><span class="cls_004">PHD STUDENT · ELECTRICAL AND COMPUTER ENGINEERING</span></div>
 <div style="position:absolute;left:216.36px;top:102.13px" class="cls_005"><span class="cls_005">Queen's University, Kingston, Ontario, Canada</span></div>
@@ -105,7 +105,7 @@ div.cls_017{font-family:Times,serif;font-size:9.0px;color:rgb(0,0,0);font-weight
 </div>
 <div style="position:absolute;left:50%;margin-left:-306px;top:802px;width:612px;height:792px;border-style:outset;overflow:hidden">
 <div style="position:absolute;left:0px;top:0px">
-<img src="d539a9c2-a0eb-11ec-a980-0cc47a792c0a_id_d539a9c2-a0eb-11ec-a980-0cc47a792c0a_files/background2.jpg" width=612 height=792></div>
+<img src="data/background2.jpg" width=612 height=792></div>
 <div style="position:absolute;left:54.00px;top:51.01px" class="cls_008"><span class="cls_008">Professional Experience</span></div>
 <div style="position:absolute;left:62.61px;top:75.58px" class="cls_004"><span class="cls_004">2021-now</span><span class="cls_011">   Graduate Research Assistant</span><span class="cls_012">,</span><span class="cls_004"> Department of ECE, Queen’s University</span></div>
 <div style="position:absolute;left:61.51px;top:90.09px" class="cls_004"><span class="cls_004">2019-2021</span></div>
