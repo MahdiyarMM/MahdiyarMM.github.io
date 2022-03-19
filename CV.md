@@ -1,6 +1,4 @@
 <script>
-layout: page
-title: "CV"
 permalink: /CV/
 </script>
 <html>
