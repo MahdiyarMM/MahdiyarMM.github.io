@@ -1,1 +1,3 @@
-
+<script>
+permalink: /blog/
+</script>
