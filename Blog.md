@@ -1,3 +1,253 @@
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133321224-1"></script>
 <script>
-permalink: /blog/
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-133321224-1');
 </script>
+
+<!DOCTYPE HTML>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Mahdiyar Molahasani</title>
+  
+  <meta name="author" content="Jon Barron">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="icon" type="image/png" href="images/icon.png">
+</head>
+
+<body>
+  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <tr style="padding:0px">
+      <td style="padding:0px">
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr style="padding:0px">
+            <td style="padding:2.5%;width:63%;vertical-align:middle">
+              <p style="text-align:center">
+                <name>Mahdiyar Molahasani</name>
+              </p>
+              <p>I am a Ph.D. student at <a href="https://ingenuitylabs.queensu.ca/">Ingenuity labs </a> at <a href="https://www.queensu.ca/">Queen's University </a> working on continual learning and pedestrian behaviour understanding funded by <a href="https://www.nserc-crsng.gc.ca/index_eng.asp">NSERC </a> and <a href="https://www.geotab.com/">Geotab </a>. I am working under the supervision of <a href="https://rcvlab.engineering.queensu.ca/people/"> Michael Greenspan </a> and <a href="https://www.aiimlab.com/members"> Ali Etemad </a>.
+              </p>
+              <p>
+                I have recived my M.Sc. from <a href="https://www.usask.ca/">the Univeristy of Saskatchewan  </a>, Saskatoon, Canada in 2021. At USASK, I've worked on super-resolution, automated diagnosis and capsule GANs advised by <a href="https://engineering.usask.ca/people/ece/Ko,Seok-Bum.php"> Seok-bum Ko </a> and funded by Devolved scholarship from USASK ECE Department. 
+              <p style="text-align:center">
+                <a href="mailto:m.molahasani@queensu.ca">Email</a> &nbsp/&nbsp
+                <a href="https://www.linkedin.com/in/m-mollahasani/">Linkedin</a> &nbsp/&nbsp
+                <a href="https://scholar.google.com/citations?user=cXDt3NQAAAAJ&hl=en">Google Scholar</a> &nbsp/&nbsp
+                <a href="https://github.com/MahdiyarMM">Github</a>&nbsp/&nbsp
+		<a href=" https://raw.githubusercontent.com/MahdiyarMM/MahdiyarMM.github.io/49cb1fd4b5c5d69f366296557e3112e0137b8c38/data/CV.pdf">CV</a>      
+		</p>     
+            </td>
+            <td style="padding:2.5%;width:40%;max-width:40%">
+              <a href="images/mmm.jpg"><img style="width:100%;max-width:100%" alt="profile photo" src="images/mmm.jpg" class="hoverZoomLink"></a>
+            </td>
+          </tr>
+		
+		
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Research</heading>
+              <p>
+		AI is my passion. I am intrested in deep learning and its applications. I have experince using DL architectures for solving problems in variety of domains from medical scans to 5G networks. My research covers different aspects of DL from high-level learning paradims such as continual learning to transistor-level hardware implementation.
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+            
+	  <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/crowd.png" alt="clean-usnob" width="160" height="160">
+            </td>
+            <td width="75%" valign="middle">
+              <a href="https://arxiv.org/abs/2202.09942">
+                <papertitle>Multi-scale Multi-task Crowd Counting</papertitle>
+              </a>
+              <br>
+              Mohsen Zand, Haleh Damirchi, Andrew Farley, <strong>Mahdiyar Molahasani</strong>, Michael Greenspan, Ali Etemad
+              </a>
+	      <br>
+	      <a href="https://arxiv.org/abs/2202.09942">arXiv</a>/<a href="https://github.com/MahdiyarMM/crowd_counting">Code</a>
+	      </p>
+              <em>International Conference on Acoustics, Speech, and Signal Processing (ICASSP)</em>, 2022
+	      </a>
+              <p>A multi-scale crowd counting and localization platform is proposed in this work. This novel architecture alongside with the multi-scale multi-task loss function have demonstrated promising performance.</p>
+	    </td>
+          </tr>
+	
+	
+	  <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/msg.png" alt="clean-usnob" width="160" height="160">
+            </td>
+            <td width="75%" valign="middle">
+              <a href="https://link.springer.com/article/10.1007/s11042-020-09489-y">
+                <papertitle>MSG-Caps GAN for Face Super-Resolution</papertitle>
+              </a>
+              <br>
+              <strong>Mahdiyar Molahasani</strong>, Seok-bum Ko
+              </a>
+	      <br>
+	      <a href="https://ieeexplore.ieee.org/abstract/document/9051244">Conference</a>/<a href="https://github.com/MahdiyarMM/MSG-CapsGAN">Code</a>
+	      </p>
+              <em>International Conference on Electronics, Information, and Communication (ICEIC)</em>, 2020
+	      <br>
+	      <em>Multimedia Tools and Applications</em>, 2020
+	      </a>
+              <p>We proposed the first Multi-scale gradient capsule GAN and utlized it for face super-resolution. This model outperformed state-of-the-art face super-resolution models.</p>
+            </td>
+          </tr>
+
+
+	
+	  <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/covid.png" alt="clean-usnob" width="160" height="160">
+            </td>
+            <td width="75%" valign="middle">
+              <a href="https://arxiv.org/abs/2006.13807">
+                <papertitle>COVID-CXNet: Detecting COVID-19 in Frontal Chest X-ray Images</papertitle>
+              </a>
+              <br>
+              Arman Haghanifar, <strong>Mahdiyar Molahasani</strong>, Younhee Choi, S Deivalakshmi, Seok-bum Ko
+              </a>
+	      <br>
+	      <a href="https://arxiv.org/abs/2006.13807">arXiv</a>/<a href="https://github.com/MahdiyarMM/COVID-CXNet">Code</a>
+	      </p>
+	      <em>Multimedia Tools and Applications</em>, 2021
+	      </a>
+              <p>In this work, the largest publicly available dataset for COVID19 is collected and a powerful COVID19 detection model based on CheXNet is proposed. This model can detect COVID19 accurately using meaningful features</p>
+            </td>
+          </tr>
+
+
+
+
+          
+	  <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/prostate.png" alt="clean-usnob" width="160" height="160">
+            </td>
+            <td width="75%" valign="middle">
+              <a href="https://link.springer.com/article/10.1007/s11042-020-09489-y">
+                <papertitle>High-scale Prostate MRI Super-Resolution with MSG-CapsGAN</papertitle>
+              </a>
+              <br>
+              <strong>Mahdiyar Molahasani</strong>, Younhee Choi, S Deivalakshmi, Seok-bum Ko
+              </a>
+	      <br>
+	      </p>
+	      <em>Multimedia Tools and Applications</em>, 2021
+	      </a>
+              <p>One of the first attempts for high-scale super-resolution (8x) in biomedical domain. MSG-CapsGAN shows promising results in the medical domain as well.</p>
+            </td>
+          </tr>
+
+
+	  <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/tooth.png" alt="clean-usnob" width="160" height="160">
+            </td>
+            <td width="75%" valign="middle">
+              <a href="https://arxiv.org/abs/2012.13666">
+                <papertitle>Automated Tooth Extrcation and Caries Detetcion</papertitle>
+              </a>
+              <br>
+              Arman Haghanifar, <strong>Mahdiyar Molahasani</strong>, Seok-bum Ko
+	      <br>
+	      <a href="https://arxiv.org/abs/2012.13666">arXiv</a>\<a href="https://ieeexplore.ieee.org/abstract/document/9180937">Conference</a>\<a href="https://github.com/MahdiyarMM/Teeth-Extraction">Code (extraction)</a>\<a href="https://github.com/MahdiyarMM/Dental-Caries-Classification">Code (detection)</a>
+              </p>
+              <em>IEEE International Symposium on Circuits and Systems (ISCAS)</em>, 2020
+	      <br>
+	      <em>Multimedia Tools and Applications</em>, (Under review)
+	      </a>
+              <p> Fully automated tooth extcartion is implemented using genetic algorithm. A multi-feature extraction model with capsule classifier is developed for caries detection.</p>
+            </td>
+          </tr>	      
+	      
+
+	  <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/memristor.png" alt="clean-usnob" width="160" height="160">
+            </td>
+            <td width="75%" valign="middle">
+              <a href="https://www.sciencedirect.com/science/article/abs/pii/S0026269220300094">
+                <papertitle>Hybrid CMOS/Memristor Crossbar implementation of Recurrent Neural Networks</papertitle>
+              </a>
+              <br>
+              <strong>Mahdiyar Molahasani</strong>, Jafar Shamsi, S. B. Shokouhi, Seok-bum Ko
+	      <br>
+	      <a href="https://link.springer.com/article/10.1007/s10470-020-01720-y">Hopfield</a>\<a href="https://www.sciencedirect.com/science/article/abs/pii/S0026269220300094">BAM</a>\<a href="https://github.com/MahdiyarMM/Memristive-Associative-Memory">Code </a>
+              </p>
+              <em>Analog Integrated Circuits and Signal Processing</em>, 2021
+	      <br>
+	      <em>Microelectronics Journal</em>, 2020
+	      </a>
+              <p> Efficient and scalable transistor level implementation of two different recurrent neural networks is proposed using memristor crossbar array.</p>
+            </td>
+          </tr>	 
+
+
+	  <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/Anomaly.png" alt="clean-usnob" width="160" height="160">
+            </td>
+            <td width="75%" valign="middle">
+              <a href="https://ieeexplore.ieee.org/abstract/document/8985068">
+                <papertitle>Anomaly Prediction in 5G Network</papertitle>
+              </a>
+              <br>
+              Ramin Sharifi, <strong>Mahdiyar Molahasani</strong>, Vahid Tabataba Vakili
+              </a>
+	      <br>
+	      </p>
+	      <em>IEEE Pacific Rim Conference on Communications, Computers and Signal Processing (PACRIM)</em>, 2019
+	      </a>
+              <p> Using LSTM network for user activity prediction in 5G network. The proposed model is capable of anomaly prediction one hour ahead.</p>
+            </td>
+          </tr>
+
+
+	  <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/erosion.png" alt="clean-usnob" width="160" height="160">
+            </td>
+            <td width="75%" valign="middle">
+              <a href="https://asmedigitalcollection.asme.org/FPST/proceedings-abstract/FPMC2021/V001T01A058/1129254">
+                <papertitle>Erosion Detection in Hydraulic Tubes and Hoses Using GRU</papertitle>
+              </a>
+              <br>
+              Elnaz Etminan, <strong>Mahdiyar Molahasani</strong>, Seok-bum Ko, Travis Wiens
+              </a>
+	      <br>
+	      </p>
+	      <em>Fluid Power Systems Technology, American Society of Mechanical Engineers</em>, 2021
+	      </a>
+              <p>The properties of the eroded area in the pipe is extracted from the pressure responce using GRU network. This work is the first erison dtection system using deep learning.</p>
+            </td>
+          </tr>
+
+
+
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <p>
+		© 2022 Mahdiyar Molahasani. All rights reserved. <a href="https://github.com/jonbarron/website">Website source </a>.
+              </p>
+            </td>
+          </tr>			
+        </tbody></table>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
