@@ -61,23 +61,36 @@
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 		
 
-	<!-- In your HTML file, where you want to display the citation count, h-index, and i10-index -->
-	<p id="citation-count"></p>
-	<p id="h-index"></p>
-	<p id="i10-index"></p>
+            <p id="scholar-metrics" style="margin-left: 2em;">
+                Citations: <span id="citation-count">0</span> | H-Index: <span id="h-index">0</span> | i10-Index: <span id="i10-index">0</span>
+            </p>
+            <script>
+            async function loadScholarData() {
+                const response = await fetch("scholar_data.json");
+                const data = await response.json();
 
-	<script>
-	async function loadScholarData() {
-	    const response = await fetch("scholar_data.json");
-	    const data = await response.json();
+                const duration = 2000;
+                const startTime = new Date().getTime();
 
-	    document.getElementById("citation-count").innerText = `Citations: ${data.citations}`;
-	    document.getElementById("h-index").innerText = `H-Index: ${data.h_index}`;
-	    document.getElementById("i10-index").innerText = `i10-Index: ${data.i10_index}`;
-	}
+                function countUp() {
+                    const currentTime = new Date().getTime();
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
 
-	loadScholarData();
-	</script>
+                    document.getElementById("citation-count").innerText = Math.round(data.citations * progress);
+                    document.getElementById("h-index").innerText = Math.round(data.h_index * progress);
+                    document.getElementById("i10-index").innerText = Math.round(data.i10_index * progress);
+
+                    if (progress < 1) {
+                        requestAnimationFrame(countUp);
+                    }
+                }
+
+                countUp();
+            }
+
+            loadScholarData();
+            </script>
             
 	  <tr>
             <td style="padding:20px;width:25%;vertical-align:middle">
