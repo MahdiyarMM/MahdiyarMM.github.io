@@ -47,73 +47,59 @@
             </td>
           </tr>
 		
-</tbody></table>
-<!-- ... -->
-<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr>
-        <td style="padding:20px;width:100%;vertical-align:middle">
-            <heading>Research</heading>
-            <p align="justify">
-                AI is my passion. I am intrested in deep learning and its applications. I have the experince of using DL architectures for solving problems in variety of domains from medical scans to 5G networks. My research covers different aspects of DL from high-level learning paradims such as continual learning to transistor-level hardware implementation.
-            </p>
-        </td>
-    </tr>
-<!-- ... -->
-<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr>
-        <td style="padding:20px;width:100%;vertical-align:middle">
-            <heading>Publications</heading>
-            <p id="scholar-metrics" style="margin-left: 2em;">
-                Citations: <span id="citation-count">0</span> | H-Index: <span id="h-index">0</span> | i10-Index: <span id="i10-index">0</span>
-            </p>
-            <script>
-            async function loadScholarData() {
-                const response = await fetch("scholar_data.json");
-                const data = await response.json();
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Research</heading>
+              <p align="justify">
+		AI is my passion. I am intrested in deep learning and its applications. I have the experince of using DL architectures for solving problems in variety of domains from medical scans to 5G networks. My research covers different aspects of DL from high-level learning paradims such as continual learning to transistor-level hardware implementation.
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+		
 
-                const duration = 2000;
-                const startTime = new Date().getTime();
+	<!-- In your HTML file, where you want to display the citation count, h-index, and i10-index -->
+	<p id="citation-count"></p>
+	<p id="h-index"></p>
+	<p id="i10-index"></p>
 
-                function countUp() {
-                    const currentTime = new Date().getTime();
-                    const elapsed = currentTime - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
+	<script>
+	async function loadScholarData() {
+	    const response = await fetch("scholar_data.json");
+	    const data = await response.json();
 
-                    document.getElementById("citation-count").innerText = Math.round(data.citations * progress);
-                    document.getElementById("h-index").innerText = Math.round(data.h_index * progress);
-                    document.getElementById("i10-index").innerText = Math.round(data.i10_index * progress);
+	    document.getElementById("citation-count").innerText = `Citations: ${data.citations}`;
+	    document.getElementById("h-index").innerText = `H-Index: ${data.h_index}`;
+	    document.getElementById("i10-index").innerText = `i10-Index: ${data.i10_index}`;
+	}
 
-                    if (progress < 1) {
-                        requestAnimationFrame(countUp);
-                    }
-                }
+	loadScholarData();
+	</script>
 
-                countUp();
-            }
-
-            loadScholarData();
-            </script>
-
-    <tr>
-        <td style="padding:20px;width:25%;vertical-align:middle">
-            <img src="images/crowd.png" alt="clean-usnob" width="160" height="160">
-        </td>
-        <td width="75%" valign="middle">
-            <a href="https://ieeexplore.ieee.org/document/9747776">
+		
+            
+	  <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/crowd.png" alt="clean-usnob" width="160" height="160">
+            </td>
+            <td width="75%" valign="middle">
+              <a href="https://ieeexplore.ieee.org/document/9747776">
                 <papertitle>Multi-scale Multi-task Crowd Counting</papertitle>
-            </a>
-            <br>
-            Mohsen Zand, Haleh Damirchi, Andrew Farley, <strong>Mahdiyar Molahasani</strong>, Michael Greenspan, Ali Etemad
-            </a>
-            <br>
-            <a href="https://arxiv.org/abs/2202.09942">arXiv</a>/<a href="https://github.com/MahdiyarMM/crowd_counting">Code</a>
-            </p>
-            <em>International Conference on Acoustics, Speech, and Signal Processing (ICASSP)</em>, 2022
-            </a>
-            <p align="justify">A multi-scale crowd counting and localization platform is proposed in this work. This novel architecture alongside with the multi-scale multi-task
+              </a>
+              <br>
+              Mohsen Zand, Haleh Damirchi, Andrew Farley, <strong>Mahdiyar Molahasani</strong>, Michael Greenspan, Ali Etemad
+              </a>
+	      <br>
+	      <a href="https://arxiv.org/abs/2202.09942">arXiv</a>/<a href="https://github.com/MahdiyarMM/crowd_counting">Code</a>
+	      </p>
+              <em>International Conference on Acoustics, Speech, and Signal Processing (ICASSP)</em>, 2022
+	      </a>
+              <p align="justify">A multi-scale crowd counting and localization platform is proposed in this work. This novel architecture alongside with the multi-scale multi-task loss function have demonstrated promising performance.</p>
 	    </td>
           </tr>
-	
 	
 	  <tr>
             <td style="padding:20px;width:25%;vertical-align:middle">
