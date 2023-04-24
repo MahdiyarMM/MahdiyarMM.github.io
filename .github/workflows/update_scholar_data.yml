@@ -3,6 +3,7 @@ name: Update Google Scholar Data
 on:
   schedule:
     - cron: "0 0 * * *" # This will run the workflow daily at midnight (UTC)
+  workflow_dispatch: # This allows you to manually trigger the workflow
 
 jobs:
   update_scholar_data:
