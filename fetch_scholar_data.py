@@ -8,6 +8,7 @@ def fetch_scholar_data(author_id):
     data = {
         "citations": author['citedby'],
         "h_index": author['hindex'],
+        "i10_index": author['i10index'],
     }
 
     with open("scholar_data.json", "w") as f:
