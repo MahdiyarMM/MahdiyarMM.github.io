@@ -60,7 +60,24 @@
           </tr>
         </tbody></table>
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+		
+	<!-- In your HTML file, where you want to display the citation count and h-index -->
+	<p id="citation-count"></p>
+	<p id="h-index"></p>
 
+	<script>
+	async function loadScholarData() {
+	    const response = await fetch("scholar_data.json");
+	    const data = await response.json();
+
+	    document.getElementById("citation-count").innerText = `Citations: ${data.citations}`;
+	    document.getElementById("h-index").innerText = `H-Index: ${data.h_index}`;
+	}
+
+	loadScholarData();
+	</script>
+
+		
             
 	  <tr>
             <td style="padding:20px;width:25%;vertical-align:middle">
