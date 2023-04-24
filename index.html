@@ -57,25 +57,45 @@
             </p>
         </td>
     </tr>
-</tbody></table>
+<!-- ... -->
 <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
     <tr>
         <td style="padding:20px;width:100%;vertical-align:middle">
             <heading>Publications</heading>
-            <p id="scholar-metrics" style="margin-left: 2em;"></p>
+            <p id="scholar-metrics" style="margin-left: 2em;">
+                <span id="citation-count">0</span> | H-Index: <span id="h-index">0</span> | i10-Index: <span id="i10-index">0</span>
+            </p>
             <script>
             async function loadScholarData() {
                 const response = await fetch("scholar_data.json");
                 const data = await response.json();
 
-                document.getElementById("scholar-metrics").innerHTML = `Citations: ${data.citations} | H-Index: ${data.h_index} | i10-Index: ${data.i10_index}`;
+                const duration = 2000;
+                const startTime = new Date().getTime();
+
+                function countUp() {
+                    const currentTime = new Date().getTime();
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+
+                    document.getElementById("citation-count").innerText = Math.round(data.citations * progress);
+                    document.getElementById("h-index").innerText = Math.round(data.h_index * progress);
+                    document.getElementById("i10-index").innerText = Math.round(data.i10_index * progress);
+
+                    if (progress < 1) {
+                        requestAnimationFrame(countUp);
+                    }
+                }
+
+                countUp();
             }
 
             loadScholarData();
             </script>
         </td>
     </tr>
-    <!-- Rest of your website code -->
+<!-- ... -->
+
 
 
 		
