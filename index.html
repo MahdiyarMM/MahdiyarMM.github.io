@@ -91,7 +91,7 @@
           </tr>
         </tbody></table>
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-<!-- ... -->
+
 
             
 	  <tr class="paper-info">
@@ -282,28 +282,31 @@
 
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const paperInfoElements = document.querySelectorAll(".paper-info");
+  document.addEventListener("DOMContentLoaded", function () {
+    const paperInfoElements = document.querySelectorAll(".paper-info");
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      rootMargin: "0px 0px -20% 0px",
-    }
-  );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          } else {
+            entry.target.classList.remove("visible");
+          }
+        });
+      },
+      {
+        rootMargin: "0px 0px -20% 0px",
+        threshold: 0,
+      }
+    );
 
-  paperInfoElements.forEach((element) => {
-    observer.observe(element);
+    paperInfoElements.forEach((element) => {
+      observer.observe(element);
+    });
   });
-});
 </script>
+
 
 </body>
 
