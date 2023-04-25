@@ -1,4 +1,29 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const paperInfoElements = document.querySelectorAll(".paper-info");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      rootMargin: "0px 0px -20% 0px",
+    }
+  );
+
+  paperInfoElements.forEach((element) => {
+    observer.observe(element);
+  });
+});
+</script>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133321224-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -93,7 +118,7 @@
 <!-- ... -->
 
             
-	  <tr>
+	  <tr class="paper-info">
             <td style="padding:20px;width:25%;vertical-align:middle">
               <img src="images/crowd.png" alt="clean-usnob" width="160" height="160">
             </td>
@@ -113,7 +138,7 @@
 	    </td>
           </tr>
 	
-	  <tr>
+	  <tr class="paper-info">
             <td style="padding:20px;width:25%;vertical-align:middle">
               <img src="images/msg.png" alt="clean-usnob" width="160" height="160">
             </td>
@@ -137,7 +162,7 @@
 
 
 	
-	  <tr>
+	  <tr class="paper-info">
             <td style="padding:20px;width:25%;vertical-align:middle">
               <img src="images/covid.png" alt="clean-usnob" width="160" height="160">
             </td>
@@ -161,7 +186,7 @@
 
 
           
-	  <tr>
+	  <tr class="paper-info">
             <td style="padding:20px;width:25%;vertical-align:middle">
               <img src="images/prostate.png" alt="clean-usnob" width="160" height="160">
             </td>
@@ -181,7 +206,7 @@
           </tr>
 
 
-	  <tr>
+	  <tr class="paper-info">
             <td style="padding:20px;width:25%;vertical-align:middle">
               <img src="images/tooth.png" alt="clean-usnob" width="160" height="160">
             </td>
@@ -203,7 +228,7 @@
           </tr>	      
 	      
 
-	  <tr>
+	  <tr class="paper-info">
             <td style="padding:20px;width:25%;vertical-align:middle">
               <img src="images/memristor.png" alt="clean-usnob" width="160" height="160">
             </td>
@@ -225,7 +250,7 @@
           </tr>	 
 
 
-	  <tr>
+	 <tr class="paper-info">
             <td style="padding:20px;width:25%;vertical-align:middle">
               <img src="images/Anomaly.png" alt="clean-usnob" width="160" height="160">
             </td>
@@ -245,7 +270,7 @@
           </tr>
 
 
-	  <tr>
+	  <<tr class="paper-info">
             <td style="padding:20px;width:25%;vertical-align:middle">
               <img src="images/erosion.png" alt="clean-usnob" width="160" height="160">
             </td>
