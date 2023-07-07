@@ -67,23 +67,43 @@
 </tbody></table>
 <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
-    <tr>
-        <td style="padding:20px;width:100%;vertical-align:middle; text-align: center;">
-            <p align="justify">
-                AI is my passion. I am interested in deep learning and its applications. I have the experience of using DL architectures for solving problems in a variety of domains from medical scans to 5G networks. My research covers different aspects of DL from high-level learning paradigms such as continual learning to transistor-level hardware implementation.
-            </p>
-            <div id="scholar-metrics" style="background-color: #f0f0f0; border-radius: 10px; display: inline-block; padding: 10px; margin: auto;">
-                Citations: <span id="citation-count">0</span> | H-Index: <span id="h-index">0</span> | i10-Index: <span id="i10-index">0</span>
-            </div>
-            <script>
-            // Your script here
-            </script>
-        </td>
-    </tr>
+              <p align="justify">
+		AI is my passion. I am intrested in deep learning and its applications. I have the experince of using DL architectures for solving problems in variety of domains from medical scans to 5G networks. My research covers different aspects of DL from high-level learning paradims such as continual learning to transistor-level hardware implementation.
+              </p>
+	      <div id="scholar-metrics" style="background-color: #f0f0f0; border-radius: 10px; display: inline-block; padding: 10px;">
+  		Citations: <span id="citation-count">0</span> | H-Index: <span id="h-index">0</span> | i10-Index: <span id="i10-index">0</span>
+	      </div>
+              <script>
+              async function loadScholarData() {
+                  const response = await fetch("scholar_data.json");
+                  const data = await response.json();
 
-</tbody></table>
-<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+                  const duration = 2000;
+                  const startTime = new Date().getTime();
 
+                  function countUp() {
+                      const currentTime = new Date().getTime();
+                      const elapsed = currentTime - startTime;
+                      const progress = Math.min(elapsed / duration, 1);
+
+                      document.getElementById("citation-count").innerText = Math.round(data.citations * progress);
+                      document.getElementById("h-index").innerText = Math.round(data.h_index * progress);
+                      document.getElementById("i10-index").innerText = Math.round(data.i10_index * progress);
+
+                      if (progress < 1) {
+                          requestAnimationFrame(countUp);
+                      }
+                  }
+
+                  countUp();
+              }
+
+              loadScholarData();
+              </script>
+            </td>
+          </tr>
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             
 	  <tr class="paper-info">
             <td style="padding:20px;width:25%;vertical-align:middle">
