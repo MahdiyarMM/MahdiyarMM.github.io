@@ -148,19 +148,36 @@ span.highlight {
   margin: 0 auto;
 }
 
+#news-section h2 {
+  text-align: center; /* Center the main title */
+}
+
+.year-section {
+  border-bottom: 1px solid #f0f0f0; /* Light gray line to separate years */
+  padding: 20px 0;
+}
+
+.year-label {
+  font-size: 1.5em;
+  color: #999; /* Light gray color for year label */
+  margin-bottom: 20px;
+}
+
 .news-item {
   margin: 20px 0;
   padding: 10px;
-  border-bottom: 1px dashed #ccc;
 }
 
 .news-item h3 {
   font-size: 1.2em;
   margin: 10px 0;
+  text-align: center; /* Center the news title */
 }
 
 .news-item .news-date {
   font-size: 0.8em;
   color: #666;
+  display: block; /* Make the date a block element */
+  text-align: left; /* Align the date to the left */
 }
 
