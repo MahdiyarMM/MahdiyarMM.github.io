@@ -140,3 +140,27 @@ name {
 span.highlight {
   background-color: #ffffd0;
 }
+
+#news-section {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.news-item {
+  margin: 20px 0;
+  padding: 10px;
+  border-bottom: 1px dashed #ccc;
+}
+
+.news-item h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.news-item .news-date {
+  font-size: 0.8em;
+  color: #666;
+}
+
