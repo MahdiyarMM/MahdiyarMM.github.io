@@ -1,0 +1,140 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+header {
+    background: #f4f4f4;
+    padding: 20px 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.profile {
+    float: left;
+    width: 150px;
+    margin-right: 20px;
+}
+
+.profile img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.intro {
+    overflow: hidden;
+}
+
+.intro h1 {
+    margin-bottom: 10px;
+}
+
+.intro .contact a {
+    margin-right: 10px;
+}
+
+nav {
+    background: #333;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    color: #fff;
+    padding: 15px 20px;
+    display: block;
+}
+
+nav ul li a:hover {
+    background: #444;
+}
+
+section {
+    padding: 20px 0;
+}
+
+section h2 {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eaeaea;
+    padding-bottom: 10px;
+}
+
+.experience-item, .education-item, .teaching-item {
+    margin-bottom: 20px;
+}
+
+.experience-item h3, .education-item h3, .teaching-item h3 {
+    color: #0066cc;
+}
+
+.experience-item h4, .education-item h4, .teaching-item h4 {
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.experience-item span, .education-item span, .teaching-item span {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.experience-item ul, .education-item ul {
+    list-style: disc inside;
+    margin-top: 10px;
+}
+
+.skills-list, .awards-list, .publications-list, .references-list {
+    list-style: none;
+}
+
+.skills-list li, .awards-list li, .publications-list li, .references-list li {
+    margin-bottom: 10px;
+}
+
+footer {
+    background: #f4f4f4;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .profile, .intro {
+        float: none;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        text-align: center;
+    }
+}
