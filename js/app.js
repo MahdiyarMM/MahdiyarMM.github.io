@@ -134,18 +134,4 @@ particlesJS('particles-js',
 
 );
 
-// Listen to mouse events across the entire window
-document.addEventListener("mousemove", function(e) {
-  const contentContainer = document.querySelector('.content-container');
-  const rect = contentContainer.getBoundingClientRect();
-  const isInContent = (
-    e.clientX > rect.left &&
-    e.clientX < rect.right &&
-    e.clientY > rect.top &&
-    e.clientY < rect.bottom
-  );
 
-  // Dynamically enable/disable interactivity
-  pJSDom[0].pJS.interactivity.events.onhover.enable = !isInContent;
-  pJSDom[0].pJS.interactivity.events.onclick.enable = !isInContent;
-});
