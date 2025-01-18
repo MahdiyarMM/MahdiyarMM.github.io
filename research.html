@@ -27,15 +27,11 @@
   <link rel="icon" type="image/png" href="images/icon.png">
 <style>
     .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: #f8f8f8;
-      border-bottom: 1px solid #ddd;
       position: fixed;
       top: 0;
       width: 100%;
+      background-color: #f8f8f8;
+      border-bottom: 1px solid #ddd;
       z-index: 1000;
     }
     .header .header-content {
@@ -43,7 +39,8 @@
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
-      width: 100%;
+      align-items: center;
+      padding: 10px 20px;
     }
     .header a {
       text-decoration: none;
@@ -51,12 +48,15 @@
       color: #333;
       font-weight: bold;
     }
-    .header a:last-child {
-      margin-left: auto;
-      text-align: right;
-    }
     .header a:hover {
       color: #0073e6;
+    }
+    .content-container {
+      position: relative;
+      padding: 80px 20px 20px; /* Adjusted padding to account for fixed header */
+      background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 35%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 0) 100%);
+      max-width: 800px;
+      margin: 0 auto;
     }
     img {
       transition: transform 0.3s;
