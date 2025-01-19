@@ -26,46 +26,56 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="icon" type="image/png" href="images/icon.png">
 <style>
-    .header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #f8f8f8;
-      border-bottom: 1px solid #ddd;
-      z-index: 1000;
-    }
-    .header .header-content {
-      max-width: 800px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-    }
-    .header a {
-      text-decoration: none;
-      font-size: 1.2em;
-      color: #333;
-      font-weight: bold;
-    }
-    .header a:hover {
-      color: #0073e6;
-    }
-    .content-container {
-      position: relative;
-      padding: 80px 20px 20px; /* Adjusted padding to account for fixed header */
-      background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 35%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 0) 100%);
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    img {
-      transition: transform 0.3s;
-    }
+  .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    z-index: 1000;
+  }
 
-    img:hover {
-      transform: scale(1.1);
-    }
- </style>
+  .header .header-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .header a {
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #333;
+    font-weight: bold;
+  }
+
+  .header a:hover {
+    color: #0073e6;
+  }
+
+  .body-background {
+    position: relative;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 35%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 0) 100%);
+    width: 100%;
+  }
+
+  .content-container {
+    position: relative;
+    padding: 80px 20px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  img {
+    transition: transform 0.3s;
+  }
+
+  img:hover {
+    transform: scale(1.1);
+  }
+</style>
   <style>
     #particles-js {
       position: fixed;
@@ -80,10 +90,11 @@
       background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 35%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 0) 100%);
     }
   </style>
+	
 </head>
 
 <body>
-<div id="particles-js"></div>
+  <div id="particles-js"></div>
   <div class="header">
     <div class="header-content">
       <a href="index.html">Mahdiyar Molahasani</a>
@@ -91,13 +102,15 @@
     </div>
   </div>
 
-<div class="content-container">
-  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-<tr style="padding:0px">
-  <td style="padding:0px">
-    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-      <tbody>
-        <tr style="padding:0px">
+  <div class="body-background">
+    <div class="content-container">
+      <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+        <tbody>
+          <tr style="padding:0px">
+            <td style="padding:0px">
+              <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+                <tbody>
+                  <tr style="padding:0px">
           <!-- Image on the left -->
 	<td style="padding:2.5%;width:33%;max-width:33%;vertical-align:middle">
 	  <a href="images/me2.jpg">
