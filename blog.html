@@ -75,6 +75,25 @@
   img:hover {
     transform: scale(1.1);
   }
+  /* Fix for Research Title */
+  .research-title a {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: blue;
+    text-decoration: none;
+  }
+
+  .research-title a:hover {
+    text-decoration: underline;
+  }
+
+  /* Fix for Bullet Alignment */
+  .education-list {
+    list-style-type: disc;
+    text-align: justify;
+    padding-left: 0;
+    margin-left: 20px;
+  }
 </style>
   <style>
     #particles-js {
@@ -177,8 +196,8 @@
     <tr>
       <td style="padding:20px;width:100%;vertical-align:middle;text-align:left;">
         <!-- Centered Title with Link -->
-        <div style="text-align:center; font-weight: bold; font-size: 1.5em; margin-bottom: 10px;">
-          <a href="https://mahdiyarmm.github.io/research" style="text-decoration:none; color:blue;">Research</a>
+        <div class="research-title" style="text-align:center; margin-bottom: 10px;">
+          <a href="https://mahdiyarmm.github.io/research">Research</a>
         </div>
         
         <!-- Justified Text Content -->
@@ -199,7 +218,7 @@
         
         <!-- Justified Bullet List -->
         <div style="text-align:justify; padding: 0 20px;">
-          <ul id="news-section" style="list-style-type:disc; margin: 0; border: none; padding-left: 20px;">
+          <ul class="education-list">
             <li>Ph.D. Electrical and Computer Engineering, Queen’s University, ON, Canada. (GPA 4.3/4.3) 2021–present</li>
             <li>M.Sc. Electrical and Computer Engineering, University of Saskatchewan, SK, Canada. (GPA 4/4) 2019–2021</li>
             <li>B.Sc. Electrical Engineering - Electronics, Iran University of Science and Technology, Iran. (GPA 3.8/4) 2013–2018</li>
