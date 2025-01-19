@@ -37,9 +37,20 @@
     max-width: 800px;
     margin: 0 auto;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+  }
+
+  .header .brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+  }
+
+  .header .brand:hover {
+    color: #0073e6;
   }
 
   .header a {
@@ -117,8 +128,11 @@
   <div id="particles-js"></div>
   <div class="header">
     <div class="header-content">
-      <a href="index.html">Home</a>
-      <a href="https://mahdiyarmm.github.io/research">Research</a>
+      <a href="index.html" class="brand">Mahdiyar Molahasani</a>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="https://mahdiyarmm.github.io/research">Research</a>
+      </div>
     </div>
   </div>
 
