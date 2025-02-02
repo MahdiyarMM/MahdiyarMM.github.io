@@ -18,6 +18,26 @@ input,select{vertical-align:middle}
 li{list-style:none}
 
 
+/* Define CSS Variables */
+:root {
+  /* Primary highlight color */
+  --first-color: #0073e6;
+
+  /* Font sizes and weights */
+  --h3-font-size: 1.5rem;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+  --smaller-font-size: 0.75rem;
+  --font-medium: 500;
+
+  /* Spacing values */
+  --mb-2: 2rem;
+  --mb-0-25: 0.25rem;
+  --mb-1: 1rem;
+
+  /* Text color for less prominent details */
+  --text-color-light: #666;
+}
 /* =============================================================================
    My CSS
    ========================================================================== */
