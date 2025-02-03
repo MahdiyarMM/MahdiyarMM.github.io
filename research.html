@@ -26,6 +26,29 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="icon" type="image/png" href="images/icon.png">
 <style>
+	@media (max-width: 768px) {
+  .paper-info {
+    display: flex;
+    flex-direction: column; /* Stack image on top */
+    align-items: center;
+    text-align: center;
+  }
+
+  .paper-info td {
+    width: 100%;
+    display: block;
+    padding: 10px 0; /* Adjust spacing */
+  }
+
+  .paper-info td:first-child {
+    order: -1; /* Moves the image to the top */
+  }
+
+  .paper-info img {
+    width: 80%; /* Adjust image size for better responsiveness */
+    height: auto;
+  }
+}
     .header {
       position: fixed;
       top: 0;
