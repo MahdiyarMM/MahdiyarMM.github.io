@@ -26,7 +26,7 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="icon" type="image/png" href="images/icon.png">
 <style>
-	@media (max-width: 768px) {
+@media (max-width: 768px) {
   .paper-info {
     display: flex;
     flex-direction: column; /* Stack image on top */
@@ -45,9 +45,11 @@
   }
 
   .paper-info img {
-    width: 100%; /* Make images larger */
-    max-width: 300px; /* Set a reasonable max size */
+    width: 100%; /* Use full width of the container */
+    max-width: 500px; /* Increase max size */
     height: auto;
+    display: block;
+    margin: 0 auto; /* Center the image */
   }
 }
     .header {
