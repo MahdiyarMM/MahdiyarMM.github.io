@@ -24,22 +24,15 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="icon" type="image/png" href="images/icon.png">
 <style>
+  .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    z-index: 1000;
+  }
 
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #f8f8f8;
-  border-bottom: 1px solid #ddd;
-  z-index: 1000;
-  height: 60px; /* Adjust if needed */
-  display: flex;
-  align-items: center;
-}
-
-.content-container {
-  padding-top: 80px; /* Adjust to match header height */
-}
   .header .header-content {
     max-width: 800px;
     margin: 0 auto;
@@ -80,13 +73,11 @@
 
   .content-container {
     position: relative;
-    padding-top: 80px; 
     padding: 80px 20px 20px;
     max-width: 800px;
     margin: 0 auto;
   }
 
-	
   img {
     transition: transform 0.3s;
   }
