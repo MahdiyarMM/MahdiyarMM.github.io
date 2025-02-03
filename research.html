@@ -29,7 +29,7 @@
 @media (max-width: 768px) {
   .paper-info {
     display: flex;
-    flex-direction: column; /* Stack image on top */
+    flex-direction: column;
     align-items: center;
     text-align: center;
   }
@@ -37,19 +37,19 @@
   .paper-info td {
     width: 100%;
     display: block;
-    padding: 10px 0; /* Adjust spacing */
+    padding: 10px 0;
   }
 
   .paper-info td:first-child {
-    order: -1; /* Moves the image to the top */
+    order: -1;
   }
 
   .paper-info img {
-    width: 100%; /* Use full width of the container */
-    max-width: 700px; /* Increase max size */
+    width: 100vw; /* Use full viewport width */
+    max-width: none; /* Remove any limiting max-width */
     height: auto;
     display: block;
-    margin: 0 auto; /* Center the image */
+    margin: 0 auto;
   }
 }
     .header {
