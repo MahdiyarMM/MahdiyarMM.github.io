@@ -45,13 +45,15 @@
   }
 
   .paper-info img {
-    width: 100vw; /* Use full viewport width */
-    max-width: none; /* Remove any limiting max-width */
+    width: 90%;  /* Keeps image within the screen */
+    max-width: 400px; /* Adjust max size for better fit */
     height: auto;
     display: block;
     margin: 0 auto;
+    object-fit: contain; /* Prevents cropping */
   }
 }
+
     .header {
       position: fixed;
       top: 0;
