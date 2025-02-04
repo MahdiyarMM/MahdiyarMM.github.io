@@ -219,36 +219,6 @@
         <div style="text-align:justify; padding: 0 20px;">
           AI scientist with more than <strong>8 years </strong> of research experience. Published <strong>17</strong> impactful papers presented in top venues (e.g. <strong>AAAI, NeurIPS, ICASSP, ICIP,</strong> etc.) with 430+ citations. Proven expertise in <strong>scalable AI systems, fairness, and computer vision</strong>strong>, with a strong focus on advancing AI for real-world applications through collaboration and practical solutions.
         </div>
-	            <div id="scholar-metrics" style="background-color: #f0f0f0; border-radius: 10px; display: inline-block; padding: 10px; margin: auto;  margin-bottom: 20px;">
-                Citations: <span id="citation-count">0</span> | H-Index: <span id="h-index">0</span> | i10-Index: <span id="i10-index">0</span>
-            </div>
-              <script>
-              async function loadScholarData() {
-                  const response = await fetch("scholar_data.json");
-                  const data = await response.json();
-
-                  const duration = 2000;
-                  const startTime = new Date().getTime();
-
-                  function countUp() {
-                      const currentTime = new Date().getTime();
-                      const elapsed = currentTime - startTime;
-                      const progress = Math.min(elapsed / duration, 1);
-
-                      document.getElementById("citation-count").innerText = Math.round(data.citations * progress);
-                      document.getElementById("h-index").innerText = Math.round(data.h_index * progress);
-                      document.getElementById("i10-index").innerText = Math.round(data.i10_index * progress);
-
-                      if (progress < 1) {
-                          requestAnimationFrame(countUp);
-                      }
-                  }
-
-                  countUp();
-              }
-
-              loadScholarData();
-              </script>
 
       </td>
     </tr>
