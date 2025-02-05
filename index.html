@@ -24,6 +24,32 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="icon" type="image/png" href="images/icon.png">
 <style>
+	
+@media screen and (max-width: 768px) {
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-container td {
+    width: 100% !important;
+    display: block;
+  }
+
+  .profile-image {
+    width: 80% !important; /* Adjusts image width on mobile */
+    max-width: 250px; /* Optional: limits max size */
+    margin-bottom: 15px; /* Adds space below image */
+  }
+
+  .profile-text {
+    width: 100%;
+  }
+}
+
+	
   .header {
     position: fixed;
     top: 0;
@@ -144,40 +170,30 @@
             <td style="padding:0px">
               <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
                 <tbody>
-                  <tr style="padding:0px">
-          <!-- Image on the left -->
-	<td style="padding:2.5%;width:33%;max-width:33%;vertical-align:middle">
-	  <a href="images/me2.jpg">
-	    <img style="width:100%;max-width:100%;border: 1px solid lightgray;" alt="profile photo" src="images/me2.jpg" class="hoverZoomLink">
-	  </a>
-	</td>
-          
-          <!-- Text on the right -->
-          <td style="padding:2.5%;width:73%;vertical-align:middle">
-            <p style="text-align:center">
-              <name>Mahdiyar Molahasani</name>
-            </p>
-            <p align="justify">I am a Ph.D. candidate at 
-              <a href="https://ingenuitylabs.queensu.ca/">Ingenuity labs </a> at 
-              <a href="https://www.queensu.ca/">Queen's University </a> working on continual learning, federated learning, and domain generalization funded by 
-              <a href="https://www.nserc-crsng.gc.ca/index_eng.asp">NSERC </a> and 
-              <a href="https://www.geotab.com/">Geotab </a>. I am working under the supervision of 
-              <a href="https://rcvlab.engineering.queensu.ca/people/"> Michael Greenspan </a> and 
-              <a href="https://www.aiimlab.com/members"> Ali Etemad </a>.
-            </p>
-            <p align="justify">
-              I have received my M.Sc. from <a href="https://www.usask.ca/">the University of Saskatchewan</a>, Saskatoon, Canada in 2021. At USASK, I've worked on super-resolution, automated diagnosis and capsule GANs advised by 
-              <a href="https://engineering.usask.ca/people/ece/ko,seok-bum.php">Seok-bum Ko</a> and funded by Devolved scholarship from USASK ECE Department 
-              (<a href="https://hdl.handle.net/10388/13426">M.Sc. Thesis</a>).
-<p style="text-align:center; font-size: 24px; color: black;">
-  <a href="mailto:m.molahasani@queensu.ca" style="color: DimGrey;"><i class="fas fa-envelope fa-2x"></i></a> &nbsp;·&nbsp;
-  <a href="https://www.linkedin.com/in/m-molahasani/" style="color: DimGrey;"><i class="fab fa-linkedin fa-2x"></i></a> &nbsp;·&nbsp;
-  <a href="https://scholar.google.com/citations?user=cXDt3NQAAAAJ&hl=en" style="color: DimGrey;"><i class="fas fa-graduation-cap fa-2x"></i></a> &nbsp;·&nbsp;
-  <a href="https://github.com/MahdiyarMM" style="color: DimGrey;"><i class="fab fa-github fa-2x"></i></a> &nbsp;·&nbsp;
-  <a href="https://mahdiyarmm.github.io/cv" style="color: DimGrey;"><i class="fas fa-file-alt fa-2x"></i></a>
-</p>
-          </td>
-        </tr>
+<tr class="profile-container">
+  <!-- Image on Top for Mobile -->
+  <td class="profile-image" style="padding:2.5%;width:33%;max-width:33%;vertical-align:middle">
+    <a href="images/me2.jpg">
+      <img style="width:100%;max-width:100%;border: 1px solid lightgray;" alt="profile photo" src="images/me2.jpg" class="hoverZoomLink">
+    </a>
+  </td>
+
+  <!-- Name & Bio -->
+  <td class="profile-text" style="padding:2.5%;width:73%;vertical-align:middle">
+    <p style="text-align:center">
+      <name>Mahdiyar Molahasani</name>
+    </p>
+    <p align="justify">
+      I am a Ph.D. candidate at 
+      <a href="https://ingenuitylabs.queensu.ca/">Ingenuity labs </a> at 
+      <a href="https://www.queensu.ca/">Queen's University </a> working on continual learning, federated learning, and domain generalization funded by 
+      <a href="https://www.nserc-crsng.gc.ca/index_eng.asp">NSERC </a> and 
+      <a href="https://www.geotab.com/">Geotab </a>. I am working under the supervision of 
+      <a href="https://rcvlab.engineering.queensu.ca/people/"> Michael Greenspan </a> and 
+      <a href="https://www.aiimlab.com/members"> Ali Etemad </a>.
+    </p>
+  </td>
+</tr>
 
 		
 
