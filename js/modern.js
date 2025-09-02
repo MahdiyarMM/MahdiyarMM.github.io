@@ -111,101 +111,101 @@ class WebsiteEnhancer {
     const textColor = computedStyle.getPropertyValue('--text-primary');
     console.log('CSS variables - background:', bgColor, 'text:', textColor);
 
-    // Update particles.js colors for dark mode - COMPREHENSIVE DEBUGGING
-    try {
-      console.log('🔍 PARTICLE DEBUGGING START');
-      console.log('window.pJSDom exists:', !!window.pJSDom);
-      console.log('window.pJSDom length:', window.pJSDom ? window.pJSDom.length : 'N/A');
-      
-      if (window.pJSDom && window.pJSDom.length > 0) {
-        console.log('✅ pJSDom found, accessing first instance');
-        const particles = window.pJSDom[0];
-        console.log('Particles instance:', particles);
-        console.log('Particles keys:', particles ? Object.keys(particles) : 'N/A');
-        
-        if (particles && particles.pJS) {
-          console.log('✅ pJS found');
-          console.log('pJS keys:', Object.keys(particles.pJS));
-          console.log('pJS.particles exists:', !!particles.pJS.particles);
-          console.log('pJS.canvas exists:', !!particles.pJS.canvas);
-          console.log('pJS.fn exists:', !!particles.pJS.fn);
-          
-          // Check if particles object exists
-          if (particles.pJS.particles) {
-            console.log('✅ particles.pJS.particles found');
-            console.log('particles.pJS.particles keys:', Object.keys(particles.pJS.particles));
-            
-            if (theme === 'dark') {
-              console.log('🎨 Setting DARK theme colors');
-              particles.pJS.particles.color.value = '#007acc';
-              particles.pJS.particles.line_linked.color = '#007acc';
-              particles.pJS.particles.line_linked.opacity = 0.3;
-              particles.pJS.particles.opacity.value = 0.8;
-              console.log('Dark colors set:', {
-                color: particles.pJS.particles.color.value,
-                line_color: particles.pJS.particles.line_linked.color,
-                line_opacity: particles.pJS.particles.line_linked.opacity,
-                opacity: particles.pJS.particles.opacity.value
-              });
-              
-              // Set background to dark
-              if (particles.pJS.particles.background) {
-                particles.pJS.particles.background.color.value = '#1e1e1e';
-                console.log('Background set to dark');
+            // Update particles.js colors for dark mode - COMPREHENSIVE DEBUGGING
+            try {
+              console.log('🔍 PARTICLE DEBUGGING START');
+              console.log('window.pJSDom exists:', !!window.pJSDom);
+              console.log('window.pJSDom length:', window.pJSDom ? window.pJSDom.length : 'N/A');
+
+              if (window.pJSDom && window.pJSDom.length > 0) {
+                console.log('✅ pJSDom found, accessing first instance');
+                const particles = window.pJSDom[0];
+                console.log('Particles instance:', particles);
+                console.log('Particles keys:', particles ? Object.keys(particles) : 'N/A');
+
+                if (particles && particles.pJS) {
+                  console.log('✅ pJS found');
+                  console.log('pJS keys:', Object.keys(particles.pJS));
+                  console.log('pJS.particles exists:', !!particles.pJS.particles);
+                  console.log('pJS.canvas exists:', !!particles.pJS.canvas);
+                  console.log('pJS.fn exists:', !!particles.pJS.fn);
+
+                  // Check if particles object exists
+                  if (particles.pJS.particles) {
+                    console.log('✅ particles.pJS.particles found');
+                    console.log('particles.pJS.particles keys:', Object.keys(particles.pJS.particles));
+
+                    if (theme === 'dark') {
+                      console.log('🎨 Setting DARK theme colors');
+                      particles.pJS.particles.color.value = '#007acc';
+                      particles.pJS.particles.line_linked.color = '#007acc';
+                      particles.pJS.particles.line_linked.opacity = 0.3;
+                      particles.pJS.particles.opacity.value = 0.8;
+                      console.log('Dark colors set:', {
+                        color: particles.pJS.particles.color.value,
+                        line_color: particles.pJS.particles.line_linked.color,
+                        line_opacity: particles.pJS.particles.line_linked.opacity,
+                        opacity: particles.pJS.particles.opacity.value
+                      });
+
+                      // Set background to dark
+                      if (particles.pJS.particles.background) {
+                        particles.pJS.particles.background.color.value = '#1e1e1e';
+                        console.log('Background set to dark');
+                      } else {
+                        console.log('⚠️ No background object found');
+                      }
+                    } else {
+                      console.log('🎨 Setting LIGHT theme colors');
+                      particles.pJS.particles.color.value = '#000000';
+                      particles.pJS.particles.line_linked.color = '#000000';
+                      particles.pJS.particles.line_linked.opacity = 0.4;
+                      particles.pJS.particles.opacity.value = 0.6;
+                      console.log('Light colors set');
+
+                      // Set background to light
+                      if (particles.pJS.particles.background) {
+                        particles.pJS.particles.background.color.value = '#ffffff';
+                        console.log('Background set to light');
+                      }
+                    }
+                  } else {
+                    console.warn('❌ particles.pJS.particles not found');
+                    console.log('Available pJS properties:', Object.keys(particles.pJS));
+                  }
+
+                  // Force particles to refresh with new colors
+                  if (particles.pJS.fn && particles.pJS.fn.particlesRefresh) {
+                    console.log('🔄 Refreshing particles...');
+                    particles.pJS.fn.particlesRefresh();
+                    console.log('✅ Particles refreshed');
+                  } else {
+                    console.warn('❌ particlesRefresh function not found');
+                    console.log('Available fn methods:', particles.pJS.fn ? Object.keys(particles.pJS.fn) : 'No fn object');
+                  }
+
+                  // Set the canvas background more gently
+                  if (particles.pJS.canvas && particles.pJS.canvas.el) {
+                    const bgColor = theme === 'dark' ? '#1e1e1e' : '#ffffff';
+                    particles.pJS.canvas.el.style.backgroundColor = bgColor;
+                    console.log('✅ Canvas background set to:', bgColor);
+                  } else {
+                    console.warn('❌ Canvas element not found');
+                    console.log('Canvas object:', particles.pJS.canvas);
+                  }
+                } else {
+                  console.warn('❌ pJS object not found');
+                }
               } else {
-                console.log('⚠️ No background object found');
+                console.warn('❌ No pJSDom instances found');
+                console.log('Available window properties:', Object.keys(window).filter(k => k.includes('particle')));
               }
-            } else {
-              console.log('🎨 Setting LIGHT theme colors');
-              particles.pJS.particles.color.value = '#000000';
-              particles.pJS.particles.line_linked.color = '#000000';
-              particles.pJS.particles.line_linked.opacity = 0.4;
-              particles.pJS.particles.opacity.value = 0.6;
-              console.log('Light colors set');
-              
-              // Set background to light
-              if (particles.pJS.particles.background) {
-                particles.pJS.particles.background.color.value = '#ffffff';
-                console.log('Background set to light');
-              }
+
+              console.log('🔍 PARTICLE DEBUGGING END');
+            } catch (error) {
+              console.error('❌ Error updating particles:', error);
+              console.error('Error stack:', error.stack);
             }
-          } else {
-            console.warn('❌ particles.pJS.particles not found');
-            console.log('Available pJS properties:', Object.keys(particles.pJS));
-          }
-          
-          // Force particles to refresh with new colors
-          if (particles.pJS.fn && particles.pJS.fn.particlesRefresh) {
-            console.log('🔄 Refreshing particles...');
-            particles.pJS.fn.particlesRefresh();
-            console.log('✅ Particles refreshed');
-          } else {
-            console.warn('❌ particlesRefresh function not found');
-            console.log('Available fn methods:', particles.pJS.fn ? Object.keys(particles.pJS.fn) : 'No fn object');
-          }
-          
-          // Set the canvas background more gently
-          if (particles.pJS.canvas && particles.pJS.canvas.el) {
-            const bgColor = theme === 'dark' ? '#1e1e1e' : '#ffffff';
-            particles.pJS.canvas.el.style.backgroundColor = bgColor;
-            console.log('✅ Canvas background set to:', bgColor);
-          } else {
-            console.warn('❌ Canvas element not found');
-            console.log('Canvas object:', particles.pJS.canvas);
-          }
-        } else {
-          console.warn('❌ pJS object not found');
-        }
-      } else {
-        console.warn('❌ No pJSDom instances found');
-        console.log('Available window properties:', Object.keys(window).filter(k => k.includes('particle')));
-      }
-      
-      console.log('🔍 PARTICLE DEBUGGING END');
-    } catch (error) {
-      console.error('❌ Error updating particles:', error);
-      console.error('Error stack:', error.stack);
-    }
 
     // Update meta theme-color for mobile browsers
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
@@ -541,6 +541,8 @@ class WebsiteEnhancer {
       });
     });
   }
+
+
 
   /**
    * Announce to screen readers

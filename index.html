@@ -46,14 +46,14 @@
   <link rel="stylesheet" type="text/css" href="styles/modern.css">
   
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133321224-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-133321224-1');
-  </script>
-  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133321224-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-133321224-1');
+</script>
+
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
@@ -229,7 +229,6 @@
       <nav role="navigation" aria-label="Main navigation">
         <a href="https://www.molahasani.ca/" aria-current="page">Home</a>
         <a href="https://www.molahasani.ca/research">Research</a>
-        <a href="https://www.molahasani.ca/cv">CV</a>
       </nav>
     </div>
   </header>
@@ -246,16 +245,16 @@
         
         <div class="profile-text">
           <h1 id="profile-heading">
-            <name>Mahdiyar Molahasani</name>
+	    <name>Mahdiyar Molahasani</name>
           </h1>
           
           <p>
-            I am an ML Research Scientist at 
+	    I am an ML Research Scientist at 
             <a href="https://captura.io/" target="_blank" rel="noopener noreferrer">Captura</a> (since June 2025), developing cutting-edge, efficient ML solutions for the photography industry. 
-            I recently completed my Ph.D. at 
+	    I recently completed my Ph.D. at 
             <a href="https://ingenuitylabs.queensu.ca/" target="_blank" rel="noopener noreferrer">Ingenuity Labs</a>, 
             <a href="https://www.queensu.ca/" target="_blank" rel="noopener noreferrer">Queen's University</a>, where my research focused on continual learning, federated learning, and domain generalization. 
-            I received my M.Sc. from 
+	    I received my M.Sc. from 
             <a href="https://www.usask.ca/" target="_blank" rel="noopener noreferrer">the University of Saskatchewan</a> in 2021, where I worked on super-resolution, automated diagnosis, and Capsule GANs.
           </p>
           
@@ -333,7 +332,7 @@
         
         <div class="research-description">
           AI scientist with more than <strong>8 years</strong> of research experience. Published <strong>17</strong> impactful papers presented in top venues (e.g. <strong>ICCV, AAAI, NeurIPS, ICASSP, ICIP,</strong> etc.) with 500+ citations. Proven expertise in <strong>scalable AI systems, fairness, and computer vision</strong>, with a strong focus on advancing AI for real-world applications through collaboration and practical solutions.
-        </div>
+            </div>
       </section>
 
 
@@ -415,7 +414,7 @@
         </ul>
       </section>
 
-    </div>
+		</div>
   </main>
   
   <footer role="contentinfo" style="text-align: center; padding: 2rem; color: var(--text-secondary, #64748b);">
@@ -423,30 +422,30 @@
   </footer>
       
   <!-- Scholar Metrics Script -->
-  <script>
-    async function loadScholarData() {
+              <script>
+              async function loadScholarData() {
       try {
-        const response = await fetch("scholar_data.json");
-        const data = await response.json();
+                  const response = await fetch("scholar_data.json");
+                  const data = await response.json();
 
-        const duration = 2000;
-        const startTime = new Date().getTime();
+                  const duration = 2000;
+                  const startTime = new Date().getTime();
 
-        function countUp() {
-          const currentTime = new Date().getTime();
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / duration, 1);
+                  function countUp() {
+                      const currentTime = new Date().getTime();
+                      const elapsed = currentTime - startTime;
+                      const progress = Math.min(elapsed / duration, 1);
 
-          document.getElementById("citation-count").innerText = Math.round(data.citations * progress);
-          document.getElementById("h-index").innerText = Math.round(data.h_index * progress);
-          document.getElementById("i10-index").innerText = Math.round(data.i10_index * progress);
+                      document.getElementById("citation-count").innerText = Math.round(data.citations * progress);
+                      document.getElementById("h-index").innerText = Math.round(data.h_index * progress);
+                      document.getElementById("i10-index").innerText = Math.round(data.i10_index * progress);
 
-          if (progress < 1) {
-            requestAnimationFrame(countUp);
-          }
-        }
+                      if (progress < 1) {
+                          requestAnimationFrame(countUp);
+                      }
+                  }
 
-        countUp();
+                  countUp();
       } catch (error) {
         console.error('Error loading scholar data:', error);
         // Fallback values
@@ -460,13 +459,13 @@
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', loadScholarData);
     } else {
-      loadScholarData();
+              loadScholarData();
     }
-  </script>
+              </script>
 
   <!-- Enhanced Intersection Observer for Animations -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
       // Animate sections on scroll
       const sections = document.querySelectorAll('.section');
       const observerOptions = {
@@ -519,8 +518,8 @@
           }
         });
       });
-    });
-  </script>
+  });
+</script>
 
   <!-- Particles.js -->
   <script src="particles.js"></script>
