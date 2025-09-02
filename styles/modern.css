@@ -928,21 +928,27 @@ button:focus {
     padding: 10px 15px !important;
     flex-direction: column !important;
     gap: 10px !important;
+    background: var(--background) !important;
   }
   
   .brand {
     font-size: 1.2rem !important;
     text-align: center !important;
+    color: var(--text-primary) !important;
   }
   
   nav {
     display: flex !important;
     justify-content: center !important;
-    gap: 20px !important;
+    gap: 15px !important;
+    flex-wrap: wrap !important;
+    margin-right: 50px !important; /* Space for theme toggle */
   }
   
   nav a {
-    font-size: 1rem !important;
+    font-size: 0.9rem !important;
+    color: var(--text-primary) !important;
+    background: transparent !important;
     padding: 8px 12px !important;
   }
   
@@ -1014,6 +1020,12 @@ button:focus {
     width: 120px !important;
     height: 120px !important;
     margin: 0 auto !important;
+    display: block !important;
+  }
+  
+  .paper-info td:first-child {
+    text-align: center !important;
+    width: auto !important;
   }
   
   .paper-title {
@@ -1042,6 +1054,8 @@ button:focus {
     z-index: 1001 !important;
     width: 40px !important;
     height: 40px !important;
+    background: var(--background-secondary) !important;
+    border: 1px solid var(--border-color) !important;
   }
 }
 
@@ -1083,6 +1097,13 @@ button:focus {
   .paper-info img {
     width: 100px !important;
     height: 100px !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+  
+  .paper-info td:first-child {
+    text-align: center !important;
+    width: auto !important;
   }
   
   .paper-title {
