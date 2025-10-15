@@ -235,52 +235,84 @@
 
   <main class="body-background" role="main">
     <div class="content-container">
-      <!-- Profile Section -->
-      <section class="profile-container" aria-labelledby="profile-heading">
-        <div class="profile-image">
-          <a href="images/me2.jpg" aria-label="View full profile photo">
-            <img src="images/me2.jpg" alt="Mahdiyar Molahasani profile photo" class="hoverZoomLink">
-          </a>
+      <!-- Hero Section -->
+      <section class="hero-section" aria-labelledby="hero-heading">
+        <div class="hero-content">
+          <!-- Left: Name and Position -->
+          <div class="hero-left">
+            <h1 id="hero-heading" class="hero-title">
+              <span class="greeting">Hello, I'm</span>
+              <span class="name-highlight">Mahdiyar Molahasani</span>
+            </h1>
+            <div class="hero-subtitle">
+              <span class="typing-text" id="typing-text">ML Research Scientist at Captura</span>
+            </div>
+          </div>
+          
+          <!-- Right: Image -->
+          <div class="hero-image">
+            <div class="image-container">
+              <img src="images/me2.jpg" alt="Mahdiyar Molahasani profile photo" class="profile-photo">
+              <div class="image-overlay">
+                <div class="overlay-content">
+                  <span class="overlay-text">ML Research Scientist</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         
-        <div class="profile-text">
-          <h1 id="profile-heading">
-	    <name>Mahdiyar Molahasani</name>
-          </h1>
-          
-          <p>
-	    I am an ML Research Scientist at 
-            <a href="https://captura.io/" target="_blank" rel="noopener noreferrer">Captura</a> (since June 2025), developing cutting-edge, efficient ML solutions for the photography industry. 
-	    I recently completed my Ph.D. at 
-            <a href="https://ingenuitylabs.queensu.ca/" target="_blank" rel="noopener noreferrer">Ingenuity Labs</a>, 
-            <a href="https://www.queensu.ca/" target="_blank" rel="noopener noreferrer">Queen's University</a>, where my research focused on continual learning, federated learning, and domain generalization. 
-	    I received my M.Sc. from 
-            <a href="https://www.usask.ca/" target="_blank" rel="noopener noreferrer">the University of Saskatchewan</a> in 2021, where I worked on super-resolution, automated diagnosis, and Capsule GANs.
+        <!-- Bio Section -->
+        <div class="hero-bio">
+          <p class="hero-description">
+            I develop cutting-edge, efficient ML solutions for the photography industry. 
+            My research focuses on <strong>federated learning</strong>, <strong>domain generalization</strong>, 
+            and <strong>continual learning</strong> with 17+ publications in top venues like ICCV, AAAI, and NeurIPS.
           </p>
-          
-          <div class="social-links" role="list" aria-label="Social media and professional links">
-            <a href="mailto:m.molahasani@queensu.ca" role="listitem" aria-label="Send email">
-              <i class="fas fa-envelope" aria-hidden="true"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/m-molahasani/" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="LinkedIn profile">
-              <i class="fab fa-linkedin" aria-hidden="true"></i>
-            </a>
-            <a href="https://scholar.google.com/citations?user=cXDt3NQAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Google Scholar profile">
-              <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-            </a>
-            <a href="https://github.com/MahdiyarMM" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="GitHub profile">
-              <i class="fab fa-github" aria-hidden="true"></i>
-            </a>
-            <a href="https://mahdiyarmm.github.io/cv" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Download CV">
-              <i class="fas fa-file-alt" aria-hidden="true"></i>
-            </a>
+        </div>
+        
+        <!-- Actions and Social -->
+        <div class="hero-actions">
+          <a href="https://www.molahasani.ca/research" class="btn btn-primary">View My Research</a>
+        </div>
+        
+        <!-- Metrics - Horizontal Line -->
+        <div class="hero-metrics">
+          <div class="stat-item">
+            <span class="stat-number" id="citation-count">0</span>
+            <span class="stat-label">Citations</span>
           </div>
-          
-          <div class="scholar-metrics" id="scholar-metrics" aria-label="Academic metrics">
-            Citations: <span id="citation-count" aria-label="Total citations">0</span> | 
-            H-Index: <span id="h-index" aria-label="H-index">0</span> | 
-            i10-Index: <span id="i10-index" aria-label="i10-index">0</span>
+          <div class="stat-item">
+            <span class="stat-number" id="h-index">0</span>
+            <span class="stat-label">H-Index</span>
           </div>
+          <div class="stat-item">
+            <span class="stat-number">8+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">17+</span>
+            <span class="stat-label">Publications</span>
+          </div>
+        </div>
+        
+        <div class="social-links" role="list" aria-label="Social media and professional links">
+          <a href="mailto:m.molahasani@queensu.ca" role="listitem" aria-label="Send email" class="social-link">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <span class="social-label">Email</span>
+          </a>
+          <a href="https://www.linkedin.com/in/m-molahasani/" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="LinkedIn profile" class="social-link">
+            <i class="fab fa-linkedin" aria-hidden="true"></i>
+            <span class="social-label">LinkedIn</span>
+          </a>
+          <a href="https://scholar.google.com/citations?user=cXDt3NQAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Google Scholar profile" class="social-link">
+            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+            <span class="social-label">Scholar</span>
+          </a>
+          <a href="https://github.com/MahdiyarMM" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="GitHub profile" class="social-link">
+            <i class="fab fa-github" aria-hidden="true"></i>
+            <span class="social-label">GitHub</span>
+          </a>
         </div>
       </section>
 
@@ -424,43 +456,56 @@
   <!-- Scholar Metrics Script -->
               <script>
               async function loadScholarData() {
-      try {
-                  const response = await fetch("scholar_data.json");
-                  const data = await response.json();
+                  try {
+                      const response = await fetch("scholar_data.json");
+                      const data = await response.json();
 
-                  const duration = 2000;
-                  const startTime = new Date().getTime();
+                      const duration = 2000;
+                      const startTime = new Date().getTime();
 
-                  function countUp() {
-                      const currentTime = new Date().getTime();
-                      const elapsed = currentTime - startTime;
-                      const progress = Math.min(elapsed / duration, 1);
+                      function countUp() {
+                          const currentTime = new Date().getTime();
+                          const elapsed = currentTime - startTime;
+                          const progress = Math.min(elapsed / duration, 1);
 
-                      document.getElementById("citation-count").innerText = Math.round(data.citations * progress);
-                      document.getElementById("h-index").innerText = Math.round(data.h_index * progress);
-                      document.getElementById("i10-index").innerText = Math.round(data.i10_index * progress);
+                          // Update citation count
+                          const citationElement = document.getElementById("citation-count");
+                          if (citationElement) {
+                              citationElement.innerText = Math.round(data.citations * progress);
+                          }
 
-                      if (progress < 1) {
-                          requestAnimationFrame(countUp);
+                          // Update h-index
+                          const hIndexElement = document.getElementById("h-index");
+                          if (hIndexElement) {
+                              hIndexElement.innerText = Math.round(data.h_index * progress);
+                          }
+
+                          if (progress < 1) {
+                              requestAnimationFrame(countUp);
+                          }
+                      }
+
+                      countUp();
+                  } catch (error) {
+                      console.error('Error loading scholar data:', error);
+                      // Fallback values
+                      const citationElement = document.getElementById("citation-count");
+                      if (citationElement) {
+                          citationElement.innerText = "513";
+                      }
+                      const hIndexElement = document.getElementById("h-index");
+                      if (hIndexElement) {
+                          hIndexElement.innerText = "9";
                       }
                   }
+              }
 
-                  countUp();
-      } catch (error) {
-        console.error('Error loading scholar data:', error);
-        // Fallback values
-        document.getElementById("citation-count").innerText = "500+";
-        document.getElementById("h-index").innerText = "9";
-        document.getElementById("i10-index").innerText = "9";
-      }
-    }
-
-    // Load scholar data when DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', loadScholarData);
-    } else {
-              loadScholarData();
-    }
+              // Load scholar data when DOM is ready
+              if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', loadScholarData);
+              } else {
+                  loadScholarData();
+              }
               </script>
 
   <!-- Enhanced Intersection Observer for Animations -->

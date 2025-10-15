@@ -46,22 +46,22 @@
       }
     },
     "line_linked": {
-      "enable": false,
+      "enable": true,
       "distance": 150,
       "color": "#000000",
-      "opacity": 0.4,
+      "opacity": 0.2,
       "width": 1
     },
     "move": {
-      "enable": false,
-      "speed": 4,
+      "enable": true,
+      "speed": 1.5,
       "direction": "none",
-      "random": false,
+      "random": true,
       "straight": false,
       "out_mode": "out",
       "bounce": false,
       "attract": {
-        "enable": false,
+        "enable": true,
         "rotateX": 600,
         "rotateY": 1200
       }

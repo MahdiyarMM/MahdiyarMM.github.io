@@ -14,6 +14,7 @@ class WebsiteEnhancer {
     console.log('Current theme attribute:', document.documentElement.getAttribute('data-theme'));
     
     this.setupThemeToggle();
+    this.setupTypingAnimation();
     this.setupPerformanceOptimizations();
     this.setupAccessibilityFeatures();
     this.setupModernInteractions();
@@ -217,6 +218,57 @@ class WebsiteEnhancer {
     }
     
     console.log('✅ Theme setup complete');
+  }
+
+  /**
+   * Typing animation for hero subtitle
+   */
+  setupTypingAnimation() {
+    const typingElement = document.getElementById('typing-text');
+    if (!typingElement) return;
+
+    const texts = [
+      'ML Research Scientist at Captura',
+      'AI & Computer Vision Expert',
+      'Federated Learning Researcher',
+      'PhD from Queen\'s University',
+      '17+ Publications in Top Venues'
+    ];
+
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100;
+    let deleteSpeed = 50;
+    let pauseTime = 2000;
+
+    const type = () => {
+      const currentText = texts[textIndex];
+      
+      if (isDeleting) {
+        typingElement.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+        typeSpeed = deleteSpeed;
+      } else {
+        typingElement.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++;
+        typeSpeed = 100;
+      }
+
+      if (!isDeleting && charIndex === currentText.length) {
+        typeSpeed = pauseTime;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        textIndex = (textIndex + 1) % texts.length;
+        typeSpeed = 500;
+      }
+
+      setTimeout(type, typeSpeed);
+    };
+
+    // Start typing animation after a short delay
+    setTimeout(type, 1000);
   }
 
   /**

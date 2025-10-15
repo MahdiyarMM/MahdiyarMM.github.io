@@ -168,64 +168,74 @@
   </header>
 <div class="body-background">	
 <div class="content-container">
-  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-<tr style="padding:0px">
-  <td style="padding:0px">
-    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-      <tbody>
-        <tr style="padding:0px">
-
-
-        </tr>
-
-		
-
-	      
-<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-
-    <tr>
-        <td style="padding:20px;width:100%;vertical-align:middle; text-align: center;">
-		<h1>Research</h1>
-            <p class="research-intro" align="justify" style="margin-bottom: 30px;">
-                Welcome to the forefront of <span class="highlight">cutting-edge AI research</span>! My work bridges theory and practice in artificial intelligence, focusing on solving real-world challenges with innovative solutions. With over <span class="number">500</span> citations and impactful contributions presented at top-tier conferences like <span class="highlight">ICCV</span>, <span class="highlight">AAAI</span>, <span class="highlight">NeurIPS</span>, and <span class="highlight">ICASSP</span>, I specialize in <span class="highlight">federated learning</span>, <span class="highlight">domain generalization</span>, <span class="highlight">continual learning</span>, and <span class="highlight">computer vision</span>. From groundbreaking methods like <span class="highlight">FedGaLA</span> for privacy-preserving federated learning to pioneering frameworks for long-tailed recognition and out-of-distribution generalization, my research aims to create scalable, fair, and practical AI systems that empower diverse applications, from healthcare to astronomy. Let's advance the boundaries of AI together!
-            </p>
-            <div id="scholar-metrics" class="scholar-metrics">
-                Citations: <span id="citation-count">0</span> | H-Index: <span id="h-index">0</span> | i10-Index: <span id="i10-index">0</span>
-            </div>
+  <!-- Research Header Section -->
+  <section class="research-header">
+    <h1>Research</h1>
+    <p class="research-intro">
+        Welcome to the forefront of <span class="highlight">cutting-edge AI research</span>! My work bridges theory and practice in artificial intelligence, focusing on solving real-world challenges with innovative solutions. With over <span class="number">500</span> citations and impactful contributions presented at top-tier conferences like <span class="highlight">ICCV</span>, <span class="highlight">AAAI</span>, <span class="highlight">NeurIPS</span>, and <span class="highlight">ICASSP</span>, I specialize in <span class="highlight">federated learning</span>, <span class="highlight">domain generalization</span>, <span class="highlight">continual learning</span>, and <span class="highlight">computer vision</span>. From groundbreaking methods like <span class="highlight">FedGaLA</span> for privacy-preserving federated learning to pioneering frameworks for long-tailed recognition and out-of-distribution generalization, my research aims to create scalable, fair, and practical AI systems that empower diverse applications, from healthcare to astronomy. Let's advance the boundaries of AI together!
+    </p>
+    <div id="scholar-metrics" class="scholar-metrics">
+        Citations: <span id="citation-count">0</span> | H-Index: <span id="h-index">0</span> | Experience: <span>8+</span>
+    </div>
               <script>
               async function loadScholarData() {
-                  const response = await fetch("scholar_data.json");
-                  const data = await response.json();
+                  try {
+                      const response = await fetch("scholar_data.json");
+                      const data = await response.json();
 
-                  const duration = 2000;
-                  const startTime = new Date().getTime();
+                      const duration = 2000;
+                      const startTime = new Date().getTime();
 
-                  function countUp() {
-                      const currentTime = new Date().getTime();
-                      const elapsed = currentTime - startTime;
-                      const progress = Math.min(elapsed / duration, 1);
+                      function countUp() {
+                          const currentTime = new Date().getTime();
+                          const elapsed = currentTime - startTime;
+                          const progress = Math.min(elapsed / duration, 1);
 
-                      document.getElementById("citation-count").innerText = Math.round(data.citations * progress);
-                      document.getElementById("h-index").innerText = Math.round(data.h_index * progress);
-                      document.getElementById("i10-index").innerText = Math.round(data.i10_index * progress);
+                          // Update citation count
+                          const citationElement = document.getElementById("citation-count");
+                          if (citationElement) {
+                              citationElement.innerText = Math.round(data.citations * progress);
+                          }
 
-                      if (progress < 1) {
-                          requestAnimationFrame(countUp);
+                          // Update h-index
+                          const hIndexElement = document.getElementById("h-index");
+                          if (hIndexElement) {
+                              hIndexElement.innerText = Math.round(data.h_index * progress);
+                          }
+
+                          if (progress < 1) {
+                              requestAnimationFrame(countUp);
+                          }
+                      }
+
+                      countUp();
+                  } catch (error) {
+                      console.error('Error loading scholar data:', error);
+                      // Fallback values
+                      const citationElement = document.getElementById("citation-count");
+                      if (citationElement) {
+                          citationElement.innerText = "513";
+                      }
+                      const hIndexElement = document.getElementById("h-index");
+                      if (hIndexElement) {
+                          hIndexElement.innerText = "9";
                       }
                   }
-
-                  countUp();
               }
 
-              loadScholarData();
+              // Load scholar data when DOM is ready
+              if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', loadScholarData);
+              } else {
+                  loadScholarData();
+              }
               </script>
 		
 	<p style="text-align:center; font-size: 24px; color: black;">
   <a href="mailto:m.molahasani@queensu.ca" style="color: DimGrey;"><i class="fas fa-envelope fa-2x"></i></a> &nbsp;·&nbsp;
   <a href="https://www.linkedin.com/in/m-molahasani/" style="color: DimGrey;"><i class="fab fa-linkedin fa-2x"></i></a> &nbsp;·&nbsp;
   <a href="https://scholar.google.com/citations?user=cXDt3NQAAAAJ&hl=en" style="color: DimGrey;"><i class="fas fa-graduation-cap fa-2x"></i></a> &nbsp;·&nbsp;
-  <a href="https://github.com/MahdiyarMM" style="color: DimGrey;"><i class="fab fa-github fa-2x"></i></a> &nbsp;·&nbsp;
-  <a href="https://mahdiyarmm.github.io/cv" style="color: DimGrey;"><i class="fas fa-file-alt fa-2x"></i></a>
+  <a href="https://github.com/MahdiyarMM" style="color: DimGrey;"><i class="fab fa-github fa-2x"></i></a>
 </p>
             </td>
           </tr>
