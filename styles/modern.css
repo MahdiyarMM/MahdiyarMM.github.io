@@ -748,6 +748,11 @@ img:hover {
 
 /* Medium screens - prevent overlap */
 @media (max-width: 1024px) and (min-width: 769px) {
+  .hero-section {
+    margin-top: var(--space-8);
+    padding-top: var(--space-8);
+  }
+  
   .hero-content {
     grid-template-columns: 1fr;
     gap: var(--space-8);
@@ -785,18 +790,13 @@ img:hover {
   /* Hero section mobile spacing */
   .hero-section {
     margin-top: var(--space-8);
-    padding-top: var(--space-12);
+    margin-bottom: var(--space-12);
+    padding: var(--space-12) 0 var(--space-4) 0;
   }
   
   /* Research page mobile spacing */
   .research-header {
     margin-top: var(--space-8) !important;
-  }
-  
-  /* Hero Section Mobile */
-  .hero-section {
-    margin-bottom: var(--space-12);
-    padding: var(--space-4) 0;
   }
   
   .hero-content {
@@ -981,6 +981,17 @@ html[data-theme="dark"] .header.scrolled,
 body[data-theme="dark"] .header.scrolled {
   background: rgba(30, 30, 30, 0.98) !important;
   box-shadow: var(--shadow-lg) !important;
+}
+
+html[data-theme="light"] .header,
+body[data-theme="light"] .header {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+}
+
+html[data-theme="light"] .header.scrolled,
+body[data-theme="light"] .header.scrolled {
+  background: rgba(255, 255, 255, 0.98) !important;
 }
 
 html[data-theme="dark"] .body-background,
@@ -1305,7 +1316,7 @@ body[data-theme="dark"] .social-link:hover {
     --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 10px 10px -5px rgb(0 0 0 / 0.3);
   }
   
-  .header:not([data-theme="light"]) {
+  :root:not([data-theme="light"]) .header {
     background: rgba(30, 30, 30, 0.95);
     border-bottom-color: var(--border-color);
   }

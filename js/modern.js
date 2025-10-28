@@ -395,7 +395,7 @@ class WebsiteEnhancer {
    */
   setupKeyboardNavigation() {
     // Skip to main content link
-    this.createSkipLink();
+    // this.createSkipLink(); // Disabled - user requested removal
     
     // Enhanced tab navigation
     this.enhanceTabNavigation();
