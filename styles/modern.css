@@ -125,6 +125,21 @@ papertitle {
   line-height: 1.4;
 }
 
+/* Particles background */
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.body-background {
+  position: relative;
+  width: 100%;
+}
+
 /* Modern Header */
 .header {
   position: fixed;

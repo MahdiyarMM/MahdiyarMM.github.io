@@ -42,17 +42,10 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="stylesheet" type="text/css" href="styles/modern.css">
   
-  <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133321224-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-133321224-1');
-</script>
+  <!-- Google Analytics — TODO: replace with your GA4 measurement ID (G-XXXXXXXXXX) from https://analytics.google.com -->
+  <!-- Universal Analytics (UA-*) was sunset by Google in July 2023 -->
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -84,136 +77,8 @@
     "email": "m.molahasani@queensu.ca"
   }
   </script>
-<style>
 
 
-@media screen and (max-width: 768px) {
-  .profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-top: 100px;
-  }
-
-  .profile-container td {
-    width: 100% !important;
-    display: block;
-    margin-top: 50px;
-  }
-
-  .profile-image {
-    width: 80% !important; /* Adjusts image width on mobile */
-    max-width: 250px; /* Optional: limits max size */
-    margin-bottom: 15px; /* Adds space below image */
-  }
-
-  .profile-text {
-    width: 100%;
-  }
-}
-
-	
-  .header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #ddd;
-    z-index: 1000;
-  }
-
-  .header .header-content {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-  }
-
-  .header .brand {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
-  }
-
-  .header .brand:hover {
-    color: #0073e6;
-  }
-
-  .header a {
-    text-decoration: none;
-    font-size: 1.2em;
-    color: #333;
-    font-weight: bold;
-    margin-left: 15px;
-  }
-
-  .header a:hover {
-    color: #0073e6;
-  }
-
-  .body-background {
-    position: relative;
-    background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 35%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 0) 100%);
-    width: 100%;
-  }
-
-
-.content-container {
-  position: relative;
-  padding: 100px 20px 20px; /* Increased top padding */
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 150px 20px 20px;
-}
-
-  img {
-    transition: transform 0.3s;
-  }
-
-  img:hover {
-    transform: scale(1.1);
-  }
-
-  /* Fix for Research Title */
-  .research-title a {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #0073e6;
-    text-decoration: none;
-  }
-
-  .research-title a:hover {
-    color: orange;
-    text-decoration: underline;
-  }
-
-  /* Fix for Bullet Alignment */
-  .education-list {
-    list-style-type: disc;
-    text-align: justify;
-    padding-left: 0;
-    margin-left: 20px;
-  }
-</style>
-  <style>
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-    }
-  .content-container {
-      position: relative;
-      padding: 75px 20px 20px;
-      background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 35%, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 0) 100%);
-    }
-  </style>
-	
 </head>
 
 <body>
@@ -225,10 +90,10 @@
 
   <header class="header" role="banner">
     <div class="header-content">
-      <a href="https://www.molahasani.ca/" class="brand" aria-label="Mahdiyar Molahasani - Home">Mahdiyar Molahasani</a>
+      <a href="/" class="brand" aria-label="Mahdiyar Molahasani - Home">Mahdiyar Molahasani</a>
       <nav role="navigation" aria-label="Main navigation">
-        <a href="https://www.molahasani.ca/" aria-current="page">Home</a>
-        <a href="https://www.molahasani.ca/research">Research</a>
+        <a href="/" aria-current="page">Home</a>
+        <a href="/research">Research</a>
       </nav>
     </div>
   </header>
@@ -273,7 +138,7 @@
         
         <!-- Actions and Social -->
         <div class="hero-actions">
-          <a href="https://www.molahasani.ca/research" class="btn btn-primary">View My Research</a>
+          <a href="/research" class="btn btn-primary">View My Research</a>
         </div>
         
         <!-- Metrics - Horizontal Line -->
@@ -359,7 +224,7 @@
       <!-- Research Section -->
       <section class="section" aria-labelledby="research-heading">
         <h2 id="research-heading" class="section-title">
-          <a href="https://mahdiyarmm.github.io/research">Research</a>
+          <a href="/research">Research</a>
         </h2>
         
         <div class="research-description">
@@ -450,121 +315,40 @@
   </main>
   
   <footer role="contentinfo" style="text-align: center; padding: 2rem; color: var(--text-secondary, #64748b);">
-    <p>&copy; 2025 Mahdiyar Molahasani. All rights reserved.</p>
+    <p>&copy; <script>document.write(new Date().getFullYear())</script> Mahdiyar Molahasani. All rights reserved.</p>
   </footer>
       
-  <!-- Scholar Metrics Script -->
-              <script>
-              async function loadScholarData() {
-                  try {
-                      const response = await fetch("scholar_data.json");
-                      const data = await response.json();
+  <script>
+    async function loadScholarData() {
+      try {
+        const response = await fetch("scholar_data.json");
+        const data = await response.json();
+        const duration = 2000;
+        const startTime = Date.now();
 
-                      const duration = 2000;
-                      const startTime = new Date().getTime();
-
-                      function countUp() {
-                          const currentTime = new Date().getTime();
-                          const elapsed = currentTime - startTime;
-                          const progress = Math.min(elapsed / duration, 1);
-
-                          // Update citation count
-                          const citationElement = document.getElementById("citation-count");
-                          if (citationElement) {
-                              citationElement.innerText = Math.round(data.citations * progress);
-                          }
-
-                          // Update h-index
-                          const hIndexElement = document.getElementById("h-index");
-                          if (hIndexElement) {
-                              hIndexElement.innerText = Math.round(data.h_index * progress);
-                          }
-
-                          if (progress < 1) {
-                              requestAnimationFrame(countUp);
-                          }
-                      }
-
-                      countUp();
-                  } catch (error) {
-                      console.error('Error loading scholar data:', error);
-                      // Fallback values
-                      const citationElement = document.getElementById("citation-count");
-                      if (citationElement) {
-                          citationElement.innerText = "513";
-                      }
-                      const hIndexElement = document.getElementById("h-index");
-                      if (hIndexElement) {
-                          hIndexElement.innerText = "9";
-                      }
-                  }
-              }
-
-              // Load scholar data when DOM is ready
-              if (document.readyState === 'loading') {
-                  document.addEventListener('DOMContentLoaded', loadScholarData);
-              } else {
-                  loadScholarData();
-              }
-              </script>
-
-  <!-- Enhanced Intersection Observer for Animations -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-      // Animate sections on scroll
-      const sections = document.querySelectorAll('.section');
-      const observerOptions = {
-        rootMargin: "0px 0px -10% 0px",
-        threshold: 0.1
-      };
-
-      const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }
-        });
-      }, observerOptions);
-
-      sections.forEach((section) => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        sectionObserver.observe(section);
-      });
-
-      // Header scroll effect
-      const header = document.querySelector('.header');
-      let lastScrollY = window.scrollY;
-
-      window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-        
-        if (currentScrollY > 100) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
+        function countUp() {
+          const progress = Math.min((Date.now() - startTime) / duration, 1);
+          const citationEl = document.getElementById("citation-count");
+          const hIndexEl = document.getElementById("h-index");
+          if (citationEl) citationEl.innerText = Math.round(data.citations * progress);
+          if (hIndexEl) hIndexEl.innerText = Math.round(data.h_index * progress);
+          if (progress < 1) requestAnimationFrame(countUp);
         }
-        
-        lastScrollY = currentScrollY;
-      });
+        countUp();
+      } catch (error) {
+        const citationEl = document.getElementById("citation-count");
+        const hIndexEl = document.getElementById("h-index");
+        if (citationEl) citationEl.innerText = "513";
+        if (hIndexEl) hIndexEl.innerText = "9";
+      }
+    }
 
-      // Smooth scrolling for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        });
-      });
-  });
-</script>
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadScholarData);
+    } else {
+      loadScholarData();
+    }
+  </script>
 
   <!-- Particles.js -->
   <script src="particles.js"></script>
