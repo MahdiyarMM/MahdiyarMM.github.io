@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://www.molahasani.ca/sitemap.xml
+Sitemap: https://mahdiyar.ai/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
