@@ -2,34 +2,34 @@ name: Update Google Scholar Data
 
 on:
   schedule:
-    - cron: "0 0 * * *" # This will run the workflow daily at midnight (UTC)
-  workflow_dispatch: # This allows you to manually trigger the workflow
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   update_scholar_data:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
+          python-version: "3.12"
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install scholarly
+        run: pip install scholarly
 
       - name: Fetch scholar data
-        run: |
-          python fetch_scholar_data.py
+        run: python fetch_scholar_data.py
 
       - name: Commit and push changes
         run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<your-email>"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add scholar_data.json
-          git commit -m "Update scholar_data.json with new citation count and h-index" || echo "No changes to commit"
+          git diff --cached --quiet || git commit -m "chore: update scholar metrics"
           git push
