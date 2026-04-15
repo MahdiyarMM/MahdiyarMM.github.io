@@ -17,9 +17,8 @@ class WebsiteEnhancer {
 
   setupThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
 
-    if (!themeToggle || !themeIcon) return;
+    if (!themeToggle) return;
 
     const savedTheme = localStorage.getItem('theme') || 'light';
     this.setTheme(savedTheme);
@@ -41,10 +40,18 @@ class WebsiteEnhancer {
   }
 
   setTheme(theme) {
+    const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
 
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
+
+    if (themeToggle) {
+      const isDark = theme === 'dark';
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Code Dark Mode');
+      themeToggle.title = isDark ? 'Switch to Light Mode' : 'Switch to Code Dark Mode';
+    }
 
     if (themeIcon) {
       themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
@@ -73,7 +80,10 @@ class WebsiteEnhancer {
         }
 
         if (particles.pJS.canvas && particles.pJS.canvas.el) {
-          particles.pJS.canvas.el.style.backgroundColor = theme === 'dark' ? '#1e1e1e' : '#ffffff';
+          const isIndustryHome = document.body.classList.contains('industry-home');
+          particles.pJS.canvas.el.style.backgroundColor = theme === 'dark'
+            ? (isIndustryHome ? '#252526' : '#1e1e1e')
+            : '#ffffff';
         }
       }
     } catch (error) {
@@ -90,13 +100,25 @@ class WebsiteEnhancer {
     const typingElement = document.getElementById('typing-text');
     if (!typingElement) return;
 
-    const texts = [
+    const fallbackTexts = [
       'ML Research Scientist at Captura',
       'AI & Computer Vision Expert',
       'Federated Learning Researcher',
       'PhD from Queen\'s University',
       '17+ Publications in Top Venues'
     ];
+    let texts = fallbackTexts;
+
+    if (typingElement.dataset.typingTexts) {
+      try {
+        const configuredTexts = JSON.parse(typingElement.dataset.typingTexts);
+        if (Array.isArray(configuredTexts) && configuredTexts.every(text => typeof text === 'string')) {
+          texts = configuredTexts;
+        }
+      } catch (error) {
+        texts = fallbackTexts;
+      }
+    }
 
     let textIndex = 0;
     let charIndex = 0;
@@ -268,6 +290,24 @@ class WebsiteEnhancer {
       rootMargin: '0px 0px -10% 0px',
       threshold: 0.1
     };
+
+    const revealElements = document.querySelectorAll('.industry-home .timeline-item, .industry-home .focus-card, .industry-home .education-card');
+    if (revealElements.length > 0) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      }, { rootMargin: '0px 0px -20% 0px', threshold: 0 });
+
+      revealElements.forEach((element, index) => {
+        element.style.transitionDelay = `${Math.min(index * 0.06, 0.24)}s`;
+        revealObserver.observe(element);
+      });
+    }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

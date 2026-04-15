@@ -55,17 +55,23 @@
 <body class="research-page">
   <div id="particles-js"></div>
   
-  <!-- Dark Mode Toggle -->
-  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
-    <i class="fas fa-moon" id="theme-icon"></i>
-  </button>
-  
   <header class="header" role="banner">
     <div class="header-content">
       <a href="/" class="brand" aria-label="Mahdiyar Molahasani - Home">Mahdiyar Molahasani</a>
       <nav role="navigation" aria-label="Main navigation">
         <a href="/">Home</a>
         <a href="/research" aria-current="page">Research</a>
+        <button class="theme-toggle theme-toggle-segmented" id="theme-toggle" type="button" aria-label="Switch to Code Dark Mode" aria-pressed="false" title="Switch to Code Dark Mode">
+          <span class="theme-toggle-track" aria-hidden="true">
+            <span class="theme-option theme-option-light">
+              <i class="fas fa-sun"></i>
+            </span>
+            <span class="theme-option theme-option-code">
+              <i class="fas fa-moon theme-code-moon"></i>
+            </span>
+            <span class="theme-thumb"></span>
+          </span>
+        </button>
       </nav>
     </div>
   </header>
