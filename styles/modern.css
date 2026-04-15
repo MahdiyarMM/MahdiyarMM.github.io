@@ -1435,17 +1435,18 @@ img:hover {
   
   .social-links {
     order: 6;
-  }
-  
-  .social-links {
-    flex-wrap: wrap;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-3);
   }
-  
-  .social-link {
-    min-width: 70px;
-    padding: var(--space-3);
-    height: auto !important;
+
+  .social-link,
+  .industry-home .social-link {
+    min-width: 0;
+    width: auto;
+    padding: var(--space-3) var(--space-2);
+    height: auto;
+    overflow: visible;
   }
   
   .social-link i {
@@ -1454,18 +1455,6 @@ img:hover {
   
   .social-label {
     font-size: var(--font-size-xs);
-  }
-
-  .industry-home .social-links {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-3);
-  }
-
-  .industry-home .social-link {
-    height: auto !important;
-    overflow: visible;
-    min-width: 0;
   }
   
   .profile-container {
