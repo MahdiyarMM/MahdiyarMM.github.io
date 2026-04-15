@@ -987,6 +987,67 @@ papertitle {
   margin: 0;
 }
 
+.focus-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.focus-card li {
+  color: var(--text-secondary);
+  line-height: 1.5;
+  padding-left: var(--space-5);
+  position: relative;
+}
+
+.focus-card li::before {
+  background: var(--accent-color);
+  border-radius: 50%;
+  content: '';
+  height: 6px;
+  left: 2px;
+  position: absolute;
+  top: 0.65em;
+  width: 6px;
+}
+
+.focus-card .award-list {
+  gap: var(--space-4);
+}
+
+.focus-card .award-list > li {
+  padding-left: 0;
+}
+
+.focus-card .award-list > li::before {
+  display: none;
+}
+
+.focus-card .award-list > li > strong {
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+.focus-card .award-details {
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+}
+
+.focus-card .award-details li {
+  font-size: var(--font-size-sm);
+  padding-left: var(--space-4);
+}
+
+.focus-card .award-details li::before {
+  height: 4px;
+  width: 4px;
+  top: 0.6em;
+}
+
 .education-grid {
   display: grid;
   gap: var(--space-6);
@@ -2089,8 +2150,15 @@ html[data-theme="dark"] .industry-home .timeline-content li,
 body[data-theme="dark"] .industry-home .timeline-content li,
 html[data-theme="dark"] .industry-home .focus-card p,
 body[data-theme="dark"] .industry-home .focus-card p,
+html[data-theme="dark"] .industry-home .focus-card li,
+body[data-theme="dark"] .industry-home .focus-card li,
 html[data-theme="dark"] .industry-home .education-thesis,
 body[data-theme="dark"] .industry-home .education-thesis {
+  color: #e5e7eb !important;
+}
+
+html[data-theme="dark"] .industry-home .focus-card .award-list > li > strong,
+body[data-theme="dark"] .industry-home .focus-card .award-list > li > strong {
   color: #e5e7eb !important;
 }
 
