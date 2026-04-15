@@ -1445,6 +1445,7 @@ img:hover {
   .social-link {
     min-width: 70px;
     padding: var(--space-3);
+    height: auto !important;
   }
   
   .social-link i {
@@ -1453,6 +1454,18 @@ img:hover {
   
   .social-label {
     font-size: var(--font-size-xs);
+  }
+
+  .industry-home .social-links {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+  }
+
+  .industry-home .social-link {
+    height: auto !important;
+    overflow: visible;
+    min-width: 0;
   }
   
   .profile-container {
@@ -2378,7 +2391,7 @@ body[data-theme="dark"] .theme-toggle-segmented .theme-option-light {
   
   /* Content adjustments */
   .content-container {
-    padding: 20px 15px !important;
+    padding: 140px 15px 20px !important;
     max-width: 100% !important;
   }
   
@@ -2420,7 +2433,7 @@ body[data-theme="dark"] .theme-toggle-segmented .theme-option-light {
     gap: 15px !important;
   }
   
-  .social-links a {
+  .social-links a:not(.social-link) {
     width: 40px !important;
     height: 40px !important;
     font-size: 1.2rem !important;
@@ -2518,7 +2531,7 @@ body[data-theme="dark"] .theme-toggle-segmented .theme-option-light {
 /* Small mobile devices */
 @media (max-width: 480px) {
   .content-container {
-    padding: 15px 10px !important;
+    padding: 140px 10px 15px !important;
   }
   
   .brand {
@@ -2580,7 +2593,7 @@ body[data-theme="dark"] .theme-toggle-segmented .theme-option-light {
     font-size: var(--font-size-xs) !important;
   }
   
-  .social-links a {
+  .social-links a:not(.social-link) {
     width: 35px !important;
     height: 35px !important;
     font-size: 1rem !important;
