@@ -1,5 +1,8 @@
 /* particles.js initialization
- * Skips on small viewports and when prefers-reduced-motion is set.
+ * Honors prefers-reduced-motion (no particles).
+ * Density and link distance scale with viewport so the canvas stays
+ * lively but cheap on phones and tablets. Click-to-spawn is disabled
+ * on coarse pointers to avoid surprise particles on every tap.
  * Pauses on visibilitychange to save battery on hidden tabs.
  * Background is opt-out via <body data-bg="off">.
  */
@@ -11,9 +14,23 @@
 
   const reduced =
     window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const tooSmall = window.innerWidth < 768;
-  if (reduced || tooSmall) return;
+  if (reduced) return;
   if (typeof particlesJS !== 'function') return;
+
+  // Scale particle config with viewport so the canvas stays smooth on
+  // mobile/tablet hardware. Tuned by eye to keep dot density visually
+  // similar across breakpoints while reducing absolute particle count
+  // on smaller canvases.
+  const w = window.innerWidth;
+  const isCompact = w < 768;
+  const isTiny = w < 480;
+  const particleCount = isTiny ? 22 : isCompact ? 36 : 60;
+  const linkDistance = isTiny ? 90 : isCompact ? 120 : 150;
+  const moveSpeed = isCompact ? 2 : 3;
+
+  // Coarse-pointer (touch) devices shouldn't spawn particles on every
+  // tap — that maps to onclick:push and quickly clutters the canvas.
+  const coarsePointer = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
 
   particlesJS(
     'particles-js',
@@ -21,7 +38,7 @@
     {
       particles: {
         number: {
-          value: 60,
+          value: particleCount,
           density: {
             enable: true,
             value_area: 800,
@@ -67,14 +84,14 @@
         },
         line_linked: {
           enable: true,
-          distance: 150,
+          distance: linkDistance,
           color: '#000000',
           opacity: 0.4,
           width: 1,
         },
         move: {
           enable: true,
-          speed: 3,
+          speed: moveSpeed,
           direction: 'none',
           random: false,
           straight: false,
@@ -91,11 +108,11 @@
         detect_on: 'window',
         events: {
           onhover: {
-            enable: true,
+            enable: !coarsePointer,
             mode: 'repulse',
           },
           onclick: {
-            enable: true,
+            enable: !coarsePointer,
             mode: 'push',
           },
           resize: true,

@@ -48,7 +48,8 @@
       "description": { "type": "string", "minLength": 20 },
       "bibtex": { "type": "string" },
       "citations": { "type": "integer", "minimum": 0 },
-      "highlight": { "type": "boolean", "default": false }
+      "highlight": { "type": "boolean", "default": false },
+      "display_order": { "type": "integer" }
     }
   }
 }

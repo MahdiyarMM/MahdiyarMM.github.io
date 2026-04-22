@@ -254,11 +254,15 @@ papertitle {
   padding: 120px var(--space-6) var(--space-8);
   max-width: 1200px;
   margin: 0 auto;
+  /* Soft wash instead of fully opaque white in the middle so the
+     particle canvas behind the page shows through subtly. Cards on
+     top reclaim readability via their own translucent + blurred
+     surfaces (see frosted-glass section below). */
   background: linear-gradient(
     to left,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 1) 10%,
-    rgba(255, 255, 255, 1) 90%,
+    rgba(255, 255, 255, 0.55) 10%,
+    rgba(255, 255, 255, 0.55) 90%,
     rgba(255, 255, 255, 0) 100%
   );
 }
@@ -897,7 +901,9 @@ papertitle {
 }
 
 .timeline-content {
-  background: rgba(255, 255, 255, 0.84);
+  background: rgba(255, 255, 255, 0.72);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  backdrop-filter: blur(14px) saturate(1.05);
   border: 1px solid rgba(37, 99, 235, 0.12);
   border-radius: var(--radius-lg);
   box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
@@ -1027,7 +1033,9 @@ papertitle {
 }
 
 .focus-card {
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  backdrop-filter: blur(14px) saturate(1.05);
   border: 1px solid rgba(37, 99, 235, 0.12);
   border-radius: var(--radius-lg);
   box-shadow: 0 16px 42px rgba(15, 23, 42, 0.07);
@@ -1191,7 +1199,9 @@ papertitle {
 }
 
 .education-card {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  backdrop-filter: blur(14px) saturate(1.05);
   border: 1px solid rgba(37, 99, 235, 0.12);
   border-radius: var(--radius-lg);
   box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
@@ -2268,10 +2278,24 @@ body[data-theme='dark'] .industry-home .timeline-content,
 html[data-theme='dark'] .industry-home .focus-card,
 body[data-theme='dark'] .industry-home .focus-card,
 html[data-theme='dark'] .industry-home .education-card,
-body[data-theme='dark'] .industry-home .education-card {
-  background: rgba(37, 37, 38, 0.94) !important;
+body[data-theme='dark'] .industry-home .education-card,
+html[data-theme='dark'] .industry-home .project-card,
+body[data-theme='dark'] .industry-home .project-card {
+  background: rgba(37, 37, 38, 0.74) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1.1) !important;
+  backdrop-filter: blur(14px) saturate(1.1) !important;
   border-color: rgba(148, 163, 184, 0.34) !important;
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.32) !important;
+}
+
+/* Research page paper-card needs the same frosted-glass treatment in
+   dark mode (no .industry-home class on /research, so target globally). */
+html[data-theme='dark'] .paper-card,
+body[data-theme='dark'] .paper-card {
+  background: rgba(37, 37, 38, 0.74) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1.1) !important;
+  backdrop-filter: blur(14px) saturate(1.1) !important;
+  border-color: rgba(148, 163, 184, 0.34) !important;
 }
 
 html[data-theme='dark'] .industry-home .timeline-logo,
@@ -2982,6 +3006,15 @@ body[data-theme='dark'] .theme-toggle-segmented .theme-option-light {
   gap: 0.4rem;
 }
 
+/* Collapsed state: hide chips beyond the first FILTER_VISIBLE_TAGS so the
+   filter row stays compact (≈1-2 lines depending on viewport width) until
+   the user opts in to "Show all tags". The active selection is preserved
+   regardless because activating an overflow chip auto-expands the row. */
+.publications-filters[data-collapsed='true']
+  .publication-filter[data-overflow='true']:not([aria-pressed='true']) {
+  display: none;
+}
+
 .publication-filter {
   background: var(--background, #fff);
   color: var(--text-secondary, #64748b);
@@ -3006,6 +3039,24 @@ body[data-theme='dark'] .theme-toggle-segmented .theme-option-light {
   border-color: var(--primary, #2563eb);
 }
 
+/* "Show all tags / Show fewer" toggle — visually de-emphasized so it reads
+   as a UI control, not as a filterable tag. */
+.publication-filter-toggle {
+  background: transparent;
+  color: var(--primary, #2563eb);
+  border-color: transparent;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 0.3rem 0.5rem;
+}
+
+.publication-filter-toggle:hover {
+  color: var(--primary-hover, #1d4ed8);
+  background: rgba(37, 99, 235, 0.06);
+  border-color: transparent;
+}
+
 .publications-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -3017,7 +3068,9 @@ body[data-theme='dark'] .theme-toggle-segmented .theme-option-light {
   grid-template-columns: 160px 1fr;
   gap: 1.25rem;
   padding: 1.25rem;
-  background: var(--background, #fff);
+  background: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  backdrop-filter: blur(14px) saturate(1.05);
   border: 1px solid var(--border-color, #e2e8f0);
   border-radius: 0.75rem;
   box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
@@ -3435,7 +3488,9 @@ body[data-theme='dark'] .theme-toggle-segmented .theme-option-light {
   flex-direction: column;
   text-decoration: none;
   color: inherit;
-  background: var(--background, #fff);
+  background: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  backdrop-filter: blur(14px) saturate(1.05);
   border: 1px solid var(--border-color, #e2e8f0);
   border-radius: 0.75rem;
   overflow: hidden;

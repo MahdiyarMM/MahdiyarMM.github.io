@@ -43,12 +43,17 @@
       el,
       id: el.getAttribute('data-paper-id'),
       year: Number(el.getAttribute('data-paper-year')) || 0,
+      order: Number(el.getAttribute('data-paper-order')) || 0,
       tags: (el.getAttribute('data-paper-tags') || '').split('|').filter(Boolean),
       title: ($('.paper-title', el)?.textContent || '').toLowerCase(),
       authors: ($('.authors', el)?.textContent || '').toLowerCase(),
       desc: ($('.paper-description', el)?.textContent || '').toLowerCase(),
     }));
   }
+
+  // Number of tag chips to show before the "Show all" toggle kicks in.
+  // 6 chips + the "All" chip ≈ 1 row on wide desktop / 2 rows on phones.
+  const FILTER_VISIBLE_TAGS = 6;
 
   function buildFilterChips(cards, container) {
     const tagCounts = new Map();
@@ -58,6 +63,8 @@
       .slice(0, 14);
 
     container.innerHTML = '';
+    container.dataset.collapsed = 'true';
+
     const allBtn = document.createElement('button');
     allBtn.type = 'button';
     allBtn.className = 'publication-filter';
@@ -66,14 +73,39 @@
     allBtn.textContent = `All (${cards.length})`;
     container.appendChild(allBtn);
 
-    for (const [tag, count] of tags) {
+    tags.forEach(([tag, count], i) => {
       const b = document.createElement('button');
       b.type = 'button';
       b.className = 'publication-filter';
       b.dataset.tag = tag;
       b.setAttribute('aria-pressed', 'false');
       b.textContent = `${tag} (${count})`;
+      if (i >= FILTER_VISIBLE_TAGS) b.dataset.overflow = 'true';
       container.appendChild(b);
+    });
+
+    const overflowCount = Math.max(0, tags.length - FILTER_VISIBLE_TAGS);
+    if (overflowCount > 0) {
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'publication-filter publication-filter-toggle';
+      toggle.dataset.role = 'toggle';
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-controls', container.id);
+      toggle.textContent = `Show all tags (+${overflowCount})`;
+      toggle.dataset.expandText = `Show all tags (+${overflowCount})`;
+      toggle.dataset.collapseText = 'Show fewer';
+      container.appendChild(toggle);
+    }
+  }
+
+  function toggleFilterOverflow(container, expand) {
+    const collapsed = expand === undefined ? container.dataset.collapsed !== 'true' : !expand;
+    container.dataset.collapsed = collapsed ? 'true' : 'false';
+    const toggle = container.querySelector('[data-role="toggle"]');
+    if (toggle) {
+      toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      toggle.textContent = collapsed ? toggle.dataset.expandText : toggle.dataset.collapseText;
     }
   }
 
@@ -98,13 +130,21 @@
 
   function applySort(cards, mode, gridEl) {
     const sorted = [...cards];
-    if (mode === 'year-asc') sorted.sort((a, b) => a.year - b.year);
-    else if (mode === 'cites-desc')
+    // Within-year tie-breaker: manual data-paper-order (higher first), so the
+    // default "newest first" view matches the static render order from
+    // scripts/render-publications.mjs (PRISM > FedGaLA > FedSB for 2025).
+    if (mode === 'year-asc') {
+      sorted.sort((a, b) => a.year - b.year || a.order - b.order);
+    } else if (mode === 'cites-desc') {
       sorted.sort(
         (a, b) =>
-          (pubsById[b.id]?.citations || 0) - (pubsById[a.id]?.citations || 0) || b.year - a.year
+          (pubsById[b.id]?.citations || 0) - (pubsById[a.id]?.citations || 0) ||
+          b.year - a.year ||
+          b.order - a.order
       );
-    else sorted.sort((a, b) => b.year - a.year);
+    } else {
+      sorted.sort((a, b) => b.year - a.year || b.order - a.order);
+    }
     for (const c of sorted) gridEl.appendChild(c.el);
   }
 
@@ -170,9 +210,22 @@
     filters.addEventListener('click', (e) => {
       const btn = e.target.closest('.publication-filter');
       if (!btn) return;
-      $$('.publication-filter', filters).forEach((b) => b.setAttribute('aria-pressed', 'false'));
+      // The "Show all tags" toggle expands/collapses overflow chips and
+      // doesn't change the active filter.
+      if (btn.dataset.role === 'toggle') {
+        toggleFilterOverflow(filters);
+        return;
+      }
+      $$('.publication-filter:not([data-role="toggle"])', filters).forEach((b) =>
+        b.setAttribute('aria-pressed', 'false')
+      );
       btn.setAttribute('aria-pressed', 'true');
       state.tag = btn.dataset.tag;
+      // If the user activated an overflow chip, reveal the rest so the
+      // active selection stays visible after click.
+      if (btn.dataset.overflow === 'true' && filters.dataset.collapsed === 'true') {
+        toggleFilterOverflow(filters, true);
+      }
       const visible = applyFilters(cards, state, empty);
       announce(`${visible} publication${visible === 1 ? '' : 's'} shown.`);
     });

@@ -28,7 +28,8 @@
     "tags": ["VLM", "Bias & Fairness", "CLIP", "ICCV"],
     "description": "PRISM introduces a data-free, task-agnostic debiasing framework for VLMs. It first leverages an LLM to generate bias-aware scene descriptions from simple class prompts, then learns a linear projection of the CLIP embedding space via a novel Latent-space Debiasing loss that enforces intra-class invariance and inter-class separability.",
     "bibtex": "@inproceedings{molahasani2025prism,\n  title={PRISM: Reducing Spurious Implicit Biases in Vision-Language Models with LLM-Guided Embedding Projection},\n  author={Molahasani, Mahdiyar and Motamedi, Azadeh and Greenspan, Michael and Kim, Il-Min and Etemad, Ali},\n  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},\n  year={2025}\n}",
-    "highlight": true
+    "highlight": true,
+    "display_order": 3
   },
   {
     "id": "fedgala",
@@ -65,7 +66,8 @@
     "tags": ["Federated Learning", "Domain Generalization", "AAAI"],
     "description": "We introduced the novel problem of unsupervised federated domain generalization and proposed FedGaLA, a method that improves model generalization across unseen domains by aligning gradients at both the client and server levels. This work is grounded in a theoretical framework that links domain shift to gradient alignment. FedGaLA achieves state-of-the-art performance on several domain generalization benchmarks.",
     "bibtex": "@inproceedings{pourpanah2025fedgala,\n  title={Federated Unsupervised Domain Generalization using Global and Local Alignment of Gradients},\n  author={Pourpanah, Farhad and Molahasani, Mahdiyar and Soltany, Milad and Etemad, Ali and Greenspan, Michael},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  year={2025}\n}",
-    "highlight": true
+    "highlight": true,
+    "display_order": 2
   },
   {
     "id": "fedsb",
@@ -95,7 +97,8 @@
     "image_alt": "FedSB diagram",
     "tags": ["Federated Learning", "Domain Generalization", "ICASSP"],
     "description": "We propose FedSB, a method for federated domain generalization that improves model robustness across diverse domains using label smoothing to reduce local overconfidence and a balanced training mechanism to mitigate data heterogeneity.",
-    "bibtex": "@inproceedings{soltany2025fedsb,\n  title={Federated Domain Generalization With Label Smoothing and Balanced Decentralized Training},\n  author={Soltany, Milad and Pourpanah, Farhad and Molahasani, Mahdiyar and Greenspan, Michael and Etemad, Ali},\n  booktitle={ICASSP 2025 - IEEE International Conference on Acoustics, Speech and Signal Processing},\n  year={2025}\n}"
+    "bibtex": "@inproceedings{soltany2025fedsb,\n  title={Federated Domain Generalization With Label Smoothing and Balanced Decentralized Training},\n  author={Soltany, Milad and Pourpanah, Farhad and Molahasani, Mahdiyar and Greenspan, Michael and Etemad, Ali},\n  booktitle={ICASSP 2025 - IEEE International Conference on Acoustics, Speech and Signal Processing},\n  year={2025}\n}",
+    "display_order": 1
   },
   {
     "id": "cltr",

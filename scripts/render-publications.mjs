@@ -82,7 +82,10 @@ function cardMarkup(p, idx) {
     p.links?.find((l) => /arxiv|openreview|spie|ieee|journal/i.test(l.label))?.url ||
     p.links?.[0]?.url ||
     '#';
-  return `      <article class="paper-card paper-info" id="paper-${escapeHtml(p.id)}" data-paper-id="${escapeHtml(p.id)}" data-paper-year="${p.year}" data-paper-tags="${escapeHtml((p.tags || []).join('|'))}"${highlightAttr}>
+  const orderAttr = Number.isInteger(p.display_order)
+    ? ` data-paper-order="${p.display_order}"`
+    : '';
+  return `      <article class="paper-card paper-info" id="paper-${escapeHtml(p.id)}" data-paper-id="${escapeHtml(p.id)}" data-paper-year="${p.year}" data-paper-tags="${escapeHtml((p.tags || []).join('|'))}"${orderAttr}${highlightAttr}>
         <div class="paper-card-media">
           ${pictureMarkup(p.image, p.image_alt || p.title)}
         </div>
@@ -132,7 +135,15 @@ function replaceBetween(html, startMarker, endMarker, body) {
 function main() {
   const html = fs.readFileSync(HTML, 'utf8');
   const pubs = JSON.parse(fs.readFileSync(DATA, 'utf8'));
-  pubs.sort((a, b) => b.year - a.year || a.title.localeCompare(b.title));
+  // Sort newest year first, then by manual `display_order` (higher = first)
+  // as a tie-breaker so within-year ordering is editable from data, finally
+  // alphabetical title for stability.
+  pubs.sort(
+    (a, b) =>
+      b.year - a.year ||
+      (b.display_order || 0) - (a.display_order || 0) ||
+      a.title.localeCompare(b.title)
+  );
 
   const cards = pubs.map((p, i) => cardMarkup(p, i)).join('\n\n');
   const jsonLd = pubs
