@@ -6,7 +6,7 @@
     <atom:link href="https://mahdiyar.ai/feed.xml" rel="self" type="application/rss+xml" />
     <description>Short technical notes from Mahdiyar Molahasani.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Apr 2026 00:30:28 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2026 18:24:11 GMT</lastBuildDate>
     <item>
       <title>PRISM: Debiasing Vision-Language Models via LLM-Guided Embedding Projection</title>
       <link>https://mahdiyar.ai/posts/prism</link>

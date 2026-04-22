@@ -68,8 +68,29 @@
       rel="stylesheet"
     />
 
+    <!--
+      Inline theme-init: must run synchronously BEFORE the stylesheet so
+      `data-theme` is set before first paint. Without this, devices whose
+      OS is in dark mode briefly (or persistently, on pages with no toggle)
+      get the dark CSS variables even when the user picked "light".
+    -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          var resolved =
+            t === 'light' || t === 'dark'
+              ? t
+              : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+          document.documentElement.setAttribute('data-theme', resolved);
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="/styles/modern.css?v=20260421-18" />
+    <link rel="stylesheet" type="text/css" href="/styles/modern.css?v=20260421-19" />
 
     <!-- Prefetch the icon sprite so first paint is decorated -->
     <link rel="prefetch" href="/images/icons.svg" as="image" type="image/svg+xml" />

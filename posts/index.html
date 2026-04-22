@@ -14,7 +14,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=optional" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="/styles/modern.css?v=20260421-18" />
+  <script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      var resolved = (t === 'light' || t === 'dark')
+        ? t
+        : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', resolved);
+    } catch (e) {}
+  })();
+</script>
+  <link rel="stylesheet" type="text/css" href="/styles/modern.css?v=20260421-19" />
 </head>
 <body class="posts-index">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -25,6 +36,21 @@
         <a href="/">Home</a>
         <a href="/research">Research</a>
         <a href="/posts/" aria-current="page">Notes</a>
+        <div class="theme-toggle-tri" id="theme-toggle" role="radiogroup" aria-label="Color theme">
+        <button class="theme-segment" data-theme-value="light" type="button" role="radio" aria-checked="false" title="Light theme">
+          <svg class="icon icon-sun" aria-hidden="true" focusable="false"><use href="/images/icons.svg#i-sun" /></svg>
+          <span class="sr-only">Light</span>
+        </button>
+        <button class="theme-segment" data-theme-value="auto" type="button" role="radio" aria-checked="true" title="Match system theme">
+          <svg class="icon icon-auto" aria-hidden="true" focusable="false"><use href="/images/icons.svg#i-auto" /></svg>
+          <span class="sr-only">Auto</span>
+        </button>
+        <button class="theme-segment" data-theme-value="dark" type="button" role="radio" aria-checked="false" title="Dark theme">
+          <svg class="icon icon-moon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#i-moon" /></svg>
+          <span class="sr-only">Dark</span>
+        </button>
+        <span class="sr-only" id="theme-toggle-label">Theme: auto. Use arrow keys to choose light, auto, or dark.</span>
+      </div>
       </nav>
     </div>
   </header>
@@ -85,5 +111,6 @@
   <footer class="site-footer" role="contentinfo">
     <p>&copy; 2026 Mahdiyar Molahasani. All rights reserved.</p>
   </footer>
+  <script src="/js/modern.js?v=20260421-19" defer></script>
 </body>
 </html>

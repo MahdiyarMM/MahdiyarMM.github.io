@@ -29,6 +29,43 @@ const POSTS_DIR = path.join(ROOT, 'posts');
 const VERSION = SITE.cache_bust;
 const BASE = SITE.homepage.replace(/\/$/, '');
 
+// Inline theme-init snippet — must run synchronously in <head> BEFORE the
+// stylesheet link so `data-theme` is set before the first paint. Without
+// this, the notes index and per-post pages (which have no theme toggle)
+// never set the attribute, and the `prefers-color-scheme: dark` rules win
+// on devices whose OS is in dark mode even when the user picked "light".
+// Header theme-toggle markup — same shape as the homepage so users can
+// switch theme directly from a notes/post page (essential on mobile, where
+// navigating back just to flip theme is annoying). Wired up by
+// js/modern.js's setupThemeToggle().
+const THEME_TOGGLE = `<div class="theme-toggle-tri" id="theme-toggle" role="radiogroup" aria-label="Color theme">
+        <button class="theme-segment" data-theme-value="light" type="button" role="radio" aria-checked="false" title="Light theme">
+          <svg class="icon icon-sun" aria-hidden="true" focusable="false"><use href="/images/icons.svg#i-sun" /></svg>
+          <span class="sr-only">Light</span>
+        </button>
+        <button class="theme-segment" data-theme-value="auto" type="button" role="radio" aria-checked="true" title="Match system theme">
+          <svg class="icon icon-auto" aria-hidden="true" focusable="false"><use href="/images/icons.svg#i-auto" /></svg>
+          <span class="sr-only">Auto</span>
+        </button>
+        <button class="theme-segment" data-theme-value="dark" type="button" role="radio" aria-checked="false" title="Dark theme">
+          <svg class="icon icon-moon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#i-moon" /></svg>
+          <span class="sr-only">Dark</span>
+        </button>
+        <span class="sr-only" id="theme-toggle-label">Theme: auto. Use arrow keys to choose light, auto, or dark.</span>
+      </div>`;
+
+const THEME_INIT = `<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      var resolved = (t === 'light' || t === 'dark')
+        ? t
+        : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', resolved);
+    } catch (e) {}
+  })();
+</script>`;
+
 // Normalize the two content kinds (short notes + project deep dives) into a
 // single feed-shaped entry so the index and RSS can mix them chronologically.
 const FEED_ENTRIES = [
@@ -142,6 +179,7 @@ function postHtml(p) {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=optional" rel="stylesheet" />
+  ${THEME_INIT}
   <link rel="stylesheet" type="text/css" href="/styles/modern.css?v=${VERSION}" />
 
   <script type="application/ld+json">${jsonLd}</script>
@@ -155,6 +193,7 @@ function postHtml(p) {
         <a href="/">Home</a>
         <a href="/research">Research</a>
         <a href="/posts/" aria-current="page">Notes</a>
+        ${THEME_TOGGLE}
       </nav>
     </div>
   </header>
@@ -187,6 +226,7 @@ function postHtml(p) {
     <p class="site-footer-meta">Last updated <time data-site="last_updated" datetime="${SITE.last_updated || ''}">${SITE.last_updated || ''}</time></p>
   </footer>
   <script src="/js/site-data.js?v=${VERSION}" defer></script>
+  <script src="/js/modern.js?v=${VERSION}" defer></script>
 </body>
 </html>
 `;
@@ -233,6 +273,7 @@ function indexHtml() {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=optional" rel="stylesheet" />
+  ${THEME_INIT}
   <link rel="stylesheet" type="text/css" href="/styles/modern.css?v=${VERSION}" />
 </head>
 <body class="posts-index">
@@ -244,6 +285,7 @@ function indexHtml() {
         <a href="/">Home</a>
         <a href="/research">Research</a>
         <a href="/posts/" aria-current="page">Notes</a>
+        ${THEME_TOGGLE}
       </nav>
     </div>
   </header>
@@ -269,6 +311,7 @@ ${items}
   <footer class="site-footer" role="contentinfo">
     <p>&copy; ${new Date().getFullYear()} ${escapeHtml(SITE.name)}. All rights reserved.</p>
   </footer>
+  <script src="/js/modern.js?v=${VERSION}" defer></script>
 </body>
 </html>
 `;
