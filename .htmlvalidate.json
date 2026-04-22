@@ -1,0 +1,21 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "no-inline-style": "off",
+    "no-trailing-whitespace": "off",
+    "void-style": "off",
+    "no-redundant-role": "warn",
+    "prefer-native-element": "warn",
+    "no-raw-characters": "warn",
+    "wcag/h30": "warn",
+    "wcag/h32": "warn",
+    "wcag/h36": "warn",
+    "wcag/h37": "warn",
+    "wcag/h67": "warn",
+    "wcag/h71": "warn",
+    "long-title": "off",
+    "attribute-boolean-style": "off",
+    "doctype-style": ["error", { "style": "lowercase" }]
+  },
+  "elements": ["html5"]
+}

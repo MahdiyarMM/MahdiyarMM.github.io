@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mahdiyar Molahasani — Notes</title>
+    <link>https://mahdiyar.ai/posts/</link>
+    <atom:link href="https://mahdiyar.ai/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Short technical notes from Mahdiyar Molahasani.</description>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 22 Apr 2026 00:30:28 GMT</lastBuildDate>
+    <item>
+      <title>PRISM: Debiasing Vision-Language Models via LLM-Guided Embedding Projection</title>
+      <link>https://mahdiyar.ai/posts/prism</link>
+      <guid isPermaLink="true">https://mahdiyar.ai/posts/prism</guid>
+      <pubDate>Sun, 19 Oct 2025 00:00:00 GMT</pubDate>
+      <description><![CDATA[A data-free, task-agnostic debiasing framework for CLIP-style vision-language models.]]></description>
+    </item>
+    <item>
+      <title>FedGaLA: Federated Unsupervised Domain Generalization via Gradient Alignment</title>
+      <link>https://mahdiyar.ai/posts/fedgala</link>
+      <guid isPermaLink="true">https://mahdiyar.ai/posts/fedgala</guid>
+      <pubDate>Tue, 25 Feb 2025 00:00:00 GMT</pubDate>
+      <description><![CDATA[First framework for unsupervised federated domain generalization, grounded in a gradient-alignment theory.]]></description>
+    </item>
+    <item>
+      <title>COVID-CXNet: Open Chest X-ray Dataset and Detection Model for COVID-19</title>
+      <link>https://mahdiyar.ai/posts/covid-cxnet</link>
+      <guid isPermaLink="true">https://mahdiyar.ai/posts/covid-cxnet</guid>
+      <pubDate>Wed, 15 Sep 2021 00:00:00 GMT</pubDate>
+      <description><![CDATA[One of the earliest large-scale open datasets and detection models for COVID-19 on frontal chest X-rays.]]></description>
+    </item>
+  </channel>
+</rss>

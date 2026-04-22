@@ -1,0 +1,18 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "timeout": 30000,
+    "wait": 1500,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-dev-shm-usage"]
+    },
+    "ignore": ["warning", "notice"],
+    "reporters": ["cli", "json"]
+  },
+  "urls": [
+    "http://localhost:5173/",
+    "http://localhost:5173/research",
+    "http://localhost:5173/posts/",
+    "http://localhost:5173/posts/prism"
+  ]
+}

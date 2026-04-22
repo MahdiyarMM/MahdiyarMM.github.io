@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRISM: Debiasing Vision-Language Models via LLM-Guided Embedding Projection — Mahdiyar Molahasani</title>
+  <meta name="description" content="A data-free, task-agnostic debiasing framework for CLIP-style vision-language models." />
+  <meta name="keywords" content="VLM, Bias &amp; Fairness, CLIP, ICCV" />
+  <meta name="author" content="Mahdiyar Molahasani" />
+
+  <meta property="og:title" content="PRISM: Debiasing Vision-Language Models via LLM-Guided Embedding Projection" />
+  <meta property="og:description" content="A data-free, task-agnostic debiasing framework for CLIP-style vision-language models." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://mahdiyar.ai/posts/prism" />
+  <meta property="og:image" content="https://mahdiyar.ai/images/og-cover.jpg?v=20260421-18" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PRISM: Debiasing Vision-Language Models via LLM-Guided Embedding Projection" />
+  <meta name="twitter:description" content="A data-free, task-agnostic debiasing framework for CLIP-style vision-language models." />
+  <meta name="twitter:image" content="https://mahdiyar.ai/images/og-cover.jpg?v=20260421-18" />
+
+  <link rel="canonical" href="https://mahdiyar.ai/posts/prism" />
+  <link rel="alternate" type="application/rss+xml" title="Mahdiyar Molahasani feed" href="/feed.xml" />
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/images/icon.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/images/icon-512.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=optional" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/styles/modern.css?v=20260421-18" />
+  <link rel="prefetch" href="/images/icons.svg" as="image" type="image/svg+xml" />
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"PRISM: Debiasing Vision-Language Models via LLM-Guided Embedding Projection","headline":"PRISM: Debiasing Vision-Language Models via LLM-Guided Embedding Projection","description":"A data-free, task-agnostic debiasing framework for CLIP-style vision-language models.","image":"https://mahdiyar.ai/images/PRISM_cover_sqr-320.jpeg","keywords":"VLM, Bias & Fairness, CLIP, ICCV","datePublished":"2025-10-19","author":{"@type":"Person","name":"Mahdiyar Molahasani","url":"https://mahdiyar.ai/"},"isPartOf":{"@type":"WebSite","name":"Mahdiyar Molahasani","url":"https://mahdiyar.ai/"},"url":"https://mahdiyar.ai/posts/prism"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mahdiyar.ai/"},{"@type":"ListItem","position":2,"name":"Notes","item":"https://mahdiyar.ai/posts/"},{"@type":"ListItem","position":3,"name":"PRISM: Debiasing Vision-Language Models via LLM-Guided Embedding Projection","item":"https://mahdiyar.ai/posts/prism"}]}</script>
+</head>
+<body class="project-page post-page">
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="sr-announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <header class="header" role="banner">
+    <div class="header-content">
+      <a href="/" class="brand" aria-label="Mahdiyar Molahasani - Home">Mahdiyar Molahasani</a>
+      <nav role="navigation" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/research">Research</a>
+        <a href="/posts/" aria-current="page">Notes</a>
+        <a data-site-link="cv" href="#" hidden rel="noopener" aria-label="Download CV (PDF)">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="project-main">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/posts/">Notes</a></li>
+        <li aria-current="page">PRISM</li>
+      </ol>
+    </nav>
+
+    <article class="project-article">
+      <header class="project-header">
+        <p class="project-eyebrow">Deep dive · ICCV 2025 · 2025</p>
+        <h1 class="project-title">PRISM: Debiasing Vision-Language Models via LLM-Guided Embedding Projection</h1>
+        <p class="project-tagline">A data-free, task-agnostic debiasing framework for CLIP-style vision-language models.</p>
+        <ul class="project-tags"><li class="project-tag">VLM</li><li class="project-tag">Bias &amp; Fairness</li><li class="project-tag">CLIP</li><li class="project-tag">ICCV</li></ul>
+        <div class="project-links"><a class="project-link" href="https://arxiv.org/abs/2507.08979" target="_blank" rel="noopener noreferrer">arXiv</a><a class="project-link" href="https://github.com/MahdiyarMM/PRISM" target="_blank" rel="noopener noreferrer">Code</a></div>
+      </header>
+
+      <figure class="project-figure">
+        <picture>
+            <source type="image/webp" srcset="/images/PRISM_cover_sqr-160.webp 160w, /images/PRISM_cover_sqr-320.webp 320w, /images/PRISM_cover_sqr-480.webp 480w, /images/PRISM_cover_sqr-640.webp 640w, /images/PRISM_cover_sqr-800.webp 800w, /images/PRISM_cover_sqr-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 700px" />
+            <source type="image/jpeg" srcset="/images/PRISM_cover_sqr-160.jpeg 160w, /images/PRISM_cover_sqr-320.jpeg 320w, /images/PRISM_cover_sqr-480.jpeg 480w, /images/PRISM_cover_sqr-640.jpeg 640w, /images/PRISM_cover_sqr-800.jpeg 800w, /images/PRISM_cover_sqr-1200.jpeg 1200w" sizes="(max-width: 700px) 100vw, 700px" />
+            <img src="/images/PRISM_cover_sqr-640.jpeg" alt="PRISM concept: a glowing prism debiases entangled embedding clusters into a clean, separated representation, guided by an LLM." loading="lazy" decoding="async" width="640" height="640" />
+          </picture>
+        <figcaption>PRISM concept: a glowing prism debiases entangled embedding clusters into a clean, separated representation, guided by an LLM.</figcaption>
+      </figure>
+
+      <section aria-labelledby="problem-heading">
+        <h2 id="problem-heading">Problem</h2>
+        <p>Vision-language models such as CLIP encode strong implicit biases that surface as spurious correlations on downstream tasks (e.g. background, gender, demographic shortcuts). Existing debiasing methods either need labeled bias attributes, paired counterfactual data, or task-specific finetuning that is expensive and brittle.</p>
+      </section>
+
+      <section aria-labelledby="approach-heading">
+        <h2 id="approach-heading">Approach</h2>
+        <p>PRISM is a two-stage data-free debiasing recipe. First, an LLM is prompted with simple class names to generate bias-aware scene descriptions that span plausible spurious factors. Second, a small linear projection is learned on top of the frozen CLIP embedding space using a Latent-space Debiasing loss that simultaneously enforces (i) intra-class invariance to spurious shifts and (ii) inter-class separability of the original semantic content. No new images, no labels, no per-task tuning.</p>
+      </section>
+
+      <section aria-labelledby="results-heading">
+        <h2 id="results-heading">Key results</h2>
+        <ul class="project-bullets"><li>Improves worst-group accuracy on Waterbirds and CelebA by margins competitive with methods that require group labels.</li><li>Generalizes across CLIP backbones (ViT-B/16, ViT-L/14) and downstream classifiers without retraining the encoder.</li><li>Costs minutes of compute per task: only the projection matrix is fit, the encoder stays frozen.</li></ul>
+      </section>
+
+      <section aria-labelledby="takeaways-heading">
+        <h2 id="takeaways-heading">Takeaways</h2>
+        <ul class="project-bullets"><li>Spurious-attribute supervision is not necessary if you can sample bias-aware text descriptions from an LLM.</li><li>Linear interventions in the CLIP latent space remain a surprisingly strong and inspectable baseline.</li><li>Task-agnostic debiasing is feasible: one projection serves several downstream classifiers.</li></ul>
+      </section>
+
+      <section class="project-related" aria-labelledby="related-heading">
+        <h2 id="related-heading">Related publications</h2>
+        <ul class="project-related-list"><li><a href="https://arxiv.org/pdf/2507.08979" target="_blank" rel="noopener noreferrer">PRISM: Reducing Spurious Implicit Biases in Vision-Language Models with LLM-Guided Embedding Projection</a> <span class="related-venue">— International Conference on Computer Vision (ICCV), 2025</span></li></ul>
+      </section>
+
+      <footer class="project-cta">
+        <a class="btn btn-primary" href="/research#paper-prism">View paper on Research page</a>
+        <a class="btn btn-secondary" href="/posts/">All notes</a>
+        <a class="btn btn-secondary" href="mailto:m.molahasani.m@gmail.com?subject=About%20PRISM%3A%20Debiasing%20Vision-Language%20Models%20via%20LLM-Guided%20Embedding%20Projection">Get in touch</a>
+      </footer>
+    </article>
+  </main>
+
+  <footer role="contentinfo" class="site-footer">
+    <p>&copy; <span id="year-now">2026</span> Mahdiyar Molahasani. All rights reserved.</p>
+    <p class="site-footer-meta">Last updated <time datetime="2026-04-22">2026-04-22</time></p>
+  </footer>
+
+  <script src="/js/site-data.js?v=20260421-18" defer></script>
+  <script src="/js/modern.js?v=20260421-18" defer></script>
+</body>
+</html>

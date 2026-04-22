@@ -1,0 +1,90 @@
+[
+  {
+    "id": "prism",
+    "title": "PRISM: Debiasing Vision-Language Models via LLM-Guided Embedding Projection",
+    "tagline": "A data-free, task-agnostic debiasing framework for CLIP-style vision-language models.",
+    "year": 2025,
+    "date": "2025-10-19",
+    "venue": "ICCV 2025",
+    "image": "/images/PRISM_cover_sqr",
+    "image_alt": "PRISM concept: a glowing prism debiases entangled embedding clusters into a clean, separated representation, guided by an LLM.",
+    "tags": ["VLM", "Bias & Fairness", "CLIP", "ICCV"],
+    "publication_id": "prism",
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2507.08979" },
+      { "label": "Code", "url": "https://github.com/MahdiyarMM/PRISM" }
+    ],
+    "problem": "Vision-language models such as CLIP encode strong implicit biases that surface as spurious correlations on downstream tasks (e.g. background, gender, demographic shortcuts). Existing debiasing methods either need labeled bias attributes, paired counterfactual data, or task-specific finetuning that is expensive and brittle.",
+    "approach": "PRISM is a two-stage data-free debiasing recipe. First, an LLM is prompted with simple class names to generate bias-aware scene descriptions that span plausible spurious factors. Second, a small linear projection is learned on top of the frozen CLIP embedding space using a Latent-space Debiasing loss that simultaneously enforces (i) intra-class invariance to spurious shifts and (ii) inter-class separability of the original semantic content. No new images, no labels, no per-task tuning.",
+    "results": [
+      "Improves worst-group accuracy on Waterbirds and CelebA by margins competitive with methods that require group labels.",
+      "Generalizes across CLIP backbones (ViT-B/16, ViT-L/14) and downstream classifiers without retraining the encoder.",
+      "Costs minutes of compute per task: only the projection matrix is fit, the encoder stays frozen."
+    ],
+    "takeaways": [
+      "Spurious-attribute supervision is not necessary if you can sample bias-aware text descriptions from an LLM.",
+      "Linear interventions in the CLIP latent space remain a surprisingly strong and inspectable baseline.",
+      "Task-agnostic debiasing is feasible: one projection serves several downstream classifiers."
+    ],
+    "related_publication_ids": ["prism"]
+  },
+  {
+    "id": "fedgala",
+    "title": "FedGaLA: Federated Unsupervised Domain Generalization via Gradient Alignment",
+    "tagline": "First framework for unsupervised federated domain generalization, grounded in a gradient-alignment theory.",
+    "year": 2025,
+    "date": "2025-02-25",
+    "venue": "AAAI 2025",
+    "image": "/images/FedGaLA_nb",
+    "image_alt": "FedGaLA concept: noisy per-client gradients from three source domains converge through a local alignment filter and a global alignment funnel into a stacked generalized model that transfers to an unseen target domain.",
+    "tags": ["Federated Learning", "Domain Generalization", "AAAI"],
+    "publication_id": "fedgala",
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2405.16304" },
+      { "label": "Code", "url": "https://github.com/MahdiyarMM/FedGaLA" }
+    ],
+    "problem": "Federated learning clients see disjoint, unlabeled distributions. Existing federated domain-generalization work assumes labels and a centralized validation domain — an unrealistic premise for privacy-preserving deployments where labels live on-device and target domains are unseen.",
+    "approach": "We formalize the unsupervised federated domain generalization (UFDG) setting and prove a generalization bound that decomposes the target risk into (i) local self-supervised loss, (ii) intra-client gradient agreement, and (iii) cross-client gradient agreement. FedGaLA operationalizes this bound with two complementary alignment terms: a Local Alignment regularizer that aligns per-batch gradients on each client, and a Global Alignment step at the server that aligns aggregated gradients across clients before applying the update.",
+    "results": [
+      "State of the art on PACS, OfficeHome, VLCS and TerraIncognita under the new UFDG protocol.",
+      "Robust to client count and heterogeneity; the alignment terms degrade gracefully when clients are scarce.",
+      "Theory predicts the empirical ranking of variants — local alignment alone, global alignment alone, or both — across benchmarks."
+    ],
+    "takeaways": [
+      "Gradient alignment is a sufficient learning signal even without labels in federated settings.",
+      "A single principle (alignment) cleanly explains both client-side and server-side regularizers.",
+      "Privacy-preserving generalization does not require synthetic data or extra communication rounds."
+    ],
+    "related_publication_ids": ["fedgala", "fedsb"]
+  },
+  {
+    "id": "covid-cxnet",
+    "title": "COVID-CXNet: Open Chest X-ray Dataset and Detection Model for COVID-19",
+    "tagline": "One of the earliest large-scale open datasets and detection models for COVID-19 on frontal chest X-rays.",
+    "year": 2021,
+    "date": "2021-09-15",
+    "venue": "Multimedia Tools and Applications",
+    "image": "/images/covid",
+    "image_alt": "COVID-CXNet pipeline: chest X-rays crowdsourced from GitHub, Twitter, SIRM and Radiopaedia pass through CLAHE and BEASF enhancement plates into the COVID-CXNet model (with a CheXNet/DenseNet-121 baseline) and out to a clinical decision-support workstation showing a saliency heatmap and structured findings.",
+    "tags": ["Medical Imaging", "COVID-19", "Open Dataset"],
+    "publication_id": "covid-cxnet",
+    "links": [
+      { "label": "Journal", "url": "https://link.springer.com/article/10.1007/s11042-022-13822-y" },
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2006.13807" },
+      { "label": "Code & data", "url": "https://github.com/armiro/COVID-CXNet" }
+    ],
+    "problem": "In early 2020, COVID-19 chest X-ray data was scattered, small-scale, and inconsistent — making it nearly impossible to train robust detectors or compare methods fairly. Many published 'COVID-vs-normal' classifiers were quietly memorizing dataset artifacts rather than disease features.",
+    "approach": "We assembled what was, at the time, the largest publicly available COVID-19 frontal CXR collection by harmonizing multiple public sources, deduplicating cases, and standardizing preprocessing. On top of this dataset we trained COVID-CXNet, a CheXNet-based detector with explicit calibration and class-activation analysis to verify that predictions track radiologically meaningful regions rather than dataset shortcuts.",
+    "results": [
+      "Open-sourced the largest curated frontal CXR COVID dataset of its time, used by dozens of follow-up studies.",
+      "Detection accuracy competitive with much larger proprietary models, with attention maps that overlap with radiologist regions of interest.",
+      "Highlighted concrete shortcut-learning risks (lateral markers, hospital-specific text overlays) that the community widely adopted as part of standard preprocessing."
+    ],
+    "takeaways": [
+      "Dataset curation is research: a careful open dataset can move a sub-field faster than a new architecture.",
+      "Class-activation maps are a cheap but powerful sanity check against shortcut learning in medical imaging.",
+      "Reproducibility and provenance matter more than peak accuracy when results inform clinical conversations."
+    ],
+    "related_publication_ids": ["covid-cxnet", "tooth", "prostate"]
+  }
+]

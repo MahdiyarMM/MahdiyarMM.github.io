@@ -1,0 +1,402 @@
+[
+  {
+    "id": "prism",
+    "title": "PRISM: Reducing Spurious Implicit Biases in Vision-Language Models with LLM-Guided Embedding Projection",
+    "authors": [
+      "Mahdiyar Molahasani",
+      "Azadeh Motamedi",
+      "Michael Greenspan",
+      "Il-Min Kim",
+      "Ali Etemad"
+    ],
+    "equal_contribution": ["Mahdiyar Molahasani", "Azadeh Motamedi"],
+    "year": 2025,
+    "venues": [
+      {
+        "name": "International Conference on Computer Vision (ICCV)",
+        "short": "ICCV",
+        "year": 2025,
+        "type": "conference"
+      }
+    ],
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/pdf/2507.08979" },
+      { "label": "Code", "url": "https://github.com/MahdiyarMM/PRISM" }
+    ],
+    "image": "/images/PRISM_cover_sqr",
+    "image_alt": "PRISM cover diagram",
+    "tags": ["VLM", "Bias & Fairness", "CLIP", "ICCV"],
+    "description": "PRISM introduces a data-free, task-agnostic debiasing framework for VLMs. It first leverages an LLM to generate bias-aware scene descriptions from simple class prompts, then learns a linear projection of the CLIP embedding space via a novel Latent-space Debiasing loss that enforces intra-class invariance and inter-class separability.",
+    "bibtex": "@inproceedings{molahasani2025prism,\n  title={PRISM: Reducing Spurious Implicit Biases in Vision-Language Models with LLM-Guided Embedding Projection},\n  author={Molahasani, Mahdiyar and Motamedi, Azadeh and Greenspan, Michael and Kim, Il-Min and Etemad, Ali},\n  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},\n  year={2025}\n}",
+    "highlight": true
+  },
+  {
+    "id": "fedgala",
+    "title": "Federated Unsupervised Domain Generalization using Global and Local Alignment of Gradients",
+    "authors": [
+      "Farhad Pourpanah",
+      "Mahdiyar Molahasani",
+      "Milad Soltany",
+      "Ali Etemad",
+      "Michael Greenspan"
+    ],
+    "equal_contribution": ["Farhad Pourpanah", "Mahdiyar Molahasani", "Milad Soltany"],
+    "year": 2025,
+    "venues": [
+      {
+        "name": "39th AAAI Conference on Artificial Intelligence",
+        "short": "AAAI",
+        "year": 2025,
+        "type": "conference"
+      },
+      {
+        "name": "NeurIPS Workshop on Mathematics of Modern Machine Learning (M3L)",
+        "short": "NeurIPS M3L",
+        "year": 2024,
+        "type": "workshop"
+      }
+    ],
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/pdf/2405.16304" },
+      { "label": "Code", "url": "https://github.com/MahdiyarMM/FedGaLA" }
+    ],
+    "image": "/images/FedGaLA_nb",
+    "image_alt": "FedGaLA gradient-alignment diagram",
+    "tags": ["Federated Learning", "Domain Generalization", "AAAI"],
+    "description": "We introduced the novel problem of unsupervised federated domain generalization and proposed FedGaLA, a method that improves model generalization across unseen domains by aligning gradients at both the client and server levels. This work is grounded in a theoretical framework that links domain shift to gradient alignment. FedGaLA achieves state-of-the-art performance on several domain generalization benchmarks.",
+    "bibtex": "@inproceedings{pourpanah2025fedgala,\n  title={Federated Unsupervised Domain Generalization using Global and Local Alignment of Gradients},\n  author={Pourpanah, Farhad and Molahasani, Mahdiyar and Soltany, Milad and Etemad, Ali and Greenspan, Michael},\n  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  year={2025}\n}",
+    "highlight": true
+  },
+  {
+    "id": "fedsb",
+    "title": "Federated Domain Generalization With Label Smoothing and Balanced Decentralized Training",
+    "authors": [
+      "Milad Soltany",
+      "Farhad Pourpanah",
+      "Mahdiyar Molahasani",
+      "Michael Greenspan",
+      "Ali Etemad"
+    ],
+    "equal_contribution": ["Milad Soltany", "Farhad Pourpanah", "Mahdiyar Molahasani"],
+    "year": 2025,
+    "venues": [
+      {
+        "name": "International Conference on Acoustics, Speech, and Signal Processing (ICASSP)",
+        "short": "ICASSP",
+        "year": 2025,
+        "type": "conference"
+      }
+    ],
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/pdf/2412.11408" },
+      { "label": "Code", "url": "https://github.com/miladsoltany/FedSB" }
+    ],
+    "image": "/images/fedsb_nob",
+    "image_alt": "FedSB diagram",
+    "tags": ["Federated Learning", "Domain Generalization", "ICASSP"],
+    "description": "We propose FedSB, a method for federated domain generalization that improves model robustness across diverse domains using label smoothing to reduce local overconfidence and a balanced training mechanism to mitigate data heterogeneity.",
+    "bibtex": "@inproceedings{soltany2025fedsb,\n  title={Federated Domain Generalization With Label Smoothing and Balanced Decentralized Training},\n  author={Soltany, Milad and Pourpanah, Farhad and Molahasani, Mahdiyar and Greenspan, Michael and Etemad, Ali},\n  booktitle={ICASSP 2025 - IEEE International Conference on Acoustics, Speech and Signal Processing},\n  year={2025}\n}"
+  },
+  {
+    "id": "cltr",
+    "title": "Continual Learning for Long-Tailed Recognition",
+    "authors": ["Mahdiyar Molahasani", "Ali Etemad", "Michael Greenspan"],
+    "year": 2023,
+    "venues": [
+      {
+        "name": "NeurIPS Workshop on Mathematics of Modern Machine Learning (M3L)",
+        "short": "NeurIPS M3L",
+        "year": 2023,
+        "type": "workshop"
+      }
+    ],
+    "links": [
+      { "label": "OpenReview", "url": "https://openreview.net/pdf?id=IfyZSIxcoM" },
+      { "label": "Poster", "url": "https://neurips.cc/virtual/2023/81717" }
+    ],
+    "image": "/images/cltr",
+    "image_alt": "Long-tailed recognition diagram",
+    "tags": ["Continual Learning", "Long-Tailed", "NeurIPS"],
+    "description": "This work presents a theoretical framework for addressing long-tailed recognition (LTR) through continual learning (CL), where models are trained sequentially on data subsets to balance performance across head (frequent) and tail (rare) classes. By proving bounds on model weight updates and demonstrating CL's effectiveness on benchmark datasets, we show that CL can significantly improve LTR performance.",
+    "bibtex": "@inproceedings{molahasani2023cltr,\n  title={Continual Learning for Long-Tailed Recognition},\n  author={Molahasani, Mahdiyar and Etemad, Ali and Greenspan, Michael},\n  booktitle={NeurIPS Workshop on Mathematics of Modern Machine Learning (M3L)},\n  year={2023}\n}"
+  },
+  {
+    "id": "citpersons",
+    "title": "Continual Learning for Out-of-Distribution Generalization in Pedestrian Detection",
+    "authors": ["Mahdiyar Molahasani", "Ali Etemad", "Michael Greenspan"],
+    "year": 2023,
+    "venues": [
+      {
+        "name": "International Conference on Image Processing (ICIP)",
+        "short": "ICIP",
+        "year": 2023,
+        "type": "conference"
+      }
+    ],
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2306.15117" },
+      { "label": "IEEE", "url": "https://ieeexplore.ieee.org/abstract/document/10222758" },
+      { "label": "Code", "url": "https://github.com/MahdiyarMM/Continual-pedestrian-detection" }
+    ],
+    "image": "/images/citpersons",
+    "image_alt": "Pedestrian detection samples",
+    "tags": ["Continual Learning", "Object Detection", "OOD", "ICIP"],
+    "description": "This study introduces the first continual learning approach for pedestrian detection that can effectively address distribution shift, a common issue in prior works. We proposed modified Elastic Weight Consolidation for object detection networks, enabling the model to maintain its performance across different datasets and significantly improve the miss rate on CrowdHuman and CityPersons datasets by mitigating catastrophic forgetting.",
+    "bibtex": "@inproceedings{molahasani2023citpersons,\n  title={Continual Learning for Out-of-Distribution Generalization in Pedestrian Detection},\n  author={Molahasani, Mahdiyar and Etemad, Ali and Greenspan, Michael},\n  booktitle={2023 IEEE International Conference on Image Processing (ICIP)},\n  year={2023}\n}"
+  },
+  {
+    "id": "crowd",
+    "title": "Multi-scale Multi-task Crowd Counting",
+    "authors": [
+      "Mohsen Zand",
+      "Haleh Damirchi",
+      "Andrew Farley",
+      "Mahdiyar Molahasani",
+      "Michael Greenspan",
+      "Ali Etemad"
+    ],
+    "year": 2022,
+    "venues": [
+      {
+        "name": "International Conference on Acoustics, Speech, and Signal Processing (ICASSP)",
+        "short": "ICASSP",
+        "year": 2022,
+        "type": "conference"
+      }
+    ],
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2202.09942" },
+      { "label": "IEEE", "url": "https://ieeexplore.ieee.org/document/9747776" },
+      { "label": "Code", "url": "https://github.com/MahdiyarMM/crowd_counting" }
+    ],
+    "image": "/images/crowd",
+    "image_alt": "Crowd counting visualization",
+    "tags": ["Crowd Counting", "Multi-task", "ICASSP"],
+    "description": "A multi-scale crowd counting and localization platform is proposed in this work. This novel architecture alongside the multi-scale multi-task loss function has demonstrated promising performance on standard benchmarks.",
+    "bibtex": "@inproceedings{zand2022crowd,\n  title={Multi-scale Multi-task Crowd Counting},\n  author={Zand, Mohsen and Damirchi, Haleh and Farley, Andrew and Molahasani, Mahdiyar and Greenspan, Michael and Etemad, Ali},\n  booktitle={ICASSP 2022 - IEEE International Conference on Acoustics, Speech and Signal Processing},\n  year={2022}\n}"
+  },
+  {
+    "id": "msg",
+    "title": "MSG-Caps GAN for Face Super-Resolution",
+    "authors": ["Mahdiyar Molahasani", "Seok-bum Ko"],
+    "year": 2020,
+    "venues": [
+      {
+        "name": "International Conference on Electronics, Information, and Communication (ICEIC)",
+        "short": "ICEIC",
+        "year": 2020,
+        "type": "conference"
+      },
+      {
+        "name": "Multimedia Tools and Applications",
+        "short": "MTAP",
+        "year": 2020,
+        "type": "journal"
+      }
+    ],
+    "links": [
+      { "label": "Journal", "url": "https://link.springer.com/article/10.1007/s11042-020-09489-y" },
+      { "label": "Conference", "url": "https://ieeexplore.ieee.org/abstract/document/9051244" },
+      { "label": "Code", "url": "https://github.com/MahdiyarMM/MSG-CapsGAN" }
+    ],
+    "image": "/images/msg",
+    "image_alt": "MSG-Caps GAN face super-resolution",
+    "tags": ["Super-Resolution", "GAN", "Capsule Networks"],
+    "description": "We proposed the first Multi-scale gradient capsule GAN and utilized it for face super-resolution. This model outperformed state-of-the-art face super-resolution models at high upscaling factors.",
+    "bibtex": "@article{molahasani2020msg,\n  title={MSG-Caps GAN for Face Super-Resolution},\n  author={Molahasani, Mahdiyar and Ko, Seok-bum},\n  journal={Multimedia Tools and Applications},\n  year={2020}\n}"
+  },
+  {
+    "id": "covid-cxnet",
+    "title": "COVID-CXNet: Detecting COVID-19 in Frontal Chest X-ray Images",
+    "authors": [
+      "Arman Haghanifar",
+      "Mahdiyar Molahasani",
+      "Younhee Choi",
+      "S. Deivalakshmi",
+      "Seok-bum Ko"
+    ],
+    "year": 2021,
+    "venues": [
+      {
+        "name": "Multimedia Tools and Applications",
+        "short": "MTAP",
+        "year": 2021,
+        "type": "journal"
+      }
+    ],
+    "links": [
+      { "label": "Journal", "url": "https://link.springer.com/article/10.1007/s11042-022-12156-z" },
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2006.13807" },
+      { "label": "Code", "url": "https://github.com/MahdiyarMM/COVID-CXNet" }
+    ],
+    "image": "/images/covid",
+    "image_alt": "Chest X-ray detection samples",
+    "tags": ["Medical Imaging", "COVID-19", "Open Dataset"],
+    "description": "In this work, the largest publicly available dataset for COVID-19 chest X-rays is collected and a powerful COVID-19 detection model based on CheXNet is proposed. The model can detect COVID-19 accurately using meaningful features verified via class-activation maps.",
+    "bibtex": "@article{haghanifar2021covidcxnet,\n  title={COVID-CXNet: Detecting COVID-19 in Frontal Chest X-ray Images using Deep Learning},\n  author={Haghanifar, Arman and Molahasani, Mahdiyar and Choi, Younhee and Deivalakshmi, S. and Ko, Seok-bum},\n  journal={Multimedia Tools and Applications},\n  year={2022}\n}",
+    "highlight": true
+  },
+  {
+    "id": "prostate",
+    "title": "High-scale Prostate MRI Super-Resolution with MSG-CapsGAN",
+    "authors": ["Mahdiyar Molahasani", "Younhee Choi", "S. Deivalakshmi", "Seok-bum Ko"],
+    "year": 2021,
+    "venues": [
+      {
+        "name": "Multimedia Tools and Applications",
+        "short": "MTAP",
+        "year": 2021,
+        "type": "journal"
+      }
+    ],
+    "links": [
+      { "label": "Journal", "url": "https://link.springer.com/article/10.1007/s11042-020-09489-y" }
+    ],
+    "image": "/images/prostate",
+    "image_alt": "Prostate MRI super-resolution",
+    "tags": ["Medical Imaging", "Super-Resolution", "GAN"],
+    "description": "One of the first attempts for high-scale super-resolution (8x) in the biomedical domain. MSG-CapsGAN shows promising results in the medical domain as well.",
+    "bibtex": "@article{molahasani2021prostate,\n  title={High-scale Prostate MRI Super-Resolution with MSG-CapsGAN},\n  author={Molahasani, Mahdiyar and Choi, Younhee and Deivalakshmi, S. and Ko, Seok-bum},\n  journal={Multimedia Tools and Applications},\n  year={2021}\n}"
+  },
+  {
+    "id": "tooth",
+    "title": "Automated Tooth Extraction and Caries Detection",
+    "authors": ["Arman Haghanifar", "Mahdiyar Molahasani", "Seok-bum Ko"],
+    "year": 2023,
+    "venues": [
+      {
+        "name": "IEEE International Symposium on Circuits and Systems (ISCAS)",
+        "short": "ISCAS",
+        "year": 2020,
+        "type": "conference"
+      },
+      {
+        "name": "Multimedia Tools and Applications",
+        "short": "MTAP",
+        "year": 2023,
+        "type": "journal"
+      }
+    ],
+    "links": [
+      { "label": "arXiv", "url": "https://arxiv.org/abs/2012.13666" },
+      { "label": "Conference", "url": "https://ieeexplore.ieee.org/abstract/document/9180937" },
+      { "label": "Code (extraction)", "url": "https://github.com/MahdiyarMM/Teeth-Extraction" },
+      {
+        "label": "Code (detection)",
+        "url": "https://github.com/MahdiyarMM/Dental-Caries-Classification"
+      }
+    ],
+    "image": "/images/tooth",
+    "image_alt": "Tooth extraction and caries detection",
+    "tags": ["Medical Imaging", "Dental", "Capsule Networks"],
+    "description": "A fully automated tooth extraction model is implemented using a genetic algorithm. A multi-feature extraction model with a capsule classifier is developed for caries detection.",
+    "bibtex": "@article{haghanifar2023tooth,\n  title={Automated Tooth Extraction and Caries Detection},\n  author={Haghanifar, Arman and Molahasani, Mahdiyar and Ko, Seok-bum},\n  journal={Multimedia Tools and Applications},\n  year={2023}\n}"
+  },
+  {
+    "id": "astro",
+    "title": "AI-powered Low-order Focal Plane Wavefront Sensing in Infrared",
+    "authors": [
+      "Mojtaba Taheri",
+      "Mahdiyar Molahasani",
+      "Sam Ragland",
+      "Benoit Neichel",
+      "Peter Wizinowich"
+    ],
+    "year": 2024,
+    "venues": [
+      {
+        "name": "Adaptive Optics Systems IX",
+        "short": "AOS IX",
+        "year": 2024,
+        "type": "conference"
+      }
+    ],
+    "links": [
+      {
+        "label": "SPIE",
+        "url": "https://www.spiedigitallibrary.org/conference-proceedings-of-spie/13097/1309783/AI-powered-low-order-focal-plane-wavefront-sensing-in-infrared/10.1117/12.3020402.short"
+      }
+    ],
+    "image": "/images/astro",
+    "image_alt": "Adaptive optics wavefront sensing",
+    "tags": ["Astronomy", "Adaptive Optics", "Applied AI"],
+    "description": "We propose an AI-powered FPWFS method specifically for low-order mode estimation in infrared wavelengths. Our approach is trained on simulated data and validated on on-telescope data collected from the Keck I adaptive optic (K1AO) bench calibration source in K-band, paving the way for more compact AO systems for astronomical observations.",
+    "bibtex": "@inproceedings{taheri2024fpwfs,\n  title={AI-powered Low-order Focal Plane Wavefront Sensing in Infrared},\n  author={Taheri, Mojtaba and Molahasani, Mahdiyar and Ragland, Sam and Neichel, Benoit and Wizinowich, Peter},\n  booktitle={Adaptive Optics Systems IX},\n  volume={13097},\n  year={2024}\n}"
+  },
+  {
+    "id": "memristor",
+    "title": "Hybrid CMOS/Memristor Crossbar Implementation of Recurrent Neural Networks",
+    "authors": ["Mahdiyar Molahasani", "Jafar Shamsi", "S. B. Shokouhi", "Seok-bum Ko"],
+    "year": 2021,
+    "venues": [
+      {
+        "name": "Analog Integrated Circuits and Signal Processing",
+        "short": "AICSP",
+        "year": 2021,
+        "type": "journal"
+      },
+      { "name": "Microelectronics Journal", "short": "MEJ", "year": 2020, "type": "journal" }
+    ],
+    "links": [
+      {
+        "label": "Hopfield",
+        "url": "https://link.springer.com/article/10.1007/s10470-020-01720-y"
+      },
+      {
+        "label": "BAM",
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0026269220300094"
+      },
+      { "label": "Code", "url": "https://github.com/MahdiyarMM/Memristive-Associative-Memory" }
+    ],
+    "image": "/images/memristor",
+    "image_alt": "Memristor crossbar circuit diagram",
+    "tags": ["Hardware AI", "Memristor", "RNN"],
+    "description": "An efficient and scalable transistor-level implementation of two different recurrent neural networks is proposed using a memristor crossbar array.",
+    "bibtex": "@article{molahasani2021memristor,\n  title={Hybrid CMOS/Memristor Crossbar Implementation of Recurrent Neural Networks},\n  author={Molahasani, Mahdiyar and Shamsi, Jafar and Shokouhi, S. B. and Ko, Seok-bum},\n  journal={Analog Integrated Circuits and Signal Processing},\n  year={2021}\n}"
+  },
+  {
+    "id": "anomaly",
+    "title": "Anomaly Prediction in 5G Network",
+    "authors": ["Ramin Sharifi", "Mahdiyar Molahasani", "Vahid Tabataba Vakili"],
+    "year": 2019,
+    "venues": [
+      {
+        "name": "IEEE Pacific Rim Conference on Communications, Computers and Signal Processing (PACRIM)",
+        "short": "PACRIM",
+        "year": 2019,
+        "type": "conference"
+      }
+    ],
+    "links": [{ "label": "IEEE", "url": "https://ieeexplore.ieee.org/abstract/document/8985068" }],
+    "image": "/images/Anomaly",
+    "image_alt": "5G anomaly prediction LSTM",
+    "tags": ["Time Series", "LSTM", "Telecom"],
+    "description": "An LSTM network is utilized for user activity prediction in 5G networks. The proposed model can accurately predict anomalies up to one hour in advance.",
+    "bibtex": "@inproceedings{sharifi2019anomaly,\n  title={Anomaly Prediction in 5G Network},\n  author={Sharifi, Ramin and Molahasani, Mahdiyar and Vakili, Vahid Tabataba},\n  booktitle={2019 IEEE Pacific Rim Conference on Communications, Computers and Signal Processing (PACRIM)},\n  year={2019}\n}"
+  },
+  {
+    "id": "erosion",
+    "title": "Erosion Detection in Hydraulic Tubes and Hoses Using GRU",
+    "authors": ["Elnaz Etminan", "Mahdiyar Molahasani", "Seok-bum Ko", "Travis Wiens"],
+    "year": 2021,
+    "venues": [
+      {
+        "name": "Fluid Power Systems Technology, American Society of Mechanical Engineers",
+        "short": "FPST/ASME",
+        "year": 2021,
+        "type": "conference"
+      }
+    ],
+    "links": [
+      {
+        "label": "ASME",
+        "url": "https://asmedigitalcollection.asme.org/FPST/proceedings-abstract/FPMC2021/V001T01A058/1129254"
+      }
+    ],
+    "image": "/images/erosion",
+    "image_alt": "Hydraulic erosion detection signal",
+    "tags": ["Time Series", "GRU", "Industrial"],
+    "description": "The characteristics of the eroded area in the pipe are extracted from the pressure response using a GRU network. This work represents the first erosion detection system leveraging deep learning.",
+    "bibtex": "@inproceedings{etminan2021erosion,\n  title={Erosion Detection in Hydraulic Tubes and Hoses Using GRU},\n  author={Etminan, Elnaz and Molahasani, Mahdiyar and Ko, Seok-bum and Wiens, Travis},\n  booktitle={Fluid Power Systems Technology, American Society of Mechanical Engineers},\n  year={2021}\n}"
+  }
+]

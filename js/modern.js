@@ -17,45 +17,93 @@ class WebsiteEnhancer {
 
   setupThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
-
     if (!themeToggle) return;
 
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    this.setTheme(savedTheme);
-
-    themeToggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      this.setTheme(newTheme);
-      this.announce(`Switched to ${newTheme} mode`);
-    });
+    const segments = Array.from(themeToggle.querySelectorAll('[data-theme-value]'));
+    const validValues = ['light', 'auto', 'dark'];
+    const stored = localStorage.getItem('theme');
+    let userTheme = validValues.includes(stored) ? stored : 'auto';
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    mediaQuery.addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) {
-        this.setTheme(e.matches ? 'dark' : 'light');
+    const resolveEffective = (choice) => {
+      if (choice === 'auto') return mediaQuery.matches ? 'dark' : 'light';
+      return choice;
+    };
+
+    const refreshSegments = () => {
+      segments.forEach((seg) => {
+        const isActive = seg.dataset.themeValue === userTheme;
+        seg.setAttribute('aria-checked', String(isActive));
+        seg.tabIndex = isActive ? 0 : -1;
+      });
+      const srLabel = document.getElementById('theme-toggle-label');
+      if (srLabel) {
+        const eff = resolveEffective(userTheme);
+        const desc = userTheme === 'auto' ? `auto (currently ${eff})` : userTheme;
+        srLabel.textContent = `Theme: ${desc}. Use arrow keys to choose light, auto, or dark.`;
+      }
+    };
+
+    const applyChoice = (choice, opts = {}) => {
+      userTheme = choice;
+      try {
+        localStorage.setItem('theme', choice);
+      } catch (_) {}
+      this.setTheme(resolveEffective(choice));
+      refreshSegments();
+      if (opts.announce) {
+        const eff = resolveEffective(choice);
+        const msg =
+          choice === 'auto'
+            ? `Theme set to auto (currently ${eff} mode)`
+            : `Theme set to ${choice} mode`;
+        this.announce(msg);
+      }
+    };
+
+    segments.forEach((seg) => {
+      seg.addEventListener('click', (e) => {
+        e.preventDefault();
+        applyChoice(seg.dataset.themeValue, { announce: true });
+        seg.focus();
+      });
+      seg.addEventListener('keydown', (e) => {
+        const idx = segments.indexOf(seg);
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          const next = segments[(idx + 1) % segments.length];
+          applyChoice(next.dataset.themeValue, { announce: true });
+          next.focus();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prev = segments[(idx - 1 + segments.length) % segments.length];
+          applyChoice(prev.dataset.themeValue, { announce: true });
+          prev.focus();
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          applyChoice(segments[0].dataset.themeValue, { announce: true });
+          segments[0].focus();
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          const last = segments[segments.length - 1];
+          applyChoice(last.dataset.themeValue, { announce: true });
+          last.focus();
+        }
+      });
+    });
+
+    mediaQuery.addEventListener('change', () => {
+      if (userTheme === 'auto') {
+        this.setTheme(resolveEffective('auto'));
+        refreshSegments();
       }
     });
+
+    applyChoice(userTheme);
   }
 
   setTheme(theme) {
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-
-    if (themeToggle) {
-      const isDark = theme === 'dark';
-      themeToggle.setAttribute('aria-pressed', String(isDark));
-      themeToggle.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Code Dark Mode');
-      themeToggle.title = isDark ? 'Switch to Light Mode' : 'Switch to Code Dark Mode';
-    }
-
-    if (themeIcon) {
-      themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-    }
 
     try {
       if (window.pJSDom && window.pJSDom.length > 0) {
@@ -81,9 +129,8 @@ class WebsiteEnhancer {
 
         if (particles.pJS.canvas && particles.pJS.canvas.el) {
           const isIndustryHome = document.body.classList.contains('industry-home');
-          particles.pJS.canvas.el.style.backgroundColor = theme === 'dark'
-            ? (isIndustryHome ? '#252526' : '#1e1e1e')
-            : '#ffffff';
+          particles.pJS.canvas.el.style.backgroundColor =
+            theme === 'dark' ? (isIndustryHome ? '#252526' : '#1e1e1e') : '#ffffff';
         }
       }
     } catch (error) {
@@ -101,18 +148,21 @@ class WebsiteEnhancer {
     if (!typingElement) return;
 
     const fallbackTexts = [
-      'ML Research Scientist at Captura',
-      'AI & Computer Vision Expert',
+      'ML Researcher II at Captura',
+      'Applied AI & Computer Vision',
       'Federated Learning Researcher',
-      'PhD from Queen\'s University',
-      '17+ Publications in Top Venues'
+      "PhD from Queen's University",
+      'Top Reviewer, NeurIPS 2024',
     ];
     let texts = fallbackTexts;
 
     if (typingElement.dataset.typingTexts) {
       try {
         const configuredTexts = JSON.parse(typingElement.dataset.typingTexts);
-        if (Array.isArray(configuredTexts) && configuredTexts.every(text => typeof text === 'string')) {
+        if (
+          Array.isArray(configuredTexts) &&
+          configuredTexts.every((text) => typeof text === 'string')
+        ) {
           texts = configuredTexts;
         }
       } catch (error) {
@@ -126,6 +176,18 @@ class WebsiteEnhancer {
     let typeSpeed = 100;
     const deleteSpeed = 50;
     const pauseTime = 2000;
+
+    document.addEventListener('sitedata:typing', (e) => {
+      const incoming = e?.detail?.texts;
+      if (
+        Array.isArray(incoming) &&
+        incoming.length &&
+        incoming.every((t) => typeof t === 'string')
+      ) {
+        texts = incoming;
+        if (textIndex >= texts.length) textIndex = 0;
+      }
+    });
 
     const type = () => {
       const currentText = texts[textIndex];
@@ -163,7 +225,7 @@ class WebsiteEnhancer {
   lazyLoadImages() {
     if ('IntersectionObserver' in window) {
       const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const img = entry.target;
             if (img.dataset.src) {
@@ -175,7 +237,7 @@ class WebsiteEnhancer {
         });
       });
 
-      document.querySelectorAll('img[data-src]').forEach(img => {
+      document.querySelectorAll('img[data-src]').forEach((img) => {
         imageObserver.observe(img);
       });
     }
@@ -189,12 +251,16 @@ class WebsiteEnhancer {
       ticking = false;
     };
 
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateScrollEffects);
-        ticking = true;
-      }
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(updateScrollEffects);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
   }
 
   updateHeaderOnScroll() {
@@ -235,10 +301,13 @@ class WebsiteEnhancer {
   }
 
   announce(message) {
-    const liveRegion = document.querySelector('.sr-only[aria-live]');
-    if (liveRegion) {
+    const liveRegion =
+      document.getElementById('sr-announcer') || document.querySelector('.sr-only[aria-live]');
+    if (!liveRegion) return;
+    liveRegion.textContent = '';
+    requestAnimationFrame(() => {
       liveRegion.textContent = message;
-    }
+    });
   }
 
   setupReducedMotionSupport() {
@@ -266,7 +335,7 @@ class WebsiteEnhancer {
   }
 
   setupSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', (e) => {
         e.preventDefault();
         const target = document.querySelector(anchor.getAttribute('href'));
@@ -276,7 +345,7 @@ class WebsiteEnhancer {
 
           window.scrollTo({
             top: targetPosition,
-            behavior: 'smooth'
+            behavior: 'smooth',
           });
 
           this.announce(`Navigated to ${target.textContent || 'section'}`);
@@ -288,20 +357,25 @@ class WebsiteEnhancer {
   setupIntersectionObserver() {
     const observerOptions = {
       rootMargin: '0px 0px -10% 0px',
-      threshold: 0.1
+      threshold: 0.1,
     };
 
-    const revealElements = document.querySelectorAll('.industry-home .timeline-item, .industry-home .focus-card, .industry-home .education-card');
+    const revealElements = document.querySelectorAll(
+      '.industry-home .timeline-item, .industry-home .focus-card, .industry-home .education-card'
+    );
     if (revealElements.length > 0) {
-      const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          } else {
-            entry.target.classList.remove('visible');
-          }
-        });
-      }, { rootMargin: '0px 0px -20% 0px', threshold: 0 });
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            } else {
+              entry.target.classList.remove('visible');
+            }
+          });
+        },
+        { rootMargin: '0px 0px -20% 0px', threshold: 0 }
+      );
 
       revealElements.forEach((element, index) => {
         element.style.transitionDelay = `${Math.min(index * 0.06, 0.24)}s`;
@@ -310,13 +384,15 @@ class WebsiteEnhancer {
     }
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-in');
 
-          if (entry.target.classList.contains('news-list') ||
-              entry.target.classList.contains('experience-list') ||
-              entry.target.classList.contains('education-list')) {
+          if (
+            entry.target.classList.contains('news-list') ||
+            entry.target.classList.contains('experience-list') ||
+            entry.target.classList.contains('education-list')
+          ) {
             const items = entry.target.querySelectorAll('li');
             items.forEach((item, index) => {
               item.style.animationDelay = `${index * 0.1}s`;
@@ -327,7 +403,7 @@ class WebsiteEnhancer {
       });
     }, observerOptions);
 
-    document.querySelectorAll('.section').forEach(section => {
+    document.querySelectorAll('.section').forEach((section) => {
       observer.observe(section);
     });
   }

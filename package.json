@@ -1,0 +1,41 @@
+{
+  "name": "mahdiyar-website",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Personal academic website (mahdiyar.ai). Static site, dev tooling only — Cloudflare Pages serves the repo as-is.",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build:sitemap": "node scripts/build-sitemap.mjs",
+    "build:robots": "node scripts/build-robots.mjs",
+    "build:og": "node scripts/build-og-cover.mjs",
+    "build:publications": "node scripts/render-publications.mjs",
+    "build:deepdives": "node scripts/render-projects.mjs",
+    "build:posts": "node scripts/render-posts.mjs",
+    "build:date": "node scripts/update-build-date.mjs",
+    "build": "npm run build:date && npm run build:publications && npm run build:deepdives && npm run build:posts && npm run build:robots && npm run build:sitemap",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint:html": "html-validate \"index.html\" \"research.html\" \"posts/*.html\"",
+    "lint:css": "prettier --check \"styles/**/*.css\"",
+    "a11y": "pa11y-ci --config .pa11yci.json",
+    "lighthouse": "lhci autorun --config=lighthouserc.json",
+    "test:py": "pytest -q",
+    "check": "npm run lint:html && npm run format:check",
+    "prepare": "simple-git-hooks || true"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.14.0",
+    "html-validate": "^9.0.0",
+    "marked": "^14.1.0",
+    "pa11y-ci": "^3.1.0",
+    "prettier": "^3.3.0",
+    "sharp": "^0.33.0",
+    "simple-git-hooks": "^2.11.0",
+    "svgo": "^3.3.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npm run lint:html && npm run format:check"
+  }
+}

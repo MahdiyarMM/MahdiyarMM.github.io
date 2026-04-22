@@ -1,8 +1,55 @@
+# robots.txt for https://mahdiyar.ai/
 User-agent: *
 Allow: /
-
-# Sitemap
-Sitemap: https://mahdiyar.ai/sitemap.xml
-
-# Crawl-delay for respectful crawling
 Crawl-delay: 1
+
+# AI crawlers are explicitly allowed; please use citations and respect attribution.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+Sitemap: https://mahdiyar.ai/sitemap.xml

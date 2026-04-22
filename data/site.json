@@ -1,0 +1,30 @@
+{
+  "name": "Mahdiyar Molahasani",
+  "title": "ML Researcher II",
+  "company": "Captura",
+  "homepage": "https://mahdiyar.ai/",
+  "email": "m.molahasani.m@gmail.com",
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/m-molahasani/",
+    "github": "https://github.com/MahdiyarMM",
+    "scholar": "https://scholar.google.com/citations?user=cXDt3NQAAAAJ&hl=en"
+  },
+  "stats": {
+    "years_experience": 8,
+    "publications_count_fallback": 18,
+    "citations_fallback": 609,
+    "h_index_fallback": 10
+  },
+  "typing_texts": [
+    "ML Researcher II at Captura",
+    "Applied AI & Computer Vision",
+    "Federated Learning Researcher",
+    "PhD from Queen's University",
+    "Top Reviewer, NeurIPS 2024"
+  ],
+  "background": "particles",
+  "allow_ai_crawlers": true,
+  "cv_url": null,
+  "last_updated": "2026-04-22",
+  "cache_bust": "20260421-18"
+}

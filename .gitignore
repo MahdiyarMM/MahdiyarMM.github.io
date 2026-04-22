@@ -1,0 +1,10 @@
+node_modules/
+reports/
+.lighthouseci/
+.DS_Store
+images/originals/
+*.log
+.env
+.env.*
+dist/
+.cache/

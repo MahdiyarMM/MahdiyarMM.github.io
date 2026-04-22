@@ -1,464 +1,873 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  <!-- SEO Meta Tags -->
-  <title>Mahdiyar Molahasani - ML Researcher II | Applied AI & Computer Vision</title>
-  <meta name="description" content="ML Researcher II at Captura, building applied computer vision and multimodal AI systems for imaging products. PhD from Queen's University with 18 publications and 600+ citations.">
-  <meta name="keywords" content="machine learning, AI, computer vision, applied AI, semantic search, image culling, intelligent cropping, color correction, ML researcher, PhD, Captura">
-  <meta name="author" content="Mahdiyar Molahasani">
-  
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Mahdiyar Molahasani - ML Researcher II">
-  <meta property="og:description" content="Applied AI and computer vision researcher building ML systems for imaging products.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://mahdiyar.ai/">
-  <meta property="og:image" content="https://mahdiyar.ai/images/me2.jpg">
-  
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Mahdiyar Molahasani - ML Researcher II">
-  <meta name="twitter:description" content="Applied AI and computer vision researcher building ML systems for imaging products.">
-  <meta name="twitter:image" content="https://mahdiyar.ai/images/me2.jpg">
-  
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://mahdiyar.ai/">
+    <!-- SEO Meta Tags -->
+    <title>Mahdiyar Molahasani - ML Researcher II | Applied AI & Computer Vision</title>
+    <meta
+      name="description"
+      content="ML Researcher II at Captura, building applied computer vision and multimodal AI systems for imaging products. PhD from Queen's University with 18 publications and 600+ citations."
+    />
+    <meta
+      name="keywords"
+      content="machine learning, AI, computer vision, applied AI, semantic search, image culling, intelligent cropping, color correction, ML researcher, PhD, Captura"
+    />
+    <meta name="author" content="Mahdiyar Molahasani" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="images/icon.png">
-  <link rel="apple-touch-icon" href="images/icon.png">
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="manifest.json">
-  
-  <!-- Theme Color -->
-  <meta name="theme-color" content="#ffffff">
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  
-  <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="styles/modern.css?v=20260415-8">
-  
-  <!-- Google Analytics — TODO: replace with your GA4 measurement ID (G-XXXXXXXXXX) from https://analytics.google.com -->
-  <!-- Universal Analytics (UA-*) was sunset by Google in July 2023 -->
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Mahdiyar Molahasani - ML Researcher II" />
+    <meta
+      property="og:description"
+      content="Applied AI and computer vision researcher building ML systems for imaging products."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mahdiyar.ai/" />
+    <meta property="og:image" content="https://mahdiyar.ai/images/og-cover.jpg?v=20260421-1" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Mahdiyar Molahasani — ML Researcher II at Captura. Applied AI, Computer Vision, Federated Learning."
+    />
 
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Mahdiyar Molahasani",
-    "jobTitle": "ML Researcher II",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Captura"
-    },
-    "alumniOf": [
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mahdiyar Molahasani - ML Researcher II" />
+    <meta
+      name="twitter:description"
+      content="Applied AI and computer vision researcher building ML systems for imaging products."
+    />
+    <meta name="twitter:image" content="https://mahdiyar.ai/images/og-cover.jpg?v=20260421-1" />
+    <meta name="twitter:image:alt" content="Mahdiyar Molahasani — ML Researcher II at Captura." />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mahdiyar.ai/" />
+    <link rel="alternate" type="application/rss+xml" title="Mahdiyar Molahasani — Notes" href="/feed.xml" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/icon.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/images/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=optional"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="/styles/modern.css?v=20260421-18" />
+
+    <!-- Prefetch the icon sprite so first paint is decorated -->
+    <link rel="prefetch" href="/images/icons.svg" as="image" type="image/svg+xml" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
       {
-        "@type": "Organization",
-        "name": "Queen's University"
-      },
-      {
-        "@type": "Organization", 
-        "name": "University of Saskatchewan"
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mahdiyar Molahasani",
+        "jobTitle": "ML Researcher II",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Captura"
+        },
+        "alumniOf": [
+          {
+            "@type": "Organization",
+            "name": "Queen's University"
+          },
+          {
+            "@type": "Organization",
+            "name": "University of Saskatchewan"
+          }
+        ],
+        "url": "https://mahdiyar.ai/",
+        "sameAs": [
+          "https://www.linkedin.com/in/m-molahasani/",
+          "https://github.com/MahdiyarMM",
+          "https://scholar.google.com/citations?user=cXDt3NQAAAAJ&hl=en"
+        ],
+        "email": "m.molahasani.m@gmail.com"
       }
-    ],
-    "url": "https://mahdiyar.ai/",
-    "sameAs": [
-      "https://www.linkedin.com/in/m-molahasani/",
-      "https://github.com/MahdiyarMM",
-      "https://scholar.google.com/citations?user=cXDt3NQAAAAJ&hl=en"
-    ],
-    "email": "m.molahasani.m@gmail.com"
-  }
-  </script>
+    </script>
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mahdiyar.ai/" }]
+      }
+    </script>
 
-</head>
-
-<body class="industry-home">
-  <div id="particles-js"></div>
-
-  <header class="header" role="banner">
-    <div class="header-content">
-      <a href="/" class="brand" aria-label="Mahdiyar Molahasani - Home">Mahdiyar Molahasani</a>
-      <nav role="navigation" aria-label="Main navigation">
-        <a href="/" aria-current="page">Home</a>
-        <a href="#experience-timeline">Experience</a>
-        <a href="/research">Research</a>
-        <button class="theme-toggle theme-toggle-segmented" id="theme-toggle" type="button" aria-label="Switch to Code Dark Mode" aria-pressed="false" title="Switch to Code Dark Mode">
-          <span class="theme-toggle-track" aria-hidden="true">
-            <span class="theme-option theme-option-light">
-              <i class="fas fa-sun"></i>
-            </span>
-            <span class="theme-option theme-option-code">
-              <i class="fas fa-moon theme-code-moon"></i>
-            </span>
-            <span class="theme-thumb"></span>
-          </span>
-        </button>
-      </nav>
-    </div>
-  </header>
-
-  <main class="body-background" role="main">
-    <div class="content-container">
-      <!-- Hero Section -->
-      <section class="hero-section" aria-labelledby="hero-heading">
-        <div class="hero-content">
-          <!-- Left: Name and Position -->
-          <div class="hero-left">
-            <h1 id="hero-heading" class="hero-title">
-              <span class="greeting">Hello, I'm</span>
-              <span class="name-highlight">Mahdiyar Molahasani</span>
-            </h1>
-            <div class="hero-subtitle">
-              <span class="typing-text" id="typing-text">ML Research Scientist at Captura</span>
-            </div>
-          </div>
-          
-          <!-- Right: Image -->
-          <div class="hero-image">
-            <div class="image-container">
-              <img src="images/me2.jpg" alt="Mahdiyar Molahasani profile photo" class="profile-photo">
-              <div class="image-overlay">
-                <div class="overlay-content">
-                  <span class="overlay-text">Applied AI + Vision</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Bio Section -->
-        <div class="hero-bio">
-          <p class="hero-description">
-            I develop cutting-edge, efficient ML solutions for the photography industry as an
-            <strong>ML Researcher II</strong> at <strong>Captura</strong>. My research focuses on
-            <strong>federated learning</strong>, <strong>domain generalization</strong>, and
-            <strong>continual learning</strong>.
-          </p>
-        </div>
-        
-        <!-- Actions and Social -->
-        <div class="hero-actions">
-          <a href="#experience-timeline" class="btn btn-primary">Explore Experience</a>
-          <a href="/research" class="btn btn-secondary">View Research</a>
-        </div>
-        
-        <!-- Metrics - Horizontal Line -->
-        <div class="hero-metrics">
-          <div class="stat-item">
-            <span class="stat-number" id="citation-count">0</span>
-            <span class="stat-label">Citations</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number" id="h-index">0</span>
-            <span class="stat-label">H-Index</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">8+</span>
-            <span class="stat-label">Years Experience</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">18</span>
-            <span class="stat-label">Publications</span>
-          </div>
-        </div>
-        
-        <div class="social-links" role="list" aria-label="Social media and professional links">
-          <a href="mailto:m.molahasani.m@gmail.com" role="listitem" aria-label="Send email" class="social-link">
-            <i class="fas fa-envelope" aria-hidden="true"></i>
-            <span class="social-label">Email</span>
-          </a>
-          <a href="https://www.linkedin.com/in/m-molahasani/" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="LinkedIn profile" class="social-link">
-            <i class="fab fa-linkedin" aria-hidden="true"></i>
-            <span class="social-label">LinkedIn</span>
-          </a>
-          <a href="https://scholar.google.com/citations?user=cXDt3NQAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Google Scholar profile" class="social-link">
-            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-            <span class="social-label">Scholar</span>
-          </a>
-          <a href="https://github.com/MahdiyarMM" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="GitHub profile" class="social-link">
-            <i class="fab fa-github" aria-hidden="true"></i>
-            <span class="social-label">GitHub</span>
-          </a>
-        </div>
-      </section>
-
-
-		
-      
-      <!-- Experience Timeline -->
-      <section class="section experience-timeline-section" id="experience-timeline" aria-labelledby="experience-timeline-heading">
-        <h2 id="experience-timeline-heading" class="section-title">Experience Timeline</h2>
-        <p class="section-subtitle">Industry + research trajectory</p>
-        <div class="timeline" role="list">
-          <article class="timeline-item is-current" role="listitem">
-            <div class="timeline-date">Jun 2025 - Present</div>
-            <div class="timeline-content">
-              <div class="timeline-header">
-                <div>
-                  <span class="timeline-tag">Current</span>
-                  <h3>ML Researcher II</h3>
-                  <p class="timeline-company">Captura · Vancouver, BC, Canada (Based in Raleigh, NC, USA)</p>
-                </div>
-                <div class="timeline-logo" aria-hidden="true">
-                  <img src="images/captura_logo.png" alt="">
-                </div>
-              </div>
-              <p>Leading applied ML research and development for AI image enhancement and management for the volume photography industry.</p>
-              <ul>
-                <li>Build reusable ML infrastructure and evaluation tools for computer vision experimentation.</li>
-                <li>Prototype product-facing ML features and improve research-to-deployment workflows.</li>
-                <li>Shape data strategy, labeling workflows, and cross-functional ML capability.</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="timeline-item" role="listitem">
-            <div class="timeline-date">May 2024 - May 2025</div>
-            <div class="timeline-content">
-              <div class="timeline-header">
-                <div>
-                  <span class="timeline-tag">Remote AI Evaluation</span>
-                  <h3>Expert LLM Trainer & Evaluator</h3>
-                  <p class="timeline-company">Outlier AI · Remote from Kingston, ON, Canada</p>
-                </div>
-                <div class="timeline-logo" aria-hidden="true">
-                  <img src="images/outlier_logo.svg" alt="">
-                </div>
-              </div>
-              <p>Evaluated multimodal AI outputs and designed advanced validation tasks for model accuracy, reliability, and reasoning quality.</p>
-            </div>
-          </article>
-
-          <article class="timeline-item" role="listitem">
-            <div class="timeline-date">May 2021 - May 2025</div>
-            <div class="timeline-content">
-              <div class="timeline-header">
-                <div>
-                  <span class="timeline-tag">Doctoral Research</span>
-                  <h3>Graduate Research Assistant</h3>
-                  <p class="timeline-company">Queen's University · Kingston, ON, Canada</p>
-                </div>
-                <div class="timeline-logo" aria-hidden="true">
-                  <img src="images/Queens_logo.png" alt="">
-                </div>
-              </div>
-              <p>Completed PhD research in computer vision, federated learning, fairness, continual learning, and domain generalization, publishing in venues including ICCV, AAAI, ICASSP, ICIP, and NeurIPS workshops.</p>
-            </div>
-          </article>
-
-          <article class="timeline-item" role="listitem">
-            <div class="timeline-date">May 2019 - Apr 2021</div>
-            <div class="timeline-content">
-              <div class="timeline-header">
-                <div>
-                  <span class="timeline-tag">ML Foundations</span>
-                  <h3>Graduate Research Assistant</h3>
-                  <p class="timeline-company">University of Saskatchewan · Saskatoon, SK, Canada</p>
-                </div>
-                <div class="timeline-logo" aria-hidden="true">
-                  <img src="images/usask_logo.svg" alt="">
-                </div>
-              </div>
-              <p>Developed deep learning methods for medical imaging, super-resolution, COVID-19 detection from chest X-rays, and dental caries detection.</p>
-            </div>
-          </article>
-        </div>
-      </section>
-      
-      <!-- Research Section -->
-      <section class="section" aria-labelledby="research-heading">
-        <h2 id="research-heading" class="section-title">
-          <a href="/research" aria-label="Open research page">Research <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-        </h2>
-        
-        <div class="research-description">
-          AI scientist with more than <strong>8 years</strong> of research experience. Published <strong>17</strong> impactful papers presented in top venues (e.g. <strong>ICCV, AAAI, NeurIPS, ICASSP, ICIP,</strong> etc.) with 500+ citations. Proven expertise in <strong>scalable AI systems, fairness, and computer vision</strong>, with a strong focus on advancing AI for real-world applications through collaboration and practical solutions.
-            </div>
-      </section>
-
-
-
-      <!-- Selected Projects Section -->
-      <section class="section applied-focus-section" aria-labelledby="experience-heading">
-        <h2 id="experience-heading" class="section-title">Selected Projects</h2>
-        <p class="section-subtitle">Research systems with real-world reach</p>
-        
-        <div class="focus-grid" role="list">
-          <article class="focus-card" role="listitem">
-            <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
-            <h3>Semantic Search, Foundation Models & VLMs</h3>
-            <p>Built CLIP/VLM-powered semantic sorting and image understanding workflows, including retrieval demos and foundation-model annotation tools for large image collections.</p>
-          </article>
-          <article class="focus-card" role="listitem">
-            <i class="fas fa-fish" aria-hidden="true"></i>
-            <h3>Zebrafish Behavior Analysis</h3>
-            <p>Developed a YOLO-based detection and tracking framework for bio-lab video analysis, increasing processing speed by 10x and reducing operational costs by more than 80%.</p>
-          </article>
-          <article class="focus-card" role="listitem">
-            <i class="fas fa-lungs-virus" aria-hidden="true"></i>
-            <h3>COVID-CXNet Medical AI Benchmark</h3>
-            <p>Curated and released a large open-source COVID-19 chest X-ray dataset with deep learning baselines, supporting medical AI validation across hundreds of independent studies.</p>
-          </article>
-        </div>
-      </section>
-					
-      
-      <!-- Education Section -->
-      <section class="section education-section" aria-labelledby="education-heading">
-        <h2 id="education-heading" class="section-title">Education</h2>
-
-        <div class="education-grid" role="list">
-          <article class="education-card" role="listitem">
-            <div class="education-media">
-              <img src="images/queens_campus.jpg" alt="Queen's University campus">
-            </div>
-            <div class="education-logo" aria-hidden="true">
-              <img src="images/Queens_logo.png" alt="">
-            </div>
-            <div class="education-content">
-              <span class="education-dates">2021 - 2025</span>
-              <h3>Ph.D. in Electrical and Computer Engineering</h3>
-              <p class="education-school">Queen's University · Kingston, ON, Canada</p>
-              <p class="education-thesis">Thesis: Advancing Generalization in Deep Representation Learning</p>
-              <div class="education-meta">
-                <span>GPA 4.3/4.3</span>
-                <span>Domain Generalization</span>
-                <span>Federated Learning</span>
-                <span>Continual Learning</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="education-card" role="listitem">
-            <div class="education-media">
-              <img src="images/usask_campus.jpg" alt="University of Saskatchewan campus">
-            </div>
-            <div class="education-logo" aria-hidden="true">
-              <img src="images/usask_logo.svg" alt="">
-            </div>
-            <div class="education-content">
-              <span class="education-dates">2019 - 2021</span>
-              <h3>M.Sc. in Electrical and Computer Engineering</h3>
-              <p class="education-school">University of Saskatchewan · Saskatoon, SK, Canada</p>
-              <p class="education-thesis">Thesis: Deep Learning for Robust Super-resolution</p>
-              <div class="education-meta">
-                <span>GPA 4.0/4.0</span>
-                <span>Medical Imaging</span>
-                <span>Super-resolution</span>
-                <span>AI for Healthcare</span>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>	      
-
-
-      
-      <!-- Recognition & Service Section -->
-      <section class="section applied-focus-section" aria-labelledby="recognition-heading">
-        <h2 id="recognition-heading" class="section-title">Recognition & Service</h2>
-        <p class="section-subtitle">Awards and peer review contributions</p>
-
-        <div class="focus-grid" role="list">
-          <article class="focus-card" role="listitem">
-            <i class="fas fa-trophy" aria-hidden="true"></i>
-            <h3>Awards & Fellowships</h3>
-            <ul class="award-list">
-              <li>
-                <strong>Graduate Research Fellowship</strong>
-                <ul class="award-details">
-                  <li>Queen's University</li>
-                  <li>2021–2025</li>
-                </ul>
-              </li>
-              <li>
-                <strong>Devolved Scholarship</strong>
-                <ul class="award-details">
-                  <li>University of Saskatchewan</li>
-                  <li>2020–2021</li>
-                </ul>
-              </li>
-              <li>
-                <strong>Graduate Research Scholarship</strong>
-                <ul class="award-details">
-                  <li>University of Saskatchewan</li>
-                  <li>2019–2021</li>
-                </ul>
-              </li>
-            </ul>
-          </article>
-          <article class="focus-card" role="listitem">
-            <i class="fas fa-star" aria-hidden="true"></i>
-            <h3>Top Reviewer</h3>
-            <ul>
-              <li>Recognized as a <a href="https://neurips.cc/Conferences/2024/ProgramCommittee#top-reviewers" target="_blank" rel="noopener noreferrer"><strong>NeurIPS 2024 Top Reviewer</strong></a> with complimentary conference registration.</li>
-              <li>Top Reviewer at the <strong>AAAI 2023 Workshop</strong> on Representation Learning for Responsible Human-Centric AI.</li>
-            </ul>
-          </article>
-          <article class="focus-card" role="listitem">
-            <i class="fas fa-pen-to-square" aria-hidden="true"></i>
-            <h3>Peer Review</h3>
-            <ul>
-              <li><strong>Conferences:</strong> NeurIPS, ICLR, ICML, AAAI, AISTATS, ICML&nbsp;Workshops, AAAI&nbsp;Workshops</li>
-              <li><strong>Journals:</strong> TMLR, IEEE Trans.&nbsp;on Multimedia, IEEE Trans.&nbsp;on Artificial Intelligence</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-		</div>
-  </main>
-  
-  <footer role="contentinfo" style="text-align: center; padding: 2rem; color: var(--text-secondary, #64748b);">
-    <p>&copy; <script>document.write(new Date().getFullYear())</script> Mahdiyar Molahasani. All rights reserved.</p>
-  </footer>
-      
-  <script>
-    async function loadScholarData() {
-      try {
-        const response = await fetch("scholar_data.json");
-        const data = await response.json();
-        const duration = 2000;
-        const startTime = Date.now();
-
-        function countUp() {
-          const progress = Math.min((Date.now() - startTime) / duration, 1);
-          const citationEl = document.getElementById("citation-count");
-          const hIndexEl = document.getElementById("h-index");
-          if (citationEl) citationEl.innerText = Math.round(data.citations * progress);
-          if (hIndexEl) hIndexEl.innerText = Math.round(data.h_index * progress);
-          if (progress < 1) requestAnimationFrame(countUp);
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Mahdiyar Molahasani",
+        "url": "https://mahdiyar.ai/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://mahdiyar.ai/research?q={search_term_string}",
+          "query-input": "required name=search_term_string"
         }
-        countUp();
-      } catch (error) {
-        const citationEl = document.getElementById("citation-count");
-        const hIndexEl = document.getElementById("h-index");
-        if (citationEl) citationEl.innerText = "608";
-        if (hIndexEl) hIndexEl.innerText = "10";
       }
-    }
+    </script>
+  </head>
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', loadScholarData);
-    } else {
-      loadScholarData();
-    }
-  </script>
+  <body class="industry-home">
+    <a href="#main" class="skip-link">Skip to content</a>
+    <div id="particles-js" aria-hidden="true"></div>
+    <div id="sr-announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- Particles.js -->
-  <script src="particles.js?v=20260415-3"></script>
-  <script src="js/app.js?v=20260415-3"></script>
-  <script src="js/modern.js?v=20260415-3"></script>
-</body>
+    <header class="header" role="banner">
+      <div class="header-content">
+        <a href="/" class="brand" aria-label="Mahdiyar Molahasani - Home">Mahdiyar Molahasani</a>
+        <nav role="navigation" aria-label="Main navigation">
+          <a href="/" aria-current="page">Home</a>
+          <a href="#experience-timeline">Experience</a>
+          <a href="/research">Research</a>
+          <a href="/posts/">Notes</a>
+          <a data-site-link="cv" href="#" hidden rel="noopener" aria-label="Download CV (PDF)">CV</a>
+          <div class="theme-toggle-tri" id="theme-toggle" role="radiogroup" aria-label="Color theme">
+            <button
+              class="theme-segment"
+              data-theme-value="light"
+              type="button"
+              role="radio"
+              aria-checked="false"
+              title="Light theme"
+            >
+              <svg class="icon icon-sun" aria-hidden="true" focusable="false">
+                <use href="/images/icons.svg#i-sun" />
+              </svg>
+              <span class="sr-only">Light</span>
+            </button>
+            <button
+              class="theme-segment"
+              data-theme-value="auto"
+              type="button"
+              role="radio"
+              aria-checked="true"
+              title="Match system theme"
+            >
+              <svg class="icon icon-auto" aria-hidden="true" focusable="false">
+                <use href="/images/icons.svg#i-auto" />
+              </svg>
+              <span class="sr-only">Auto</span>
+            </button>
+            <button
+              class="theme-segment"
+              data-theme-value="dark"
+              type="button"
+              role="radio"
+              aria-checked="false"
+              title="Dark theme"
+            >
+              <svg class="icon icon-moon" aria-hidden="true" focusable="false">
+                <use href="/images/icons.svg#i-moon" />
+              </svg>
+              <span class="sr-only">Dark</span>
+            </button>
+            <span class="sr-only" id="theme-toggle-label"
+              >Theme: auto. Use arrow keys to choose light, auto, or dark.</span
+            >
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="body-background">
+      <div class="content-container">
+        <!-- Hero Section -->
+        <section class="hero-section" aria-labelledby="hero-heading">
+          <div class="hero-content">
+            <!-- Left: Name and Position -->
+            <div class="hero-left">
+              <h1 id="hero-heading" class="hero-title">
+                <span class="greeting">Hello, I'm</span>
+                <span class="name-highlight">Mahdiyar Molahasani</span>
+              </h1>
+              <div class="hero-subtitle">
+                <span
+                  class="typing-text"
+                  id="typing-text"
+                  data-typing-texts='["ML Researcher II at Captura","Applied AI &amp; Computer Vision","Federated Learning Researcher","PhD from Queen&#39;s University","Top Reviewer, NeurIPS 2024"]'
+                  >ML Researcher II at Captura</span
+                >
+                <noscript>
+                  <span class="typing-text">ML Researcher II at Captura</span>
+                </noscript>
+              </div>
+            </div>
+
+            <!-- Right: Image -->
+            <div class="hero-image">
+              <div class="image-container">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="/images/me2-240.webp 240w, /images/me2-320.webp 320w, /images/me2-480.webp 480w"
+                    sizes="(max-width: 600px) 240px, 320px"
+                  />
+                  <source
+                    type="image/jpeg"
+                    srcset="/images/me2-240.jpeg 240w, /images/me2-320.jpeg 320w, /images/me2-480.jpeg 480w"
+                    sizes="(max-width: 600px) 240px, 320px"
+                  />
+                  <img
+                    src="/images/me2-320.jpeg"
+                    alt="Mahdiyar Molahasani profile photo"
+                    class="profile-photo"
+                    width="320"
+                    height="327"
+                    fetchpriority="high"
+                    decoding="async"
+                  />
+                </picture>
+                <div class="image-overlay">
+                  <div class="overlay-content">
+                    <span class="overlay-text">Applied AI + Vision</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bio Section -->
+          <div class="hero-bio">
+            <p class="hero-description">
+              I develop cutting-edge, efficient ML solutions for the photography industry as an
+              <strong>ML Researcher II</strong> at <strong>Captura</strong>. My research focuses on
+              <strong>federated learning</strong>, <strong>domain generalization</strong>, and
+              <strong>continual learning</strong>.
+            </p>
+          </div>
+
+          <!-- Actions and Social -->
+          <div class="hero-actions">
+            <a href="/research" class="btn btn-primary">View Research</a>
+            <a href="#featured-projects" class="btn btn-secondary">Deep Dives</a>
+            <a href="mailto:m.molahasani.m@gmail.com?subject=Hello%20Mahdiyar" class="btn btn-secondary"
+              >Get in Touch</a
+            >
+          </div>
+
+          <!-- Metrics - Horizontal Line -->
+          <div class="hero-metrics">
+            <div class="stat-item">
+              <span class="stat-number" data-site="citations" data-animate="true">609</span>
+              <span class="stat-label">Citations</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-site="h_index" data-animate="true">10</span>
+              <span class="stat-label">H-Index</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number"><span data-site="years_experience">8</span>+</span>
+              <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-site="publications_count">18</span>
+              <span class="stat-label">Publications</span>
+            </div>
+          </div>
+
+          <div class="social-links" role="list" aria-label="Social media and professional links">
+            <a href="mailto:m.molahasani.m@gmail.com" role="listitem" aria-label="Send email" class="social-link">
+              <svg class="icon icon-email" aria-hidden="true" focusable="false">
+                <use href="/images/icons.svg#i-email" />
+              </svg>
+              <span class="social-label">Email</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/m-molahasani/"
+              target="_blank"
+              rel="noopener noreferrer"
+              role="listitem"
+              aria-label="LinkedIn profile"
+              class="social-link"
+            >
+              <svg class="icon icon-linkedin" aria-hidden="true" focusable="false">
+                <use href="/images/icons.svg#i-linkedin" />
+              </svg>
+              <span class="social-label">LinkedIn</span>
+            </a>
+            <a
+              href="https://scholar.google.com/citations?user=cXDt3NQAAAAJ&hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              role="listitem"
+              aria-label="Google Scholar profile"
+              class="social-link"
+            >
+              <svg class="icon icon-scholar" aria-hidden="true" focusable="false">
+                <use href="/images/icons.svg#i-scholar" />
+              </svg>
+              <span class="social-label">Scholar</span>
+            </a>
+            <a
+              href="https://github.com/MahdiyarMM"
+              target="_blank"
+              rel="noopener noreferrer"
+              role="listitem"
+              aria-label="GitHub profile"
+              class="social-link"
+            >
+              <svg class="icon icon-github" aria-hidden="true" focusable="false">
+                <use href="/images/icons.svg#i-github" />
+              </svg>
+              <span class="social-label">GitHub</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Experience Timeline -->
+        <section
+          class="section experience-timeline-section"
+          id="experience-timeline"
+          aria-labelledby="experience-timeline-heading"
+        >
+          <h2 id="experience-timeline-heading" class="section-title">Experience Timeline</h2>
+          <p class="section-subtitle">Industry + research trajectory</p>
+          <div class="timeline" role="list">
+            <article class="timeline-item is-current" role="listitem">
+              <div class="timeline-date">Jun 2025 - Present</div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <div>
+                    <span class="timeline-tag">Current</span>
+                    <h3>ML Researcher II</h3>
+                    <p class="timeline-company">Captura · Vancouver, BC, Canada (Based in Raleigh, NC, USA)</p>
+                  </div>
+                  <div class="timeline-logo" aria-hidden="true">
+                    <picture>
+                      <source
+                        type="image/webp"
+                        srcset="/images/captura_logo-120.webp 120w, /images/captura_logo-240.webp 240w"
+                        sizes="120px"
+                      />
+                      <img
+                        src="/images/captura_logo-240.png"
+                        alt=""
+                        width="120"
+                        height="30"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                </div>
+                <p>
+                  Leading applied ML research and development for AI image enhancement and management for the volume
+                  photography industry.
+                </p>
+                <ul>
+                  <li>Build reusable ML infrastructure and evaluation tools for computer vision experimentation.</li>
+                  <li>Prototype product-facing ML features and improve research-to-deployment workflows.</li>
+                  <li>Shape data strategy, labeling workflows, and cross-functional ML capability.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="timeline-item" role="listitem">
+              <div class="timeline-date">May 2024 - May 2025</div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <div>
+                    <span class="timeline-tag">Remote AI Evaluation</span>
+                    <h3>Expert LLM Trainer & Evaluator</h3>
+                    <p class="timeline-company">Outlier AI · Remote from Kingston, ON, Canada</p>
+                  </div>
+                  <div class="timeline-logo" aria-hidden="true">
+                    <img
+                      src="/images/outlier_logo.svg"
+                      alt=""
+                      width="120"
+                      height="30"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+                <p>
+                  Evaluated multimodal AI outputs and designed advanced validation tasks for model accuracy,
+                  reliability, and reasoning quality.
+                </p>
+              </div>
+            </article>
+
+            <article class="timeline-item" role="listitem">
+              <div class="timeline-date">May 2021 - May 2025</div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <div>
+                    <span class="timeline-tag">Doctoral Research</span>
+                    <h3>Graduate Research Assistant</h3>
+                    <p class="timeline-company">Queen's University · Kingston, ON, Canada</p>
+                  </div>
+                  <div class="timeline-logo" aria-hidden="true">
+                    <picture>
+                      <source
+                        type="image/webp"
+                        srcset="/images/Queens_logo-120.webp 120w, /images/Queens_logo-240.webp 240w"
+                        sizes="120px"
+                      />
+                      <img
+                        src="/images/Queens_logo-240.png"
+                        alt=""
+                        width="120"
+                        height="156"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </div>
+                </div>
+                <p>
+                  Completed PhD research in computer vision, federated learning, fairness, continual learning, and
+                  domain generalization, publishing in venues including ICCV, AAAI, ICASSP, ICIP, and NeurIPS workshops.
+                </p>
+              </div>
+            </article>
+
+            <article class="timeline-item" role="listitem">
+              <div class="timeline-date">May 2019 - Apr 2021</div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <div>
+                    <span class="timeline-tag">ML Foundations</span>
+                    <h3>Graduate Research Assistant</h3>
+                    <p class="timeline-company">University of Saskatchewan · Saskatoon, SK, Canada</p>
+                  </div>
+                  <div class="timeline-logo" aria-hidden="true">
+                    <img src="/images/usask_logo.svg" alt="" width="120" height="83" loading="lazy" decoding="async" />
+                  </div>
+                </div>
+                <p>
+                  Developed deep learning methods for medical imaging, super-resolution, COVID-19 detection from chest
+                  X-rays, and dental caries detection.
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Research Section -->
+        <section class="section" aria-labelledby="research-heading">
+          <h2 id="research-heading" class="section-title">
+            <a href="/research" aria-label="Open research page"
+              >Research
+              <svg class="icon icon-arrow-up-right" aria-hidden="true" focusable="false">
+                <use href="/images/icons.svg#i-arrow-up-right" /></svg
+            ></a>
+          </h2>
+
+          <div class="research-description">
+            AI scientist with more than <strong><span data-site="years_experience">8</span> years</strong> of research
+            experience. Published <strong><span data-site="publications_count">18</span></strong> impactful papers in
+            top venues (e.g. <strong>ICCV, AAAI, NeurIPS, ICASSP, ICIP,</strong> etc.) with
+            <strong><span data-site="citations">609</span>+</strong> citations. Proven expertise in
+            <strong>scalable AI systems, fairness, and computer vision</strong>, with a strong focus on advancing AI for
+            real-world applications through collaboration and practical solutions.
+          </div>
+        </section>
+
+        <!-- Selected Projects Section -->
+        <section class="section applied-focus-section" aria-labelledby="experience-heading">
+          <h2 id="experience-heading" class="section-title">Selected Projects</h2>
+          <p class="section-subtitle">Research systems with real-world reach</p>
+
+          <div class="focus-grid" role="list">
+            <article class="focus-card" role="listitem">
+              <svg class="icon icon-search" aria-hidden="true" focusable="false">
+                <use href="/images/icons.svg#i-search" />
+              </svg>
+              <h3>Semantic Search, Foundation Models & VLMs</h3>
+              <p>
+                Built CLIP/VLM-powered semantic sorting and image understanding workflows, including retrieval demos and
+                foundation-model annotation tools for large image collections.
+              </p>
+            </article>
+            <article class="focus-card" role="listitem">
+              <svg class="icon icon-fish" aria-hidden="true" focusable="false">
+                <use href="/images/icons.svg#i-fish" />
+              </svg>
+              <h3>Zebrafish Behavior Analysis</h3>
+              <p>
+                Developed a YOLO-based detection and tracking framework for bio-lab video analysis, increasing
+                processing speed by 10x and reducing operational costs by more than 80%.
+              </p>
+            </article>
+            <article class="focus-card" role="listitem">
+              <svg class="icon icon-lungs" aria-hidden="true" focusable="false">
+                <use href="/images/icons.svg#i-lungs" />
+              </svg>
+              <h3>COVID-CXNet Medical AI Benchmark</h3>
+              <p>
+                Curated and released a large open-source COVID-19 chest X-ray dataset with deep learning baselines,
+                supporting medical AI validation across hundreds of independent studies.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Featured Project Deep-Dives -->
+        <section
+          id="featured-projects"
+          class="section featured-projects-section"
+          aria-labelledby="featured-projects-heading"
+        >
+          <h2 id="featured-projects-heading" class="section-title">Featured Deep Dives</h2>
+          <p class="section-subtitle">Long-form write-ups of selected projects</p>
+          <div class="featured-projects-grid">
+            <a class="project-card" href="/posts/prism">
+              <div class="project-card-media">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="
+                      /images/PRISM_cover_sqr-320.webp   320w,
+                      /images/PRISM_cover_sqr-480.webp   480w,
+                      /images/PRISM_cover_sqr-640.webp   640w,
+                      /images/PRISM_cover_sqr-800.webp   800w,
+                      /images/PRISM_cover_sqr-1200.webp 1200w
+                    "
+                    sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 360px"
+                  />
+                  <source
+                    type="image/jpeg"
+                    srcset="
+                      /images/PRISM_cover_sqr-320.jpeg   320w,
+                      /images/PRISM_cover_sqr-480.jpeg   480w,
+                      /images/PRISM_cover_sqr-640.jpeg   640w,
+                      /images/PRISM_cover_sqr-800.jpeg   800w,
+                      /images/PRISM_cover_sqr-1200.jpeg 1200w
+                    "
+                    sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 360px"
+                  />
+                  <img
+                    src="/images/PRISM_cover_sqr-640.jpeg"
+                    alt="PRISM method overview: a glowing prism debiases entangled embedding clusters into a clean, separated representation, fed by an LLM."
+                    loading="lazy"
+                    decoding="async"
+                    width="640"
+                    height="400"
+                  />
+                </picture>
+              </div>
+              <div class="project-card-body">
+                <p class="project-eyebrow">ICCV 2025</p>
+                <h3 class="project-card-title">PRISM: Debiasing VLMs</h3>
+                <p class="project-card-tagline">
+                  A data-free, task-agnostic debiasing framework for CLIP-style models.
+                </p>
+              </div>
+            </a>
+            <a class="project-card" href="/posts/fedgala">
+              <div class="project-card-media">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="
+                      /images/FedGaLA_nb-320.webp   320w,
+                      /images/FedGaLA_nb-480.webp   480w,
+                      /images/FedGaLA_nb-640.webp   640w,
+                      /images/FedGaLA_nb-800.webp   800w,
+                      /images/FedGaLA_nb-1200.webp 1200w
+                    "
+                    sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 360px"
+                  />
+                  <source
+                    type="image/jpeg"
+                    srcset="
+                      /images/FedGaLA_nb-320.jpeg   320w,
+                      /images/FedGaLA_nb-480.jpeg   480w,
+                      /images/FedGaLA_nb-640.jpeg   640w,
+                      /images/FedGaLA_nb-800.jpeg   800w,
+                      /images/FedGaLA_nb-1200.jpeg 1200w
+                    "
+                    sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 360px"
+                  />
+                  <img
+                    src="/images/FedGaLA_nb-640.jpeg"
+                    alt="FedGaLA concept: noisy per-client gradients from three source domains converge through a local alignment filter and a global alignment funnel into a stacked generalized model that transfers to an unseen target domain."
+                    loading="lazy"
+                    decoding="async"
+                    width="640"
+                    height="400"
+                  />
+                </picture>
+              </div>
+              <div class="project-card-body">
+                <p class="project-eyebrow">AAAI 2025</p>
+                <h3 class="project-card-title">FedGaLA: Federated Domain Generalization</h3>
+                <p class="project-card-tagline">First framework for unsupervised federated domain generalization.</p>
+              </div>
+            </a>
+            <a class="project-card" href="/posts/covid-cxnet">
+              <div class="project-card-media">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="
+                      /images/covid-320.webp   320w,
+                      /images/covid-480.webp   480w,
+                      /images/covid-640.webp   640w,
+                      /images/covid-800.webp   800w,
+                      /images/covid-1200.webp 1200w
+                    "
+                    sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 360px"
+                  />
+                  <source
+                    type="image/jpeg"
+                    srcset="
+                      /images/covid-320.jpeg   320w,
+                      /images/covid-480.jpeg   480w,
+                      /images/covid-640.jpeg   640w,
+                      /images/covid-800.jpeg   800w,
+                      /images/covid-1200.jpeg 1200w
+                    "
+                    sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 360px"
+                  />
+                  <img
+                    src="/images/covid-640.jpeg"
+                    alt="COVID-CXNet pipeline: chest X-rays crowdsourced from GitHub, Twitter, SIRM and Radiopaedia pass through CLAHE and BEASF enhancement plates into the COVID-CXNet model (with a CheXNet/DenseNet-121 baseline) and out to a clinical decision-support workstation showing a saliency heatmap and structured findings."
+                    loading="lazy"
+                    decoding="async"
+                    width="640"
+                    height="400"
+                  />
+                </picture>
+              </div>
+              <div class="project-card-body">
+                <p class="project-eyebrow">MTAP 2021</p>
+                <h3 class="project-card-title">COVID-CXNet: Open CXR Dataset</h3>
+                <p class="project-card-tagline">Open dataset and detection model for COVID-19 on frontal X-rays.</p>
+              </div>
+            </a>
+          </div>
+          <p class="featured-projects-cta">
+            <a href="/posts/" class="btn btn-secondary">All notes &amp; deep dives</a>
+          </p>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section education-section" aria-labelledby="education-heading">
+          <h2 id="education-heading" class="section-title">Education</h2>
+
+          <div class="education-grid" role="list">
+            <article class="education-card" role="listitem">
+              <div class="education-media">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="/images/queens_campus-400.webp 400w, /images/queens_campus-600.webp 600w"
+                    sizes="(max-width: 600px) 400px, 600px"
+                  />
+                  <source
+                    type="image/jpeg"
+                    srcset="/images/queens_campus-400.jpeg 400w, /images/queens_campus-600.jpeg 600w"
+                    sizes="(max-width: 600px) 400px, 600px"
+                  />
+                  <img
+                    src="/images/queens_campus-600.jpeg"
+                    alt="Queen's University campus"
+                    width="600"
+                    height="410"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="education-logo" aria-hidden="true">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="/images/Queens_logo-120.webp 120w, /images/Queens_logo-240.webp 240w"
+                    sizes="120px"
+                  />
+                  <img
+                    src="/images/Queens_logo-240.png"
+                    alt=""
+                    width="120"
+                    height="156"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="education-content">
+                <span class="education-dates">2021 - 2025</span>
+                <h3>Ph.D. in Electrical and Computer Engineering</h3>
+                <p class="education-school">Queen's University · Kingston, ON, Canada</p>
+                <p class="education-thesis">Thesis: Advancing Generalization in Deep Representation Learning</p>
+                <div class="education-meta">
+                  <span>GPA 4.3/4.3</span>
+                  <span>Domain Generalization</span>
+                  <span>Federated Learning</span>
+                  <span>Continual Learning</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="education-card" role="listitem">
+              <div class="education-media">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="
+                      /images/usask_campus-400.webp 400w,
+                      /images/usask_campus-600.webp 600w,
+                      /images/usask_campus-800.webp 800w
+                    "
+                    sizes="(max-width: 600px) 400px, 800px"
+                  />
+                  <source
+                    type="image/jpeg"
+                    srcset="
+                      /images/usask_campus-400.jpeg 400w,
+                      /images/usask_campus-600.jpeg 600w,
+                      /images/usask_campus-800.jpeg 800w
+                    "
+                    sizes="(max-width: 600px) 400px, 800px"
+                  />
+                  <img
+                    src="/images/usask_campus-800.jpeg"
+                    alt="University of Saskatchewan campus"
+                    width="800"
+                    height="550"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="education-logo" aria-hidden="true">
+                <img src="/images/usask_logo.svg" alt="" width="120" height="83" loading="lazy" decoding="async" />
+              </div>
+              <div class="education-content">
+                <span class="education-dates">2019 - 2021</span>
+                <h3>M.Sc. in Electrical and Computer Engineering</h3>
+                <p class="education-school">University of Saskatchewan · Saskatoon, SK, Canada</p>
+                <p class="education-thesis">Thesis: Deep Learning for Robust Super-resolution</p>
+                <div class="education-meta">
+                  <span>GPA 4.0/4.0</span>
+                  <span>Medical Imaging</span>
+                  <span>Super-resolution</span>
+                  <span>AI for Healthcare</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Recognition & Service Section -->
+        <section class="section applied-focus-section" aria-labelledby="recognition-heading">
+          <h2 id="recognition-heading" class="section-title">Recognition & Service</h2>
+          <p class="section-subtitle">Awards and peer review contributions</p>
+
+          <div class="focus-grid" role="list">
+            <article class="focus-card" role="listitem">
+              <svg class="icon icon-trophy" aria-hidden="true" focusable="false">
+                <use href="/images/icons.svg#i-trophy" />
+              </svg>
+              <h3>Awards & Fellowships</h3>
+              <ul class="award-list">
+                <li>
+                  <strong>Graduate Research Fellowship</strong>
+                  <ul class="award-details">
+                    <li>Queen's University</li>
+                    <li>2021–2025</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Devolved Scholarship</strong>
+                  <ul class="award-details">
+                    <li>University of Saskatchewan</li>
+                    <li>2020–2021</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Graduate Research Scholarship</strong>
+                  <ul class="award-details">
+                    <li>University of Saskatchewan</li>
+                    <li>2019–2021</li>
+                  </ul>
+                </li>
+              </ul>
+            </article>
+            <article class="focus-card" role="listitem">
+              <svg class="icon icon-star" aria-hidden="true" focusable="false">
+                <use href="/images/icons.svg#i-star" />
+              </svg>
+              <h3>Top Reviewer</h3>
+              <ul>
+                <li>
+                  Recognized as a
+                  <a
+                    href="https://neurips.cc/Conferences/2024/ProgramCommittee#top-reviewers"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ><strong>NeurIPS 2024 Top Reviewer</strong></a
+                  >
+                  with complimentary conference registration.
+                </li>
+                <li>
+                  Top Reviewer at the <strong>AAAI 2023 Workshop</strong> on Representation Learning for Responsible
+                  Human-Centric AI.
+                </li>
+              </ul>
+            </article>
+            <article class="focus-card" role="listitem">
+              <svg class="icon icon-pen" aria-hidden="true" focusable="false">
+                <use href="/images/icons.svg#i-pen" />
+              </svg>
+              <h3>Peer Review</h3>
+              <ul>
+                <li>
+                  <strong>Conferences:</strong> NeurIPS, ICLR, ICML, AAAI, AISTATS, ICML&nbsp;Workshops,
+                  AAAI&nbsp;Workshops
+                </li>
+                <li>
+                  <strong>Journals:</strong> TMLR, IEEE Trans.&nbsp;on Multimedia, IEEE Trans.&nbsp;on Artificial
+                  Intelligence
+                </li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <p>
+        &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        Mahdiyar Molahasani. All rights reserved.
+      </p>
+      <p class="site-footer-meta">
+        Last updated <time data-site="last_updated" datetime="2026-04-21">2026-04-21</time>
+      </p>
+    </footer>
+
+    <script src="/js/site-data.js?v=20260421-1" defer></script>
+    <script src="/particles.js?v=20260421-1" defer></script>
+    <script src="/js/app.js?v=20260421-1" defer></script>
+    <script src="/js/modern.js?v=20260421-1" defer></script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Publications",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "title", "authors", "venues", "image", "tags", "description"],
+    "additionalProperties": false,
+    "properties": {
+      "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+      "title": { "type": "string", "minLength": 5 },
+      "authors": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+      "equal_contribution": { "type": "array", "items": { "type": "string" } },
+      "year": { "type": "integer", "minimum": 2010, "maximum": 2100 },
+      "venues": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "required": ["name", "year", "type"],
+          "additionalProperties": false,
+          "properties": {
+            "name": { "type": "string" },
+            "year": { "type": "integer" },
+            "type": {
+              "type": "string",
+              "enum": ["conference", "journal", "workshop", "preprint", "thesis"]
+            },
+            "short": { "type": "string" }
+          }
+        }
+      },
+      "links": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["label", "url"],
+          "additionalProperties": false,
+          "properties": {
+            "label": { "type": "string" },
+            "url": { "type": "string", "format": "uri" }
+          }
+        }
+      },
+      "image": { "type": "string", "pattern": "^/images/" },
+      "image_alt": { "type": "string" },
+      "tags": { "type": "array", "items": { "type": "string" } },
+      "description": { "type": "string", "minLength": 20 },
+      "bibtex": { "type": "string" },
+      "citations": { "type": "integer", "minimum": 0 },
+      "highlight": { "type": "boolean", "default": false }
+    }
+  }
+}

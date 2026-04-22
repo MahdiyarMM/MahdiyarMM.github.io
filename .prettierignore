@@ -1,0 +1,16 @@
+node_modules
+images/originals
+images/*.webp
+images/*.jpg
+images/*.png
+images/*.ico
+*.min.js
+*.min.css
+sitemap.xml
+robots.txt
+feed.xml
+scholar_data.json
+.htmlvalidatecache
+posts/*.html
+research.html
+particles.js

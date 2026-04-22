@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COVID-CXNet: Open Chest X-ray Dataset and Detection Model for COVID-19 — Mahdiyar Molahasani</title>
+  <meta name="description" content="One of the earliest large-scale open datasets and detection models for COVID-19 on frontal chest X-rays." />
+  <meta name="keywords" content="Medical Imaging, COVID-19, Open Dataset" />
+  <meta name="author" content="Mahdiyar Molahasani" />
+
+  <meta property="og:title" content="COVID-CXNet: Open Chest X-ray Dataset and Detection Model for COVID-19" />
+  <meta property="og:description" content="One of the earliest large-scale open datasets and detection models for COVID-19 on frontal chest X-rays." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://mahdiyar.ai/posts/covid-cxnet" />
+  <meta property="og:image" content="https://mahdiyar.ai/images/og-cover.jpg?v=20260421-18" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="COVID-CXNet: Open Chest X-ray Dataset and Detection Model for COVID-19" />
+  <meta name="twitter:description" content="One of the earliest large-scale open datasets and detection models for COVID-19 on frontal chest X-rays." />
+  <meta name="twitter:image" content="https://mahdiyar.ai/images/og-cover.jpg?v=20260421-18" />
+
+  <link rel="canonical" href="https://mahdiyar.ai/posts/covid-cxnet" />
+  <link rel="alternate" type="application/rss+xml" title="Mahdiyar Molahasani feed" href="/feed.xml" />
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/images/icon.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/images/icon-512.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=optional" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/styles/modern.css?v=20260421-18" />
+  <link rel="prefetch" href="/images/icons.svg" as="image" type="image/svg+xml" />
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"COVID-CXNet: Open Chest X-ray Dataset and Detection Model for COVID-19","headline":"COVID-CXNet: Open Chest X-ray Dataset and Detection Model for COVID-19","description":"One of the earliest large-scale open datasets and detection models for COVID-19 on frontal chest X-rays.","image":"https://mahdiyar.ai/images/covid-320.jpeg","keywords":"Medical Imaging, COVID-19, Open Dataset","datePublished":"2021-09-15","author":{"@type":"Person","name":"Mahdiyar Molahasani","url":"https://mahdiyar.ai/"},"isPartOf":{"@type":"WebSite","name":"Mahdiyar Molahasani","url":"https://mahdiyar.ai/"},"url":"https://mahdiyar.ai/posts/covid-cxnet"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mahdiyar.ai/"},{"@type":"ListItem","position":2,"name":"Notes","item":"https://mahdiyar.ai/posts/"},{"@type":"ListItem","position":3,"name":"COVID-CXNet: Open Chest X-ray Dataset and Detection Model for COVID-19","item":"https://mahdiyar.ai/posts/covid-cxnet"}]}</script>
+</head>
+<body class="project-page post-page">
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="sr-announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <header class="header" role="banner">
+    <div class="header-content">
+      <a href="/" class="brand" aria-label="Mahdiyar Molahasani - Home">Mahdiyar Molahasani</a>
+      <nav role="navigation" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/research">Research</a>
+        <a href="/posts/" aria-current="page">Notes</a>
+        <a data-site-link="cv" href="#" hidden rel="noopener" aria-label="Download CV (PDF)">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="project-main">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/posts/">Notes</a></li>
+        <li aria-current="page">COVID-CXNet</li>
+      </ol>
+    </nav>
+
+    <article class="project-article">
+      <header class="project-header">
+        <p class="project-eyebrow">Deep dive · Multimedia Tools and Applications · 2021</p>
+        <h1 class="project-title">COVID-CXNet: Open Chest X-ray Dataset and Detection Model for COVID-19</h1>
+        <p class="project-tagline">One of the earliest large-scale open datasets and detection models for COVID-19 on frontal chest X-rays.</p>
+        <ul class="project-tags"><li class="project-tag">Medical Imaging</li><li class="project-tag">COVID-19</li><li class="project-tag">Open Dataset</li></ul>
+        <div class="project-links"><a class="project-link" href="https://link.springer.com/article/10.1007/s11042-022-13822-y" target="_blank" rel="noopener noreferrer">Journal</a><a class="project-link" href="https://arxiv.org/abs/2006.13807" target="_blank" rel="noopener noreferrer">arXiv</a><a class="project-link" href="https://github.com/armiro/COVID-CXNet" target="_blank" rel="noopener noreferrer">Code &amp; data</a></div>
+      </header>
+
+      <figure class="project-figure">
+        <picture>
+            <source type="image/webp" srcset="/images/covid-160.webp 160w, /images/covid-320.webp 320w, /images/covid-480.webp 480w, /images/covid-640.webp 640w, /images/covid-800.webp 800w, /images/covid-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 700px" />
+            <source type="image/jpeg" srcset="/images/covid-160.jpeg 160w, /images/covid-320.jpeg 320w, /images/covid-480.jpeg 480w, /images/covid-640.jpeg 640w, /images/covid-800.jpeg 800w, /images/covid-1200.jpeg 1200w" sizes="(max-width: 700px) 100vw, 700px" />
+            <img src="/images/covid-640.jpeg" alt="COVID-CXNet pipeline: chest X-rays crowdsourced from GitHub, Twitter, SIRM and Radiopaedia pass through CLAHE and BEASF enhancement plates into the COVID-CXNet model (with a CheXNet/DenseNet-121 baseline) and out to a clinical decision-support workstation showing a saliency heatmap and structured findings." loading="lazy" decoding="async" width="640" height="640" />
+          </picture>
+        <figcaption>COVID-CXNet pipeline: chest X-rays crowdsourced from GitHub, Twitter, SIRM and Radiopaedia pass through CLAHE and BEASF enhancement plates into the COVID-CXNet model (with a CheXNet/DenseNet-121 baseline) and out to a clinical decision-support workstation showing a saliency heatmap and structured findings.</figcaption>
+      </figure>
+
+      <section aria-labelledby="problem-heading">
+        <h2 id="problem-heading">Problem</h2>
+        <p>In early 2020, COVID-19 chest X-ray data was scattered, small-scale, and inconsistent — making it nearly impossible to train robust detectors or compare methods fairly. Many published &#39;COVID-vs-normal&#39; classifiers were quietly memorizing dataset artifacts rather than disease features.</p>
+      </section>
+
+      <section aria-labelledby="approach-heading">
+        <h2 id="approach-heading">Approach</h2>
+        <p>We assembled what was, at the time, the largest publicly available COVID-19 frontal CXR collection by harmonizing multiple public sources, deduplicating cases, and standardizing preprocessing. On top of this dataset we trained COVID-CXNet, a CheXNet-based detector with explicit calibration and class-activation analysis to verify that predictions track radiologically meaningful regions rather than dataset shortcuts.</p>
+      </section>
+
+      <section aria-labelledby="results-heading">
+        <h2 id="results-heading">Key results</h2>
+        <ul class="project-bullets"><li>Open-sourced the largest curated frontal CXR COVID dataset of its time, used by dozens of follow-up studies.</li><li>Detection accuracy competitive with much larger proprietary models, with attention maps that overlap with radiologist regions of interest.</li><li>Highlighted concrete shortcut-learning risks (lateral markers, hospital-specific text overlays) that the community widely adopted as part of standard preprocessing.</li></ul>
+      </section>
+
+      <section aria-labelledby="takeaways-heading">
+        <h2 id="takeaways-heading">Takeaways</h2>
+        <ul class="project-bullets"><li>Dataset curation is research: a careful open dataset can move a sub-field faster than a new architecture.</li><li>Class-activation maps are a cheap but powerful sanity check against shortcut learning in medical imaging.</li><li>Reproducibility and provenance matter more than peak accuracy when results inform clinical conversations.</li></ul>
+      </section>
+
+      <section class="project-related" aria-labelledby="related-heading">
+        <h2 id="related-heading">Related publications</h2>
+        <ul class="project-related-list"><li><a href="https://link.springer.com/article/10.1007/s11042-022-12156-z" target="_blank" rel="noopener noreferrer">COVID-CXNet: Detecting COVID-19 in Frontal Chest X-ray Images</a> <span class="related-venue">— Multimedia Tools and Applications, 2021</span></li><li><a href="https://arxiv.org/abs/2012.13666" target="_blank" rel="noopener noreferrer">Automated Tooth Extraction and Caries Detection</a> <span class="related-venue">— IEEE International Symposium on Circuits and Systems (ISCAS), 2020</span></li><li><a href="https://link.springer.com/article/10.1007/s11042-020-09489-y" target="_blank" rel="noopener noreferrer">High-scale Prostate MRI Super-Resolution with MSG-CapsGAN</a> <span class="related-venue">— Multimedia Tools and Applications, 2021</span></li></ul>
+      </section>
+
+      <footer class="project-cta">
+        <a class="btn btn-primary" href="/research#paper-covid-cxnet">View paper on Research page</a>
+        <a class="btn btn-secondary" href="/posts/">All notes</a>
+        <a class="btn btn-secondary" href="mailto:m.molahasani.m@gmail.com?subject=About%20COVID-CXNet%3A%20Open%20Chest%20X-ray%20Dataset%20and%20Detection%20Model%20for%20COVID-19">Get in touch</a>
+      </footer>
+    </article>
+  </main>
+
+  <footer role="contentinfo" class="site-footer">
+    <p>&copy; <span id="year-now">2026</span> Mahdiyar Molahasani. All rights reserved.</p>
+    <p class="site-footer-meta">Last updated <time datetime="2026-04-22">2026-04-22</time></p>
+  </footer>
+
+  <script src="/js/site-data.js?v=20260421-18" defer></script>
+  <script src="/js/modern.js?v=20260421-18" defer></script>
+</body>
+</html>
