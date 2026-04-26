@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mockups — Pick a direction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: #0e0f13;
+        color: #ecedf2;
+        font-size: 16px;
+        line-height: 1.6;
+        min-height: 100vh;
+        background-image:
+          radial-gradient(900px 500px at 10% 0%, rgba(183, 148, 244, 0.18), transparent 60%),
+          radial-gradient(800px 500px at 100% 30%, rgba(94, 234, 212, 0.12), transparent 65%);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 56px 28px 80px;
+      }
+      header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        flex-wrap: wrap;
+        padding-bottom: 28px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      header h1 {
+        font-family: "Instrument Serif", serif;
+        font-weight: 400;
+        font-size: 56px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        margin: 0 0 8px;
+      }
+      header h1 em {
+        font-style: italic;
+        color: #b794f4;
+      }
+      header p {
+        color: #a4abc0;
+        max-width: 60ch;
+        margin: 0;
+      }
+      header .meta {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: #6b7186;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .grid {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+      }
+      .card {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        transition:
+          transform 0.3s,
+          border-color 0.3s,
+          box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+        min-height: 480px;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255, 255, 255, 0.22);
+        box-shadow: 0 30px 80px -30px rgba(183, 148, 244, 0.4);
+      }
+      .preview {
+        height: 280px;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .preview iframe {
+        width: 200%;
+        height: 200%;
+        border: 0;
+        transform: scale(0.5);
+        transform-origin: top left;
+        pointer-events: none;
+        background: #fff;
+      }
+      .body {
+        padding: 22px 24px 24px;
+      }
+      .num {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: #5eead4;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+      .body h3 {
+        font-family: "Instrument Serif", serif;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 1.05;
+        letter-spacing: -0.01em;
+        margin: 0 0 8px;
+      }
+      .body p {
+        color: #a4abc0;
+        font-size: 14.5px;
+        margin: 0 0 12px;
+      }
+      .tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: #c8c2e0;
+      }
+      .open {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      footer {
+        margin-top: 56px;
+        padding-top: 28px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: #6b7186;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      @media (max-width: 760px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .preview {
+          height: 220px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div>
+          <h1>Pick a <em>direction</em>.</h1>
+          <p>
+            Four distinct visual languages for your site. Open each one full-screen, react honestly — what feels like
+            <em>you</em>, what feels off. We'll merge the winning vibe(s) into the real site.
+          </p>
+        </div>
+        <div class="meta">04 mockups · 2026·04·25</div>
+      </header>
+
+      <div class="grid">
+        <a class="card" href="01-editorial.html" target="_blank" rel="noopener">
+          <span class="open">Open ↗</span>
+          <div class="preview"><iframe src="01-editorial.html" loading="lazy" title="Editorial mockup"></iframe></div>
+          <div class="body">
+            <div class="num">Mockup 01</div>
+            <h3>Editorial · Research Journal</h3>
+            <p>
+              Magazine-style spread. Big serif display, asymmetric grid, drop caps, cream paper, single rust accent.
+              Reads like a quarterly. Confident, considered, "old money for researchers."
+            </p>
+            <div class="tags">
+              <span class="tag">Fraunces</span><span class="tag">Cream</span><span class="tag">Editorial</span
+              ><span class="tag">Quiet</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card" href="02-terminal.html" target="_blank" rel="noopener">
+          <span class="open">Open ↗</span>
+          <div class="preview"><iframe src="02-terminal.html" loading="lazy" title="Terminal mockup"></iframe></div>
+          <div class="body">
+            <div class="num">Mockup 02</div>
+            <h3>Lab Notebook · Terminal</h3>
+            <p>
+              Dark, monospace-led, status bars and tickers. ASCII timeline, notebook-style project cards, log feed.
+              Strong "ML researcher who builds" signal — but warmer than typical hacker sites.
+            </p>
+            <div class="tags">
+              <span class="tag">JetBrains Mono</span><span class="tag">Phosphor green</span
+              ><span class="tag">Dense</span><span class="tag">Technical</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card" href="03-brutalist.html" target="_blank" rel="noopener">
+          <span class="open">Open ↗</span>
+          <div class="preview"><iframe src="03-brutalist.html" loading="lazy" title="Brutalist mockup"></iframe></div>
+          <div class="body">
+            <div class="num">Mockup 03</div>
+            <h3>Modern Brutalist · Bold Type</h3>
+            <p>
+              Massive type. Hard edges, thick rules, marquee strip, electric accents. Stands out in any portfolio
+              gallery. Designer-y, high-personality, says "I'm not a template."
+            </p>
+            <div class="tags">
+              <span class="tag">Space Grotesk</span><span class="tag">Acid lime</span><span class="tag">Loud</span
+              ><span class="tag">Memorable</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card" href="04-cinematic.html" target="_blank" rel="noopener">
+          <span class="open">Open ↗</span>
+          <div class="preview"><iframe src="04-cinematic.html" loading="lazy" title="Cinematic mockup"></iframe></div>
+          <div class="body">
+            <div class="num">Mockup 04</div>
+            <h3>Cinematic · Atmospheric</h3>
+            <p>
+              Dark gradient mesh, glassmorphism, glowing portrait ring, lavender / teal palette. Premium, founder-y,
+              modern. Like a Linear or Vercel-tier landing page applied to a researcher.
+            </p>
+            <div class="tags">
+              <span class="tag">Instrument Serif</span><span class="tag">Aurora</span><span class="tag">Glass</span
+              ><span class="tag">Premium</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <footer>
+        <span>How to give feedback: open each, then jot which sections feel right and which feel off.</span>
+        <span>Mix &amp; match welcome.</span>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v2 · 04 — Essayist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --bg-soft: #fafbfd;
+        --ink: #0f172a;
+        --ink-2: #2a3548;
+        --muted: #64748b;
+        --rule: #e6eaf0;
+        --rule-soft: #eef1f6;
+        --primary: #2563eb;
+        --primary-soft: rgba(37, 99, 235, 0.08);
+        --primary-deep: #1d4ed8;
+        --accent: #f59e0b;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          "Inter",
+          -apple-system,
+          sans-serif;
+        font-size: 17px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--primary-deep);
+      }
+
+      #neural {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(14px) saturate(140%);
+        border-bottom: 1px solid var(--rule);
+      }
+      .header-in {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 14px 28px;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+      }
+      .brand {
+        font-weight: 700;
+        font-size: 17px;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+      .brand-mark {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        margin-right: 10px;
+        position: relative;
+        vertical-align: -2px;
+      }
+      .brand-mark::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+      }
+      .nav {
+        margin-left: auto;
+        display: flex;
+        gap: 4px;
+      }
+      .nav a {
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 14.5px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .nav a:hover {
+        color: var(--ink);
+        background: var(--rule-soft);
+        text-decoration: none;
+      }
+      .nav a.is-current {
+        color: var(--ink);
+        background: var(--rule-soft);
+      }
+      .availability {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--rule);
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+      .narrow {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+
+      /* Hero — single column, thesis first */
+      .hero {
+        padding: 96px 0 56px;
+        text-align: left;
+      }
+      .hero-row {
+        display: flex;
+        gap: 36px;
+        align-items: center;
+        margin-bottom: 36px;
+      }
+      .hero-photo {
+        position: relative;
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid var(--rule);
+        box-shadow: 0 16px 32px -16px rgba(15, 23, 42, 0.25);
+        flex-shrink: 0;
+      }
+      .hero-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .hero-id .name {
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .hero-id .title {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .hero-id .title b {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      .thesis {
+        font-size: clamp(34px, 4.6vw, 56px);
+        line-height: 1.12;
+        letter-spacing: -0.022em;
+        font-weight: 600;
+        margin: 0 0 24px;
+        max-width: 22ch;
+      }
+      .thesis em {
+        font-style: normal;
+        background: linear-gradient(135deg, var(--primary), var(--accent) 90%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .lede {
+        font-size: 19px;
+        line-height: 1.65;
+        color: var(--ink-2);
+        max-width: 60ch;
+        margin: 0 0 28px;
+      }
+      .lede b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 20px;
+        border-radius: 10px;
+        font-weight: 500;
+        font-size: 14.5px;
+        border: 1.5px solid var(--rule);
+        background: #fff;
+        color: var(--ink);
+        transition:
+          transform 0.2s,
+          border-color 0.2s,
+          box-shadow 0.2s,
+          background 0.2s;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        border-color: var(--ink-2);
+        text-decoration: none;
+      }
+      .btn.primary {
+        background: var(--ink);
+        color: #fff;
+        border-color: var(--ink);
+      }
+      .btn.primary:hover {
+        background: #000;
+        color: #fff;
+      }
+
+      /* Stats — small inline ticker */
+      .ticker {
+        margin-top: 56px;
+        padding: 18px 0;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+        display: flex;
+        gap: 36px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        color: var(--muted);
+        flex-wrap: wrap;
+      }
+      .ticker .it b {
+        color: var(--ink);
+        font-weight: 700;
+        font-size: 17px;
+        margin-right: 4px;
+      }
+      .ticker .it .l {
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 11px;
+      }
+
+      /* Sections */
+      .section {
+        padding: 84px 0;
+      }
+      .section + .section {
+        border-top: 1px solid var(--rule);
+      }
+      .section-eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 14px;
+      }
+      .section-title {
+        font-size: clamp(30px, 3.6vw, 42px);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+        margin: 0 0 36px;
+      }
+      .section-title .all {
+        font-size: 13px;
+        font-weight: 500;
+        font-family: "JetBrains Mono", monospace;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-left: 16px;
+        vertical-align: 7px;
+      }
+
+      /* Essay list — featured-first then list */
+      .essay-feat {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 36px;
+        align-items: center;
+        padding: 36px 0;
+        border-top: 1px solid var(--ink);
+        border-bottom: 1px solid var(--rule);
+      }
+      .essay-feat .meta {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+      .essay-feat .meta b {
+        color: var(--primary);
+      }
+      .essay-feat h3 {
+        font-size: clamp(26px, 3vw, 36px);
+        line-height: 1.15;
+        letter-spacing: -0.015em;
+        margin: 0 0 16px;
+        font-weight: 600;
+      }
+      .essay-feat p {
+        font-size: 17px;
+        color: var(--ink-2);
+        margin: 0 0 16px;
+      }
+      .essay-feat .read {
+        font-size: 14px;
+        color: var(--primary);
+        font-weight: 500;
+      }
+      .essay-feat .visual {
+        background:
+          radial-gradient(400px 250px at 30% 30%, rgba(37, 99, 235, 0.18), transparent 60%),
+          radial-gradient(400px 250px at 70% 70%, rgba(245, 158, 11, 0.18), transparent 60%), var(--bg-soft);
+        border: 1px solid var(--rule);
+        border-radius: 18px;
+        height: 260px;
+        position: relative;
+        overflow: hidden;
+      }
+      .essay-feat .visual .nodes {
+        position: absolute;
+        inset: 0;
+      }
+
+      .essay-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .essay-list a {
+        display: grid;
+        grid-template-columns: 110px 1fr auto;
+        gap: 28px;
+        padding: 22px 0;
+        border-bottom: 1px solid var(--rule);
+        text-decoration: none;
+        color: inherit;
+        align-items: baseline;
+        transition: background 0.15s;
+      }
+      .essay-list a:hover {
+        background: var(--bg-soft);
+      }
+      .essay-list .when {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .essay-list .t {
+        font-size: 19px;
+        font-weight: 600;
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+      }
+      .essay-list .t .deck {
+        display: block;
+        font-size: 14.5px;
+        font-weight: 400;
+        color: var(--muted);
+        margin-top: 4px;
+        letter-spacing: 0;
+      }
+      .essay-list .read {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      /* Research — minimal list */
+      .papers {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .papers li {
+        display: grid;
+        grid-template-columns: 90px 1fr 200px;
+        gap: 28px;
+        padding: 18px 0;
+        border-top: 1px solid var(--rule);
+        align-items: baseline;
+      }
+      .papers li:first-child {
+        border-top: 1px solid var(--ink);
+      }
+      .papers .v {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--primary);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .papers .t {
+        font-size: 17px;
+        font-weight: 500;
+        letter-spacing: -0.005em;
+      }
+      .papers .t a {
+        color: var(--ink);
+      }
+      .papers .t a:hover {
+        color: var(--primary);
+      }
+      .papers .tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        color: var(--muted);
+        letter-spacing: 0.06em;
+      }
+
+      /* Newsletter / CTA */
+      .nl {
+        margin: 0 auto;
+        max-width: 720px;
+        padding: 40px 36px;
+        border: 1px solid var(--rule);
+        border-radius: 18px;
+        background:
+          radial-gradient(700px 200px at 0% 0%, rgba(37, 99, 235, 0.06), transparent 60%),
+          radial-gradient(500px 200px at 100% 100%, rgba(245, 158, 11, 0.05), transparent 60%), #fff;
+      }
+      .nl h3 {
+        font-size: 24px;
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+        margin: 0 0 8px;
+        font-weight: 700;
+      }
+      .nl p {
+        color: var(--ink-2);
+        margin: 0 0 18px;
+        font-size: 15.5px;
+      }
+      .nl form {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .nl input {
+        flex: 1;
+        min-width: 200px;
+        padding: 11px 14px;
+        font-size: 15px;
+        border: 1.5px solid var(--rule);
+        border-radius: 10px;
+        font-family: inherit;
+        color: var(--ink);
+        outline: none;
+        transition: border-color 0.15s;
+      }
+      .nl input:focus {
+        border-color: var(--primary);
+      }
+      .nl .meta {
+        margin-top: 14px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      footer {
+        margin-top: 24px;
+        padding: 28px 28px 56px;
+        border-top: 1px solid var(--rule);
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      footer a {
+        color: var(--ink-2);
+        margin-left: 16px;
+      }
+
+      @media (max-width: 880px) {
+        .essay-feat {
+          grid-template-columns: 1fr;
+        }
+        .essay-feat .visual {
+          height: 180px;
+        }
+        .essay-list a {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+        .essay-list .read {
+          display: none;
+        }
+        .papers li {
+          grid-template-columns: 1fr;
+          gap: 4px;
+        }
+        .papers .tag {
+          color: var(--muted);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="neural" aria-hidden="true"></canvas>
+
+    <header class="header">
+      <div class="header-in">
+        <a class="brand" href="#"><span class="brand-mark"></span>Mahdiyar Molahasani</a>
+        <nav class="nav">
+          <a class="is-current" href="#">Home</a>
+          <a href="#">Notes</a>
+          <a href="#">Research</a>
+          <a href="#">CV</a>
+        </nav>
+        <span class="availability">● Open to collaboration</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div class="hero-row">
+          <div class="hero-photo">
+            <img src="../images/me2-480.jpeg" alt="Mahdiyar Molahasani" />
+          </div>
+          <div class="hero-id">
+            <div class="name">Mahdiyar Molahasani</div>
+            <div class="title"><b>ML Researcher II</b> at Captura · PhD, Queen's · NeurIPS '24 Top Reviewer</div>
+          </div>
+        </div>
+
+        <h1 class="thesis">
+          The next decade of AI<br />
+          will be <em>won at the seam</em>,<br />
+          not at the frontier.
+        </h1>
+        <p class="lede">
+          I'm an <b>ML researcher and applied AI thinker</b>. By day I ship vision systems at <b>Captura</b> — semantic
+          search, intelligent culling, color, and the deep models behind images at scale. The rest of the time I think
+          and write about where the real returns of this decade actually come from: not the largest model in the world,
+          but the layer between capable models and industries that don't yet know how to use them.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#essays">Read the essays →</a>
+          <a class="btn" href="#research">Research</a>
+          <a class="btn" href="mailto:m.molahasani.m@gmail.com">Get in touch</a>
+        </div>
+
+        <div class="ticker">
+          <span class="it"><b>609+</b><span class="l">Citations</span></span>
+          <span class="it"><b>10</b><span class="l">H-Index</span></span>
+          <span class="it"><b>18</b><span class="l">Publications</span></span>
+          <span class="it"><b>8+</b><span class="l">Years Research</span></span>
+          <span class="it"><b>ICCV · AAAI · NeurIPS · ICASSP</b><span class="l">Venues</span></span>
+        </div>
+      </section>
+
+      <section class="section" id="essays">
+        <div class="section-eyebrow">§ Notes &amp; Essays</div>
+        <h2 class="section-title">Writing<span class="all">View all →</span></h2>
+
+        <article class="essay-feat">
+          <div>
+            <div class="meta"><b>Featured essay</b> · 2026·04 · 9 min read</div>
+            <h3>The applied AI seam.</h3>
+            <p>
+              The last decade of AI returns went to the people training the largest models. The next decade will go to
+              the people who can move them into industries that have never seen a floating-point operation. Here's why —
+              and what kind of work that creates.
+            </p>
+            <p><span class="read">Read essay →</span></p>
+          </div>
+          <div class="visual" aria-hidden="true">
+            <canvas class="nodes"></canvas>
+          </div>
+        </article>
+
+        <ul class="essay-list">
+          <li>
+            <a href="#">
+              <span class="when">2026·03</span>
+              <span class="t"
+                >Generalization is a product feature.<span class="deck"
+                  >Why every applied AI team is going to start caring about distribution shift, whether they want to or
+                  not.</span
+                ></span
+              >
+              <span class="read">7 min</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="when">2026·02</span>
+              <span class="t"
+                >Where foundation models earn their keep.<span class="deck"
+                  >The base models are commodity at the API layer. The margin is in the wrapper that knows your
+                  domain.</span
+                ></span
+              >
+              <span class="read">5 min</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="when">2026·01</span>
+              <span class="t"
+                >Notes on debiasing without data.<span class="deck"
+                  >A walk through the intuition behind PRISM — and why "data-free" should be a first-class research
+                  direction, not a footnote.</span
+                ></span
+              >
+              <span class="read">8 min</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="when">2025·12</span>
+              <span class="t"
+                >The quiet machinery of applied vision.<span class="deck"
+                  >Good systems disappear. Here's what the disappearing looks like, end to end, in production
+                  photography.</span
+                ></span
+              >
+              <span class="read">11 min</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section" id="research">
+        <div class="section-eyebrow">§ Research</div>
+        <h2 class="section-title">Selected papers<span class="all">All 18 →</span></h2>
+
+        <ul class="papers">
+          <li>
+            <span class="v">ICCV '25</span>
+            <span class="t"
+              ><a href="#">PRISM — Debiasing Vision-Language Models with a Data-Free Linear Correction</a></span
+            >
+            <span class="tag">VLM · Fairness · Data-free</span>
+          </li>
+          <li>
+            <span class="v">AAAI '25</span>
+            <span class="t"><a href="#">FedGaLA — Federated Domain Generalization via Gradient Alignment</a></span>
+            <span class="tag">Federated · DG</span>
+          </li>
+          <li>
+            <span class="v">NeurIPS WS '24</span>
+            <span class="t"><a href="#">Continual Domain Generalization under Distributed Constraints</a></span>
+            <span class="tag">Continual · DG</span>
+          </li>
+          <li>
+            <span class="v">ICIP '21</span>
+            <span class="t"><a href="#">Robust Single-Image Super-Resolution under Realistic Degradations</a></span>
+            <span class="tag">Super-Resolution</span>
+          </li>
+          <li>
+            <span class="v">MTAP '21</span>
+            <span class="t"><a href="#">COVID-CXNet — An Open Chest X-ray Dataset and Detection Baseline</a></span>
+            <span class="tag">Medical · Dataset</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="nl">
+          <h3>Get the essays in your inbox.</h3>
+          <p>
+            One email a month, on applied AI, generalization, and what the next decade of this technology actually looks
+            like in industry. No spam, no AI hype.
+          </p>
+          <form onsubmit="event.preventDefault()">
+            <input type="email" placeholder="you@somewhere.com" />
+            <button class="btn primary" type="submit">Subscribe →</button>
+          </form>
+          <div class="meta">~600 subscribers · monthly · unsubscribe anytime</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 Mahdiyar Molahasani · Last updated 2026·04·25</span>
+      <span><a href="#">Email</a><a href="#">LinkedIn</a><a href="#">GitHub</a><a href="#">Scholar</a></span>
+    </footer>
+
+    <script>
+      // Background neural net
+      (function () {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const cv = document.getElementById("neural");
+        if (!cv) return;
+        const ctx = cv.getContext("2d");
+        let W,
+          H,
+          DPR = Math.min(window.devicePixelRatio || 1, 2);
+        const NODES = 55,
+          EDGE = 165;
+        const nodes = [];
+        const mouse = { x: -9999, y: -9999 };
+        function resize() {
+          W = cv.clientWidth = window.innerWidth;
+          H = cv.clientHeight = window.innerHeight;
+          cv.width = W * DPR;
+          cv.height = H * DPR;
+          ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        }
+        function init() {
+          nodes.length = 0;
+          for (let i = 0; i < NODES; i++)
+            nodes.push({
+              x: Math.random() * W,
+              y: Math.random() * H,
+              vx: (Math.random() - 0.5) * 0.13,
+              vy: (Math.random() - 0.5) * 0.13,
+              r: 1.1 + Math.random() * 1.4,
+              a: 0.2 + Math.random() * 0.35,
+            });
+        }
+        function step() {
+          ctx.clearRect(0, 0, W, H);
+          for (let i = 0; i < nodes.length; i++) {
+            const a = nodes[i];
+            for (let j = i + 1; j < nodes.length; j++) {
+              const b = nodes[j];
+              const dx = a.x - b.x,
+                dy = a.y - b.y,
+                d2 = dx * dx + dy * dy;
+              if (d2 < EDGE * EDGE) {
+                const d = Math.sqrt(d2),
+                  o = (1 - d / EDGE) * 0.22;
+                ctx.strokeStyle = "rgba(37,99,235," + o.toFixed(3) + ")";
+                ctx.lineWidth = 0.6;
+                ctx.beginPath();
+                ctx.moveTo(a.x, a.y);
+                ctx.lineTo(b.x, b.y);
+                ctx.stroke();
+              }
+            }
+          }
+          for (const n of nodes) {
+            const dx = n.x - mouse.x,
+              dy = n.y - mouse.y,
+              d2 = dx * dx + dy * dy;
+            if (d2 < 170 * 170) {
+              const d = Math.sqrt(d2),
+                o = (1 - d / 170) * 0.45;
+              ctx.strokeStyle = "rgba(245,158,11," + o.toFixed(3) + ")";
+              ctx.lineWidth = 0.7;
+              ctx.beginPath();
+              ctx.moveTo(mouse.x, mouse.y);
+              ctx.lineTo(n.x, n.y);
+              ctx.stroke();
+            }
+          }
+          for (const n of nodes) {
+            n.x += n.vx;
+            n.y += n.vy;
+            if (n.x < 0 || n.x > W) n.vx *= -1;
+            if (n.y < 0 || n.y > H) n.vy *= -1;
+            ctx.fillStyle = "rgba(37,99,235," + n.a.toFixed(2) + ")";
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          requestAnimationFrame(step);
+        }
+        window.addEventListener("resize", () => {
+          resize();
+          init();
+        });
+        window.addEventListener("mousemove", (e) => {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+        });
+        window.addEventListener("mouseleave", () => {
+          mouse.x = -9999;
+          mouse.y = -9999;
+        });
+        resize();
+        init();
+        step();
+      })();
+
+      // Featured essay visual — small contained mesh
+      (function () {
+        const cv = document.querySelector(".essay-feat .visual canvas");
+        if (!cv) return;
+        const ctx = cv.getContext("2d");
+        let W,
+          H,
+          DPR = Math.min(window.devicePixelRatio || 1, 2);
+        const nodes = [];
+        function resize() {
+          const wrap = cv.parentElement;
+          W = cv.width = wrap.clientWidth * DPR;
+          H = cv.height = wrap.clientHeight * DPR;
+          cv.style.width = wrap.clientWidth + "px";
+          cv.style.height = wrap.clientHeight + "px";
+          ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        }
+        function init() {
+          nodes.length = 0;
+          const w = cv.clientWidth || cv.parentElement.clientWidth;
+          const h = cv.clientHeight || cv.parentElement.clientHeight;
+          for (let i = 0; i < 30; i++) {
+            nodes.push({
+              x: Math.random() * w,
+              y: Math.random() * h,
+              vx: (Math.random() - 0.5) * 0.2,
+              vy: (Math.random() - 0.5) * 0.2,
+              r: 1.2 + Math.random() * 1.6,
+              a: 0.4 + Math.random() * 0.4,
+            });
+          }
+        }
+        function step() {
+          const w = cv.clientWidth || cv.parentElement.clientWidth;
+          const h = cv.clientHeight || cv.parentElement.clientHeight;
+          ctx.clearRect(0, 0, w, h);
+          for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+              const a = nodes[i],
+                b = nodes[j];
+              const dx = a.x - b.x,
+                dy = a.y - b.y,
+                d = Math.sqrt(dx * dx + dy * dy);
+              if (d < 120) {
+                const o = (1 - d / 120) * 0.45;
+                ctx.strokeStyle = "rgba(37,99,235," + o.toFixed(3) + ")";
+                ctx.lineWidth = 0.7;
+                ctx.beginPath();
+                ctx.moveTo(a.x, a.y);
+                ctx.lineTo(b.x, b.y);
+                ctx.stroke();
+              }
+            }
+          }
+          for (const n of nodes) {
+            n.x += n.vx;
+            n.y += n.vy;
+            if (n.x < 0 || n.x > w) n.vx *= -1;
+            if (n.y < 0 || n.y > h) n.vy *= -1;
+            ctx.fillStyle = "rgba(37,99,235," + n.a.toFixed(2) + ")";
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          requestAnimationFrame(step);
+        }
+        window.addEventListener("resize", () => {
+          resize();
+          init();
+        });
+        resize();
+        init();
+        step();
+      })();
+    </script>
+  </body>
+</html>

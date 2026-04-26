@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mockups v2 — Pick a direction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: #fafbfd;
+        color: #0f172a;
+        font-size: 16px;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 56px 28px 80px;
+      }
+      header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        flex-wrap: wrap;
+        padding-bottom: 28px;
+        border-bottom: 1px solid #e6eaf0;
+      }
+      header h1 {
+        font-size: 48px;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+        margin: 0 0 8px;
+      }
+      header h1 em {
+        font-style: normal;
+        background: linear-gradient(135deg, #2563eb, #f59e0b);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      header p {
+        color: #64748b;
+        max-width: 60ch;
+        margin: 0;
+        font-size: 16.5px;
+      }
+      header .meta {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: #94a3b8;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .grid {
+        margin-top: 36px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+      }
+      .card {
+        position: relative;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #fff;
+        border: 1px solid #e6eaf0;
+        transition:
+          transform 0.25s,
+          border-color 0.25s,
+          box-shadow 0.25s;
+        display: flex;
+        flex-direction: column;
+      }
+      .card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(37, 99, 235, 0.35);
+        box-shadow: 0 30px 60px -30px rgba(37, 99, 235, 0.25);
+      }
+      .preview {
+        height: 320px;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid #e6eaf0;
+      }
+      .preview iframe {
+        width: 200%;
+        height: 200%;
+        border: 0;
+        transform: scale(0.5);
+        transform-origin: top left;
+        pointer-events: none;
+        background: #fff;
+      }
+      .body {
+        padding: 22px 24px 24px;
+      }
+      .num {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: #2563eb;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .body h3 {
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        margin: 0 0 8px;
+      }
+      .body p {
+        color: #64748b;
+        font-size: 14.5px;
+        margin: 0 0 12px;
+      }
+      .tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: #f1f5f9;
+        color: #334155;
+      }
+      .open {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid #e6eaf0;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #2563eb;
+        backdrop-filter: blur(6px);
+      }
+      .note {
+        margin-top: 36px;
+        padding: 18px 22px;
+        background: rgba(37, 99, 235, 0.05);
+        border: 1px solid rgba(37, 99, 235, 0.15);
+        border-radius: 14px;
+        font-size: 14.5px;
+        color: #1e293b;
+      }
+      .note b {
+        color: #2563eb;
+      }
+      footer {
+        margin-top: 56px;
+        padding-top: 28px;
+        border-top: 1px solid #e6eaf0;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: #94a3b8;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      @media (max-width: 760px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .preview {
+          height: 240px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div>
+          <h1>Pick a direction <em>(round 2).</em></h1>
+          <p>
+            Four refinements of your current site. All clean, all light, all keep the neural-net particles — but each
+            pushes a different aspect: typography, founder/thinker positioning, knowledge-graph visualization, or
+            essayist lean.
+          </p>
+        </div>
+        <div class="meta">04 mockups · v2 · 2026·04·25</div>
+      </header>
+
+      <div class="note">
+        <b>Reading order:</b> these all keep your existing site's bones — same sections, same circular photo, same blue
+        accent, same Inter type. The differences are in <i>narrative emphasis</i> and
+        <i>how the neural-net background works</i>. Tell me which sections in which mockups feel right; we'll mix.
+      </div>
+
+      <div class="grid">
+        <a class="card" href="v2-01-refined.html" target="_blank" rel="noopener">
+          <span class="open">Open ↗</span>
+          <div class="preview"><iframe src="v2-01-refined.html" loading="lazy" title="Refined"></iframe></div>
+          <div class="body">
+            <div class="num">v2 · 01 — Refined</div>
+            <h3>Your site, dialed in.</h3>
+            <p>
+              The closest to what you have. Same structure, but with editorial typography, a thinker pull-quote,
+              animated dashed rings on the portrait, smarter neural-net particles that respond to your cursor in amber,
+              and section eyebrows. Restraint, polish, no new ideas.
+            </p>
+            <div class="tags">
+              <span class="tag">Inter</span><span class="tag">Pull-quote</span
+              ><span class="tag">Cursor-reactive particles</span><span class="tag">Refined</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card" href="v2-02-founder.html" target="_blank" rel="noopener">
+          <span class="open">Open ↗</span>
+          <div class="preview"><iframe src="v2-02-founder.html" loading="lazy" title="Founder"></iframe></div>
+          <div class="body">
+            <div class="num">v2 · 02 — Founder + Thinker</div>
+            <h3>"Researcher today. Founder, eventually."</h3>
+            <p>
+              Reframes the hero around your actual positioning — researcher who's becoming an entrepreneur. Adds
+              <i>Now → Building / Thinking / Writing</i> cards under the hero, a "Principles" section (3 things you've
+              come to believe), and an essays row alongside research.
+            </p>
+            <div class="tags">
+              <span class="tag">Now-row</span><span class="tag">Principles</span><span class="tag">Essays</span
+              ><span class="tag">Founder voice</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card" href="v2-03-knowledge-graph.html" target="_blank" rel="noopener">
+          <span class="open">Open ↗</span>
+          <div class="preview">
+            <iframe src="v2-03-knowledge-graph.html" loading="lazy" title="Knowledge Graph"></iframe>
+          </div>
+          <div class="body">
+            <div class="num">v2 · 03 — Knowledge Graph</div>
+            <h3>Particles that mean something.</h3>
+            <p>
+              The hero background <i>is</i> the neural-net — but each labeled node is one of your real research areas
+              (Vision, VLMs, Federated, Generalization, Fairness, Continual). Edges connect related topics. Below, those
+              same six nodes get full mini-cards. Strong "AI thinker" signal — your site literally shows your map.
+            </p>
+            <div class="tags">
+              <span class="tag">Labeled nodes</span><span class="tag">Topic edges</span
+              ><span class="tag">Live graph</span><span class="tag">Thinker</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card" href="v2-04-essayist.html" target="_blank" rel="noopener">
+          <span class="open">Open ↗</span>
+          <div class="preview"><iframe src="v2-04-essayist.html" loading="lazy" title="Essayist"></iframe></div>
+          <div class="body">
+            <div class="num">v2 · 04 — Essayist</div>
+            <h3>Lead with the thesis.</h3>
+            <p>
+              One-column, narrower layout. Hero leads with a strong thesis statement, not a job title. Citation stats
+              become a horizontal ticker rule. Essays come <i>before</i> research on the page — signaling you're a
+              thinker first. Adds a small newsletter capture at the bottom.
+            </p>
+            <div class="tags">
+              <span class="tag">Thesis hero</span><span class="tag">Essays first</span
+              ><span class="tag">Newsletter</span><span class="tag">Naval-ish</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <footer>
+        <span>Open each. Tell me what works, what doesn't. Mix &amp; match welcome.</span>
+        <span>v2 · 2026·04·25</span>
+      </footer>
+    </div>
+  </body>
+</html>

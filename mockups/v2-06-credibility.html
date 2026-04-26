@@ -1,0 +1,1516 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v2 · 06 — Credibility-Forward</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --bg-soft: #f8fafc;
+        --ink: #0f172a;
+        --ink-2: #334155;
+        --muted: #64748b;
+        --rule: #e6eaf0;
+        --rule-soft: #f1f5f9;
+        --primary: #2563eb;
+        --primary-soft: rgba(37, 99, 235, 0.08);
+        --primary-deep: #1d4ed8;
+        --accent: #f59e0b;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          "Inter",
+          -apple-system,
+          sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--primary-deep);
+      }
+
+      .hero-wrap {
+        position: relative;
+        overflow: hidden;
+      }
+      #kg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(14px) saturate(140%);
+        border-bottom: 1px solid var(--rule);
+      }
+      .header-in {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 14px 28px;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+      }
+      .brand {
+        font-weight: 700;
+        font-size: 17px;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+      .avail {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        padding: 5px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--rule);
+        color: var(--muted);
+        margin-left: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .avail::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #22c55e;
+        animation: pulse 1.8s ease-in-out infinite;
+        flex-shrink: 0;
+      }
+      @keyframes pulse {
+        50% {
+          opacity: 0.4;
+        }
+      }
+      .nav {
+        display: flex;
+        gap: 4px;
+      }
+      .nav a {
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 14.5px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .nav a:hover {
+        color: var(--ink);
+        background: var(--rule-soft);
+        text-decoration: none;
+      }
+      .nav a.is-current {
+        color: var(--ink);
+        background: var(--rule-soft);
+      }
+
+      .container {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 28px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 80px 0 48px;
+        display: grid;
+        grid-template-columns: 1.45fr 1fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 22px;
+      }
+      .chip {
+        padding: 5px 12px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-family: "JetBrains Mono", monospace;
+        border: 1px solid var(--rule);
+        color: var(--ink-2);
+        background: #fff;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .chip.now {
+        border-color: var(--primary);
+        color: var(--primary);
+        background: var(--primary-soft);
+      }
+      .chip.now::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--primary);
+        animation: pulse 1.6s ease-in-out infinite;
+        flex-shrink: 0;
+      }
+      .hero h1 {
+        font-size: clamp(40px, 5.2vw, 66px);
+        line-height: 1.08;
+        letter-spacing: -0.025em;
+        font-weight: 700;
+        margin: 0 0 20px;
+      }
+      .hero h1 .num {
+        font-size: clamp(50px, 7vw, 88px);
+        display: block;
+        line-height: 0.95;
+        background: linear-gradient(135deg, var(--primary), #6366f1 50%, var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 4px;
+      }
+      .hero h1 .sub {
+        font-weight: 300;
+        color: var(--ink-2);
+        font-size: clamp(22px, 3vw, 36px);
+        letter-spacing: -0.015em;
+      }
+      .lede {
+        font-size: 18.5px;
+        line-height: 1.62;
+        color: var(--ink-2);
+        max-width: 54ch;
+        margin: 0 0 26px;
+      }
+      .lede b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 20px;
+        border-radius: 10px;
+        font-weight: 500;
+        font-size: 14.5px;
+        border: 1.5px solid var(--rule);
+        background: #fff;
+        color: var(--ink);
+        transition:
+          transform 0.2s,
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        border-color: var(--ink-2);
+        text-decoration: none;
+      }
+      .btn.primary {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+        box-shadow: 0 6px 18px -8px rgba(37, 99, 235, 0.55);
+      }
+      .btn.primary:hover {
+        background: var(--primary-deep);
+        border-color: var(--primary-deep);
+        color: #fff;
+        box-shadow: 0 12px 28px -10px rgba(37, 99, 235, 0.65);
+      }
+      .topic-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .tp {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 5px 11px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid var(--rule);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--ink-2);
+        backdrop-filter: blur(6px);
+      }
+      .tp .d {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+      }
+
+      /* Portrait */
+      .portrait {
+        justify-self: center;
+        position: relative;
+        width: 300px;
+        height: 300px;
+      }
+      .portrait .pr {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid var(--rule);
+        box-shadow: 0 30px 70px -30px rgba(15, 23, 42, 0.25);
+      }
+      .portrait .pr img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .portrait .ring {
+        position: absolute;
+        inset: -18px;
+        border-radius: 50%;
+        border: 1px dashed rgba(37, 99, 235, 0.25);
+        animation: rot 35s linear infinite;
+      }
+      .portrait .ring2 {
+        position: absolute;
+        inset: -34px;
+        border-radius: 50%;
+        border: 1px dashed rgba(37, 99, 235, 0.14);
+        animation: rot 70s linear infinite reverse;
+      }
+      @keyframes rot {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .portrait .loc {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        background: #fff;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        padding: 5px 13px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        white-space: nowrap;
+        box-shadow: 0 8px 18px -10px rgba(15, 23, 42, 0.18);
+      }
+
+      /* Stats ticker */
+      .ticker {
+        padding: 14px 0;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 28px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12.5px;
+        color: var(--muted);
+        align-items: center;
+      }
+      .ticker .it b {
+        color: var(--ink);
+        font-weight: 700;
+        font-size: 16px;
+        margin-right: 4px;
+      }
+      .ticker .it .l {
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 11px;
+      }
+      .ticker .sep {
+        color: var(--rule);
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1;
+      }
+      .ticker .venues {
+        font-size: 12px;
+        color: var(--ink-2);
+      }
+      .ticker .venues b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* ── Credential trust strip ── */
+      .trust {
+        background: var(--bg-soft);
+        border-bottom: 1px solid var(--rule);
+      }
+      .trust-in {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 28px 28px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+      }
+      .trust-group {
+        padding: 0 32px;
+        border-left: 1px solid var(--rule);
+      }
+      .trust-group:first-child {
+        padding-left: 0;
+        border-left: none;
+      }
+      .trust-group .tk {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+      .trust-logos {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      .trust-logos img {
+        filter: grayscale(80%) opacity(0.65);
+        transition:
+          filter 0.25s,
+          transform 0.25s;
+        cursor: default;
+      }
+      .trust-logos img:hover {
+        filter: none;
+        transform: scale(1.04);
+      }
+      .trust-logos img.h32 {
+        height: 32px;
+        width: auto;
+      }
+      .trust-logos img.h44 {
+        height: 44px;
+        width: auto;
+      }
+      .conf-chips {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .conf-chip {
+        padding: 5px 11px;
+        border-radius: 999px;
+        border: 1px solid var(--rule);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        color: var(--ink-2);
+        background: #fff;
+        font-weight: 500;
+      }
+
+      /* Sections */
+      .section {
+        padding: 80px 0;
+        border-top: 1px solid var(--rule);
+      }
+      .section-eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 14px;
+      }
+      .section-title {
+        font-size: clamp(30px, 3.6vw, 44px);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+        margin: 0;
+      }
+      .sh {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 48px;
+        margin-bottom: 36px;
+      }
+      .sh-alt {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-bottom: 36px;
+      }
+      .section-deck {
+        font-size: 16.5px;
+        color: var(--ink-2);
+        max-width: 56ch;
+        align-self: end;
+      }
+
+      /* ── Education — magazine full-bleed campus photo cards ── */
+      .edu-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .edu-card {
+        border: 1px solid var(--rule);
+        border-radius: 20px;
+        overflow: hidden;
+        background: #fff;
+        transition:
+          transform 0.28s,
+          box-shadow 0.28s;
+      }
+      .edu-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 28px 60px -32px rgba(15, 23, 42, 0.22);
+      }
+      /* Campus photo as full magazine-cover top */
+      .edu-card .media {
+        position: relative;
+        height: 240px;
+        overflow: hidden;
+      }
+      .edu-card .media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.9s;
+      }
+      .edu-card:hover .media img {
+        transform: scale(1.05);
+      }
+      /* Gradient overlay — dark at bottom so text reads over it */
+      .edu-card .media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 0%, rgba(15, 23, 42, 0.65) 100%);
+      }
+      /* Text + logo reversed out over photo */
+      .edu-card .media-text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        padding: 18px 22px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .edu-card .media-text .univ {
+        color: #fff;
+      }
+      .edu-card .media-text .univ .when {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        opacity: 0.75;
+        margin-bottom: 4px;
+      }
+      .edu-card .media-text .univ .uname {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+      /* Logo badge — white bg pill in the corner over photo */
+      .edu-card .media-text .logo-badge {
+        background: #fff;
+        border-radius: 12px;
+        padding: 6px 10px;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .edu-card .media-text .logo-badge img {
+        display: block;
+      }
+      .edu-card .media-text .logo-badge img.h36 {
+        height: 36px;
+        width: auto;
+      }
+      .edu-card .media-text .logo-badge img.h44 {
+        height: 44px;
+        width: auto;
+      }
+      /* Card body below photo */
+      .edu-body {
+        padding: 20px 22px 26px;
+      }
+      .edu-body h3 {
+        font-size: 19px;
+        font-weight: 700;
+        line-height: 1.25;
+        margin: 0 0 6px;
+        letter-spacing: -0.01em;
+      }
+      .edu-body .thesis {
+        font-size: 14px;
+        color: var(--ink-2);
+        font-style: italic;
+        margin: 0 0 12px;
+      }
+      .edu-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .edu-meta span {
+        padding: 3px 9px;
+        background: var(--rule-soft);
+        border-radius: 999px;
+        font-size: 12.5px;
+        color: var(--ink-2);
+      }
+      .edu-meta .gpa {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      /* Pull quote */
+      .pull {
+        margin: 36px 0 0;
+        padding: 32px 40px;
+        background: var(--bg-soft);
+        border: 1px solid var(--rule);
+        border-left: 3px solid var(--primary);
+        border-radius: 0 14px 14px 0;
+        max-width: 62ch;
+        position: relative;
+      }
+      .pull .qq {
+        font-size: 80px;
+        color: var(--primary);
+        position: absolute;
+        top: -12px;
+        left: 20px;
+        line-height: 1;
+        font-family: Georgia, serif;
+        opacity: 0.4;
+      }
+      .pull blockquote {
+        font-size: clamp(19px, 2.2vw, 24px);
+        line-height: 1.4;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        margin: 0 0 14px;
+        color: var(--ink);
+      }
+      .pull cite {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-style: normal;
+      }
+
+      /* Featured projects */
+      .feat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .feat {
+        text-decoration: none;
+        color: inherit;
+        background: #fff;
+        border: 1px solid var(--rule);
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.25s,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .feat:hover {
+        transform: translateY(-3px);
+        border-color: rgba(37, 99, 235, 0.4);
+        box-shadow: 0 22px 50px -28px rgba(37, 99, 235, 0.35);
+      }
+      .feat .media {
+        aspect-ratio: 16/10;
+        overflow: hidden;
+        border-bottom: 1px solid var(--rule);
+      }
+      .feat .media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s;
+      }
+      .feat:hover .media img {
+        transform: scale(1.04);
+      }
+      .feat .body {
+        padding: 18px 20px 22px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .feat .ey {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 6px;
+      }
+      .feat h3 {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.3;
+        margin: 0 0 6px;
+        letter-spacing: -0.01em;
+      }
+      .feat p {
+        font-size: 14.5px;
+        color: var(--muted);
+        margin: 0;
+      }
+      .feat .arrow {
+        margin-top: 14px;
+        font-size: 13px;
+        color: var(--primary);
+        font-weight: 500;
+      }
+
+      /* Papers table */
+      .papers {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .papers thead th {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 500;
+        text-align: left;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--ink);
+      }
+      .papers thead th:first-child {
+        padding-left: 0;
+      }
+      .papers tbody tr {
+        border-bottom: 1px solid var(--rule);
+        transition: background 0.15s;
+      }
+      .papers tbody tr:hover {
+        background: var(--bg-soft);
+      }
+      .papers td {
+        padding: 16px 12px;
+        vertical-align: top;
+      }
+      .papers td:first-child {
+        padding-left: 0;
+      }
+      .papers .v {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--primary);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .papers .t {
+        font-size: 17px;
+        font-weight: 500;
+        letter-spacing: -0.005em;
+      }
+      .papers .t a {
+        color: var(--ink);
+      }
+      .papers .t a:hover {
+        color: var(--primary);
+      }
+      .papers .tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      /* Experience timeline with prominent logos */
+      .tl {
+        display: grid;
+        grid-template-columns: 180px 1fr auto;
+        gap: 32px;
+        padding: 22px 0;
+        border-top: 1px solid var(--rule);
+        align-items: start;
+      }
+      .tl:first-child {
+        border-top: 1px solid var(--ink);
+      }
+      .tl-when {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding-top: 4px;
+      }
+      .tl.now .tl-when {
+        color: var(--primary);
+        font-weight: 600;
+      }
+      .tl-role {
+        font-size: 19px;
+        font-weight: 600;
+        margin: 0 0 4px;
+        letter-spacing: -0.01em;
+      }
+      .tl-org {
+        color: var(--muted);
+        font-size: 14px;
+        margin: 0 0 10px;
+      }
+      .tl-note {
+        font-size: 14.5px;
+        color: var(--ink-2);
+        max-width: 62ch;
+      }
+      .tl-logo {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        min-width: 130px;
+      }
+      .tl-logo img {
+        max-height: 36px;
+        width: auto;
+        filter: grayscale(75%) opacity(0.65);
+        transition: filter 0.25s;
+      }
+      .tl-logo img:hover {
+        filter: none;
+      }
+      .tl-logo img.h48 {
+        max-height: 52px;
+      }
+
+      /* Recognition */
+      .recog-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .recog-card {
+        padding: 22px 24px;
+        border: 1px solid var(--rule);
+        border-radius: 14px;
+        background: #fff;
+      }
+      .recog-card .ico {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: var(--primary-soft);
+        color: var(--primary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin-bottom: 14px;
+      }
+      .recog-card h4 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 0 0 10px;
+        letter-spacing: -0.005em;
+      }
+      .recog-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+        color: var(--ink-2);
+      }
+      .recog-card li {
+        padding: 4px 0;
+      }
+      .recog-card li b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      footer {
+        margin-top: 24px;
+        padding: 28px 28px 56px;
+        border-top: 1px solid var(--rule);
+        max-width: 1180px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      footer a {
+        color: var(--ink-2);
+        margin-left: 16px;
+      }
+
+      @media (max-width: 880px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .portrait {
+          width: 230px;
+          height: 230px;
+          justify-self: start;
+        }
+        .trust-in {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .trust-group {
+          padding: 0;
+          border-left: none;
+          border-top: 1px solid var(--rule);
+          padding-top: 20px;
+        }
+        .trust-group:first-child {
+          padding-top: 0;
+          border-top: none;
+        }
+        .sh,
+        .sh-alt {
+          grid-template-columns: 1fr;
+          flex-direction: column;
+          gap: 12px;
+        }
+        .edu-grid,
+        .feat-grid {
+          grid-template-columns: 1fr;
+        }
+        .tl {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+        .tl-logo {
+          justify-content: flex-start;
+        }
+        .recog-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero-wrap">
+      <canvas id="kg" aria-hidden="true"></canvas>
+
+      <header class="header">
+        <div class="header-in">
+          <a class="brand" href="#">Mahdiyar Molahasani</a>
+          <nav class="nav">
+            <a class="is-current" href="#">Home</a>
+            <a href="#">Research</a>
+            <a href="#">Notes</a>
+            <a href="#">CV</a>
+          </nav>
+          <span class="avail">Open to collaboration</span>
+        </div>
+      </header>
+
+      <div class="container">
+        <section class="hero">
+          <div>
+            <div class="chips">
+              <span class="chip now">Currently building at Captura</span>
+              <span class="chip">PhD, Queen's</span>
+              <span class="chip">NeurIPS '24 Top Reviewer</span>
+            </div>
+            <h1>
+              <span class="num">18 papers.<br />609 citations.</span>
+              <span class="sub">Now building what's next.</span>
+            </h1>
+            <p class="lede">
+              I'm a <b>ML researcher and applied AI thinker</b> — PhD from Queen's University, GPA 4.3, 18 publications
+              in ICCV, AAAI, NeurIPS, and more. Today I'm <b>ML Researcher II at Captura</b>, shipping vision into
+              production photography. The next chapter is building something of my own.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="#">View research</a>
+              <a class="btn" href="#">Read essays</a>
+              <a class="btn" href="mailto:m.molahasani.m@gmail.com">Get in touch</a>
+            </div>
+            <div class="topic-pills">
+              <span class="tp"><span class="d" style="background: #2563eb"></span>Computer Vision</span>
+              <span class="tp"><span class="d" style="background: #8b5cf6"></span>Foundation Models / VLMs</span>
+              <span class="tp"><span class="d" style="background: #14b8a6"></span>Federated Learning</span>
+              <span class="tp"><span class="d" style="background: #f59e0b"></span>Domain Generalization</span>
+              <span class="tp"><span class="d" style="background: #f43f5e"></span>Fairness</span>
+              <span class="tp"><span class="d" style="background: #16a34a"></span>Continual Learning</span>
+            </div>
+          </div>
+
+          <div class="portrait">
+            <span class="ring"></span>
+            <span class="ring2"></span>
+            <div class="pr">
+              <img src="../images/me2-480.jpeg" alt="Mahdiyar Molahasani" />
+            </div>
+            <div class="loc">@mahdiyar.ai · Raleigh, NC</div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="ticker">
+        <span class="it"><b>609+</b><span class="l">Citations</span></span>
+        <span class="sep">·</span>
+        <span class="it"><b>10</b><span class="l">H-Index</span></span>
+        <span class="sep">·</span>
+        <span class="it"><b>18</b><span class="l">Publications</span></span>
+        <span class="sep">·</span>
+        <span class="it"><b>8+</b><span class="l">Years Research</span></span>
+        <span class="sep">·</span>
+        <span class="venues"
+          ><b>ICCV</b> · <b>AAAI</b> · <b>NeurIPS</b> · <b>ICASSP</b> · <b>ICIP</b>&nbsp;<span
+            style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase"
+            >venues</span
+          ></span
+        >
+      </div>
+    </div>
+
+    <!-- Credential trust strip -->
+    <div class="trust">
+      <div class="trust-in">
+        <div class="trust-group">
+          <div class="tk">Employment</div>
+          <div class="trust-logos">
+            <img src="../images/captura_logo-240.png" alt="Captura" class="h32" />
+            <img src="../images/outlier_logo.svg" alt="Outlier AI" class="h32" />
+          </div>
+        </div>
+        <div class="trust-group">
+          <div class="tk">Education</div>
+          <div class="trust-logos">
+            <img src="../images/Queens_logo-240.png" alt="Queen's University" class="h44" />
+            <img src="../images/usask_logo.svg" alt="University of Saskatchewan" class="h32" />
+          </div>
+        </div>
+        <div class="trust-group">
+          <div class="tk">Published at</div>
+          <div class="conf-chips">
+            <span class="conf-chip">ICCV</span>
+            <span class="conf-chip">AAAI</span>
+            <span class="conf-chip">NeurIPS</span>
+            <span class="conf-chip">ICASSP</span>
+            <span class="conf-chip">ICIP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main class="container">
+      <!-- Education — magazine full-bleed cards -->
+      <section class="section">
+        <div class="sh">
+          <div>
+            <div class="section-eyebrow">§ Education</div>
+            <h2 class="section-title">Academic pedigree.</h2>
+          </div>
+          <p class="section-deck">
+            PhD and M.Sc. from two of Canada's strong engineering schools — both with perfect GPAs and thesis work that
+            became the research foundation for everything since.
+          </p>
+        </div>
+        <div class="edu-grid">
+          <div class="edu-card">
+            <div class="media">
+              <img src="../images/queens_campus-600.jpeg" alt="Queen's University campus" loading="lazy" />
+              <div class="media-text">
+                <div class="univ">
+                  <div class="when">2021 – 2025</div>
+                  <div class="uname">Queen's University</div>
+                </div>
+                <div class="logo-badge">
+                  <img src="../images/Queens_logo-240.png" alt="" class="h44" loading="lazy" />
+                </div>
+              </div>
+            </div>
+            <div class="edu-body">
+              <h3>Ph.D. — Electrical &amp; Computer Engineering</h3>
+              <p class="thesis">Thesis: Advancing Generalization in Deep Representation Learning</p>
+              <div class="edu-meta">
+                <span class="gpa">GPA 4.3 / 4.3</span>
+                <span>Domain Generalization</span>
+                <span>Federated Learning</span>
+                <span>Continual Learning</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="edu-card">
+            <div class="media">
+              <img src="../images/usask_campus-800.jpeg" alt="University of Saskatchewan campus" loading="lazy" />
+              <div class="media-text">
+                <div class="univ">
+                  <div class="when">2019 – 2021</div>
+                  <div class="uname">University of Saskatchewan</div>
+                </div>
+                <div class="logo-badge">
+                  <img src="../images/usask_logo.svg" alt="" class="h36" loading="lazy" />
+                </div>
+              </div>
+            </div>
+            <div class="edu-body">
+              <h3>M.Sc. — Electrical &amp; Computer Engineering</h3>
+              <p class="thesis">Thesis: Deep Learning for Robust Super-resolution</p>
+              <div class="edu-meta">
+                <span class="gpa">GPA 4.0 / 4.0</span>
+                <span>Medical Imaging</span>
+                <span>Super-resolution</span>
+                <span>AI for Healthcare</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Working belief + pull quote -->
+      <section class="section">
+        <div class="sh">
+          <div>
+            <div class="section-eyebrow">A Working Belief</div>
+            <h2 class="section-title">What I'm working toward.</h2>
+          </div>
+          <p class="section-deck">
+            The most interesting AI work over the next decade won't happen at the frontier of model capability — it'll
+            happen at the seam between capable models and real industries that don't yet know how to use them.
+          </p>
+        </div>
+        <div class="pull">
+          <span class="qq">"</span>
+          <blockquote>
+            Good systems disappear. The image gets sorted, the bad shot gets dropped, the color comes out right — and
+            nobody asks how. That gap, between a model and a system that quietly works, is where I spend my time.
+          </blockquote>
+          <cite>— Mahdiyar, on building applied AI</cite>
+        </div>
+      </section>
+
+      <!-- Featured projects -->
+      <section class="section">
+        <div class="sh-alt">
+          <div>
+            <div class="section-eyebrow">§ Featured Work</div>
+            <h2 class="section-title">Selected research, in long form.</h2>
+          </div>
+          <p class="section-deck">
+            Three deep dives that represent the through-line — debiasing, federation, and open benchmarks.
+          </p>
+        </div>
+        <div class="feat-grid">
+          <a class="feat" href="#">
+            <div class="media"><img src="../images/PRISM_cover_sqr-640.jpeg" alt="PRISM" /></div>
+            <div class="body">
+              <div class="ey">ICCV 2025 · VLM</div>
+              <h3>PRISM — debiasing CLIP without data</h3>
+              <p>Linear correction over frozen embeddings, driven by language alone. No labels, no retraining.</p>
+              <span class="arrow">Read deep dive →</span>
+            </div>
+          </a>
+          <a class="feat" href="#">
+            <div class="media"><img src="../images/FedGaLA_nb-640.jpeg" alt="FedGaLA" /></div>
+            <div class="body">
+              <div class="ey">AAAI 2025 · Federated</div>
+              <h3>FedGaLA — federated DG, unsupervised</h3>
+              <p>First framework for unsupervised federated domain generalization.</p>
+              <span class="arrow">Read deep dive →</span>
+            </div>
+          </a>
+          <a class="feat" href="#">
+            <div class="media"><img src="../images/covid-640.jpeg" alt="COVID-CXNet" /></div>
+            <div class="body">
+              <div class="ey">MTAP 2021 · Open Dataset</div>
+              <h3>COVID-CXNet — open CXR benchmark</h3>
+              <p>Open dataset and detection baseline cited by hundreds of independent studies.</p>
+              <span class="arrow">Read deep dive →</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Selected papers -->
+      <section class="section">
+        <div class="sh-alt">
+          <div>
+            <div class="section-eyebrow">§ Research</div>
+            <h2 class="section-title">
+              Selected papers.<span
+                style="
+                  font-size: 13px;
+                  font-weight: 500;
+                  color: var(--muted);
+                  letter-spacing: 0.12em;
+                  text-transform: uppercase;
+                  vertical-align: 7px;
+                  margin-left: 16px;
+                  font-family: &quot;JetBrains Mono&quot;, monospace;
+                "
+                >All 18 →</span
+              >
+            </h2>
+          </div>
+          <p class="section-deck">A curated index — venue · title · tag.</p>
+        </div>
+        <table class="papers">
+          <thead>
+            <tr>
+              <th>Venue</th>
+              <th>Title</th>
+              <th>Tags</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="v">ICCV '25</td>
+              <td class="t">
+                <a href="#">PRISM — Debiasing Vision-Language Models with a Data-Free Linear Correction</a>
+              </td>
+              <td class="tag">VLM · Fairness · Data-free</td>
+            </tr>
+            <tr>
+              <td class="v">AAAI '25</td>
+              <td class="t"><a href="#">FedGaLA — Federated Domain Generalization via Gradient Alignment</a></td>
+              <td class="tag">Federated · DG</td>
+            </tr>
+            <tr>
+              <td class="v">ICASSP '25</td>
+              <td class="t"><a href="#">FedSB — Federated Learning with Selective Bias Suppression</a></td>
+              <td class="tag">Federated · Bias</td>
+            </tr>
+            <tr>
+              <td class="v">NeurIPS WS '24</td>
+              <td class="t"><a href="#">Continual Domain Generalization under Distributed Constraints</a></td>
+              <td class="tag">Continual · DG</td>
+            </tr>
+            <tr>
+              <td class="v">ICIP '23</td>
+              <td class="t"><a href="#">Domain-Invariant Feature Learning under Federated Constraints</a></td>
+              <td class="tag">Federated · DG</td>
+            </tr>
+            <tr>
+              <td class="v">MTAP '21</td>
+              <td class="t"><a href="#">COVID-CXNet — An Open Chest X-ray Dataset and Detection Baseline</a></td>
+              <td class="tag">Medical · Dataset</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Experience with prominent logos -->
+      <section class="section">
+        <div class="sh-alt">
+          <div>
+            <div class="section-eyebrow">§ Experience</div>
+            <h2 class="section-title">Industry &amp; research trajectory.</h2>
+          </div>
+        </div>
+        <div>
+          <div class="tl now">
+            <div class="tl-when">Jun 2025 — Now</div>
+            <div>
+              <h3 class="tl-role">ML Researcher II</h3>
+              <p class="tl-org">Captura · Vancouver, BC (based in Raleigh, NC)</p>
+              <p class="tl-note">
+                Leading applied ML research for AI image enhancement and management in volume photography. Building
+                reusable infrastructure, prototyping product-facing features.
+              </p>
+            </div>
+            <div class="tl-logo"><img src="../images/captura_logo-240.png" alt="Captura" /></div>
+          </div>
+          <div class="tl">
+            <div class="tl-when">2024 — 2025</div>
+            <div>
+              <h3 class="tl-role">Expert LLM Trainer &amp; Evaluator</h3>
+              <p class="tl-org">Outlier AI · Remote</p>
+              <p class="tl-note">Multimodal AI evaluation; advanced validation tasks for reasoning quality.</p>
+            </div>
+            <div class="tl-logo"><img src="../images/outlier_logo.svg" alt="Outlier AI" /></div>
+          </div>
+          <div class="tl">
+            <div class="tl-when">2021 — 2025</div>
+            <div>
+              <h3 class="tl-role">Graduate Research Assistant (PhD)</h3>
+              <p class="tl-org">Queen's University · Kingston, ON</p>
+              <p class="tl-note">Generalization in deep representation learning — federated, continual, fair.</p>
+            </div>
+            <div class="tl-logo"><img src="../images/Queens_logo-240.png" alt="Queen's" class="h48" /></div>
+          </div>
+          <div class="tl">
+            <div class="tl-when">2019 — 2021</div>
+            <div>
+              <h3 class="tl-role">Graduate Research Assistant (M.Sc.)</h3>
+              <p class="tl-org">University of Saskatchewan</p>
+              <p class="tl-note">Deep learning for medical imaging and super-resolution.</p>
+            </div>
+            <div class="tl-logo"><img src="../images/usask_logo.svg" alt="USask" /></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recognition -->
+      <section class="section">
+        <div class="sh-alt">
+          <div>
+            <div class="section-eyebrow">§ Recognition</div>
+            <h2 class="section-title">Awards &amp; service.</h2>
+          </div>
+        </div>
+        <div class="recog-grid">
+          <div class="recog-card">
+            <div class="ico">★</div>
+            <h4>Top Reviewer · NeurIPS 2024</h4>
+            <ul>
+              <li>Selected for top-tier review quality — complimentary registration.</li>
+              <li>Top Reviewer, AAAI 2023 Workshop on Responsible Human-Centric AI.</li>
+            </ul>
+          </div>
+          <div class="recog-card">
+            <div class="ico">◇</div>
+            <h4>Fellowships</h4>
+            <ul>
+              <li><b>Graduate Research Fellowship</b> · Queen's · 2021–2025</li>
+              <li><b>Devolved Scholarship</b> · USask · 2020–2021</li>
+              <li><b>Graduate Research Scholarship</b> · USask · 2019–2021</li>
+            </ul>
+          </div>
+          <div class="recog-card">
+            <div class="ico">∿</div>
+            <h4>Peer Review</h4>
+            <ul>
+              <li><b>Conferences:</b> NeurIPS, ICLR, ICML, AAAI, AISTATS</li>
+              <li><b>Journals:</b> TMLR, IEEE TMM, IEEE TAI</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 Mahdiyar Molahasani · Last updated 2026·04·25</span>
+      <span><a href="#">Email</a><a href="#">LinkedIn</a><a href="#">GitHub</a><a href="#">Scholar</a></span>
+    </footer>
+
+    <script>
+      (function () {
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const cv = document.getElementById("kg");
+        if (!cv) return;
+        const wrap = cv.parentElement;
+        const ctx = cv.getContext("2d");
+        let W,
+          H,
+          DPR = Math.min(window.devicePixelRatio || 1, 2);
+        const TOPICS = [
+          { name: "Vision", color: "rgba(37,99,235,1)", soft: "rgba(37,99,235,0.12)" },
+          { name: "VLMs", color: "rgba(139,92,246,1)", soft: "rgba(139,92,246,0.12)" },
+          { name: "Federated", color: "rgba(20,184,166,1)", soft: "rgba(20,184,166,0.12)" },
+          { name: "Generalization", color: "rgba(245,158,11,1)", soft: "rgba(245,158,11,0.12)" },
+          { name: "Fairness", color: "rgba(244,63,94,1)", soft: "rgba(244,63,94,0.12)" },
+          { name: "Continual", color: "rgba(22,163,74,1)", soft: "rgba(22,163,74,0.12)" },
+        ];
+        const labeled = [],
+          filler = [];
+        const mouse = { x: -9999, y: -9999 };
+        function resize() {
+          W = cv.width = wrap.clientWidth * DPR;
+          H = cv.height = wrap.clientHeight * DPR;
+          cv.style.width = wrap.clientWidth + "px";
+          cv.style.height = wrap.clientHeight + "px";
+          ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        }
+        function init() {
+          labeled.length = 0;
+          filler.length = 0;
+          const w = wrap.clientWidth,
+            h = wrap.clientHeight;
+          for (let i = 0; i < TOPICS.length; i++) {
+            const t = TOPICS[i];
+            const angle = (i / TOPICS.length) * Math.PI * 2 - Math.PI / 2;
+            labeled.push({
+              x: w * 0.5 + Math.cos(angle) * w * 0.34 + (Math.random() - 0.5) * 50,
+              y: h * 0.54 + Math.sin(angle) * h * 0.32 + (Math.random() - 0.5) * 40,
+              vx: (Math.random() - 0.5) * 0.11,
+              vy: (Math.random() - 0.5) * 0.11,
+              name: t.name,
+              color: t.color,
+              soft: t.soft,
+              r: 5,
+            });
+          }
+          for (let i = 0; i < 42; i++)
+            filler.push({
+              x: Math.random() * w,
+              y: Math.random() * h,
+              vx: (Math.random() - 0.5) * 0.16,
+              vy: (Math.random() - 0.5) * 0.16,
+              r: 1.1 + Math.random() * 1.4,
+              a: 0.18 + Math.random() * 0.3,
+            });
+        }
+        function step() {
+          const w = wrap.clientWidth,
+            h = wrap.clientHeight;
+          ctx.clearRect(0, 0, w, h);
+          for (let i = 0; i < labeled.length; i++) {
+            for (let j = i + 1; j < labeled.length; j++) {
+              const a = labeled[i],
+                b = labeled[j];
+              const dx = a.x - b.x,
+                dy = a.y - b.y,
+                d = Math.sqrt(dx * dx + dy * dy);
+              const o = Math.max(0, 1 - d / (Math.max(w, h) * 0.7)) * 0.17;
+              ctx.strokeStyle = "rgba(37,99,235," + o.toFixed(3) + ")";
+              ctx.lineWidth = 0.7;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+          }
+          for (const f of filler) {
+            let best = null,
+              bd = Infinity;
+            for (const l of labeled) {
+              const dx = f.x - l.x,
+                dy = f.y - l.y,
+                d2 = dx * dx + dy * dy;
+              if (d2 < bd) {
+                bd = d2;
+                best = l;
+              }
+            }
+            if (best && bd < 210 * 210) {
+              const d = Math.sqrt(bd),
+                o = (1 - d / 210) * 0.17;
+              ctx.strokeStyle = best.color.replace(",1)", "," + o.toFixed(3) + ")");
+              ctx.lineWidth = 0.6;
+              ctx.beginPath();
+              ctx.moveTo(f.x, f.y);
+              ctx.lineTo(best.x, best.y);
+              ctx.stroke();
+            }
+          }
+          for (const l of labeled) {
+            const dx = l.x - mouse.x,
+              dy = l.y - mouse.y,
+              d2 = dx * dx + dy * dy;
+            if (d2 < 200 * 200) {
+              const d = Math.sqrt(d2),
+                o = (1 - d / 200) * 0.42;
+              ctx.strokeStyle = "rgba(245,158,11," + o.toFixed(3) + ")";
+              ctx.lineWidth = 0.9;
+              ctx.beginPath();
+              ctx.moveTo(mouse.x, mouse.y);
+              ctx.lineTo(l.x, l.y);
+              ctx.stroke();
+            }
+          }
+          ctx.font = '500 12px "JetBrains Mono",monospace';
+          for (const f of filler) {
+            if (!reduce) {
+              f.x += f.vx;
+              f.y += f.vy;
+              if (f.x < 0 || f.x > w) f.vx *= -1;
+              if (f.y < 0 || f.y > h) f.vy *= -1;
+            }
+            ctx.fillStyle = "rgba(37,99,235," + f.a.toFixed(2) + ")";
+            ctx.beginPath();
+            ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          for (const l of labeled) {
+            if (!reduce) {
+              l.x += l.vx;
+              l.y += l.vy;
+              if (l.x < 50 || l.x > w - 50) l.vx *= -1;
+              if (l.y < 50 || l.y > h - 50) l.vy *= -1;
+            }
+            ctx.fillStyle = l.soft;
+            ctx.beginPath();
+            ctx.arc(l.x, l.y, 16, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = l.color;
+            ctx.beginPath();
+            ctx.arc(l.x, l.y, 5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = "rgba(15,23,42,.68)";
+            ctx.fillText(l.name, l.x + 12, l.y + 4);
+          }
+          if (!reduce) requestAnimationFrame(step);
+        }
+        window.addEventListener("resize", () => {
+          resize();
+          init();
+        });
+        window.addEventListener("mousemove", (e) => {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+        });
+        window.addEventListener("mouseleave", () => {
+          mouse.x = -9999;
+          mouse.y = -9999;
+        });
+        resize();
+        init();
+        step();
+      })();
+    </script>
+  </body>
+</html>

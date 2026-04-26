@@ -60,11 +60,11 @@
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)" />
 
-    <!-- Fonts -->
+    <!-- Modern Typography: Inter for body, Outfit for headings -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=optional"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@500&display=swap"
       rel="stylesheet"
     />
 
@@ -216,11 +216,16 @@
         <!-- Hero Section -->
         <section class="hero-section" aria-labelledby="hero-heading">
           <div class="hero-content">
-            <!-- Left: Name and Position -->
+            <!-- Left: Name, thesis, and position -->
             <div class="hero-left">
+              <div class="hero-credentials">
+                <span class="credential-pill credential-pill-current">ML Researcher II at Captura</span>
+                <span class="credential-pill">PhD, Queen's University</span>
+                <span class="credential-pill">Computer Vision + Generalization</span>
+              </div>
               <h1 id="hero-heading" class="hero-title">
-                <span class="greeting">Hello, I'm</span>
                 <span class="name-highlight">Mahdiyar Molahasani</span>
+                <span class="hero-punchline">Building AI that still works when the world changes.</span>
               </h1>
               <div class="hero-subtitle">
                 <span
@@ -238,6 +243,8 @@
             <!-- Right: Image -->
             <div class="hero-image">
               <div class="image-container">
+                <div class="portrait-ring ring-1" aria-hidden="true"></div>
+                <div class="portrait-ring ring-2" aria-hidden="true"></div>
                 <picture>
                   <source
                     type="image/webp"
@@ -259,11 +266,7 @@
                     decoding="async"
                   />
                 </picture>
-                <div class="image-overlay">
-                  <div class="overlay-content">
-                    <span class="overlay-text">Applied AI + Vision</span>
-                  </div>
-                </div>
+                <div class="hero-location-badge">Vancouver, BC</div>
               </div>
             </div>
           </div>
@@ -271,11 +274,18 @@
           <!-- Bio Section -->
           <div class="hero-bio">
             <p class="hero-description">
-              I develop cutting-edge, efficient ML solutions for the photography industry as an
-              <strong>ML Researcher II</strong> at <strong>Captura</strong>. My research focuses on
-              <strong>federated learning</strong>, <strong>domain generalization</strong>, and
-              <strong>continual learning</strong>.
+              ML Researcher II at <strong>Captura</strong>, where I build computer-vision and multimodal systems for the
+              photography industry. PhD from <strong>Queen's University</strong>; published at
+              <strong>ICCV, AAAI, and NeurIPS Workshop</strong>. I bridge the gap between academic research and
+              production-scale AI.
             </p>
+            <div class="hero-topic-pills">
+              <span><span class="topic-dot topic-dot-blue" aria-hidden="true"></span>Vision-Language Models</span>
+              <span><span class="topic-dot topic-dot-teal" aria-hidden="true"></span>Federated Learning</span>
+              <span><span class="topic-dot topic-dot-amber" aria-hidden="true"></span>Domain Generalization</span>
+              <span><span class="topic-dot topic-dot-rose" aria-hidden="true"></span>Fairness</span>
+              <span><span class="topic-dot topic-dot-green" aria-hidden="true"></span>Continual Learning</span>
+            </div>
           </div>
 
           <!-- Actions and Social -->
@@ -285,26 +295,6 @@
             <a href="mailto:m.molahasani.m@gmail.com?subject=Hello%20Mahdiyar" class="btn btn-secondary"
               >Get in Touch</a
             >
-          </div>
-
-          <!-- Metrics - Horizontal Line -->
-          <div class="hero-metrics">
-            <div class="stat-item">
-              <span class="stat-number" data-site="citations" data-animate="true">609</span>
-              <span class="stat-label">Citations</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number" data-site="h_index" data-animate="true">10</span>
-              <span class="stat-label">H-Index</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number"><span data-site="years_experience">8</span>+</span>
-              <span class="stat-label">Years Experience</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number" data-site="publications_count">18</span>
-              <span class="stat-label">Publications</span>
-            </div>
           </div>
 
           <div class="social-links" role="list" aria-label="Social media and professional links">
@@ -364,8 +354,8 @@
         >
           <h2 id="experience-timeline-heading" class="section-title">Experience Timeline</h2>
           <p class="section-subtitle">Industry + research trajectory</p>
-          <div class="timeline" role="list">
-            <article class="timeline-item is-current" role="listitem">
+          <div class="timeline stagger-container" role="list">
+            <article class="timeline-item is-current" role="listitem" data-reveal>
               <div class="timeline-date">Jun 2025 - Present</div>
               <div class="timeline-content">
                 <div class="timeline-header">
@@ -404,7 +394,7 @@
               </div>
             </article>
 
-            <article class="timeline-item" role="listitem">
+            <article class="timeline-item" role="listitem" data-reveal>
               <div class="timeline-date">May 2024 - May 2025</div>
               <div class="timeline-content">
                 <div class="timeline-header">
@@ -431,7 +421,7 @@
               </div>
             </article>
 
-            <article class="timeline-item" role="listitem">
+            <article class="timeline-item" role="listitem" data-reveal>
               <div class="timeline-date">May 2021 - May 2025</div>
               <div class="timeline-content">
                 <div class="timeline-header">
@@ -465,7 +455,7 @@
               </div>
             </article>
 
-            <article class="timeline-item" role="listitem">
+            <article class="timeline-item" role="listitem" data-reveal>
               <div class="timeline-date">May 2019 - Apr 2021</div>
               <div class="timeline-content">
                 <div class="timeline-header">
@@ -487,60 +477,123 @@
           </div>
         </section>
 
-        <!-- Research Section -->
+        <!-- Mission / Working Belief Section -->
+        <section class="mission-section" data-reveal>
+          <div class="mission-header">
+            <div class="mission-title-group">
+              <span class="mission-overline">A Working Belief</span>
+              <h2 class="mission-title">What I'm working toward.</h2>
+            </div>
+            <div class="mission-subtitle">
+              <p>
+                The next generation of meaningful AI companies will not be built by chasing models alone. They will come
+                from people who can translate intelligence into products, workflows, and institutions that change how
+                industries operate.
+              </p>
+            </div>
+          </div>
+
+          <div class="mission-quote-card">
+            <div class="quote-icon">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M3 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h4c0 3.5-1 4.5-4 4.5"
+                ></path>
+                <path
+                  d="M13 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2h-3c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h4c0 3.5-1 4.5-4 4.5"
+                ></path>
+              </svg>
+            </div>
+            <p class="quote-text" data-typewriter>
+              The best AI systems do not feel impressive for long. They become invisible. They remove friction, absorb
+              complexity, and quietly make the work better. That gap, between a model and a system that quietly works,
+              is where I spend my time.
+            </p>
+          </div>
+        </section>
+
+        <!-- Research Impact Section -->
         <section class="section" aria-labelledby="research-heading">
           <h2 id="research-heading" class="section-title">
             <a href="/research" aria-label="Open research page"
-              >Research
+              >Research Impact
               <svg class="icon icon-arrow-up-right" aria-hidden="true" focusable="false">
                 <use href="/images/icons.svg#i-arrow-up-right" /></svg
             ></a>
           </h2>
 
-          <div class="research-description">
-            AI scientist with more than <strong><span data-site="years_experience">8</span> years</strong> of research
-            experience. Published <strong><span data-site="publications_count">18</span></strong> impactful papers in
-            top venues (e.g. <strong>ICCV, AAAI, NeurIPS, ICASSP, ICIP,</strong> etc.) with
-            <strong><span data-site="citations">609</span>+</strong> citations. Proven expertise in
-            <strong>scalable AI systems, fairness, and computer vision</strong>, with a strong focus on advancing AI for
-            real-world applications through collaboration and practical solutions.
+          <div class="research-impact-dashboard">
+            <div class="impact-stats-grid">
+              <div class="impact-stat-card">
+                <span class="impact-stat-value" data-site="citations">609</span>
+                <span class="impact-stat-label">Citations</span>
+              </div>
+              <div class="impact-stat-card">
+                <span class="impact-stat-value" data-site="publications_count">18</span>
+                <span class="impact-stat-label">Papers</span>
+              </div>
+              <div class="impact-stat-card">
+                <span class="impact-stat-value" data-site="h_index">10</span>
+                <span class="impact-stat-label">H-Index</span>
+              </div>
+            </div>
+            <div class="research-narrative">
+              AI scientist with <strong>8+ years</strong> of research experience in vision-language models, federated
+              learning, and domain generalization. I bridge the gap between academic innovation and production-grade
+              computer vision systems for the photography industry.
+            </div>
           </div>
         </section>
 
         <!-- Selected Projects Section -->
-        <section class="section applied-focus-section" aria-labelledby="experience-heading">
-          <h2 id="experience-heading" class="section-title">Selected Projects</h2>
-          <p class="section-subtitle">Research systems with real-world reach</p>
+        <section class="section applied-focus-section" aria-labelledby="projects-heading">
+          <h2 id="projects-heading" class="section-title">Applied Research & Systems</h2>
+          <p class="section-subtitle">Bridging the gap between theory and production</p>
 
-          <div class="focus-grid" role="list">
-            <article class="focus-card" role="listitem">
-              <svg class="icon icon-search" aria-hidden="true" focusable="false">
-                <use href="/images/icons.svg#i-search" />
-              </svg>
-              <h3>Semantic Search, Foundation Models & VLMs</h3>
+          <div class="modern-project-grid stagger-container" role="list">
+            <article class="modern-project-card" role="listitem">
+              <div class="project-icon-wrapper">
+                <svg class="icon icon-search" aria-hidden="true" focusable="false">
+                  <use href="/images/icons.svg#i-search" />
+                </svg>
+              </div>
+              <h3>Semantic Search & VLM Infrastructure</h3>
               <p>
-                Built CLIP/VLM-powered semantic sorting and image understanding workflows, including retrieval demos and
-                foundation-model annotation tools for large image collections.
+                Architected CLIP-powered semantic sorting and multimodal understanding pipelines, powering large-scale
+                image management for professional photography collections.
               </p>
             </article>
-            <article class="focus-card" role="listitem">
-              <svg class="icon icon-fish" aria-hidden="true" focusable="false">
-                <use href="/images/icons.svg#i-fish" />
-              </svg>
-              <h3>Zebrafish Behavior Analysis</h3>
+            <article class="modern-project-card" role="listitem">
+              <div class="project-icon-wrapper">
+                <svg class="icon icon-fish" aria-hidden="true" focusable="false">
+                  <use href="/images/icons.svg#i-fish" />
+                </svg>
+              </div>
+              <h3>Bio-Video Analysis Frameworks</h3>
               <p>
-                Developed a YOLO-based detection and tracking framework for bio-lab video analysis, increasing
-                processing speed by 10x and reducing operational costs by more than 80%.
+                Developed high-throughput YOLO tracking systems for zebrafish behavior analysis, achieving 10x speedup
+                in lab processing workflows.
               </p>
             </article>
-            <article class="focus-card" role="listitem">
-              <svg class="icon icon-lungs" aria-hidden="true" focusable="false">
-                <use href="/images/icons.svg#i-lungs" />
-              </svg>
-              <h3>COVID-CXNet Medical AI Benchmark</h3>
+            <article class="modern-project-card" role="listitem">
+              <div class="project-icon-wrapper">
+                <svg class="icon icon-lungs" aria-hidden="true" focusable="false">
+                  <use href="/images/icons.svg#i-lungs" />
+                </svg>
+              </div>
+              <h3>Open-Source Medical AI Benchmarks</h3>
               <p>
-                Curated and released a large open-source COVID-19 chest X-ray dataset with deep learning baselines,
-                supporting medical AI validation across hundreds of independent studies.
+                Curated COVID-CXNet, a large-scale multimodal dataset and detection baseline now utilized in hundreds of
+                clinical validation studies worldwide.
               </p>
             </article>
           </div>
@@ -554,7 +607,7 @@
         >
           <h2 id="featured-projects-heading" class="section-title">Featured Deep Dives</h2>
           <p class="section-subtitle">Long-form write-ups of selected projects</p>
-          <div class="featured-projects-grid">
+          <div class="featured-projects-grid stagger-container">
             <a class="project-card" href="/posts/prism">
               <div class="project-card-media">
                 <picture>
@@ -689,8 +742,9 @@
         <!-- Education Section -->
         <section class="section education-section" aria-labelledby="education-heading">
           <h2 id="education-heading" class="section-title">Education</h2>
+          <p class="section-subtitle">Academic foundations in AI & Computing</p>
 
-          <div class="education-grid" role="list">
+          <div class="education-grid stagger-container" role="list">
             <article class="education-card" role="listitem">
               <div class="education-media">
                 <picture>
@@ -796,78 +850,98 @@
         </section>
 
         <!-- Recognition & Service Section -->
-        <section class="section applied-focus-section" aria-labelledby="recognition-heading">
-          <h2 id="recognition-heading" class="section-title">Recognition & Service</h2>
-          <p class="section-subtitle">Awards and peer review contributions</p>
+        <section class="section" aria-labelledby="recognition-heading">
+          <h2 id="recognition-heading" class="section-title">Honors & Professional Service</h2>
+          <p class="section-subtitle">Contributing to the global research community</p>
 
-          <div class="focus-grid" role="list">
-            <article class="focus-card" role="listitem">
-              <svg class="icon icon-trophy" aria-hidden="true" focusable="false">
-                <use href="/images/icons.svg#i-trophy" />
-              </svg>
-              <h3>Awards & Fellowships</h3>
-              <ul class="award-list">
-                <li>
-                  <strong>Graduate Research Fellowship</strong>
-                  <ul class="award-details">
-                    <li>Queen's University</li>
-                    <li>2021–2025</li>
-                  </ul>
-                </li>
-                <li>
-                  <strong>Devolved Scholarship</strong>
-                  <ul class="award-details">
-                    <li>University of Saskatchewan</li>
-                    <li>2020–2021</li>
-                  </ul>
-                </li>
-                <li>
-                  <strong>Graduate Research Scholarship</strong>
-                  <ul class="award-details">
-                    <li>University of Saskatchewan</li>
-                    <li>2019–2021</li>
-                  </ul>
-                </li>
-              </ul>
-            </article>
-            <article class="focus-card" role="listitem">
-              <svg class="icon icon-star" aria-hidden="true" focusable="false">
-                <use href="/images/icons.svg#i-star" />
-              </svg>
-              <h3>Top Reviewer</h3>
-              <ul>
-                <li>
-                  Recognized as a
-                  <a
-                    href="https://neurips.cc/Conferences/2024/ProgramCommittee#top-reviewers"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    ><strong>NeurIPS 2024 Top Reviewer</strong></a
-                  >
-                  with complimentary conference registration.
-                </li>
-                <li>
-                  Top Reviewer at the <strong>AAAI 2023 Workshop</strong> on Representation Learning for Responsible
-                  Human-Centric AI.
-                </li>
-              </ul>
-            </article>
-            <article class="focus-card" role="listitem">
-              <svg class="icon icon-pen" aria-hidden="true" focusable="false">
-                <use href="/images/icons.svg#i-pen" />
-              </svg>
-              <h3>Peer Review</h3>
-              <ul>
-                <li>
-                  <strong>Conferences:</strong> NeurIPS, ICLR, ICML, AAAI, AISTATS, ICML&nbsp;Workshops,
-                  AAAI&nbsp;Workshops
-                </li>
-                <li>
-                  <strong>Journals:</strong> TMLR, IEEE Trans.&nbsp;on Multimedia, IEEE Trans.&nbsp;on Artificial
-                  Intelligence
-                </li>
-              </ul>
-            </article>
+          <div class="service-honors-layout">
+            <div class="honors-column">
+              <h3 class="sr-only">Awards & Fellowships</h3>
+              <div class="award-badge-list">
+                <div class="award-badge">
+                  <div class="award-badge-info">
+                    <div class="award-badge-title">Graduate Research Fellowship</div>
+                    <div class="award-badge-org">Queen's University</div>
+                  </div>
+                  <div class="award-badge-year">2021–2025</div>
+                </div>
+                <div class="award-badge">
+                  <div class="award-badge-info">
+                    <div class="award-badge-title">Devolved Scholarship</div>
+                    <div class="award-badge-org">University of Saskatchewan</div>
+                  </div>
+                  <div class="award-badge-year">2020–2021</div>
+                </div>
+                <div class="award-badge">
+                  <div class="award-badge-info">
+                    <div class="award-badge-title">Graduate Research Scholarship</div>
+                    <div class="award-badge-org">University of Saskatchewan</div>
+                  </div>
+                  <div class="award-badge-year">2019–2021</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="service-column">
+              <h3 class="sr-only">Peer Review</h3>
+              <div class="service-list">
+                <div class="service-item">
+                  <div class="service-item-icon">
+                    <svg class="icon" aria-hidden="true"><use href="/images/icons.svg#i-star" /></svg>
+                  </div>
+                  <div class="service-item-content">
+                    <h4>Top Reviewer Recognition</h4>
+                    <p>NeurIPS 2024 Top Reviewer; AAAI 2023 Workshop Top Reviewer.</p>
+                  </div>
+                </div>
+                <div class="service-item">
+                  <div class="service-item-icon">
+                    <svg class="icon" aria-hidden="true"><use href="/images/icons.svg#i-pen" /></svg>
+                  </div>
+                  <div class="service-item-content">
+                    <h4>Conference Reviewing</h4>
+                    <p>NeurIPS, ICLR, ICML, AAAI, AISTATS, ICML/AAAI Workshops.</p>
+                  </div>
+                </div>
+                <div class="service-item">
+                  <div class="service-item-icon">
+                    <svg class="icon" aria-hidden="true"><use href="/images/icons.svg#i-auto" /></svg>
+                  </div>
+                  <div class="service-item-content">
+                    <h4>Journal Reviewing</h4>
+                    <p>TMLR, IEEE TMM, IEEE T-AI.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="section cta-section" aria-labelledby="cta-heading" data-reveal="fade-up">
+          <div class="cta-card">
+            <h2 id="cta-heading" class="cta-title">Let's build new generation of AI solutions.</h2>
+            <p class="cta-subtitle">
+              I am always open to discussing new ideas, novel AI solutions, or collaboration opportunities.
+            </p>
+            <div class="cta-buttons">
+              <a href="mailto:m.molahasani.m@gmail.com" class="btn btn-primary">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                Get in Touch
+              </a>
+            </div>
           </div>
         </section>
       </div>

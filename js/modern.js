@@ -360,51 +360,59 @@ class WebsiteEnhancer {
       threshold: 0.1,
     };
 
-    const revealElements = document.querySelectorAll(
-      '.industry-home .timeline-item, .industry-home .focus-card, .industry-home .education-card'
-    );
-    if (revealElements.length > 0) {
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            } else {
-              entry.target.classList.remove('visible');
-            }
-          });
-        },
-        { rootMargin: '0px 0px -20% 0px', threshold: 0 }
-      );
+    // Initialize typewriter elements by splitting text into spans
+    const typewriterElements = document.querySelectorAll('[data-typewriter]');
+    typewriterElements.forEach((el) => {
+      const text = el.textContent.trim();
+      const words = text.split(' ');
+      el.innerHTML = words.map((word) => `<span class="word">${word}</span>`).join(' ');
+    });
 
-      revealElements.forEach((element, index) => {
-        element.style.transitionDelay = `${Math.min(index * 0.06, 0.24)}s`;
-        revealObserver.observe(element);
-      });
-    }
-
-    const observer = new IntersectionObserver((entries) => {
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in');
+          entry.target.classList.add('revealed');
+          entry.target.classList.add('visible');
 
+          // Handle Typewriter effect
           if (
-            entry.target.classList.contains('news-list') ||
-            entry.target.classList.contains('experience-list') ||
-            entry.target.classList.contains('education-list')
+            entry.target.querySelector('[data-typewriter]') ||
+            entry.target.hasAttribute('data-typewriter')
           ) {
-            const items = entry.target.querySelectorAll('li');
-            items.forEach((item, index) => {
-              item.style.animationDelay = `${index * 0.1}s`;
-              item.classList.add('animate-in');
+            const el = entry.target.hasAttribute('data-typewriter')
+              ? entry.target
+              : entry.target.querySelector('[data-typewriter]');
+            const words = el.querySelectorAll('.word');
+            words.forEach((word, index) => {
+              // Fast "LLM Stream" vibe: ~40ms between words
+              setTimeout(() => {
+                word.classList.add('revealed');
+              }, index * 40);
+            });
+          }
+
+          // If it's a stagger container, animate children one by one
+          if (entry.target.classList.contains('stagger-container')) {
+            const children = entry.target.children;
+            Array.from(children).forEach((child, index) => {
+              child.style.transitionDelay = `${index * 0.15}s`;
+              child.classList.add('revealed');
+              child.classList.add('visible');
             });
           }
         }
       });
     }, observerOptions);
 
+    // Apply to all elements with data-reveal attribute and sections
+    document.querySelectorAll('[data-reveal], .stagger-container').forEach((el) => {
+      revealObserver.observe(el);
+    });
+
+    // Backwards compatibility for existing .section classes
     document.querySelectorAll('.section').forEach((section) => {
-      observer.observe(section);
+      section.setAttribute('data-reveal', '');
+      revealObserver.observe(section);
     });
   }
 }

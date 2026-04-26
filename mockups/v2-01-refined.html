@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v2 · 01 — Refined</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --bg-soft: #fafbfd;
+        --ink: #0f172a;
+        --ink-2: #334155;
+        --muted: #64748b;
+        --muted-2: #94a3b8;
+        --rule: #e6eaf0;
+        --rule-soft: #eef1f6;
+        --primary: #2563eb;
+        --primary-soft: rgba(37, 99, 235, 0.1);
+        --primary-deep: #1d4ed8;
+        --accent: #f59e0b;
+        --node: #2563eb;
+        --node-soft: rgba(37, 99, 235, 0.45);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          "Inter",
+          -apple-system,
+          sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--primary-deep);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      /* Particle canvas — neural connections */
+      #neural {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      /* Header */
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(14px) saturate(140%);
+        -webkit-backdrop-filter: blur(14px) saturate(140%);
+        border-bottom: 1px solid var(--rule);
+      }
+      .header-in {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 14px 28px;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+      }
+      .brand {
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        font-size: 17px;
+        color: var(--ink);
+      }
+      .brand .dot {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #22c55e;
+        box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+        margin-right: 8px;
+        vertical-align: 0.18em;
+        animation: pulse 1.8s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        50% {
+          opacity: 0.45;
+        }
+      }
+      .nav {
+        margin-left: auto;
+        display: flex;
+        gap: 4px;
+      }
+      .nav a {
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 14.5px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .nav a:hover {
+        color: var(--ink);
+        background: var(--rule-soft);
+        text-decoration: none;
+      }
+      .nav a.is-current {
+        color: var(--ink);
+      }
+      .availability {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--rule);
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .container {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 88px 0 56px;
+        display: grid;
+        grid-template-columns: 1.45fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .kicker {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--primary);
+        margin-bottom: 18px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .kicker::before {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: var(--primary);
+      }
+      .hero h1 {
+        font-size: clamp(44px, 5.6vw, 72px);
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+        font-weight: 700;
+        margin: 0 0 24px;
+      }
+      .hero h1 .grad {
+        background: linear-gradient(135deg, var(--primary) 10%, #6366f1 50%, var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .hero h1 .thin {
+        font-weight: 300;
+        color: var(--ink-2);
+      }
+      .lede {
+        font-size: 19px;
+        line-height: 1.6;
+        color: var(--ink-2);
+        max-width: 52ch;
+        margin: 0 0 28px;
+      }
+      .lede b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 20px;
+        border-radius: 10px;
+        font-weight: 500;
+        font-size: 14.5px;
+        border: 1.5px solid var(--rule);
+        background: #fff;
+        color: var(--ink);
+        transition:
+          transform 0.2s,
+          border-color 0.2s,
+          box-shadow 0.2s,
+          background 0.2s;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        border-color: var(--ink-2);
+        text-decoration: none;
+      }
+      .btn.primary {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+        box-shadow: 0 6px 18px -8px rgba(37, 99, 235, 0.55);
+      }
+      .btn.primary:hover {
+        background: var(--primary-deep);
+        border-color: var(--primary-deep);
+        color: #fff;
+        box-shadow: 0 12px 28px -10px rgba(37, 99, 235, 0.65);
+      }
+
+      /* Portrait */
+      .portrait {
+        justify-self: center;
+        position: relative;
+        width: 320px;
+        height: 320px;
+      }
+      .portrait .photo {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid var(--rule);
+        box-shadow:
+          0 30px 70px -30px rgba(15, 23, 42, 0.25),
+          0 0 0 8px rgba(37, 99, 235, 0.04);
+      }
+      .portrait .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .portrait .ring1,
+      .portrait .ring2 {
+        position: absolute;
+        inset: -18px;
+        border: 1px dashed rgba(37, 99, 235, 0.25);
+        border-radius: 50%;
+        animation: rot 30s linear infinite;
+      }
+      .portrait .ring2 {
+        inset: -36px;
+        border-color: rgba(37, 99, 235, 0.12);
+        animation-duration: 60s;
+        animation-direction: reverse;
+      }
+      @keyframes rot {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .portrait .badge {
+        position: absolute;
+        top: 8px;
+        right: -10px;
+        background: #fff;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--ink-2);
+        box-shadow: 0 8px 18px -10px rgba(15, 23, 42, 0.18);
+      }
+      .portrait .badge::before {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        margin-right: 8px;
+        vertical-align: 1px;
+      }
+
+      /* Stats — refined as inline pills with rule above */
+      .stats {
+        margin-top: 56px;
+        padding-top: 28px;
+        border-top: 1px solid var(--rule);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+      }
+      .stat .n {
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+      }
+      .stat .n em {
+        font-style: normal;
+        color: var(--primary);
+      }
+      .stat .l {
+        margin-top: 6px;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      /* Sections */
+      .section {
+        padding: 80px 0;
+        border-top: 1px solid var(--rule);
+      }
+      .section-head {
+        display: grid;
+        grid-template-columns: 1fr 1.6fr;
+        gap: 48px;
+        margin-bottom: 40px;
+      }
+      .section-eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-size: clamp(30px, 3.6vw, 44px);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+        margin: 0;
+        max-width: 14ch;
+      }
+      .section-deck {
+        font-size: 17px;
+        color: var(--ink-2);
+        max-width: 56ch;
+        align-self: end;
+      }
+
+      /* Pull quote — thinker moment */
+      .pull {
+        margin: 40px 0 0;
+        padding: 36px 44px;
+        background: linear-gradient(180deg, #fafbfd, #fff);
+        border: 1px solid var(--rule);
+        border-radius: 18px;
+        font-size: clamp(22px, 2.4vw, 30px);
+        line-height: 1.35;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        position: relative;
+        max-width: 60ch;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+      }
+      .pull::before {
+        content: "“";
+        position: absolute;
+        top: -18px;
+        left: 28px;
+        font-size: 90px;
+        color: var(--primary);
+        line-height: 1;
+        font-family: Georgia, serif;
+      }
+      .pull cite {
+        display: block;
+        margin-top: 16px;
+        font-size: 13px;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-style: normal;
+      }
+
+      /* Featured projects */
+      .feat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .feat {
+        text-decoration: none;
+        color: inherit;
+        background: #fff;
+        border: 1px solid var(--rule);
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.25s,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .feat:hover {
+        transform: translateY(-3px);
+        border-color: rgba(37, 99, 235, 0.4);
+        box-shadow: 0 22px 50px -28px rgba(37, 99, 235, 0.35);
+        text-decoration: none;
+      }
+      .feat .media {
+        aspect-ratio: 16/10;
+        overflow: hidden;
+        border-bottom: 1px solid var(--rule);
+      }
+      .feat .media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s;
+      }
+      .feat:hover .media img {
+        transform: scale(1.04);
+      }
+      .feat .body {
+        padding: 18px 20px 22px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .feat .ey {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 6px;
+      }
+      .feat h3 {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.3;
+        margin: 0 0 6px;
+        letter-spacing: -0.01em;
+      }
+      .feat p {
+        font-size: 14.5px;
+        color: var(--muted);
+        margin: 0;
+      }
+      .feat .arrow {
+        margin-top: 14px;
+        font-size: 13px;
+        color: var(--primary);
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* Timeline — refined */
+      .timeline {
+        position: relative;
+        margin-top: 8px;
+      }
+      .tl {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 40px;
+        padding: 22px 0;
+        border-top: 1px solid var(--rule);
+      }
+      .tl:first-child {
+        border-top: 1px solid var(--ink);
+      }
+      .tl-when {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding-top: 4px;
+      }
+      .tl.now .tl-when {
+        color: var(--primary);
+        font-weight: 600;
+      }
+      .tl-role {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0 0 4px;
+        letter-spacing: -0.01em;
+      }
+      .tl-org {
+        color: var(--muted);
+        font-size: 14px;
+        margin: 0 0 10px;
+      }
+      .tl-note {
+        font-size: 15px;
+        color: var(--ink-2);
+        max-width: 65ch;
+      }
+
+      /* Recognition strip */
+      .recog {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .recog-card {
+        padding: 22px 24px;
+        border: 1px solid var(--rule);
+        border-radius: 14px;
+        background: #fff;
+      }
+      .recog-card h4 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 0 0 10px;
+        letter-spacing: -0.005em;
+      }
+      .recog-card .ico {
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+        background: var(--primary-soft);
+        color: var(--primary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+      .recog-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+        color: var(--ink-2);
+      }
+      .recog-card li {
+        padding: 4px 0;
+      }
+      .recog-card li b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 24px;
+        padding: 28px 28px 56px;
+        border-top: 1px solid var(--rule);
+        max-width: 1180px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      footer a {
+        color: var(--ink-2);
+        margin-left: 16px;
+      }
+
+      @media (max-width: 880px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .portrait {
+          width: 240px;
+          height: 240px;
+          justify-self: start;
+        }
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+        .section-head {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .feat-grid {
+          grid-template-columns: 1fr;
+        }
+        .recog {
+          grid-template-columns: 1fr;
+        }
+        .tl {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="neural" aria-hidden="true"></canvas>
+
+    <header class="header">
+      <div class="header-in">
+        <a class="brand" href="#"><span class="dot"></span>Mahdiyar Molahasani</a>
+        <nav class="nav">
+          <a class="is-current" href="#">Home</a>
+          <a href="#">Research</a>
+          <a href="#">Notes</a>
+          <a href="#">CV</a>
+        </nav>
+        <span class="availability">● Open to collaboration</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div>
+          <div class="kicker">ML Researcher · Builder · Thinker</div>
+          <h1>
+            <span class="thin">Building, researching, and writing about</span><br />
+            <span class="grad">applied AI for the real world.</span>
+          </h1>
+          <p class="lede">
+            <b>ML Researcher II at Captura</b>, where I build computer-vision and multimodal systems for the photography
+            industry. PhD from <b>Queen's University</b>; published at ICCV, AAAI, and NeurIPS. I write about
+            generalization, foundation models, and what the next decade of applied AI is actually going to look like.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#">View research</a>
+            <a class="btn" href="#">Read essays</a>
+            <a class="btn" href="mailto:m.molahasani.m@gmail.com">Get in touch</a>
+          </div>
+        </div>
+
+        <div class="portrait">
+          <div class="ring1"></div>
+          <div class="ring2"></div>
+          <div class="photo">
+            <img src="../images/me2-480.jpeg" alt="Mahdiyar Molahasani" />
+          </div>
+          <div class="badge">Raleigh · NC</div>
+        </div>
+      </section>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="n"><em>609</em>+</div>
+          <div class="l">Citations</div>
+        </div>
+        <div class="stat">
+          <div class="n"><em>10</em></div>
+          <div class="l">H-Index</div>
+        </div>
+        <div class="stat">
+          <div class="n"><em>18</em></div>
+          <div class="l">Publications</div>
+        </div>
+        <div class="stat">
+          <div class="n"><em>8</em>+</div>
+          <div class="l">Years Research</div>
+        </div>
+      </div>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">A Working Belief</div>
+            <h2 class="section-title">What I'm working toward.</h2>
+          </div>
+          <p class="section-deck">
+            The most interesting AI work over the next decade won't happen at the frontier of model capability — it'll
+            happen at the seam between capable models and real industries that don't yet know how to use them.
+          </p>
+        </div>
+
+        <blockquote class="pull">
+          Good systems disappear. The image gets sorted, the bad shot gets dropped, the color comes out right — and
+          nobody asks how. That gap, between a model and a system that quietly works, is where I spend my time.
+          <cite>— Mahdiyar, on building applied AI</cite>
+        </blockquote>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">§ Featured Work</div>
+            <h2 class="section-title">Selected research, in long form.</h2>
+          </div>
+          <p class="section-deck">
+            Three deep dives. PRISM debiases CLIP without data. FedGaLA trains a generalizing model across federated,
+            unlabeled clients. COVID-CXNet became an open benchmark for medical imaging.
+          </p>
+        </div>
+        <div class="feat-grid">
+          <a class="feat" href="#">
+            <div class="media"><img src="../images/PRISM_cover_sqr-640.jpeg" alt="PRISM" /></div>
+            <div class="body">
+              <div class="ey">ICCV 2025 · VLM</div>
+              <h3>PRISM: data-free debiasing for CLIP-style models</h3>
+              <p>Linear correction over frozen embeddings, driven by language alone — no labels, no retraining.</p>
+              <span class="arrow">Read deep dive →</span>
+            </div>
+          </a>
+          <a class="feat" href="#">
+            <div class="media"><img src="../images/FedGaLA_nb-640.jpeg" alt="FedGaLA" /></div>
+            <div class="body">
+              <div class="ey">AAAI 2025 · Federated</div>
+              <h3>FedGaLA: federated domain generalization</h3>
+              <p>First framework for unsupervised federated DG via local + global gradient alignment.</p>
+              <span class="arrow">Read deep dive →</span>
+            </div>
+          </a>
+          <a class="feat" href="#">
+            <div class="media"><img src="../images/covid-640.jpeg" alt="COVID-CXNet" /></div>
+            <div class="body">
+              <div class="ey">MTAP 2021 · Open Dataset</div>
+              <h3>COVID-CXNet: an open chest-X-ray benchmark</h3>
+              <p>Open dataset and detection baseline used by hundreds of independent studies.</p>
+              <span class="arrow">Read deep dive →</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">§ Trajectory</div>
+            <h2 class="section-title">Industry &amp; research, in order.</h2>
+          </div>
+          <p class="section-deck">
+            From medical imaging to applied vision at scale — the same thread runs through it: getting models to
+            generalize when reality doesn't cooperate.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="tl now">
+            <div class="tl-when">Jun 2025 — Now</div>
+            <div>
+              <h3 class="tl-role">ML Researcher II</h3>
+              <p class="tl-org">Captura · Vancouver, BC (based in Raleigh, NC)</p>
+              <p class="tl-note">
+                Leading applied ML for AI image enhancement and management in volume photography. Building reusable
+                infrastructure, prototyping product-facing features, shaping data and labeling strategy.
+              </p>
+            </div>
+          </div>
+          <div class="tl">
+            <div class="tl-when">2024 — 2025</div>
+            <div>
+              <h3 class="tl-role">Expert LLM Trainer &amp; Evaluator</h3>
+              <p class="tl-org">Outlier AI · Remote</p>
+              <p class="tl-note">Multimodal AI evaluation; advanced validation tasks for reasoning quality.</p>
+            </div>
+          </div>
+          <div class="tl">
+            <div class="tl-when">2021 — 2025</div>
+            <div>
+              <h3 class="tl-role">PhD, Electrical &amp; Computer Engineering</h3>
+              <p class="tl-org">Queen's University · Kingston, ON</p>
+              <p class="tl-note">Generalization in deep representation learning — federated, continual, fair.</p>
+            </div>
+          </div>
+          <div class="tl">
+            <div class="tl-when">2019 — 2021</div>
+            <div>
+              <h3 class="tl-role">M.Sc., Electrical &amp; Computer Engineering</h3>
+              <p class="tl-org">University of Saskatchewan</p>
+              <p class="tl-note">Deep learning for medical imaging and super-resolution.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">§ Recognition</div>
+            <h2 class="section-title">Awards &amp; service.</h2>
+          </div>
+          <p class="section-deck">Selected recognition and peer-review contributions to the community.</p>
+        </div>
+        <div class="recog">
+          <div class="recog-card">
+            <div class="ico">★</div>
+            <h4>Top Reviewer · NeurIPS 2024</h4>
+            <ul>
+              <li>Selected for top-tier review quality with complimentary registration.</li>
+              <li>Top Reviewer at AAAI 2023 Workshop on Responsible Human-Centric AI.</li>
+            </ul>
+          </div>
+          <div class="recog-card">
+            <div class="ico">◇</div>
+            <h4>Fellowships</h4>
+            <ul>
+              <li><b>Graduate Research Fellowship</b> · Queen's University · 2021–2025</li>
+              <li><b>Devolved Scholarship</b> · U Saskatchewan · 2020–2021</li>
+              <li><b>Graduate Research Scholarship</b> · U Saskatchewan · 2019–2021</li>
+            </ul>
+          </div>
+          <div class="recog-card">
+            <div class="ico">∿</div>
+            <h4>Peer Review</h4>
+            <ul>
+              <li><b>Conferences:</b> NeurIPS, ICLR, ICML, AAAI, AISTATS</li>
+              <li><b>Journals:</b> TMLR, IEEE TMM, IEEE TAI</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 Mahdiyar Molahasani · Last updated 2026·04·25</span>
+      <span><a href="#">Email</a><a href="#">LinkedIn</a><a href="#">GitHub</a><a href="#">Scholar</a></span>
+    </footer>
+
+    <!-- Neural network particles: smarter, soft, content-aware-ish -->
+    <script>
+      (function () {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const cv = document.getElementById("neural");
+        if (!cv) return;
+        const ctx = cv.getContext("2d");
+        let W,
+          H,
+          DPR = Math.min(window.devicePixelRatio || 1, 2);
+        const NODES = 70;
+        const EDGE = 150; // max link distance in CSS px
+        const nodes = [];
+        const mouse = { x: -9999, y: -9999 };
+
+        function resize() {
+          W = cv.clientWidth = window.innerWidth;
+          H = cv.clientHeight = window.innerHeight;
+          cv.width = W * DPR;
+          cv.height = H * DPR;
+          ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        }
+        function init() {
+          nodes.length = 0;
+          for (let i = 0; i < NODES; i++) {
+            nodes.push({
+              x: Math.random() * W,
+              y: Math.random() * H,
+              vx: (Math.random() - 0.5) * 0.18,
+              vy: (Math.random() - 0.5) * 0.18,
+              r: 1.2 + Math.random() * 1.4,
+              a: 0.25 + Math.random() * 0.45,
+            });
+          }
+        }
+        function step() {
+          ctx.clearRect(0, 0, W, H);
+          // edges
+          for (let i = 0; i < nodes.length; i++) {
+            const a = nodes[i];
+            for (let j = i + 1; j < nodes.length; j++) {
+              const b = nodes[j];
+              const dx = a.x - b.x,
+                dy = a.y - b.y;
+              const d2 = dx * dx + dy * dy;
+              if (d2 < EDGE * EDGE) {
+                const d = Math.sqrt(d2);
+                const o = (1 - d / EDGE) * 0.3;
+                ctx.strokeStyle = "rgba(37, 99, 235," + o.toFixed(3) + ")";
+                ctx.lineWidth = 0.7;
+                ctx.beginPath();
+                ctx.moveTo(a.x, a.y);
+                ctx.lineTo(b.x, b.y);
+                ctx.stroke();
+              }
+            }
+          }
+          // mouse glow
+          for (const n of nodes) {
+            const dx = n.x - mouse.x,
+              dy = n.y - mouse.y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < 180 * 180) {
+              const d = Math.sqrt(d2);
+              const o = (1 - d / 180) * 0.5;
+              ctx.strokeStyle = "rgba(245, 158, 11," + o.toFixed(3) + ")";
+              ctx.lineWidth = 0.8;
+              ctx.beginPath();
+              ctx.moveTo(mouse.x, mouse.y);
+              ctx.lineTo(n.x, n.y);
+              ctx.stroke();
+            }
+          }
+          // nodes
+          for (const n of nodes) {
+            n.x += n.vx;
+            n.y += n.vy;
+            if (n.x < 0 || n.x > W) n.vx *= -1;
+            if (n.y < 0 || n.y > H) n.vy *= -1;
+            ctx.fillStyle = "rgba(37, 99, 235," + n.a.toFixed(2) + ")";
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          requestAnimationFrame(step);
+        }
+        window.addEventListener("resize", () => {
+          resize();
+          init();
+        });
+        window.addEventListener("mousemove", (e) => {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+        });
+        window.addEventListener("mouseleave", () => {
+          mouse.x = -9999;
+          mouse.y = -9999;
+        });
+        resize();
+        init();
+        step();
+      })();
+    </script>
+  </body>
+</html>

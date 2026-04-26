@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mockup 01 — Editorial / Research Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f3ede1;
+        --paper-2: #ebe3d3;
+        --ink: #1a1814;
+        --ink-2: #4a4438;
+        --muted: #7a7263;
+        --rule: #cdc3ad;
+        --accent: #b3331d;
+        --accent-2: #6b3210;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--paper);
+        background-image: radial-gradient(rgba(26, 24, 20, 0.04) 1px, transparent 1px);
+        background-size: 4px 4px;
+        color: var(--ink);
+        font-family: "Inter", sans-serif;
+        font-size: 17px;
+        line-height: 1.6;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+
+      /* Masthead */
+      .masthead {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 28px 32px 12px;
+        border-bottom: 2px solid var(--ink);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 24px;
+      }
+      .masthead-title {
+        font-family: "Fraunces", serif;
+        font-weight: 800;
+        font-style: italic;
+        font-size: 34px;
+        letter-spacing: -0.01em;
+        line-height: 1;
+      }
+      .masthead-meta {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--muted);
+      }
+      .masthead-nav {
+        display: flex;
+        gap: 22px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+      }
+      .masthead-nav a {
+        color: var(--ink);
+      }
+      .masthead-nav a.is-current {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+
+      /* Sub-rule under masthead */
+      .sub-rule {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 6px 32px;
+        border-bottom: 1px solid var(--rule);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* Hero — editorial spread */
+      .hero {
+        padding: 56px 0 40px;
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 40px;
+        align-items: end;
+        border-bottom: 1px solid var(--rule);
+      }
+      .kicker {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 18px;
+      }
+      .hero h1 {
+        font-family: "Fraunces", serif;
+        font-weight: 400;
+        font-size: clamp(56px, 8vw, 110px);
+        line-height: 0.96;
+        letter-spacing: -0.025em;
+        margin: 0 0 22px;
+        color: var(--ink);
+      }
+      .hero h1 em {
+        font-style: italic;
+        font-weight: 400;
+        color: var(--accent);
+      }
+      .hero-deck {
+        font-family: "Fraunces", serif;
+        font-weight: 300;
+        font-size: 22px;
+        line-height: 1.45;
+        color: var(--ink-2);
+        max-width: 38ch;
+        margin-bottom: 28px;
+      }
+      .hero-byline {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--muted);
+        border-top: 1px solid var(--rule);
+        padding-top: 14px;
+        max-width: 38ch;
+      }
+      .hero-photo {
+        position: relative;
+      }
+      .hero-photo img {
+        width: 100%;
+        max-width: 380px;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        filter: grayscale(100%) contrast(1.05);
+        border: 1px solid var(--rule);
+      }
+      .hero-photo .caption {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 10px;
+        max-width: 360px;
+      }
+      .hero-photo .caption span {
+        color: var(--accent);
+      }
+
+      /* Numbered metrics row */
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-bottom: 1px solid var(--rule);
+        padding: 36px 0;
+      }
+      .metric {
+        padding: 0 24px;
+        border-left: 1px solid var(--rule);
+      }
+      .metric:first-child {
+        border-left: 0;
+        padding-left: 0;
+      }
+      .metric-num {
+        font-family: "Fraunces", serif;
+        font-weight: 400;
+        font-size: 64px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+      .metric-num em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .metric-label {
+        margin-top: 10px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* Section header pattern */
+      .section {
+        padding: 64px 0;
+        border-bottom: 1px solid var(--rule);
+      }
+      .section-head {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 40px;
+        margin-bottom: 36px;
+        align-items: end;
+      }
+      .section-num {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .section-title {
+        font-family: "Fraunces", serif;
+        font-weight: 400;
+        font-style: italic;
+        font-size: 56px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        margin: 6px 0 0;
+      }
+      .section-deck {
+        font-family: "Fraunces", serif;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 1.5;
+        color: var(--ink-2);
+        max-width: 50ch;
+      }
+
+      /* Featured project — hero treatment with drop cap */
+      .feature {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 48px;
+        align-items: start;
+      }
+      .feature-media img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        border: 1px solid var(--rule);
+      }
+      .feature-media .caption {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 10px;
+      }
+      .feature-body .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 14px;
+      }
+      .feature-body h3 {
+        font-family: "Fraunces", serif;
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 1.05;
+        letter-spacing: -0.015em;
+        margin: 0 0 18px;
+      }
+      .feature-body p {
+        font-family: "Fraunces", serif;
+        font-weight: 300;
+        font-size: 19px;
+        line-height: 1.55;
+        color: var(--ink-2);
+        margin: 0 0 14px;
+      }
+      .feature-body p.lede::first-letter {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        font-size: 5em;
+        float: left;
+        line-height: 0.85;
+        padding: 6px 10px 0 0;
+        color: var(--accent);
+      }
+
+      /* Index of works — table-like */
+      .works {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .works th,
+      .works td {
+        text-align: left;
+        padding: 18px 12px;
+        border-bottom: 1px solid var(--rule);
+        vertical-align: top;
+      }
+      .works th {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 500;
+        border-bottom: 1px solid var(--ink);
+      }
+      .works .num {
+        font-family: "JetBrains Mono", monospace;
+        color: var(--accent);
+        font-size: 13px;
+        width: 60px;
+      }
+      .works .title {
+        font-family: "Fraunces", serif;
+        font-size: 22px;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+      }
+      .works .venue {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .works .tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-2);
+      }
+      .works tr:hover td {
+        background: rgba(26, 24, 20, 0.03);
+      }
+
+      /* Pull quote */
+      .pull {
+        max-width: 900px;
+        margin: 36px auto 0;
+        text-align: center;
+        font-family: "Fraunces", serif;
+        font-style: italic;
+        font-weight: 300;
+        font-size: 32px;
+        line-height: 1.25;
+        color: var(--ink-2);
+        position: relative;
+        padding: 0 40px;
+      }
+      .pull::before,
+      .pull::after {
+        content: '"';
+        font-size: 64px;
+        color: var(--accent);
+        position: absolute;
+        line-height: 0.8;
+      }
+      .pull::before {
+        top: 0;
+        left: 0;
+      }
+      .pull::after {
+        bottom: -16px;
+        right: 0;
+      }
+
+      /* Timeline list */
+      .timeline-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .timeline-list li {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 32px;
+        padding: 22px 0;
+        border-top: 1px solid var(--rule);
+      }
+      .timeline-list li:first-child {
+        border-top: 1px solid var(--ink);
+      }
+      .tl-when {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        padding-top: 6px;
+      }
+      .tl-when.now {
+        color: var(--accent);
+      }
+      .tl-role {
+        font-family: "Fraunces", serif;
+        font-size: 24px;
+        font-weight: 400;
+        margin: 0 0 4px;
+      }
+      .tl-org {
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        color: var(--ink-2);
+        margin: 0 0 8px;
+      }
+      .tl-note {
+        color: var(--ink-2);
+        font-size: 15px;
+        max-width: 60ch;
+      }
+
+      /* Footer */
+      footer {
+        padding: 56px 32px 80px;
+        border-top: 2px solid var(--ink);
+        margin-top: 24px;
+      }
+      .colophon {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 32px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .colophon strong {
+        font-family: "Fraunces", serif;
+        font-style: italic;
+        font-weight: 600;
+        font-size: 22px;
+        color: var(--ink);
+        text-transform: none;
+        letter-spacing: -0.01em;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      @media (max-width: 860px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .metrics {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .metric {
+          padding: 16px;
+          border-left: 0;
+          border-top: 1px solid var(--rule);
+        }
+        .section-head {
+          grid-template-columns: 1fr;
+        }
+        .feature {
+          grid-template-columns: 1fr;
+        }
+        .timeline-list li {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+        .colophon {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="masthead">
+      <div>
+        <div class="masthead-title">Mahdiyar <em>Molahasani</em></div>
+        <div class="masthead-meta">No. 04 &nbsp;·&nbsp; Vol. MMXXVI &nbsp;·&nbsp; Applied AI &amp; Vision</div>
+      </div>
+      <nav class="masthead-nav">
+        <a class="is-current" href="#">Index</a>
+        <a href="#">Research</a>
+        <a href="#">Notes</a>
+        <a href="#">CV</a>
+      </nav>
+    </header>
+    <div class="sub-rule">
+      <span>Raleigh, NC — Vancouver, BC</span>
+      <span>Last updated 2026·04·25</span>
+      <span>mahdiyar.ai</span>
+    </div>
+
+    <main class="container">
+      <section class="hero">
+        <div>
+          <div class="kicker">A Letter from the Researcher</div>
+          <h1>On teaching <em>vision</em> models to see what photographers see.</h1>
+          <p class="hero-deck">
+            ML Researcher II at Captura. Building applied computer vision and multimodal systems for the photography
+            industry — semantic search, intelligent culling, color, and the quiet machinery behind images at scale.
+          </p>
+          <p class="hero-byline">
+            By Mahdiyar Molahasani &nbsp;·&nbsp; PhD, Queen's University &nbsp;·&nbsp; NeurIPS 2024 Top Reviewer
+          </p>
+        </div>
+        <div class="hero-photo">
+          <img src="../images/me2-480.jpeg" alt="Mahdiyar Molahasani" />
+          <div class="caption">Plate I — <span>The author</span>, in the studio.</div>
+        </div>
+      </section>
+
+      <section class="metrics">
+        <div class="metric">
+          <div class="metric-num">609<em>+</em></div>
+          <div class="metric-label">Citations</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">10</div>
+          <div class="metric-label">H-Index</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">18</div>
+          <div class="metric-label">Publications</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">8<em>+</em></div>
+          <div class="metric-label">Years Research</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-num">§ 01 — Featured Work</div>
+            <h2 class="section-title">In Long Form.</h2>
+          </div>
+          <p class="section-deck">
+            Three deep dives that shaped the rest of the work — a debiasing framework for vision-language models, a
+            federated approach to domain generalization, and an open dataset that quietly became a benchmark.
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-media">
+            <img src="../images/PRISM_cover_sqr-640.jpeg" alt="PRISM debiasing framework" />
+            <div class="caption">Fig. 1 — PRISM disentangles biased clusters in CLIP-style embeddings.</div>
+          </div>
+          <div class="feature-body">
+            <div class="eyebrow">ICCV 2025 &nbsp;·&nbsp; Vision-Language</div>
+            <h3>PRISM: a data-free way to debias what the model already learned.</h3>
+            <p class="lede">
+              Most debiasing pipelines need labeled bias attributes, paired data, or a curated counterfactual set. PRISM
+              throws all of that out and asks a different question — can we untangle the biased axes inside an existing
+              CLIP encoder using only language?
+            </p>
+            <p>
+              The method drives a small linear correction over frozen embeddings using bias prompts generated by an LLM.
+              No retraining, no labels. Across nine benchmarks it matches or beats supervised baselines, and it
+              generalizes to tasks the original CLIP model was never aligned to.
+            </p>
+            <p><a href="#">Read the deep dive →</a></p>
+          </div>
+        </div>
+
+        <blockquote class="pull">
+          Good systems are the ones that disappear. The image gets sorted, the bad shot gets dropped, the color comes
+          out right — and nobody asks how.
+        </blockquote>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-num">§ 02 — The Index</div>
+            <h2 class="section-title">Selected Papers.</h2>
+          </div>
+          <p class="section-deck">
+            A curated table of the work most representative of the through-line — generalization, fairness, and applied
+            vision systems.
+          </p>
+        </div>
+        <table class="works">
+          <thead>
+            <tr>
+              <th class="num">#</th>
+              <th>Title</th>
+              <th>Venue</th>
+              <th>Tag</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="num">01</td>
+              <td class="title">PRISM: Debiasing Vision-Language Models with a Data-Free Linear Correction</td>
+              <td class="venue">ICCV · 2025</td>
+              <td class="tag">VLM · Fairness</td>
+            </tr>
+            <tr>
+              <td class="num">02</td>
+              <td class="title">FedGaLA: Federated Domain Generalization via Gradient Alignment</td>
+              <td class="venue">AAAI · 2025</td>
+              <td class="tag">Federated · DG</td>
+            </tr>
+            <tr>
+              <td class="num">03</td>
+              <td class="title">Continual Domain Generalization under Distributed Constraints</td>
+              <td class="venue">NeurIPS Workshop · 2024</td>
+              <td class="tag">Continual</td>
+            </tr>
+            <tr>
+              <td class="num">04</td>
+              <td class="title">COVID-CXNet: An Open Chest X-ray Dataset and Detection Baseline</td>
+              <td class="venue">MTAP · 2021</td>
+              <td class="tag">Medical · Dataset</td>
+            </tr>
+            <tr>
+              <td class="num">05</td>
+              <td class="title">Robust Single-Image Super-Resolution under Realistic Degradations</td>
+              <td class="venue">ICIP · 2021</td>
+              <td class="tag">Super-Res</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-num">§ 03 — Trajectory</div>
+            <h2 class="section-title">A Working Life.</h2>
+          </div>
+          <p class="section-deck">Industry and research, in the order they happened.</p>
+        </div>
+        <ul class="timeline-list">
+          <li>
+            <div class="tl-when now">Jun 2025 — Now</div>
+            <div>
+              <h4 class="tl-role">ML Researcher II</h4>
+              <p class="tl-org">Captura · Vancouver, BC (based in Raleigh, NC)</p>
+              <p class="tl-note">Leading applied ML for AI image enhancement and management in volume photography.</p>
+            </div>
+          </li>
+          <li>
+            <div class="tl-when">2024 — 2025</div>
+            <div>
+              <h4 class="tl-role">Expert LLM Trainer &amp; Evaluator</h4>
+              <p class="tl-org">Outlier AI · Remote</p>
+              <p class="tl-note">Multimodal model evaluation; advanced validation tasks for reasoning quality.</p>
+            </div>
+          </li>
+          <li>
+            <div class="tl-when">2021 — 2025</div>
+            <div>
+              <h4 class="tl-role">PhD, Electrical &amp; Computer Engineering</h4>
+              <p class="tl-org">Queen's University · Kingston, ON</p>
+              <p class="tl-note">Generalization in deep representations — federated, continual, fair.</p>
+            </div>
+          </li>
+          <li>
+            <div class="tl-when">2019 — 2021</div>
+            <div>
+              <h4 class="tl-role">M.Sc., Electrical &amp; Computer Engineering</h4>
+              <p class="tl-org">University of Saskatchewan · Saskatoon, SK</p>
+              <p class="tl-note">Deep learning for medical imaging and super-resolution.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <div class="colophon">
+        <div>
+          <strong>Set in Fraunces &amp; Inter.</strong>
+          Printed on the open web. The masthead is set in Fraunces italic. Body in Inter. Tabular and labels in
+          JetBrains Mono. Photographs reproduced from the author's archive.
+        </div>
+        <div>
+          <strong>Correspondence</strong>
+          m.molahasani.m@gmail.com<br />
+          LinkedIn · Scholar · GitHub
+        </div>
+        <div>
+          <strong>Colophon</strong>
+          © 2026 Mahdiyar Molahasani.<br />
+          All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

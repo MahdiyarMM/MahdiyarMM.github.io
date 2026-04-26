@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mockup 03 — Modern Brutalist / Bold</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f4f1ea;
+        --ink: #0a0a0a;
+        --ink-2: #2a2a2a;
+        --muted: #6b6b6b;
+        --rule: #0a0a0a;
+        --accent: #ff5b1f; /* hot orange */
+        --accent-2: #ccff00; /* acid lime */
+        --accent-3: #1f4eff; /* electric blue */
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        overflow-x: hidden;
+      }
+      a {
+        color: var(--ink);
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
+      }
+      a:hover {
+        background: var(--accent);
+        color: var(--paper);
+        text-decoration: none;
+      }
+
+      /* Marquee strip */
+      .marquee {
+        background: var(--ink);
+        color: var(--paper);
+        padding: 10px 0;
+        overflow: hidden;
+        white-space: nowrap;
+        border-bottom: 3px solid var(--ink);
+      }
+      .marquee-track {
+        display: inline-block;
+        animation: scroll 40s linear infinite;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        font-size: 14px;
+      }
+      .marquee-track span {
+        margin-right: 36px;
+      }
+      .marquee-track .star {
+        color: var(--accent-2);
+      }
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* Top nav */
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding: 18px 32px;
+        border-bottom: 3px solid var(--ink);
+      }
+      .nav .brand {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 22px;
+        letter-spacing: -0.02em;
+      }
+      .nav .brand b {
+        background: var(--accent);
+        padding: 2px 8px;
+      }
+      .nav .links {
+        margin-left: auto;
+        display: flex;
+        gap: 6px;
+      }
+      .nav a.tab {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        padding: 8px 14px;
+        border: 2px solid var(--ink);
+        background: var(--paper);
+      }
+      .nav a.tab:hover {
+        background: var(--ink);
+        color: var(--paper);
+      }
+      .nav a.tab.is-current {
+        background: var(--accent-2);
+        color: var(--ink);
+      }
+
+      /* Hero — name takes the screen */
+      .hero {
+        padding: 32px 32px 0;
+        position: relative;
+      }
+      .hero-row1 {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 24px;
+        margin-bottom: 8px;
+      }
+      .hero-meta {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--ink);
+      }
+      .hero-meta b {
+        background: var(--ink);
+        color: var(--accent-2);
+        padding: 2px 6px;
+      }
+      .hero-photo-wrap {
+        align-self: flex-end;
+      }
+      .hero-photo-wrap img {
+        width: 220px;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border: 3px solid var(--ink);
+        display: block;
+        filter: contrast(1.1);
+      }
+      .name {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: clamp(72px, 14vw, 220px);
+        line-height: 0.86;
+        letter-spacing: -0.04em;
+        margin: 0;
+        color: var(--ink);
+      }
+      .name .l2 {
+        display: block;
+        font-style: italic;
+        font-weight: 400;
+      }
+      .name .ink-block {
+        background: var(--ink);
+        color: var(--accent-2);
+        padding: 0 12px;
+        display: inline-block;
+        line-height: 0.95;
+      }
+
+      /* Tagline strip */
+      .strip {
+        margin: 24px 0 0;
+        padding: 16px 32px;
+        border-top: 3px solid var(--ink);
+        border-bottom: 3px solid var(--ink);
+        background: var(--accent);
+        color: var(--ink);
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        font-size: clamp(20px, 2.6vw, 36px);
+        letter-spacing: -0.01em;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .strip .pill {
+        background: var(--ink);
+        color: var(--paper);
+        padding: 4px 14px;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-weight: 500;
+      }
+
+      /* Stats — oversized grid */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-bottom: 3px solid var(--ink);
+      }
+      .stat {
+        padding: 32px 28px;
+        border-left: 3px solid var(--ink);
+      }
+      .stat:first-child {
+        border-left: 0;
+      }
+      .stat .n {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: clamp(60px, 7vw, 110px);
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+      }
+      .stat .l {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        margin-top: 12px;
+        color: var(--muted);
+      }
+      .stat:nth-child(2) .n em {
+        color: var(--accent);
+        font-style: normal;
+      }
+      .stat:nth-child(3) .n em {
+        color: var(--accent-3);
+        font-style: normal;
+      }
+      .stat:nth-child(4) .n em {
+        color: var(--accent);
+        font-style: normal;
+      }
+
+      /* Section heads */
+      .section {
+        padding: 64px 32px;
+        border-bottom: 3px solid var(--ink);
+      }
+      .section-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 32px;
+        flex-wrap: wrap;
+      }
+      .section-head h2 {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: clamp(40px, 6vw, 84px);
+        line-height: 0.9;
+        letter-spacing: -0.03em;
+        margin: 0;
+      }
+      .section-head h2 .mark {
+        background: var(--accent-2);
+        padding: 0 8px;
+      }
+      .section-head h2 .strike {
+        text-decoration: line-through;
+        color: var(--muted);
+      }
+      .section-deck {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 500;
+        font-size: 18px;
+        max-width: 30ch;
+      }
+
+      /* Project grid — chunky tiles */
+      .work-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border-top: 3px solid var(--ink);
+        border-left: 3px solid var(--ink);
+      }
+      .tile {
+        border-right: 3px solid var(--ink);
+        border-bottom: 3px solid var(--ink);
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        background: var(--paper);
+        text-decoration: none;
+        color: var(--ink);
+      }
+      .tile:hover {
+        background: var(--accent-2);
+        text-decoration: none;
+      }
+      .tile-img {
+        aspect-ratio: 4/3;
+        background-size: cover;
+        background-position: center;
+        border-bottom: 3px solid var(--ink);
+        position: relative;
+      }
+      .tile-img .badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        padding: 4px 10px;
+      }
+      .tile-img .num {
+        position: absolute;
+        bottom: -3px;
+        right: -3px;
+        background: var(--paper);
+        border: 3px solid var(--ink);
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 28px;
+        padding: 2px 14px;
+      }
+      .tile-body {
+        padding: 18px 20px 22px;
+        flex: 1;
+      }
+      .tile-eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .tile h3 {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 1.05;
+        letter-spacing: -0.01em;
+        margin: 0 0 10px;
+      }
+      .tile p {
+        font-size: 14.5px;
+        color: var(--ink-2);
+        margin: 0;
+      }
+      .tile-foot {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 2px dashed var(--ink);
+        display: flex;
+        justify-content: space-between;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+      }
+      .tile-foot .arrow {
+        font-size: 18px;
+        line-height: 1;
+      }
+
+      /* Experience — timeline as labels */
+      .xp {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-top: 3px solid var(--ink);
+      }
+      .xp-cell {
+        padding: 24px 22px;
+        border-right: 3px solid var(--ink);
+        position: relative;
+      }
+      .xp-cell:last-child {
+        border-right: 0;
+      }
+      .xp-cell.now {
+        background: var(--accent-2);
+      }
+      .xp-when {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .xp-cell.now .xp-when {
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .xp-role {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 1.1;
+        margin: 0 0 6px;
+      }
+      .xp-org {
+        font-size: 14px;
+      }
+
+      /* CTA banner */
+      .banner {
+        background: var(--ink);
+        color: var(--paper);
+        padding: 48px 32px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .banner h2 {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: clamp(36px, 5vw, 64px);
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+        margin: 0;
+        flex: 1;
+      }
+      .banner h2 em {
+        color: var(--accent-2);
+        font-style: normal;
+      }
+      .banner .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 18px 28px;
+        background: var(--accent);
+        color: var(--ink);
+        text-decoration: none;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        border: 3px solid var(--paper);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .banner .cta:hover {
+        background: var(--accent-2);
+      }
+
+      footer {
+        padding: 28px 32px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      @media (max-width: 900px) {
+        .stats,
+        .work-grid,
+        .xp {
+          grid-template-columns: 1fr 1fr;
+        }
+        .hero-photo-wrap img {
+          width: 140px;
+        }
+      }
+      @media (max-width: 600px) {
+        .stats,
+        .work-grid,
+        .xp {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>● Available for collaboration</span><span class="star">★</span> <span>ICCV 2025 — PRISM accepted</span
+        ><span class="star">★</span> <span>NeurIPS 2024 — Top Reviewer</span><span class="star">★</span>
+        <span>AAAI 2025 — FedGaLA accepted</span><span class="star">★</span> <span>609+ citations · h-index 10</span
+        ><span class="star">★</span> <span>● Available for collaboration</span><span class="star">★</span>
+        <span>ICCV 2025 — PRISM accepted</span><span class="star">★</span> <span>NeurIPS 2024 — Top Reviewer</span
+        ><span class="star">★</span> <span>AAAI 2025 — FedGaLA accepted</span><span class="star">★</span>
+        <span>609+ citations · h-index 10</span><span class="star">★</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <span class="brand">Mahdiyar<b>M</b>olahasani</span>
+      <div class="links">
+        <a class="tab is-current" href="#">Index</a>
+        <a class="tab" href="#">Research</a>
+        <a class="tab" href="#">Notes</a>
+        <a class="tab" href="#">CV</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-row1">
+        <div class="hero-meta">
+          <b>Currently</b> &nbsp;ML Researcher II @ Captura<br />
+          <span style="color: var(--muted)">Raleigh, NC · Vancouver, BC</span>
+        </div>
+        <div class="hero-photo-wrap">
+          <img src="../images/me2-480.jpeg" alt="Mahdiyar" />
+        </div>
+      </div>
+      <h1 class="name">
+        Mahdiyar<br />
+        <span class="l2">Mola<span class="ink-block">hasani</span><span style="color: var(--accent)">.</span></span>
+      </h1>
+    </header>
+
+    <section class="strip">
+      <span>Applied AI · Computer Vision · For images that ship</span>
+      <span class="pill">EST. 2017</span>
+    </section>
+
+    <section class="stats">
+      <div class="stat">
+        <div class="n">609<em>+</em></div>
+        <div class="l">Citations</div>
+      </div>
+      <div class="stat">
+        <div class="n"><em>10</em></div>
+        <div class="l">H-Index</div>
+      </div>
+      <div class="stat">
+        <div class="n"><em>18</em></div>
+        <div class="l">Publications</div>
+      </div>
+      <div class="stat">
+        <div class="n"><em>8</em>y</div>
+        <div class="l">Research</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Selected <span class="mark">Work</span><br />Not <span class="strike">all of it</span>.</h2>
+        <p class="section-deck">Three deep-dives — the rest is on the research index.</p>
+      </div>
+      <div class="work-grid">
+        <a class="tile" href="#">
+          <div class="tile-img" style="background-image: url(&quot;../images/PRISM_cover_sqr-640.jpeg&quot;)">
+            <span class="badge">ICCV · 2025</span>
+            <span class="num">01</span>
+          </div>
+          <div class="tile-body">
+            <div class="tile-eyebrow">VLM · Fairness · Data-free</div>
+            <h3>PRISM. Debias CLIP without data.</h3>
+            <p>Linear correction over frozen embeddings, driven by language alone.</p>
+            <div class="tile-foot"><span>Read deep dive</span><span class="arrow">→</span></div>
+          </div>
+        </a>
+        <a class="tile" href="#">
+          <div class="tile-img" style="background-image: url(&quot;../images/FedGaLA_nb-640.jpeg&quot;)">
+            <span class="badge">AAAI · 2025</span>
+            <span class="num">02</span>
+          </div>
+          <div class="tile-body">
+            <div class="tile-eyebrow">Federated · Domain Generalization</div>
+            <h3>FedGaLA. Federated DG, unsupervised.</h3>
+            <p>Local + global gradient alignment from noisy clients across unseen domains.</p>
+            <div class="tile-foot"><span>Read deep dive</span><span class="arrow">→</span></div>
+          </div>
+        </a>
+        <a class="tile" href="#">
+          <div class="tile-img" style="background-image: url(&quot;../images/covid-640.jpeg&quot;)">
+            <span class="badge">MTAP · 2021</span>
+            <span class="num">03</span>
+          </div>
+          <div class="tile-body">
+            <div class="tile-eyebrow">Medical · Open Dataset</div>
+            <h3>COVID-CXNet. The dataset that became a benchmark.</h3>
+            <p>Open chest X-ray dataset and detection baseline used by hundreds of studies.</p>
+            <div class="tile-foot"><span>Read deep dive</span><span class="arrow">→</span></div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" style="padding: 0">
+      <div class="xp">
+        <div class="xp-cell now">
+          <div class="xp-when">2025 — Now ●</div>
+          <h3 class="xp-role">ML Researcher II</h3>
+          <p class="xp-org">Captura · Vancouver / Raleigh</p>
+        </div>
+        <div class="xp-cell">
+          <div class="xp-when">2024 — 2025</div>
+          <h3 class="xp-role">Expert LLM Trainer</h3>
+          <p class="xp-org">Outlier AI · Remote</p>
+        </div>
+        <div class="xp-cell">
+          <div class="xp-when">2021 — 2025</div>
+          <h3 class="xp-role">PhD, ECE</h3>
+          <p class="xp-org">Queen's University</p>
+        </div>
+        <div class="xp-cell">
+          <div class="xp-when">2019 — 2021</div>
+          <h3 class="xp-role">M.Sc., ECE</h3>
+          <p class="xp-org">University of Saskatchewan</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="banner">
+      <h2>Have a hard <em>vision</em> problem? Let's talk.</h2>
+      <a class="cta" href="mailto:m.molahasani.m@gmail.com">Get in touch →</a>
+    </section>
+
+    <footer>
+      <span>© 2026 — Mahdiyar Molahasani</span>
+      <span>Email · LinkedIn · GitHub · Scholar</span>
+      <span>Last updated 2026·04·25</span>
+    </footer>
+  </body>
+</html>

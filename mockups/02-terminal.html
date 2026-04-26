@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mockup 02 — Lab Notebook / Terminal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0b0d10;
+        --bg-2: #11141a;
+        --panel: #141821;
+        --panel-2: #1a1f2a;
+        --grid: rgba(132, 220, 198, 0.06);
+        --rule: #1f2733;
+        --text: #d8dee8;
+        --text-dim: #8a93a3;
+        --text-muted: #5a6273;
+        --accent: #84dcc6; /* phosphor green */
+        --accent-2: #ffb454; /* amber */
+        --accent-3: #6aaaff; /* link blue */
+        --danger: #ff6b6b;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "JetBrains Mono", monospace;
+        background: var(--bg);
+        background-image:
+          linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+        background-size: 32px 32px;
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.65;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+      .sans {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* Top status bar */
+      .statusbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: var(--bg-2);
+        border-bottom: 1px solid var(--rule);
+        padding: 8px 18px;
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        font-size: 12px;
+        color: var(--text-dim);
+        backdrop-filter: blur(6px);
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 8px var(--accent);
+      }
+      .dot.amber {
+        background: var(--accent-2);
+        box-shadow: 0 0 8px var(--accent-2);
+      }
+      .dot.dim {
+        background: var(--text-muted);
+        box-shadow: none;
+      }
+      .statusbar .spacer {
+        flex: 1;
+      }
+      .statusbar .pill {
+        padding: 2px 8px;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+      }
+
+      /* Header / Nav */
+      .nav {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 28px 24px 0;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 13px;
+      }
+      .nav .brand {
+        color: var(--accent);
+        font-weight: 700;
+      }
+      .nav .brand::before {
+        content: "$ ";
+        color: var(--text-muted);
+      }
+      .nav .links {
+        margin-left: auto;
+        display: flex;
+        gap: 4px;
+      }
+      .nav a.tab {
+        padding: 6px 12px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        color: var(--text-dim);
+      }
+      .nav a.tab:hover {
+        color: var(--text);
+        border-color: var(--rule);
+        text-decoration: none;
+      }
+      .nav a.tab.is-current {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .container {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 60px 0 30px;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 36px;
+        align-items: center;
+      }
+      .prompt {
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-bottom: 14px;
+      }
+      .prompt b {
+        color: var(--accent);
+        font-weight: 700;
+      }
+      .name {
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 700;
+        font-size: clamp(40px, 6vw, 72px);
+        line-height: 1.05;
+        letter-spacing: -0.01em;
+        color: var(--text);
+        margin: 0 0 10px;
+      }
+      .name .caret {
+        display: inline-block;
+        width: 0.5em;
+        height: 0.95em;
+        background: var(--accent);
+        margin-left: 6px;
+        vertical-align: -0.07em;
+        animation: blink 1.05s steps(2, end) infinite;
+        box-shadow: 0 0 12px var(--accent);
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+      .role {
+        font-size: 16px;
+        color: var(--text-dim);
+        margin: 0 0 24px;
+      }
+      .role .tag-inline {
+        color: var(--accent-2);
+      }
+      .hero-bio {
+        max-width: 56ch;
+        font-family: "Inter", sans-serif;
+        font-size: 15.5px;
+        color: var(--text);
+        line-height: 1.65;
+      }
+      .hero-bio b {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      /* Right card — system info readout */
+      .sysinfo {
+        background: var(--panel);
+        border: 1px solid var(--rule);
+        border-radius: 10px;
+        padding: 18px;
+        font-size: 12.5px;
+      }
+      .sysinfo h4 {
+        margin: 0 0 12px;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+      .sysinfo h4 .badge {
+        float: right;
+        color: var(--accent);
+        background: rgba(132, 220, 198, 0.08);
+        border: 1px solid rgba(132, 220, 198, 0.3);
+        padding: 1px 7px;
+        border-radius: 999px;
+        font-size: 10px;
+      }
+      .sysinfo .row {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 8px;
+        padding: 4px 0;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.04);
+      }
+      .sysinfo .row:last-child {
+        border: 0;
+      }
+      .sysinfo .k {
+        color: var(--text-muted);
+      }
+      .sysinfo .v {
+        color: var(--text);
+      }
+      .sysinfo .v.accent {
+        color: var(--accent);
+      }
+      .sysinfo .v.amber {
+        color: var(--accent-2);
+      }
+
+      /* Metrics ticker */
+      .ticker {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        margin: 30px 0 0;
+        background: var(--panel);
+        border: 1px solid var(--rule);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .ticker-cell {
+        padding: 18px 20px;
+        border-left: 1px solid var(--rule);
+      }
+      .ticker-cell:first-child {
+        border-left: 0;
+      }
+      .ticker-num {
+        font-size: 32px;
+        color: var(--accent);
+        font-weight: 700;
+        line-height: 1;
+        text-shadow: 0 0 18px rgba(132, 220, 198, 0.25);
+      }
+      .ticker-label {
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-top: 6px;
+      }
+      .ticker-spark {
+        margin-top: 6px;
+        height: 18px;
+      }
+
+      /* Section */
+      .section {
+        padding: 64px 0 24px;
+      }
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+      .section-head .num {
+        color: var(--accent-2);
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .section-head h2 {
+        font-family: "JetBrains Mono", monospace;
+        margin: 0;
+        font-size: 24px;
+        color: var(--text);
+      }
+      .section-head h2::before {
+        content: "> ";
+        color: var(--accent);
+      }
+      .section-head .deck {
+        margin-left: auto;
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      /* Project cards (notebook entries) */
+      .nb-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .nb {
+        background: var(--panel);
+        border: 1px solid var(--rule);
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .nb:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+      .nb-head {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--rule);
+        font-size: 12px;
+        color: var(--text-muted);
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .nb-head .file {
+        color: var(--accent);
+      }
+      .nb-head .cell {
+        margin-left: auto;
+      }
+      .nb-media {
+        background: #000;
+        aspect-ratio: 16/9;
+        background-size: cover;
+        background-position: center;
+        filter: saturate(1.05);
+      }
+      .nb-body {
+        padding: 14px;
+        flex: 1;
+      }
+      .nb-tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .tag {
+        font-size: 10.5px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: rgba(132, 220, 198, 0.08);
+        border: 1px solid rgba(132, 220, 198, 0.25);
+        color: var(--accent);
+      }
+      .tag.amber {
+        background: rgba(255, 180, 84, 0.08);
+        border-color: rgba(255, 180, 84, 0.3);
+        color: var(--accent-2);
+      }
+      .tag.blue {
+        background: rgba(106, 170, 255, 0.08);
+        border-color: rgba(106, 170, 255, 0.3);
+        color: var(--accent-3);
+      }
+      .nb-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text);
+        margin: 0 0 6px;
+      }
+      .nb-desc {
+        font-family: "Inter", sans-serif;
+        font-size: 13.5px;
+        color: var(--text-dim);
+        line-height: 1.5;
+      }
+      .nb-foot {
+        padding: 10px 14px;
+        border-top: 1px solid var(--rule);
+        font-size: 11.5px;
+        color: var(--text-muted);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* ASCII timeline */
+      .timeline {
+        background: var(--panel);
+        border: 1px solid var(--rule);
+        border-radius: 10px;
+        padding: 18px 22px;
+        font-size: 13px;
+      }
+      .timeline pre {
+        margin: 0;
+        font-family: "JetBrains Mono", monospace;
+        white-space: pre;
+        color: var(--text-dim);
+      }
+      .timeline .acc {
+        color: var(--accent);
+      }
+      .timeline .amb {
+        color: var(--accent-2);
+      }
+      .timeline .now {
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      /* Log feed */
+      .log {
+        background: var(--panel);
+        border: 1px solid var(--rule);
+        border-radius: 10px;
+        padding: 14px 18px;
+        font-size: 13px;
+      }
+      .log-row {
+        display: grid;
+        grid-template-columns: 100px 80px 1fr;
+        gap: 12px;
+        padding: 4px 0;
+      }
+      .log-row .t {
+        color: var(--text-muted);
+      }
+      .log-row .lvl {
+        font-weight: 700;
+      }
+      .lvl.info {
+        color: var(--accent-3);
+      }
+      .lvl.ok {
+        color: var(--accent);
+      }
+      .lvl.warn {
+        color: var(--accent-2);
+      }
+      .lvl.note {
+        color: var(--text-dim);
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 64px;
+        border-top: 1px solid var(--rule);
+        padding: 24px 24px 60px;
+        font-size: 12px;
+        color: var(--text-muted);
+        display: flex;
+        justify-content: space-between;
+        max-width: 1180px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      footer .links a {
+        color: var(--text-dim);
+        margin-left: 14px;
+      }
+      footer .links a:hover {
+        color: var(--accent);
+      }
+
+      @media (max-width: 860px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .ticker {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .nb-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="statusbar">
+      <span class="dot"></span><span>session: active</span> <span class="dot dim"></span><span>region: raleigh-nc</span>
+      <span class="dot amber"></span><span>build: 2026.04.25 · v1.4.2</span>
+      <span class="spacer"></span>
+      <span class="pill">⌘K search</span>
+      <span class="pill">↩ hire</span>
+    </div>
+
+    <nav class="nav">
+      <span class="brand">mahdiyar.ai</span>
+      <span style="color: var(--text-muted)">~/site</span>
+      <div class="links">
+        <a class="tab is-current" href="#">index.html</a>
+        <a class="tab" href="#">research/</a>
+        <a class="tab" href="#">notes/</a>
+        <a class="tab" href="#">cv.pdf</a>
+      </div>
+    </nav>
+
+    <main class="container">
+      <section class="hero">
+        <div>
+          <div class="prompt"><b>$</b> whoami</div>
+          <h1 class="name">mahdiyar<span style="color: var(--accent)">.</span>molahasani<span class="caret"></span></h1>
+          <p class="role mono">
+            ML Researcher II<span style="color: var(--text-muted)"> @ </span
+            ><span class="tag-inline">Captura</span> &nbsp;·&nbsp; PhD, Queen's<span style="color: var(--text-muted)">
+              · </span
+            >NeurIPS 2024 Top Reviewer
+          </p>
+          <p class="hero-bio">
+            I build applied <b>computer vision</b> and <b>multimodal AI</b> systems for imaging products — semantic
+            search, intelligent culling, color, and the unsexy plumbing that makes them ship. Research interests:
+            <b>federated learning</b>, <b>domain generalization</b>, <b>continual learning</b>.
+          </p>
+        </div>
+
+        <aside class="sysinfo">
+          <h4>system.info <span class="badge">● online</span></h4>
+          <div class="row"><span class="k">role</span><span class="v accent">ML Researcher II</span></div>
+          <div class="row"><span class="k">org</span><span class="v">Captura — Vancouver, BC</span></div>
+          <div class="row"><span class="k">based</span><span class="v">Raleigh, NC, USA</span></div>
+          <div class="row"><span class="k">phd</span><span class="v">Queen's University, 2025</span></div>
+          <div class="row"><span class="k">stack</span><span class="v amber">PyTorch · CLIP · YOLO · CUDA</span></div>
+          <div class="row"><span class="k">interests</span><span class="v">FL · DG · CL · VLMs</span></div>
+          <div class="row"><span class="k">status</span><span class="v accent">building things</span></div>
+        </aside>
+      </section>
+
+      <div class="ticker">
+        <div class="ticker-cell">
+          <div class="ticker-num">609<span style="font-size: 18px; color: var(--text-muted)">+</span></div>
+          <div class="ticker-label">citations</div>
+          <svg class="ticker-spark" viewBox="0 0 80 18" preserveAspectRatio="none">
+            <polyline
+              fill="none"
+              stroke="#84dcc6"
+              stroke-width="1.4"
+              points="0,16 12,14 24,12 36,9 48,7 60,5 72,3 80,2"
+            />
+          </svg>
+        </div>
+        <div class="ticker-cell">
+          <div class="ticker-num">10</div>
+          <div class="ticker-label">h-index</div>
+          <svg class="ticker-spark" viewBox="0 0 80 18" preserveAspectRatio="none">
+            <polyline
+              fill="none"
+              stroke="#84dcc6"
+              stroke-width="1.4"
+              points="0,15 12,15 24,13 36,12 48,10 60,9 72,7 80,5"
+            />
+          </svg>
+        </div>
+        <div class="ticker-cell">
+          <div class="ticker-num">18</div>
+          <div class="ticker-label">publications</div>
+          <svg class="ticker-spark" viewBox="0 0 80 18" preserveAspectRatio="none">
+            <polyline fill="none" stroke="#84dcc6" stroke-width="1.4" points="0,16 14,15 28,13 42,11 56,8 70,5 80,3" />
+          </svg>
+        </div>
+        <div class="ticker-cell">
+          <div class="ticker-num">8<span style="font-size: 18px; color: var(--text-muted)">y</span></div>
+          <div class="ticker-label">research</div>
+          <svg class="ticker-spark" viewBox="0 0 80 18" preserveAspectRatio="none">
+            <polyline
+              fill="none"
+              stroke="#84dcc6"
+              stroke-width="1.4"
+              points="0,12 12,11 24,11 36,10 48,9 60,8 72,7 80,6"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="num">[01]</span>
+          <h2>featured.notebooks</h2>
+          <span class="deck">3 entries · most recent first</span>
+        </div>
+        <div class="nb-grid">
+          <article class="nb">
+            <div class="nb-head"><span class="file">PRISM.ipynb</span><span class="cell">[cell 03 / 12]</span></div>
+            <div class="nb-media" style="background-image: url(&quot;../images/PRISM_cover_sqr-640.jpeg&quot;)"></div>
+            <div class="nb-body">
+              <div class="nb-tags">
+                <span class="tag">ICCV 2025</span><span class="tag amber">VLM</span
+                ><span class="tag blue">Fairness</span>
+              </div>
+              <h3 class="nb-title">PRISM — debiasing CLIP without data</h3>
+              <p class="nb-desc">
+                Linear correction over frozen embeddings, driven by LLM-generated bias prompts. No labels, no
+                retraining.
+              </p>
+            </div>
+            <div class="nb-foot"><span>→ open notebook</span><span>2025·06</span></div>
+          </article>
+
+          <article class="nb">
+            <div class="nb-head"><span class="file">FedGaLA.ipynb</span><span class="cell">[cell 07 / 18]</span></div>
+            <div class="nb-media" style="background-image: url(&quot;../images/FedGaLA_nb-640.jpeg&quot;)"></div>
+            <div class="nb-body">
+              <div class="nb-tags">
+                <span class="tag">AAAI 2025</span><span class="tag amber">Federated</span
+                ><span class="tag blue">DG</span>
+              </div>
+              <h3 class="nb-title">FedGaLA — federated domain generalization</h3>
+              <p class="nb-desc">
+                First framework for unsupervised federated DG. Local + global gradient alignment from noisy clients.
+              </p>
+            </div>
+            <div class="nb-foot"><span>→ open notebook</span><span>2025·02</span></div>
+          </article>
+
+          <article class="nb">
+            <div class="nb-head">
+              <span class="file">COVID-CXNet.ipynb</span><span class="cell">[cell 02 / 09]</span>
+            </div>
+            <div class="nb-media" style="background-image: url(&quot;../images/covid-640.jpeg&quot;)"></div>
+            <div class="nb-body">
+              <div class="nb-tags">
+                <span class="tag">MTAP 2021</span><span class="tag amber">Medical</span
+                ><span class="tag blue">Dataset</span>
+              </div>
+              <h3 class="nb-title">COVID-CXNet — open CXR benchmark</h3>
+              <p class="nb-desc">
+                Crowdsourced chest X-ray dataset and detection baseline. Cited by hundreds of independent studies.
+              </p>
+            </div>
+            <div class="nb-foot"><span>→ open notebook</span><span>2021·05</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="num">[02]</span>
+          <h2>experience.log</h2>
+          <span class="deck">tail -n 20</span>
+        </div>
+        <div class="timeline">
+          <pre>
+<span class="acc">●</span> <span class="now">2025-06 — now    </span> ML Researcher II        <span class="acc">@ Captura</span>
+│   ├── computer vision for volume photography
+│   └── leading research-to-product workflows
+│
+<span class="amb">○</span>   2024-05 — 2025-05  Expert LLM Trainer      <span class="amb">@ Outlier AI</span>
+│
+<span class="amb">○</span>   2021-05 — 2025-05  PhD, ECE                <span class="amb">@ Queen's University</span>
+│   └── advancing generalization in deep representations
+│
+<span class="amb">○</span>   2019-05 — 2021-04  M.Sc., ECE              <span class="amb">@ University of Saskatchewan</span>
+    └── deep learning for medical imaging &amp; super-resolution
+</pre>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="num">[03]</span>
+          <h2>recent.activity</h2>
+          <span class="deck">live feed</span>
+        </div>
+        <div class="log">
+          <div class="log-row">
+            <span class="t">2026·04·22</span><span class="lvl ok">[ok]</span
+            ><span>Scholar metrics refreshed — 609 citations, h-index 10</span>
+          </div>
+          <div class="log-row">
+            <span class="t">2026·04·21</span><span class="lvl info">[info]</span
+            ><span>Site rebuilt with frosted-glass cards and pinned 2025 paper order</span>
+          </div>
+          <div class="log-row">
+            <span class="t">2025·11·12</span><span class="lvl ok">[ok]</span
+            ><span>PRISM accepted to ICCV 2025 main conference</span>
+          </div>
+          <div class="log-row">
+            <span class="t">2025·06·02</span><span class="lvl info">[info]</span
+            ><span>Joined Captura as ML Researcher II</span>
+          </div>
+          <div class="log-row">
+            <span class="t">2024·12·01</span><span class="lvl warn">[note]</span
+            ><span>Recognized as NeurIPS 2024 Top Reviewer</span>
+          </div>
+          <div class="log-row">
+            <span class="t">2024·02·20</span><span class="lvl ok">[ok]</span><span>FedGaLA accepted to AAAI 2025</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 mahdiyar.ai · built on a static site, no tracking</span>
+      <span class="links">
+        <a href="#">email</a><a href="#">github</a><a href="#">linkedin</a><a href="#">scholar</a>
+      </span>
+    </footer>
+  </body>
+</html>

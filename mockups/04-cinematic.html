@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mockup 04 — Cinematic / Atmospheric</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #06070b;
+        --bg-2: #0c0e15;
+        --panel: rgba(255, 255, 255, 0.04);
+        --panel-2: rgba(255, 255, 255, 0.06);
+        --rule: rgba(255, 255, 255, 0.08);
+        --rule-2: rgba(255, 255, 255, 0.16);
+        --text: #ecedf2;
+        --text-dim: #a4abc0;
+        --text-muted: #6b7186;
+        --accent: #b794f4; /* lavender */
+        --accent-2: #5eead4; /* teal */
+        --accent-3: #f0abfc; /* pink */
+        --warm: #ffd49a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        overflow-x: hidden;
+      }
+      a {
+        color: var(--accent-2);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--accent-3);
+      }
+
+      /* Atmospheric background — animated gradient mesh */
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        background:
+          radial-gradient(900px 600px at 18% 12%, rgba(183, 148, 244, 0.32), transparent 60%),
+          radial-gradient(800px 500px at 88% 18%, rgba(94, 234, 212, 0.2), transparent 60%),
+          radial-gradient(900px 700px at 50% 100%, rgba(240, 171, 252, 0.18), transparent 65%),
+          radial-gradient(700px 500px at 0% 80%, rgba(255, 212, 154, 0.1), transparent 60%), var(--bg);
+        animation: drift 22s ease-in-out infinite alternate;
+      }
+      @keyframes drift {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+          filter: hue-rotate(0deg);
+        }
+        100% {
+          transform: translate3d(-30px, -20px, 0) scale(1.05);
+          filter: hue-rotate(20deg);
+        }
+      }
+      .grain {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        opacity: 0.06;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='1'/></svg>");
+      }
+
+      /* Header */
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(18px) saturate(140%);
+        -webkit-backdrop-filter: blur(18px) saturate(140%);
+        background: rgba(6, 7, 11, 0.55);
+        border-bottom: 1px solid var(--rule);
+      }
+      .header-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 16px 28px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+      .brand {
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-size: 26px;
+        letter-spacing: -0.01em;
+      }
+      .brand .dot {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent-2);
+        box-shadow: 0 0 12px var(--accent-2);
+        margin-right: 8px;
+        vertical-align: 0.18em;
+      }
+      .nav-links {
+        margin-left: auto;
+        display: flex;
+        gap: 4px;
+      }
+      .nav-links a {
+        padding: 8px 14px;
+        font-size: 14px;
+        color: var(--text-dim);
+        border-radius: 999px;
+        border: 1px solid transparent;
+      }
+      .nav-links a:hover {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.06);
+        border-color: var(--rule);
+      }
+      .nav-links a.is-current {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.07);
+        border-color: var(--rule-2);
+      }
+      .availability {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--text-dim);
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--rule-2);
+        background: rgba(94, 234, 212, 0.06);
+      }
+      .availability::before {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent-2);
+        margin-right: 8px;
+        vertical-align: 1px;
+        box-shadow: 0 0 8px var(--accent-2);
+        animation: pulse 1.6s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        50% {
+          opacity: 0.4;
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 96px 0 64px;
+        display: grid;
+        grid-template-columns: 1.45fr 1fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent-2);
+        margin-bottom: 20px;
+      }
+      .display {
+        font-family: "Instrument Serif", serif;
+        font-weight: 400;
+        font-size: clamp(56px, 8vw, 120px);
+        line-height: 0.96;
+        letter-spacing: -0.02em;
+        margin: 0 0 28px;
+        background: linear-gradient(180deg, #ffffff 0%, #c8c2e0 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .display em {
+        font-style: italic;
+        background: linear-gradient(135deg, var(--accent), var(--accent-3) 70%, var(--accent-2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .lede {
+        font-size: 19px;
+        color: var(--text-dim);
+        max-width: 50ch;
+        line-height: 1.55;
+        margin: 0 0 32px;
+      }
+      .lede b {
+        color: var(--text);
+        font-weight: 500;
+      }
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 22px;
+        border-radius: 999px;
+        font-size: 15px;
+        font-weight: 500;
+        border: 1px solid var(--rule-2);
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text);
+        backdrop-filter: blur(8px);
+        transition:
+          transform 0.25s,
+          background 0.25s,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.09);
+        color: var(--text);
+        border-color: rgba(255, 255, 255, 0.28);
+      }
+      .btn.primary {
+        background: linear-gradient(135deg, rgba(183, 148, 244, 0.95), rgba(94, 234, 212, 0.85));
+        color: #0a0a14;
+        font-weight: 600;
+        border-color: transparent;
+        box-shadow: 0 14px 50px -16px rgba(183, 148, 244, 0.65);
+      }
+      .btn.primary:hover {
+        color: #0a0a14;
+        box-shadow: 0 18px 60px -14px rgba(183, 148, 244, 0.85);
+      }
+
+      /* Hero portrait with glow + gradient ring */
+      .portrait {
+        position: relative;
+        justify-self: end;
+      }
+      .portrait .ring {
+        position: absolute;
+        inset: -18px;
+        border-radius: 28px;
+        background: conic-gradient(
+          from 120deg,
+          rgba(183, 148, 244, 0.6),
+          rgba(94, 234, 212, 0.4),
+          rgba(240, 171, 252, 0.6),
+          rgba(183, 148, 244, 0.6)
+        );
+        filter: blur(28px);
+        opacity: 0.7;
+        animation: spin 14s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .portrait .frame {
+        position: relative;
+        width: 380px;
+        max-width: 80vw;
+        aspect-ratio: 4/5;
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid var(--rule-2);
+        box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7);
+      }
+      .portrait .frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .portrait .frame::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 50%, rgba(6, 7, 11, 0.55) 100%);
+      }
+      .portrait .meta {
+        position: absolute;
+        left: 18px;
+        bottom: 18px;
+        right: 18px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.85);
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* Stats — glass panel */
+      .stats {
+        margin-top: 24px;
+        background: var(--panel);
+        border: 1px solid var(--rule);
+        border-radius: 18px;
+        padding: 22px 28px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        backdrop-filter: blur(14px);
+      }
+      .stat .n {
+        font-family: "Instrument Serif", serif;
+        font-size: 56px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        background: linear-gradient(180deg, #ffffff, #c8c2e0);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .stat:nth-child(2) .n {
+        background: linear-gradient(180deg, var(--accent-2), #2dd4bf);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .stat:nth-child(3) .n {
+        background: linear-gradient(180deg, var(--accent), #9f7aea);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .stat:nth-child(4) .n {
+        background: linear-gradient(180deg, var(--warm), #f6ad55);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .stat .l {
+        font-size: 12px;
+        color: var(--text-muted);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-top: 6px;
+      }
+
+      /* Section pattern */
+      .section {
+        padding: 96px 0;
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 32px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+      }
+      .section-eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent-2);
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-family: "Instrument Serif", serif;
+        font-size: clamp(40px, 5vw, 68px);
+        line-height: 1;
+        letter-spacing: -0.02em;
+        margin: 0;
+        max-width: 18ch;
+      }
+      .section-title em {
+        font-style: italic;
+        background: linear-gradient(135deg, var(--accent), var(--accent-3));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .section-deck {
+        font-size: 16px;
+        color: var(--text-dim);
+        max-width: 38ch;
+      }
+
+      /* Featured project showcase — large hero card */
+      .feature-card {
+        position: relative;
+        border-radius: 28px;
+        overflow: hidden;
+        border: 1px solid var(--rule-2);
+        background: var(--panel);
+        backdrop-filter: blur(14px);
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        align-items: stretch;
+        margin-bottom: 24px;
+      }
+      .feature-card .media {
+        position: relative;
+        aspect-ratio: 4/3;
+        overflow: hidden;
+      }
+      .feature-card .media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1.2s ease;
+      }
+      .feature-card:hover .media img {
+        transform: scale(1.04);
+      }
+      .feature-card .media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent 60%, rgba(6, 7, 11, 0.55) 100%);
+      }
+      .feature-card .body {
+        padding: 40px 44px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .feature-card h3 {
+        font-family: "Instrument Serif", serif;
+        font-size: 44px;
+        line-height: 1.05;
+        letter-spacing: -0.015em;
+        margin: 12px 0 16px;
+      }
+      .feature-card p {
+        color: var(--text-dim);
+        font-size: 16px;
+        margin: 0 0 12px;
+      }
+      .feature-card .pillrow {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+      .pill {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--rule-2);
+        color: var(--text-dim);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      /* Smaller project grid */
+      .proj-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .proj {
+        position: relative;
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid var(--rule);
+        background: var(--panel);
+        backdrop-filter: blur(10px);
+        text-decoration: none;
+        color: var(--text);
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.35s,
+          border-color 0.35s,
+          box-shadow 0.35s;
+      }
+      .proj:hover {
+        transform: translateY(-4px);
+        border-color: var(--rule-2);
+        box-shadow: 0 30px 80px -30px rgba(183, 148, 244, 0.45);
+      }
+      .proj .media {
+        aspect-ratio: 16/10;
+        overflow: hidden;
+        position: relative;
+      }
+      .proj .media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .proj .body {
+        padding: 22px 24px 26px;
+      }
+      .proj .ey {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      .proj h4 {
+        font-family: "Instrument Serif", serif;
+        font-size: 28px;
+        line-height: 1.05;
+        margin: 0 0 8px;
+        letter-spacing: -0.01em;
+      }
+      .proj p {
+        font-size: 14.5px;
+        color: var(--text-dim);
+        margin: 0;
+      }
+
+      /* Timeline */
+      .timeline {
+        position: relative;
+        padding-left: 28px;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 8px;
+        bottom: 8px;
+        width: 1px;
+        background: linear-gradient(180deg, var(--accent), var(--accent-2), var(--accent-3));
+        opacity: 0.4;
+      }
+      .tl {
+        position: relative;
+        padding: 18px 0 26px;
+        border-bottom: 1px solid var(--rule);
+      }
+      .tl::before {
+        content: "";
+        position: absolute;
+        left: -28px;
+        top: 22px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--bg-2);
+        border: 2px solid var(--accent);
+        box-shadow: 0 0 16px rgba(183, 148, 244, 0.6);
+      }
+      .tl.now::before {
+        background: var(--accent-2);
+        border-color: var(--accent-2);
+        box-shadow: 0 0 20px var(--accent-2);
+      }
+      .tl-when {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--text-muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .tl.now .tl-when {
+        color: var(--accent-2);
+      }
+      .tl-role {
+        font-family: "Instrument Serif", serif;
+        font-size: 28px;
+        line-height: 1.1;
+        margin: 4px 0 4px;
+      }
+      .tl-org {
+        color: var(--text-dim);
+        font-size: 14px;
+        margin: 0 0 8px;
+      }
+      .tl-note {
+        color: var(--text-dim);
+        font-size: 14.5px;
+        max-width: 65ch;
+      }
+
+      /* CTA */
+      .cta-card {
+        margin: 24px 0 60px;
+        padding: 56px 48px;
+        border-radius: 28px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--rule-2);
+        background:
+          radial-gradient(800px 400px at 20% 10%, rgba(183, 148, 244, 0.28), transparent 60%),
+          radial-gradient(700px 400px at 100% 100%, rgba(94, 234, 212, 0.22), transparent 60%),
+          rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(16px);
+      }
+      .cta-card h2 {
+        font-family: "Instrument Serif", serif;
+        font-size: clamp(36px, 4.5vw, 56px);
+        line-height: 1.05;
+        margin: 0 0 18px;
+        letter-spacing: -0.015em;
+      }
+      .cta-card p {
+        color: var(--text-dim);
+        font-size: 17px;
+        max-width: 60ch;
+        margin: 0 0 24px;
+      }
+
+      footer {
+        padding: 32px 28px 64px;
+        border-top: 1px solid var(--rule);
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        font-size: 13px;
+        color: var(--text-muted);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      footer .links a {
+        color: var(--text-dim);
+        margin-left: 18px;
+      }
+
+      @media (max-width: 880px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .portrait {
+          justify-self: start;
+        }
+        .portrait .frame {
+          width: 280px;
+        }
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+        }
+        .feature-card {
+          grid-template-columns: 1fr;
+        }
+        .proj-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg"></div>
+    <div class="grain"></div>
+
+    <header class="header">
+      <div class="header-inner">
+        <span class="brand"><span class="dot"></span>Mahdiyar Molahasani</span>
+        <nav class="nav-links">
+          <a class="is-current" href="#">Home</a>
+          <a href="#">Research</a>
+          <a href="#">Notes</a>
+          <a href="#">CV</a>
+        </nav>
+        <span class="availability">Open to research collaboration</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">ML Researcher · Applied Vision · 2026</div>
+          <h1 class="display">Building AI<br />for the way we<br /><em>actually see.</em></h1>
+          <p class="lede">
+            <b>ML Researcher II at Captura</b>, working on applied computer vision and multimodal AI systems for the
+            photography industry — semantic search, intelligent image culling, color, and the deep models behind images
+            at scale.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#">View research →</a>
+            <a class="btn" href="#">Read deep dives</a>
+            <a class="btn" href="mailto:m.molahasani.m@gmail.com">Get in touch</a>
+          </div>
+        </div>
+
+        <div class="portrait">
+          <div class="ring"></div>
+          <div class="frame">
+            <img src="../images/me2-480.jpeg" alt="Mahdiyar Molahasani" />
+            <div class="meta">
+              <span>Raleigh, NC</span>
+              <span>est. 2026</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="n">609+</div>
+          <div class="l">Citations</div>
+        </div>
+        <div class="stat">
+          <div class="n">10</div>
+          <div class="l">H-Index</div>
+        </div>
+        <div class="stat">
+          <div class="n">18</div>
+          <div class="l">Publications</div>
+        </div>
+        <div class="stat">
+          <div class="n">8+</div>
+          <div class="l">Years Research</div>
+        </div>
+      </div>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">Featured · Long-form</div>
+            <h2 class="section-title">Selected work,<br /><em>in depth</em>.</h2>
+          </div>
+          <p class="section-deck">
+            Long-form deep-dives on the projects that shaped the work — from CLIP debiasing to federated generalization
+            to an open medical benchmark.
+          </p>
+        </div>
+
+        <a class="feature-card" href="#" style="text-decoration: none; color: inherit">
+          <div class="media"><img src="../images/PRISM_cover_sqr-640.jpeg" alt="PRISM" /></div>
+          <div class="body">
+            <div class="section-eyebrow" style="margin-bottom: 0">ICCV 2025 · Vision–Language</div>
+            <h3>PRISM — debiasing CLIP without data.</h3>
+            <p>
+              A data-free, task-agnostic debiasing framework for CLIP-style models. Linear correction over frozen
+              embeddings, driven by LLM-generated bias prompts. No labels, no retraining.
+            </p>
+            <div class="pillrow">
+              <span class="pill">VLM</span>
+              <span class="pill">Fairness</span>
+              <span class="pill">Data-free</span>
+              <span class="pill">CLIP</span>
+            </div>
+          </div>
+        </a>
+
+        <div class="proj-grid">
+          <a class="proj" href="#">
+            <div class="media"><img src="../images/FedGaLA_nb-640.jpeg" alt="FedGaLA" /></div>
+            <div class="body">
+              <div class="ey">AAAI 2025 · Federated</div>
+              <h4>FedGaLA — federated domain generalization.</h4>
+              <p>First framework for unsupervised federated DG via local + global gradient alignment.</p>
+            </div>
+          </a>
+          <a class="proj" href="#">
+            <div class="media"><img src="../images/covid-640.jpeg" alt="COVID-CXNet" /></div>
+            <div class="body">
+              <div class="ey">MTAP 2021 · Open Dataset</div>
+              <h4>COVID-CXNet — an open CXR benchmark.</h4>
+              <p>Open chest X-ray dataset and detection baseline cited by hundreds of independent studies.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">Trajectory</div>
+            <h2 class="section-title">A working <em>life</em>.</h2>
+          </div>
+          <p class="section-deck">Industry and research, in the order they happened.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="tl now">
+            <div class="tl-when">June 2025 — Present</div>
+            <h3 class="tl-role">ML Researcher II</h3>
+            <p class="tl-org">Captura · Vancouver, BC (based in Raleigh, NC)</p>
+            <p class="tl-note">
+              Leading applied ML research and development for AI image enhancement and management in the volume
+              photography industry.
+            </p>
+          </div>
+          <div class="tl">
+            <div class="tl-when">May 2024 — May 2025</div>
+            <h3 class="tl-role">Expert LLM Trainer &amp; Evaluator</h3>
+            <p class="tl-org">Outlier AI · Remote</p>
+            <p class="tl-note">Multimodal AI evaluation and advanced validation tasks for reasoning quality.</p>
+          </div>
+          <div class="tl">
+            <div class="tl-when">May 2021 — May 2025</div>
+            <h3 class="tl-role">PhD, Electrical &amp; Computer Engineering</h3>
+            <p class="tl-org">Queen's University · Kingston, ON</p>
+            <p class="tl-note">
+              Advancing generalization in deep representation learning — federated, continual, and fair.
+            </p>
+          </div>
+          <div class="tl">
+            <div class="tl-when">May 2019 — April 2021</div>
+            <h3 class="tl-role">M.Sc., Electrical &amp; Computer Engineering</h3>
+            <p class="tl-org">University of Saskatchewan · Saskatoon, SK</p>
+            <p class="tl-note">Deep learning for medical imaging and super-resolution.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="cta-card">
+        <h2>Working on a hard vision problem? Let's talk.</h2>
+        <p>
+          I'm always open to interesting collaborations on applied vision, VLMs, or representation learning — academic
+          or industrial.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="mailto:m.molahasani.m@gmail.com">Email me →</a>
+          <a class="btn" href="#">LinkedIn</a>
+          <a class="btn" href="#">Google Scholar</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <span>© 2026 Mahdiyar Molahasani. Built on the open web.</span>
+      <span class="links"
+        ><a href="#">Email</a><a href="#">LinkedIn</a><a href="#">GitHub</a><a href="#">Scholar</a></span
+      >
+    </footer>
+  </body>
+</html>

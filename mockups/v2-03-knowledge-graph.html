@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v2 · 03 — Knowledge Graph</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --bg-soft: #f8fafc;
+        --ink: #0f172a;
+        --ink-2: #2a3548;
+        --muted: #64748b;
+        --rule: #e6eaf0;
+        --rule-soft: #eef1f6;
+        --primary: #2563eb;
+        --primary-soft: rgba(37, 99, 235, 0.08);
+        --primary-deep: #1d4ed8;
+        --accent: #f59e0b;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          "Inter",
+          -apple-system,
+          sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--primary-deep);
+      }
+
+      /* Knowledge graph canvas — only behind the hero */
+      .hero-graph-wrap {
+        position: relative;
+        overflow: hidden;
+      }
+      #kg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(14px) saturate(140%);
+        border-bottom: 1px solid var(--rule);
+      }
+      .header-in {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 14px 28px;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+      }
+      .brand {
+        font-weight: 700;
+        font-size: 17px;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .brand .logo {
+        width: 22px;
+        height: 22px;
+        position: relative;
+      }
+      .brand .logo::before,
+      .brand .logo::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+      }
+      .brand .logo::before {
+        width: 100%;
+        height: 100%;
+        border: 1.5px solid var(--primary);
+      }
+      .brand .logo::after {
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .nav {
+        margin-left: auto;
+        display: flex;
+        gap: 4px;
+      }
+      .nav a {
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 14.5px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .nav a:hover {
+        color: var(--ink);
+        background: var(--rule-soft);
+        text-decoration: none;
+      }
+      .nav a.is-current {
+        color: var(--ink);
+        background: var(--rule-soft);
+      }
+
+      .container {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 28px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Hero with graph background */
+      .hero-graph-wrap {
+        background: radial-gradient(900px 500px at 50% -10%, rgba(37, 99, 235, 0.05), transparent 60%), #fff;
+        border-bottom: 1px solid var(--rule);
+      }
+      .hero {
+        padding: 80px 0 48px;
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .kicker {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--primary);
+        margin-bottom: 18px;
+      }
+      .hero h1 {
+        font-size: clamp(46px, 5.6vw, 72px);
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+        font-weight: 700;
+        margin: 0 0 22px;
+      }
+      .hero h1 em {
+        font-style: normal;
+        background: linear-gradient(135deg, var(--primary), #6366f1 60%, var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .lede {
+        font-size: 18.5px;
+        line-height: 1.6;
+        color: var(--ink-2);
+        max-width: 52ch;
+        margin: 0 0 28px;
+      }
+      .lede b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 20px;
+        border-radius: 10px;
+        font-weight: 500;
+        font-size: 14.5px;
+        border: 1.5px solid var(--rule);
+        background: rgba(255, 255, 255, 0.85);
+        color: var(--ink);
+        backdrop-filter: blur(8px);
+        transition:
+          transform 0.2s,
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        border-color: var(--ink-2);
+        text-decoration: none;
+      }
+      .btn.primary {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+        box-shadow: 0 6px 18px -8px rgba(37, 99, 235, 0.55);
+      }
+      .btn.primary:hover {
+        background: var(--primary-deep);
+        border-color: var(--primary-deep);
+        color: #fff;
+      }
+
+      /* Portrait integrated as a graph node */
+      .portrait {
+        justify-self: center;
+        position: relative;
+        width: 280px;
+        height: 280px;
+        z-index: 2;
+      }
+      .portrait .photo {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid var(--rule);
+        box-shadow:
+          0 30px 70px -30px rgba(15, 23, 42, 0.25),
+          0 0 0 8px rgba(255, 255, 255, 0.7);
+      }
+      .portrait .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .portrait .pulse {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 1px solid rgba(37, 99, 235, 0.4);
+        animation: ping 3s ease-out infinite;
+      }
+      .portrait .pulse.delay {
+        animation-delay: 1.5s;
+      }
+      @keyframes ping {
+        0% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1.4);
+          opacity: 0;
+        }
+      }
+      .portrait .label {
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        background: #fff;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-size: 12px;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink);
+        letter-spacing: 0.06em;
+        box-shadow: 0 8px 18px -10px rgba(15, 23, 42, 0.18);
+        white-space: nowrap;
+      }
+
+      /* Topic legend below hero */
+      .topics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 28px;
+      }
+      .topic {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid var(--rule);
+        font-size: 13px;
+        color: var(--ink-2);
+        font-family: "JetBrains Mono", monospace;
+        letter-spacing: 0.04em;
+        backdrop-filter: blur(6px);
+      }
+      .topic .d {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--primary);
+      }
+      .topic.amber .d {
+        background: var(--accent);
+      }
+      .topic.violet .d {
+        background: #8b5cf6;
+      }
+      .topic.teal .d {
+        background: #14b8a6;
+      }
+      .topic.rose .d {
+        background: #f43f5e;
+      }
+      .topic.green .d {
+        background: #16a34a;
+      }
+
+      /* Stats */
+      .stats {
+        margin: 56px auto 0;
+        max-width: 1180px;
+        padding: 28px 28px 0;
+        border-top: 1px solid var(--rule);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+      }
+      .stat .n {
+        font-size: 38px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+      .stat .n em {
+        font-style: normal;
+        color: var(--primary);
+      }
+      .stat .l {
+        margin-top: 6px;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      /* Sections */
+      .section {
+        padding: 80px 0;
+        border-top: 1px solid var(--rule);
+      }
+      .section-head {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 48px;
+        margin-bottom: 36px;
+      }
+      .section-eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-size: clamp(32px, 4vw, 44px);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+        margin: 0;
+      }
+      .section-deck {
+        font-size: 16.5px;
+        color: var(--ink-2);
+        max-width: 56ch;
+        align-self: end;
+      }
+
+      /* Research areas — small graph mini-cards */
+      .areas {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .area {
+        padding: 22px 24px;
+        border: 1px solid var(--rule);
+        border-radius: 14px;
+        background: #fff;
+        position: relative;
+        overflow: hidden;
+        transition:
+          border-color 0.25s,
+          transform 0.25s;
+      }
+      .area:hover {
+        border-color: rgba(37, 99, 235, 0.4);
+        transform: translateY(-2px);
+      }
+      .area .pin {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--primary-soft);
+        border: 1px solid rgba(37, 99, 235, 0.25);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 14px;
+      }
+      .area .pin .core {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--primary);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
+      }
+      .area.amber .pin {
+        background: rgba(245, 158, 11, 0.1);
+        border-color: rgba(245, 158, 11, 0.3);
+      }
+      .area.amber .pin .core {
+        background: var(--accent);
+        box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18);
+      }
+      .area.violet .pin {
+        background: rgba(139, 92, 246, 0.1);
+        border-color: rgba(139, 92, 246, 0.3);
+      }
+      .area.violet .pin .core {
+        background: #8b5cf6;
+        box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.18);
+      }
+      .area.teal .pin {
+        background: rgba(20, 184, 166, 0.1);
+        border-color: rgba(20, 184, 166, 0.3);
+      }
+      .area.teal .pin .core {
+        background: #14b8a6;
+        box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.18);
+      }
+      .area.rose .pin {
+        background: rgba(244, 63, 94, 0.1);
+        border-color: rgba(244, 63, 94, 0.3);
+      }
+      .area.rose .pin .core {
+        background: #f43f5e;
+        box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.18);
+      }
+      .area.green .pin {
+        background: rgba(22, 163, 74, 0.1);
+        border-color: rgba(22, 163, 74, 0.3);
+      }
+      .area.green .pin .core {
+        background: #16a34a;
+        box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.18);
+      }
+      .area h4 {
+        font-size: 17px;
+        font-weight: 600;
+        margin: 0 0 8px;
+        letter-spacing: -0.01em;
+      }
+      .area p {
+        font-size: 14.5px;
+        color: var(--muted);
+        margin: 0 0 12px;
+      }
+      .area .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .area .tags span {
+        padding: 2px 8px;
+        background: var(--rule-soft);
+        border-radius: 999px;
+      }
+
+      /* Featured projects (cards) */
+      .feat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .feat {
+        text-decoration: none;
+        color: inherit;
+        background: #fff;
+        border: 1px solid var(--rule);
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.25s,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .feat:hover {
+        transform: translateY(-3px);
+        border-color: rgba(37, 99, 235, 0.4);
+        box-shadow: 0 22px 50px -28px rgba(37, 99, 235, 0.35);
+      }
+      .feat .media {
+        aspect-ratio: 16/10;
+        overflow: hidden;
+        border-bottom: 1px solid var(--rule);
+      }
+      .feat .media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s;
+      }
+      .feat:hover .media img {
+        transform: scale(1.04);
+      }
+      .feat .body {
+        padding: 18px 20px 22px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .feat .ey {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 6px;
+      }
+      .feat h3 {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.3;
+        margin: 0 0 6px;
+        letter-spacing: -0.01em;
+      }
+      .feat p {
+        font-size: 14.5px;
+        color: var(--muted);
+        margin: 0;
+      }
+      .feat .arrow {
+        margin-top: 14px;
+        font-size: 13px;
+        color: var(--primary);
+        font-weight: 500;
+      }
+
+      /* Timeline */
+      .tl {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 40px;
+        padding: 22px 0;
+        border-top: 1px solid var(--rule);
+      }
+      .tl:first-child {
+        border-top: 1px solid var(--ink);
+      }
+      .tl-when {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding-top: 4px;
+      }
+      .tl.now .tl-when {
+        color: var(--primary);
+        font-weight: 600;
+      }
+      .tl-role {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0 0 4px;
+        letter-spacing: -0.01em;
+      }
+      .tl-org {
+        color: var(--muted);
+        font-size: 14px;
+        margin: 0 0 10px;
+      }
+      .tl-note {
+        font-size: 15px;
+        color: var(--ink-2);
+        max-width: 65ch;
+      }
+
+      footer {
+        margin-top: 24px;
+        padding: 28px 28px 56px;
+        border-top: 1px solid var(--rule);
+        max-width: 1180px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      footer a {
+        color: var(--ink-2);
+        margin-left: 16px;
+      }
+
+      @media (max-width: 880px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .portrait {
+          width: 220px;
+          height: 220px;
+          justify-self: start;
+        }
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+        .areas {
+          grid-template-columns: 1fr;
+        }
+        .feat-grid {
+          grid-template-columns: 1fr;
+        }
+        .tl {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+        .section-head {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-in">
+        <a class="brand" href="#"><span class="logo"></span>Mahdiyar Molahasani</a>
+        <nav class="nav">
+          <a class="is-current" href="#">Home</a>
+          <a href="#">Research</a>
+          <a href="#">Notes</a>
+          <a href="#">CV</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="hero-graph-wrap">
+      <canvas id="kg" aria-hidden="true"></canvas>
+      <div class="container">
+        <section class="hero">
+          <div>
+            <div class="kicker">A graph of what I think about</div>
+            <h1>
+              Connecting <em>vision</em>, <em>generalization</em>,<br />
+              and the <em>real world</em>.
+            </h1>
+            <p class="lede">
+              I'm an <b>ML researcher and applied AI thinker</b>. My work sits between computer vision, foundation
+              models, and how they get pushed into industries that are nothing like the datasets they were trained on.
+              Currently <b>ML Researcher II at Captura</b>, shipping vision into production photography.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="#">View research</a>
+              <a class="btn" href="#">Read essays</a>
+              <a class="btn" href="mailto:m.molahasani.m@gmail.com">Get in touch</a>
+            </div>
+
+            <div class="topics">
+              <span class="topic"><span class="d"></span>Computer Vision</span>
+              <span class="topic violet"><span class="d"></span>Foundation Models / VLMs</span>
+              <span class="topic teal"><span class="d"></span>Federated Learning</span>
+              <span class="topic amber"><span class="d"></span>Domain Generalization</span>
+              <span class="topic rose"><span class="d"></span>Fairness</span>
+              <span class="topic green"><span class="d"></span>Continual Learning</span>
+            </div>
+          </div>
+
+          <div class="portrait">
+            <span class="pulse"></span>
+            <span class="pulse delay"></span>
+            <div class="photo">
+              <img src="../images/me2-480.jpeg" alt="Mahdiyar Molahasani" />
+            </div>
+            <div class="label">@mahdiyar.ai · Raleigh, NC</div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="n"><em>609</em>+</div>
+        <div class="l">Citations</div>
+      </div>
+      <div class="stat">
+        <div class="n"><em>10</em></div>
+        <div class="l">H-Index</div>
+      </div>
+      <div class="stat">
+        <div class="n"><em>18</em></div>
+        <div class="l">Publications</div>
+      </div>
+      <div class="stat">
+        <div class="n"><em>8</em>+</div>
+        <div class="l">Years Research</div>
+      </div>
+    </div>
+
+    <main class="container">
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">§ Research areas</div>
+            <h2 class="section-title">The graph,<br />unfolded.</h2>
+          </div>
+          <p class="section-deck">
+            Six clusters of work I keep returning to. Each is a node in the graph above; together they explain most of
+            what I publish, build, and write about.
+          </p>
+        </div>
+        <div class="areas">
+          <div class="area">
+            <div class="pin"><span class="core"></span></div>
+            <h4>Computer Vision &amp; Imaging</h4>
+            <p>Production CV pipelines for the photography industry — from classification to color.</p>
+            <div class="tags"><span>YOLO</span><span>CLIP</span><span>Segmentation</span></div>
+          </div>
+          <div class="area violet">
+            <div class="pin"><span class="core"></span></div>
+            <h4>Foundation Models &amp; VLMs</h4>
+            <p>How CLIP-style and multimodal models behave when you push them into real workflows.</p>
+            <div class="tags"><span>CLIP</span><span>SigLIP</span><span>VQA</span></div>
+          </div>
+          <div class="area teal">
+            <div class="pin"><span class="core"></span></div>
+            <h4>Federated Learning</h4>
+            <p>Training across decentralized clients without leaking data. FedGaLA was my AAAI '25 contribution.</p>
+            <div class="tags"><span>Privacy</span><span>Distributed</span><span>Aggregation</span></div>
+          </div>
+          <div class="area amber">
+            <div class="pin"><span class="core"></span></div>
+            <h4>Domain Generalization</h4>
+            <p>Models that hold up when the world stops looking like the training set. The PhD thesis topic.</p>
+            <div class="tags"><span>OOD</span><span>Robustness</span><span>Distribution Shift</span></div>
+          </div>
+          <div class="area rose">
+            <div class="pin"><span class="core"></span></div>
+            <h4>Fairness &amp; Debiasing</h4>
+            <p>Working on debiasing CLIP without supervised attribute labels — the PRISM line of work.</p>
+            <div class="tags"><span>PRISM</span><span>VLM bias</span><span>Data-free</span></div>
+          </div>
+          <div class="area green">
+            <div class="pin"><span class="core"></span></div>
+            <h4>Continual Learning</h4>
+            <p>Models that keep learning without forgetting — a constraint every deployed system actually faces.</p>
+            <div class="tags"><span>Replay</span><span>Plasticity</span><span>Catastrophic forgetting</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">§ Featured Work</div>
+            <h2 class="section-title">Selected research, in long form.</h2>
+          </div>
+          <p class="section-deck">Three deep dives into the work most representative of the through-line.</p>
+        </div>
+        <div class="feat-grid">
+          <a class="feat" href="#">
+            <div class="media"><img src="../images/PRISM_cover_sqr-640.jpeg" alt="PRISM" /></div>
+            <div class="body">
+              <div class="ey">ICCV 2025 · VLM</div>
+              <h3>PRISM — debiasing CLIP without data</h3>
+              <p>A linear correction over frozen embeddings, driven by language alone. No labels, no retraining.</p>
+              <span class="arrow">Read deep dive →</span>
+            </div>
+          </a>
+          <a class="feat" href="#">
+            <div class="media"><img src="../images/FedGaLA_nb-640.jpeg" alt="FedGaLA" /></div>
+            <div class="body">
+              <div class="ey">AAAI 2025 · Federated</div>
+              <h3>FedGaLA — federated DG, unsupervised</h3>
+              <p>First framework for unsupervised federated domain generalization.</p>
+              <span class="arrow">Read deep dive →</span>
+            </div>
+          </a>
+          <a class="feat" href="#">
+            <div class="media"><img src="../images/covid-640.jpeg" alt="COVID-CXNet" /></div>
+            <div class="body">
+              <div class="ey">MTAP 2021 · Open Dataset</div>
+              <h3>COVID-CXNet — open CXR benchmark</h3>
+              <p>Open dataset and detection baseline used by hundreds of independent studies.</p>
+              <span class="arrow">Read deep dive →</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">§ Trajectory</div>
+            <h2 class="section-title">Industry &amp; research, in order.</h2>
+          </div>
+          <p class="section-deck">
+            From medical imaging to applied vision at scale — all anchored to the same node in the graph:
+            <em>generalization</em>.
+          </p>
+        </div>
+        <div>
+          <div class="tl now">
+            <div class="tl-when">Jun 2025 — Now</div>
+            <div>
+              <h3 class="tl-role">ML Researcher II</h3>
+              <p class="tl-org">Captura · Vancouver, BC (based in Raleigh, NC)</p>
+              <p class="tl-note">Leading applied ML for AI image enhancement and management in volume photography.</p>
+            </div>
+          </div>
+          <div class="tl">
+            <div class="tl-when">2024 — 2025</div>
+            <div>
+              <h3 class="tl-role">Expert LLM Trainer &amp; Evaluator</h3>
+              <p class="tl-org">Outlier AI · Remote</p>
+              <p class="tl-note">Multimodal AI evaluation; advanced validation tasks for reasoning quality.</p>
+            </div>
+          </div>
+          <div class="tl">
+            <div class="tl-when">2021 — 2025</div>
+            <div>
+              <h3 class="tl-role">PhD, ECE</h3>
+              <p class="tl-org">Queen's University</p>
+              <p class="tl-note">Generalization in deep representation learning — federated, continual, fair.</p>
+            </div>
+          </div>
+          <div class="tl">
+            <div class="tl-when">2019 — 2021</div>
+            <div>
+              <h3 class="tl-role">M.Sc., ECE</h3>
+              <p class="tl-org">University of Saskatchewan</p>
+              <p class="tl-note">Deep learning for medical imaging and super-resolution.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 Mahdiyar Molahasani · Last updated 2026·04·25</span>
+      <span><a href="#">Email</a><a href="#">LinkedIn</a><a href="#">GitHub</a><a href="#">Scholar</a></span>
+    </footer>
+
+    <!-- Knowledge graph: labeled topic nodes with edges, gentle motion -->
+    <script>
+      (function () {
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const cv = document.getElementById("kg");
+        if (!cv) return;
+        const wrap = cv.parentElement;
+        const ctx = cv.getContext("2d");
+        let W,
+          H,
+          DPR = Math.min(window.devicePixelRatio || 1, 2);
+        const TOPICS = [
+          { name: "Vision", color: "rgba(37,99,235,1)", soft: "rgba(37,99,235,0.10)" },
+          { name: "VLMs", color: "rgba(139,92,246,1)", soft: "rgba(139,92,246,0.10)" },
+          { name: "Federated", color: "rgba(20,184,166,1)", soft: "rgba(20,184,166,0.10)" },
+          { name: "Generalization", color: "rgba(245,158,11,1)", soft: "rgba(245,158,11,0.10)" },
+          { name: "Fairness", color: "rgba(244,63,94,1)", soft: "rgba(244,63,94,0.10)" },
+          { name: "Continual", color: "rgba(22,163,74,1)", soft: "rgba(22,163,74,0.10)" },
+        ];
+        const labeled = [];
+        const filler = [];
+        function resize() {
+          W = cv.width = wrap.clientWidth * DPR;
+          H = cv.height = wrap.clientHeight * DPR;
+          cv.style.width = wrap.clientWidth + "px";
+          cv.style.height = wrap.clientHeight + "px";
+          ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        }
+        function init() {
+          labeled.length = 0;
+          filler.length = 0;
+          const w = wrap.clientWidth,
+            h = wrap.clientHeight;
+          // Place labeled topics around the perimeter with some randomness
+          for (let i = 0; i < TOPICS.length; i++) {
+            const t = TOPICS[i];
+            const angle = (i / TOPICS.length) * Math.PI * 2 - Math.PI / 2;
+            const cx = w * 0.5,
+              cy = h * 0.55;
+            const rx = w * 0.36,
+              ry = h * 0.34;
+            labeled.push({
+              x: cx + Math.cos(angle) * rx + (Math.random() - 0.5) * 40,
+              y: cy + Math.sin(angle) * ry + (Math.random() - 0.5) * 40,
+              vx: (Math.random() - 0.5) * 0.12,
+              vy: (Math.random() - 0.5) * 0.12,
+              name: t.name,
+              color: t.color,
+              soft: t.soft,
+              r: 5,
+            });
+          }
+          for (let i = 0; i < 35; i++) {
+            filler.push({
+              x: Math.random() * w,
+              y: Math.random() * h,
+              vx: (Math.random() - 0.5) * 0.18,
+              vy: (Math.random() - 0.5) * 0.18,
+              r: 1.1 + Math.random() * 1.3,
+              a: 0.22 + Math.random() * 0.35,
+            });
+          }
+        }
+        function step() {
+          const w = wrap.clientWidth,
+            h = wrap.clientHeight;
+          ctx.clearRect(0, 0, w, h);
+          // edges between labeled topics (soft mesh)
+          for (let i = 0; i < labeled.length; i++) {
+            for (let j = i + 1; j < labeled.length; j++) {
+              const a = labeled[i],
+                b = labeled[j];
+              const dx = a.x - b.x,
+                dy = a.y - b.y,
+                d = Math.sqrt(dx * dx + dy * dy);
+              const o = Math.max(0, 1 - d / (Math.max(w, h) * 0.7)) * 0.18;
+              ctx.strokeStyle = "rgba(37,99,235," + o.toFixed(3) + ")";
+              ctx.lineWidth = 0.7;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+          }
+          // edges from filler to nearest labeled
+          for (const f of filler) {
+            let best = null,
+              bd = Infinity;
+            for (const l of labeled) {
+              const dx = f.x - l.x,
+                dy = f.y - l.y,
+                d2 = dx * dx + dy * dy;
+              if (d2 < bd) {
+                bd = d2;
+                best = l;
+              }
+            }
+            if (best && bd < 220 * 220) {
+              const d = Math.sqrt(bd);
+              const o = (1 - d / 220) * 0.2;
+              ctx.strokeStyle = best.color.replace(",1)", "," + o.toFixed(3) + ")");
+              ctx.lineWidth = 0.6;
+              ctx.beginPath();
+              ctx.moveTo(f.x, f.y);
+              ctx.lineTo(best.x, best.y);
+              ctx.stroke();
+            }
+          }
+          // filler nodes
+          for (const f of filler) {
+            if (!reduce) {
+              f.x += f.vx;
+              f.y += f.vy;
+              if (f.x < 0 || f.x > w) f.vx *= -1;
+              if (f.y < 0 || f.y > h) f.vy *= -1;
+            }
+            ctx.fillStyle = "rgba(37,99,235," + f.a.toFixed(2) + ")";
+            ctx.beginPath();
+            ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          // labeled topic nodes
+          ctx.font = "500 12px JetBrains Mono, monospace";
+          for (const l of labeled) {
+            if (!reduce) {
+              l.x += l.vx;
+              l.y += l.vy;
+              if (l.x < 40 || l.x > w - 40) l.vx *= -1;
+              if (l.y < 40 || l.y > h - 40) l.vy *= -1;
+            }
+            // halo
+            ctx.fillStyle = l.soft;
+            ctx.beginPath();
+            ctx.arc(l.x, l.y, 16, 0, Math.PI * 2);
+            ctx.fill();
+            // core
+            ctx.fillStyle = l.color;
+            ctx.beginPath();
+            ctx.arc(l.x, l.y, 5, 0, Math.PI * 2);
+            ctx.fill();
+            // label
+            ctx.fillStyle = "rgba(15,23,42,0.7)";
+            ctx.fillText(l.name, l.x + 12, l.y + 4);
+          }
+          if (!reduce) requestAnimationFrame(step);
+        }
+        window.addEventListener("resize", () => {
+          resize();
+          init();
+          step();
+        });
+        resize();
+        init();
+        step();
+      })();
+    </script>
+  </body>
+</html>

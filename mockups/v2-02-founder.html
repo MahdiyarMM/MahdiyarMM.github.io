@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v2 · 02 — Founder + Thinker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --bg-soft: #f8fafc;
+        --ink: #0b1220;
+        --ink-2: #2a3548;
+        --muted: #64748b;
+        --rule: #e6eaf0;
+        --rule-soft: #eef1f6;
+        --primary: #2563eb;
+        --primary-soft: rgba(37, 99, 235, 0.08);
+        --primary-deep: #1d4ed8;
+        --accent: #f59e0b;
+        --accent-soft: rgba(245, 158, 11, 0.1);
+        --green: #16a34a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          "Inter",
+          -apple-system,
+          sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--primary-deep);
+      }
+
+      #neural {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(14px) saturate(140%);
+        border-bottom: 1px solid var(--rule);
+      }
+      .header-in {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 13px 28px;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+      }
+      .brand {
+        font-weight: 700;
+        font-size: 17px;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+      .brand .mono {
+        font-family: "JetBrains Mono", monospace;
+        color: var(--primary);
+        font-weight: 500;
+      }
+      .nav {
+        margin-left: auto;
+        display: flex;
+        gap: 4px;
+      }
+      .nav a {
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 14.5px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .nav a:hover {
+        color: var(--ink);
+        background: var(--rule-soft);
+        text-decoration: none;
+      }
+      .nav a.is-current {
+        color: var(--ink);
+        background: var(--rule-soft);
+      }
+
+      .container {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+
+      /* Hero — positioning-first */
+      .hero {
+        padding: 88px 0 40px;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .role-line {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 22px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+      .role-line .chip {
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid var(--rule);
+        color: var(--ink);
+      }
+      .role-line .chip.now {
+        border-color: var(--primary);
+        color: var(--primary);
+        background: var(--primary-soft);
+      }
+      .role-line .chip.now::before {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--primary);
+        margin-right: 7px;
+        vertical-align: 1px;
+        animation: pulse 1.6s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .hero h1 {
+        font-size: clamp(48px, 6vw, 80px);
+        line-height: 1.02;
+        letter-spacing: -0.028em;
+        font-weight: 700;
+        margin: 0 0 22px;
+      }
+      .hero h1 .em {
+        background: linear-gradient(135deg, var(--primary) 0%, #6366f1 50%, var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .lede {
+        font-size: 19px;
+        line-height: 1.6;
+        color: var(--ink-2);
+        max-width: 56ch;
+        margin: 0 0 28px;
+      }
+      .lede b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 20px;
+        border-radius: 10px;
+        font-weight: 500;
+        font-size: 14.5px;
+        border: 1.5px solid var(--rule);
+        background: #fff;
+        color: var(--ink);
+        transition:
+          transform 0.2s,
+          border-color 0.2s,
+          box-shadow 0.2s,
+          background 0.2s;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        border-color: var(--ink-2);
+        text-decoration: none;
+      }
+      .btn.primary {
+        background: var(--ink);
+        color: #fff;
+        border-color: var(--ink);
+      }
+      .btn.primary:hover {
+        background: #000;
+        color: #fff;
+        box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.4);
+      }
+
+      .portrait {
+        justify-self: end;
+        position: relative;
+        width: 300px;
+        height: 300px;
+      }
+      .portrait .photo {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid var(--rule);
+        box-shadow: 0 30px 70px -30px rgba(15, 23, 42, 0.25);
+      }
+      .portrait .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .portrait .ring {
+        position: absolute;
+        inset: -20px;
+        border: 1px dashed rgba(37, 99, 235, 0.22);
+        border-radius: 50%;
+        animation: rot 40s linear infinite;
+      }
+      @keyframes rot {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .portrait .badge {
+        position: absolute;
+        bottom: 16px;
+        left: -16px;
+        background: #fff;
+        border: 1px solid var(--rule);
+        border-radius: 12px;
+        padding: 8px 12px;
+        font-size: 12px;
+        line-height: 1.3;
+        box-shadow: 0 14px 30px -16px rgba(15, 23, 42, 0.25);
+      }
+      .portrait .badge .k {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10.5px;
+        color: var(--muted);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .portrait .badge .v {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* Now — three columns: Building / Thinking / Reading */
+      .now-row {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .now-card {
+        padding: 18px 20px;
+        border: 1px solid var(--rule);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(6px);
+      }
+      .now-card .label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .now-card .label .arrow {
+        color: var(--primary);
+      }
+      .now-card .v {
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.45;
+        color: var(--ink);
+      }
+      .now-card .v b {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      /* Stats */
+      .stats {
+        margin-top: 56px;
+        padding-top: 28px;
+        border-top: 1px solid var(--rule);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+      }
+      .stat .n {
+        font-size: 38px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+      .stat .n em {
+        font-style: normal;
+        color: var(--primary);
+      }
+      .stat .l {
+        margin-top: 6px;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      /* Sections */
+      .section {
+        padding: 84px 0;
+        border-top: 1px solid var(--rule);
+      }
+      .section-head {
+        display: flex;
+        gap: 32px;
+        align-items: end;
+        justify-content: space-between;
+        margin-bottom: 36px;
+        flex-wrap: wrap;
+      }
+      .section-eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-size: clamp(32px, 4vw, 48px);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+        margin: 0;
+        max-width: 16ch;
+      }
+      .section-deck {
+        font-size: 16.5px;
+        color: var(--ink-2);
+        max-width: 50ch;
+      }
+
+      /* Principles — founder-y */
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+      .principle {
+        padding: 28px 26px;
+        border: 1px solid var(--rule);
+        border-radius: 16px;
+        background: #fff;
+        position: relative;
+      }
+      .principle .num {
+        position: absolute;
+        top: 22px;
+        right: 24px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        color: var(--muted);
+        letter-spacing: 0.14em;
+      }
+      .principle h4 {
+        font-size: 19px;
+        font-weight: 600;
+        line-height: 1.25;
+        margin: 0 0 10px;
+        letter-spacing: -0.01em;
+        max-width: 18ch;
+      }
+      .principle p {
+        font-size: 14.5px;
+        color: var(--ink-2);
+        margin: 0;
+      }
+
+      /* Featured projects */
+      .feat-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 20px;
+      }
+      .feat-grid > .feat:first-child {
+        grid-row: 1 / span 2;
+      }
+      .feat {
+        text-decoration: none;
+        color: inherit;
+        background: #fff;
+        border: 1px solid var(--rule);
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.25s,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .feat:hover {
+        transform: translateY(-3px);
+        border-color: rgba(37, 99, 235, 0.4);
+        box-shadow: 0 22px 50px -28px rgba(37, 99, 235, 0.35);
+      }
+      .feat .media {
+        aspect-ratio: 16/10;
+        overflow: hidden;
+        border-bottom: 1px solid var(--rule);
+      }
+      .feat-grid > .feat:first-child .media {
+        aspect-ratio: 4/3;
+      }
+      .feat .media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s;
+      }
+      .feat:hover .media img {
+        transform: scale(1.04);
+      }
+      .feat .body {
+        padding: 18px 20px 22px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .feat .ey {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 6px;
+      }
+      .feat h3 {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.3;
+        margin: 0 0 6px;
+        letter-spacing: -0.01em;
+      }
+      .feat-grid > .feat:first-child h3 {
+        font-size: 22px;
+      }
+      .feat p {
+        font-size: 14.5px;
+        color: var(--muted);
+        margin: 0;
+      }
+      .feat .arrow {
+        margin-top: 14px;
+        font-size: 13px;
+        color: var(--primary);
+        font-weight: 500;
+      }
+
+      /* Notes — essay/thinker preview */
+      .notes-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .note {
+        padding: 22px 24px;
+        border: 1px solid var(--rule);
+        border-radius: 16px;
+        background: #fff;
+        text-decoration: none;
+        color: inherit;
+        transition:
+          border-color 0.25s,
+          transform 0.25s;
+        display: flex;
+        flex-direction: column;
+      }
+      .note:hover {
+        border-color: var(--ink-2);
+        transform: translateY(-2px);
+      }
+      .note .meta {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .note .meta b {
+        color: var(--primary);
+      }
+      .note h4 {
+        font-size: 19px;
+        font-weight: 600;
+        line-height: 1.3;
+        margin: 0 0 8px;
+        letter-spacing: -0.01em;
+      }
+      .note p {
+        font-size: 14.5px;
+        color: var(--ink-2);
+        margin: 0;
+      }
+      .note .read {
+        margin-top: 18px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: "JetBrains Mono", monospace;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      /* CTA */
+      .cta-row {
+        margin: 40px 0 24px;
+        padding: 40px 44px;
+        border: 1px solid var(--rule);
+        border-radius: 20px;
+        background: radial-gradient(700px 300px at 100% 0%, rgba(37, 99, 235, 0.06), transparent 60%), #fff;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        align-items: center;
+      }
+      .cta-row h3 {
+        font-size: 26px;
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+        margin: 0 0 6px;
+        font-weight: 700;
+      }
+      .cta-row p {
+        color: var(--ink-2);
+        margin: 0;
+        max-width: 56ch;
+      }
+
+      footer {
+        margin-top: 24px;
+        padding: 28px 28px 56px;
+        border-top: 1px solid var(--rule);
+        max-width: 1180px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      footer a {
+        color: var(--ink-2);
+        margin-left: 16px;
+      }
+
+      @media (max-width: 880px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .portrait {
+          width: 220px;
+          height: 220px;
+          justify-self: start;
+        }
+        .now-row {
+          grid-template-columns: 1fr;
+        }
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 18px;
+        }
+        .principles {
+          grid-template-columns: 1fr;
+        }
+        .feat-grid {
+          grid-template-columns: 1fr;
+        }
+        .feat-grid > .feat:first-child {
+          grid-row: auto;
+        }
+        .notes-row {
+          grid-template-columns: 1fr;
+        }
+        .cta-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="neural" aria-hidden="true"></canvas>
+
+    <header class="header">
+      <div class="header-in">
+        <a class="brand" href="#">Mahdiyar <span class="mono">/m/</span></a>
+        <nav class="nav">
+          <a class="is-current" href="#">Home</a>
+          <a href="#">Research</a>
+          <a href="#">Notes</a>
+          <a href="#">Now</a>
+          <a href="#">CV</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div>
+          <div class="role-line">
+            <span class="chip now">Currently building at Captura</span>
+            <span class="chip">PhD, Queen's</span>
+            <span class="chip">NeurIPS '24 Top Reviewer</span>
+          </div>
+          <h1>
+            Researcher today.<br />
+            <span class="em">Founder, eventually.</span>
+          </h1>
+          <p class="lede">
+            I build applied AI systems for imaging and write about where the next decade of practical AI is actually
+            going. Right now: <b>ML Researcher II at Captura</b>, shipping computer-vision and multimodal features into
+            production. In parallel: figuring out what to start.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#">See the work →</a>
+            <a class="btn" href="#">Read essays</a>
+            <a class="btn" href="mailto:m.molahasani.m@gmail.com">Get in touch</a>
+          </div>
+        </div>
+
+        <div class="portrait">
+          <div class="ring"></div>
+          <div class="photo">
+            <img src="../images/me2-480.jpeg" alt="Mahdiyar Molahasani" />
+          </div>
+          <div class="badge">
+            <div class="k">Based</div>
+            <div class="v">Raleigh, NC · USA</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="now-row">
+        <div class="now-card">
+          <div class="label">Now <span class="arrow">→</span> Building</div>
+          <div class="v">
+            Production CV pipelines for <b>volume photography</b> at Captura — semantic search, intelligent culling,
+            color.
+          </div>
+        </div>
+        <div class="now-card">
+          <div class="label">Now <span class="arrow">→</span> Thinking About</div>
+          <div class="v">
+            Where <b>foundation models meet small-data industries</b>. The applied seam, not the frontier.
+          </div>
+        </div>
+        <div class="now-card">
+          <div class="label">Now <span class="arrow">→</span> Writing</div>
+          <div class="v">An essay on <b>generalization as a product feature</b>, not a research benchmark.</div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="n"><em>609</em>+</div>
+          <div class="l">Citations</div>
+        </div>
+        <div class="stat">
+          <div class="n"><em>10</em></div>
+          <div class="l">H-Index</div>
+        </div>
+        <div class="stat">
+          <div class="n"><em>18</em></div>
+          <div class="l">Publications</div>
+        </div>
+        <div class="stat">
+          <div class="n"><em>8</em>+</div>
+          <div class="l">Years Research</div>
+        </div>
+      </div>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">§ How I think</div>
+            <h2 class="section-title">A few things I've come to believe.</h2>
+          </div>
+          <p class="section-deck">Operating principles for doing applied AI research that ships.</p>
+        </div>
+        <div class="principles">
+          <div class="principle">
+            <span class="num">01</span>
+            <h4>Ship the model into the seam.</h4>
+            <p>
+              The interesting frontier isn't the model — it's the gap between a capable model and an industry that
+              doesn't know how to use it yet.
+            </p>
+          </div>
+          <div class="principle">
+            <span class="num">02</span>
+            <h4>Generalization is a product feature.</h4>
+            <p>
+              If your model only works on the data you trained on, you don't have a model — you have a memorization
+              machine with a license cost.
+            </p>
+          </div>
+          <div class="principle">
+            <span class="num">03</span>
+            <h4>The best systems disappear.</h4>
+            <p>
+              The shot gets sorted, the bad image gets dropped, the color comes out right — and nobody asks how. That
+              quiet machinery is the work.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">§ Featured Work</div>
+            <h2 class="section-title">Selected research.</h2>
+          </div>
+          <p class="section-deck">PRISM, FedGaLA, COVID-CXNet — three projects with reach beyond their venues.</p>
+        </div>
+        <div class="feat-grid">
+          <a class="feat" href="#">
+            <div class="media"><img src="../images/PRISM_cover_sqr-640.jpeg" alt="PRISM" /></div>
+            <div class="body">
+              <div class="ey">ICCV 2025 · Vision–Language</div>
+              <h3>PRISM — debiasing CLIP without data.</h3>
+              <p>
+                A linear correction over frozen embeddings, driven by language alone. No labels, no retraining, beats
+                supervised baselines on nine benchmarks.
+              </p>
+              <span class="arrow">Read deep dive →</span>
+            </div>
+          </a>
+          <a class="feat" href="#">
+            <div class="media"><img src="../images/FedGaLA_nb-640.jpeg" alt="FedGaLA" /></div>
+            <div class="body">
+              <div class="ey">AAAI 2025 · Federated</div>
+              <h3>FedGaLA — federated DG, unsupervised.</h3>
+              <p>First framework for unsupervised federated domain generalization.</p>
+              <span class="arrow">Read deep dive →</span>
+            </div>
+          </a>
+          <a class="feat" href="#">
+            <div class="media"><img src="../images/covid-640.jpeg" alt="COVID-CXNet" /></div>
+            <div class="body">
+              <div class="ey">MTAP 2021 · Open Dataset</div>
+              <h3>COVID-CXNet — open CXR benchmark.</h3>
+              <p>Open dataset and detection baseline used by hundreds of independent studies.</p>
+              <span class="arrow">Read deep dive →</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">§ Notes</div>
+            <h2 class="section-title">Recent essays.</h2>
+          </div>
+          <p class="section-deck">
+            Short writing on applied AI, generalization, and what the next decade looks like in industry.
+          </p>
+        </div>
+        <div class="notes-row">
+          <a class="note" href="#">
+            <div class="meta"><b>Essay</b> · 2026·04 · 7 min read</div>
+            <h4>Generalization is a product feature, not a benchmark.</h4>
+            <p>
+              Why every applied AI team is going to start caring about distribution shift, whether they want to or not.
+            </p>
+            <div class="read">Read →</div>
+          </a>
+          <a class="note" href="#">
+            <div class="meta"><b>Note</b> · 2026·03 · 4 min read</div>
+            <h4>Where foundation models earn their keep.</h4>
+            <p>
+              Foundation models are commodity at the API layer. The real margin is in the wrapper that knows your
+              domain.
+            </p>
+            <div class="read">Read →</div>
+          </a>
+          <a class="note" href="#">
+            <div class="meta"><b>Essay</b> · 2026·02 · 9 min read</div>
+            <h4>The applied AI seam.</h4>
+            <p>
+              The next decade of AI returns won't come from the frontier. They'll come from the seam between capable
+              models and industries that don't yet know how to use them.
+            </p>
+            <div class="read">Read →</div>
+          </a>
+        </div>
+      </section>
+
+      <div class="cta-row">
+        <div>
+          <h3>Working on something at the applied AI seam? Let's talk.</h3>
+          <p>
+            I'm open to research collaborations, advising calls with early-stage teams, and conversations with founders
+            building in CV, multimodal, or industry-specific AI.
+          </p>
+        </div>
+        <a class="btn primary" href="mailto:m.molahasani.m@gmail.com">Get in touch →</a>
+      </div>
+    </main>
+
+    <footer>
+      <span>© 2026 Mahdiyar Molahasani · Last updated 2026·04·25</span>
+      <span><a href="#">Email</a><a href="#">LinkedIn</a><a href="#">GitHub</a><a href="#">Scholar</a></span>
+    </footer>
+
+    <script>
+      (function () {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const cv = document.getElementById("neural");
+        if (!cv) return;
+        const ctx = cv.getContext("2d");
+        let W,
+          H,
+          DPR = Math.min(window.devicePixelRatio || 1, 2);
+        const NODES = 60,
+          EDGE = 160;
+        const nodes = [];
+        const mouse = { x: -9999, y: -9999 };
+        function resize() {
+          W = cv.clientWidth = window.innerWidth;
+          H = cv.clientHeight = window.innerHeight;
+          cv.width = W * DPR;
+          cv.height = H * DPR;
+          ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        }
+        function init() {
+          nodes.length = 0;
+          for (let i = 0; i < NODES; i++) {
+            nodes.push({
+              x: Math.random() * W,
+              y: Math.random() * H,
+              vx: (Math.random() - 0.5) * 0.16,
+              vy: (Math.random() - 0.5) * 0.16,
+              r: 1.2 + Math.random() * 1.5,
+              a: 0.22 + Math.random() * 0.4,
+            });
+          }
+        }
+        function step() {
+          ctx.clearRect(0, 0, W, H);
+          for (let i = 0; i < nodes.length; i++) {
+            const a = nodes[i];
+            for (let j = i + 1; j < nodes.length; j++) {
+              const b = nodes[j];
+              const dx = a.x - b.x,
+                dy = a.y - b.y,
+                d2 = dx * dx + dy * dy;
+              if (d2 < EDGE * EDGE) {
+                const d = Math.sqrt(d2);
+                const o = (1 - d / EDGE) * 0.28;
+                ctx.strokeStyle = "rgba(37,99,235," + o.toFixed(3) + ")";
+                ctx.lineWidth = 0.7;
+                ctx.beginPath();
+                ctx.moveTo(a.x, a.y);
+                ctx.lineTo(b.x, b.y);
+                ctx.stroke();
+              }
+            }
+          }
+          for (const n of nodes) {
+            const dx = n.x - mouse.x,
+              dy = n.y - mouse.y,
+              d2 = dx * dx + dy * dy;
+            if (d2 < 200 * 200) {
+              const d = Math.sqrt(d2),
+                o = (1 - d / 200) * 0.5;
+              ctx.strokeStyle = "rgba(245,158,11," + o.toFixed(3) + ")";
+              ctx.lineWidth = 0.9;
+              ctx.beginPath();
+              ctx.moveTo(mouse.x, mouse.y);
+              ctx.lineTo(n.x, n.y);
+              ctx.stroke();
+            }
+          }
+          for (const n of nodes) {
+            n.x += n.vx;
+            n.y += n.vy;
+            if (n.x < 0 || n.x > W) n.vx *= -1;
+            if (n.y < 0 || n.y > H) n.vy *= -1;
+            ctx.fillStyle = "rgba(37,99,235," + n.a.toFixed(2) + ")";
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          requestAnimationFrame(step);
+        }
+        window.addEventListener("resize", () => {
+          resize();
+          init();
+        });
+        window.addEventListener("mousemove", (e) => {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+        });
+        window.addEventListener("mouseleave", () => {
+          mouse.x = -9999;
+          mouse.y = -9999;
+        });
+        resize();
+        init();
+        step();
+      })();
+    </script>
+  </body>
+</html>
