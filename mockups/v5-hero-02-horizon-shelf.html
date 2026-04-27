@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero v5 02 - Horizon Shelf</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --primary-hover: #1d4ed8;
+        --accent-color: #f59e0b;
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --background: #ffffff;
+        --background-secondary: #f8fafc;
+        --border-color: #e2e8f0;
+        --font-family-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --font-family-mono: "JetBrains Mono", Consolas, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text-primary);
+        font-family: var(--font-family-primary);
+        background:
+          radial-gradient(circle at 18% 16%, rgba(37, 99, 235, 0.08), transparent 24rem),
+          radial-gradient(circle at 82% 84%, rgba(245, 158, 11, 0.1), transparent 22rem), #fff;
+      }
+
+      .site-shell {
+        width: min(1200px, calc(100% - 48px));
+        margin: 0 auto;
+      }
+
+      .hero-section {
+        position: relative;
+        min-height: 760px;
+        padding: 98px 0 0;
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      .hero-content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(330px, 0.92fr);
+        gap: clamp(42px, 6vw, 82px);
+        align-items: center;
+      }
+
+      .hero-left {
+        position: relative;
+        z-index: 4;
+      }
+
+      .hero-left::after {
+        display: block;
+        width: 76px;
+        height: 3px;
+        margin-top: 30px;
+        border-radius: 999px;
+        content: "";
+        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      }
+
+      .greeting {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--text-secondary);
+        font-size: clamp(18px, 2vw, 22px);
+        letter-spacing: normal;
+        line-height: 1.2;
+      }
+
+      h1 {
+        margin: 0 0 18px;
+        font-size: clamp(42px, 6vw, 76px);
+        font-weight: 800;
+        letter-spacing: -0.055em;
+        line-height: 1;
+      }
+
+      .name-highlight {
+        display: block;
+        color: transparent;
+        background: linear-gradient(135deg, var(--primary-color), #6366f1 48%, var(--accent-color));
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      .typing-text {
+        display: inline-block;
+        margin-bottom: 30px;
+        color: var(--text-secondary);
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      .hero-description {
+        max-width: 64ch;
+        margin: 0 0 28px;
+        color: var(--text-secondary);
+        font-size: 18px;
+        line-height: 1.75;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 20px;
+        border: 1.5px solid var(--primary-color);
+        border-radius: 10px;
+        color: var(--primary-color);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        color: #fff;
+        background: var(--primary-color);
+        box-shadow: 0 12px 24px -14px rgba(37, 99, 235, 0.65);
+      }
+
+      .horizon {
+        position: absolute;
+        left: 50%;
+        right: 0;
+        bottom: 124px;
+        height: 1px;
+        z-index: 2;
+        background: linear-gradient(90deg, rgba(37, 99, 235, 0.5), transparent);
+      }
+
+      .horizon::before {
+        position: absolute;
+        left: -110px;
+        top: -78px;
+        width: 340px;
+        height: 156px;
+        border: 1px solid rgba(37, 99, 235, 0.12);
+        border-bottom: none;
+        border-radius: 340px 340px 0 0;
+        content: "";
+      }
+
+      .portrait-stage {
+        position: relative;
+        min-height: 570px;
+        z-index: 3;
+      }
+
+      .portrait-stage .label {
+        position: absolute;
+        left: 16px;
+        top: 86px;
+        z-index: 5;
+        width: 174px;
+        padding: 14px 16px;
+        border: 1px solid rgba(226, 232, 240, 0.86);
+        border-radius: 18px;
+        color: var(--text-secondary);
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 24px 50px -38px rgba(15, 23, 42, 0.42);
+        backdrop-filter: blur(14px);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .portrait-stage .label strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--text-primary);
+        font-size: 14px;
+      }
+
+      .portrait {
+        position: absolute;
+        right: -10px;
+        bottom: -14px;
+        width: min(460px, 90vw);
+        z-index: 4;
+        filter: drop-shadow(0 34px 36px rgba(15, 23, 42, 0.24));
+      }
+
+      .image-shadow {
+        position: absolute;
+        right: 42px;
+        bottom: 68px;
+        z-index: 1;
+        width: 300px;
+        height: 66px;
+        border-radius: 50%;
+        background: rgba(15, 23, 42, 0.16);
+        filter: blur(22px);
+      }
+
+      .location {
+        position: absolute;
+        right: 16px;
+        top: 94px;
+        z-index: 6;
+        padding: 8px 13px;
+        border: 1px solid rgba(148, 163, 184, 0.42);
+        border-radius: 999px;
+        color: var(--text-secondary);
+        background: rgba(255, 255, 255, 0.9);
+        font-family: var(--font-family-mono);
+        font-size: 11px;
+      }
+
+      .section-shelf {
+        position: relative;
+        z-index: 5;
+        margin-top: -54px;
+        padding: 32px 34px;
+        border-top: 1px solid rgba(37, 99, 235, 0.16);
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 8%, #fff 92%, rgba(255, 255, 255, 0)),
+          linear-gradient(180deg, rgba(248, 250, 252, 0.9), rgba(255, 255, 255, 0.92));
+      }
+
+      .section-shelf p {
+        max-width: 780px;
+        margin: 0 auto;
+        color: var(--text-secondary);
+        text-align: center;
+        font-size: 15px;
+      }
+
+      @media (max-width: 900px) {
+        .hero-section {
+          min-height: auto;
+          padding-top: 72px;
+        }
+
+        .hero-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .hero-left::after {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .hero-actions {
+          justify-content: center;
+        }
+
+        .horizon {
+          left: 0;
+          bottom: 108px;
+        }
+
+        .portrait-stage {
+          min-height: 510px;
+        }
+
+        .portrait {
+          left: 50%;
+          right: auto;
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="site-shell">
+      <section class="hero-section" aria-labelledby="hero-heading">
+        <div class="horizon"></div>
+        <div class="hero-content">
+          <div class="hero-left">
+            <h1 id="hero-heading">
+              <span class="greeting">Hello, I'm</span>
+              <span class="name-highlight">Mahdiyar Molahasani</span>
+            </h1>
+            <div class="typing-text">Applied AI &amp; Computer Vision</div>
+            <p class="hero-description">
+              I develop cutting-edge, efficient ML solutions for the photography industry as an
+              <strong>ML Researcher II</strong> at <strong>Captura</strong>. My research focuses on
+              <strong>federated learning</strong>, <strong>domain generalization</strong>, and
+              <strong>continual learning</strong>.
+            </p>
+            <div class="hero-actions">
+              <a href="/research" class="btn btn-primary">View Research</a>
+              <a href="#featured-projects" class="btn">Deep Dives</a>
+              <a href="mailto:m.molahasani.m@gmail.com" class="btn">Get in Touch</a>
+            </div>
+          </div>
+
+          <div class="portrait-stage" aria-label="Transparent portrait on section horizon">
+            <div class="label">
+              <strong>Current focus</strong>Computer vision systems for practical imaging products.
+            </div>
+            <div class="location">Vancouver, BC</div>
+            <div class="image-shadow"></div>
+            <img class="portrait" src="../images/profile.png" alt="Mahdiyar Molahasani" />
+          </div>
+        </div>
+      </section>
+
+      <div class="section-shelf">
+        <p>
+          The next homepage sections can begin here unchanged. The portrait creates the transition by crossing the
+          separator rather than sitting inside a card.
+        </p>
+      </div>
+    </main>
+  </body>
+</html>

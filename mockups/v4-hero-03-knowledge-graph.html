@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero Concept 03 - Knowledge Graph</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0f172a;
+        --ink-2: #334155;
+        --muted: #64748b;
+        --rule: #e6eaf0;
+        --blue: #2563eb;
+        --amber: #f59e0b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family:
+          Inter,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background:
+          radial-gradient(circle at 18% 16%, rgba(37, 99, 235, 0.11), transparent 24rem),
+          radial-gradient(circle at 88% 26%, rgba(245, 158, 11, 0.12), transparent 18rem),
+          linear-gradient(#ffffff, #fafbfd);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(340px, 0.95fr) minmax(0, 1.05fr);
+        gap: clamp(3rem, 7vw, 6rem);
+        align-items: center;
+        width: min(1160px, calc(100% - 48px));
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: 72px 0;
+      }
+
+      .graph {
+        position: relative;
+        min-height: 560px;
+        border: 1px solid rgba(37, 99, 235, 0.12);
+        border-radius: 34px;
+        overflow: hidden;
+        background:
+          linear-gradient(rgba(37, 99, 235, 0.055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(37, 99, 235, 0.055) 1px, transparent 1px), rgba(255, 255, 255, 0.8);
+        background-size: 44px 44px;
+        box-shadow: 0 36px 90px -64px rgba(15, 23, 42, 0.8);
+      }
+
+      .line {
+        position: absolute;
+        height: 1px;
+        transform-origin: left center;
+        background: linear-gradient(90deg, rgba(37, 99, 235, 0.52), rgba(245, 158, 11, 0.28));
+      }
+
+      .line.a {
+        top: 33%;
+        left: 48%;
+        width: 178px;
+        transform: rotate(-28deg);
+      }
+
+      .line.b {
+        top: 51%;
+        left: 22%;
+        width: 190px;
+        transform: rotate(19deg);
+      }
+
+      .line.c {
+        bottom: 29%;
+        left: 48%;
+        width: 156px;
+        transform: rotate(33deg);
+      }
+
+      .portrait {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 290px;
+        height: 290px;
+        overflow: hidden;
+        border: 1px solid rgba(37, 99, 235, 0.18);
+        border-radius: 32px;
+        background: #020617;
+        transform: translate(-50%, -50%) rotate(-2deg);
+        box-shadow:
+          0 34px 76px -46px rgba(15, 23, 42, 0.9),
+          0 0 0 10px rgba(37, 99, 235, 0.045);
+      }
+
+      .portrait img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+        transform: rotate(2deg) scale(1.05);
+      }
+
+      .node {
+        position: absolute;
+        min-width: 132px;
+        padding: 12px 14px;
+        border: 1px solid rgba(226, 232, 240, 0.94);
+        border-radius: 16px;
+        color: var(--ink-2);
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 20px 42px -34px rgba(15, 23, 42, 0.7);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+      }
+
+      .node strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--ink);
+        font-family: Inter, sans-serif;
+        font-size: 13px;
+      }
+
+      .n1 {
+        left: 34px;
+        top: 54px;
+      }
+
+      .n2 {
+        right: 36px;
+        top: 74px;
+      }
+
+      .n3 {
+        left: 42px;
+        bottom: 72px;
+      }
+
+      .n4 {
+        right: 42px;
+        bottom: 74px;
+      }
+
+      .location {
+        position: absolute;
+        left: 50%;
+        bottom: 28px;
+        padding: 8px 13px;
+        border: 1px solid rgba(148, 163, 184, 0.38);
+        border-radius: 999px;
+        color: var(--muted);
+        background: #fff;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        transform: translateX(-50%);
+      }
+
+      .copy {
+        padding-top: 8px;
+      }
+
+      .eyebrow {
+        color: var(--blue);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 18px 0 24px;
+        font-size: clamp(48px, 7vw, 84px);
+        font-weight: 760;
+        letter-spacing: -0.055em;
+        line-height: 0.98;
+      }
+
+      h1 span {
+        color: transparent;
+        background: linear-gradient(135deg, var(--blue), #6366f1 48%, var(--amber));
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      .lede {
+        max-width: 58ch;
+        margin: 0 0 30px;
+        color: var(--ink-2);
+        font-size: 18px;
+        line-height: 1.72;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .btn {
+        padding: 11px 18px;
+        border: 1px solid var(--rule);
+        border-radius: 12px;
+        color: var(--ink);
+        font-weight: 600;
+        text-decoration: none;
+        background: #fff;
+      }
+
+      .btn.primary {
+        color: #fff;
+        border-color: var(--blue);
+        background: var(--blue);
+      }
+
+      @media (max-width: 940px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .graph {
+          order: 2;
+          min-height: 520px;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .node {
+          min-width: 112px;
+          font-size: 10px;
+        }
+
+        .portrait {
+          width: 230px;
+          height: 230px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="graph" aria-label="Knowledge graph portrait concept">
+        <span class="line a"></span>
+        <span class="line b"></span>
+        <span class="line c"></span>
+        <div class="node n1"><strong>Vision</strong>retrieval + enhancement</div>
+        <div class="node n2"><strong>VLMs</strong>foundation models</div>
+        <div class="node n3"><strong>Research</strong>generalization</div>
+        <div class="node n4"><strong>Systems</strong>shipping ML</div>
+        <div class="portrait">
+          <img src="../images/profile.png" alt="Mahdiyar Molahasani" />
+        </div>
+        <div class="location">Vancouver, BC</div>
+      </div>
+
+      <div class="copy">
+        <div class="eyebrow">Connected research systems</div>
+        <h1 id="hero-heading">From models to <span>working products.</span></h1>
+        <p class="lede">
+          I connect computer vision research, foundation-model tooling, and product-minded evaluation into systems that
+          improve real image workflows.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="/research">View Research</a>
+          <a class="btn" href="/posts/">Read Deep Dives</a>
+          <a class="btn" href="mailto:m.molahasani.m@gmail.com">Contact</a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

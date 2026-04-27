@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero v7 - Right Depth Candidate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --primary-hover: #1d4ed8;
+        --accent-color: #f59e0b;
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --background: #ffffff;
+        --border-color: #e2e8f0;
+        --font-family-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --font-family-mono: "JetBrains Mono", Consolas, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text-primary);
+        font-family: var(--font-family-primary);
+        background:
+          radial-gradient(circle at 16% 18%, rgba(37, 99, 235, 0.08), transparent 24rem),
+          radial-gradient(circle at 86% 74%, rgba(245, 158, 11, 0.08), transparent 24rem), #fff;
+      }
+
+      .content-container {
+        width: min(1200px, calc(100% - 48px));
+        margin: 0 auto;
+        padding: 96px 0 56px;
+      }
+
+      .hero-section {
+        margin-bottom: 80px;
+      }
+
+      .hero-content {
+        display: grid;
+        grid-template-columns: minmax(380px, 0.98fr) minmax(0, 1fr);
+        gap: clamp(48px, 7vw, 92px);
+        align-items: center;
+        min-height: 52vh;
+        margin-bottom: 32px;
+      }
+
+      .hero-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .hero-title {
+        margin: 0 0 16px;
+        color: var(--text-primary);
+        font-size: clamp(42px, 6vw, 76px);
+        font-weight: 800;
+        letter-spacing: -0.055em;
+        line-height: 1;
+      }
+
+      .greeting {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--text-secondary);
+        font-size: clamp(18px, 2vw, 22px);
+        font-weight: 400;
+        letter-spacing: normal;
+        line-height: 1.2;
+      }
+
+      .name-highlight {
+        display: block;
+        color: transparent;
+        background: linear-gradient(135deg, var(--primary-color), #6366f1 48%, var(--accent-color));
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      .hero-subtitle {
+        min-height: 2.5rem;
+        margin-bottom: 24px;
+      }
+
+      .typing-text {
+        color: var(--text-secondary);
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      .portrait-stage {
+        position: relative;
+        width: 100%;
+        max-width: 560px;
+        aspect-ratio: 5 / 6;
+        isolation: isolate;
+        justify-self: end;
+        overflow: visible;
+        container-type: inline-size;
+      }
+
+      .back-title {
+        position: absolute;
+        left: -2cqw;
+        top: 22cqw;
+        z-index: 1;
+        width: 100cqw;
+        color: rgba(37, 99, 235, 0.118);
+        font-size: 14.5cqw;
+        font-weight: 800;
+        letter-spacing: -0.055em;
+        line-height: 0.92;
+        text-align: left;
+        pointer-events: none;
+      }
+
+      .portrait-stage::before {
+        content: none;
+      }
+
+      .portrait {
+        position: absolute;
+        left: 14cqw;
+        bottom: 0;
+        z-index: 3;
+        width: 86cqw;
+        height: auto;
+        filter: drop-shadow(10px 8px 9px rgba(15, 23, 42, 0.09)) drop-shadow(24px 24px 22px rgba(15, 23, 42, 0.12))
+          drop-shadow(48px 38px 42px rgba(15, 23, 42, 0.1)) drop-shadow(72px 50px 68px rgba(15, 23, 42, 0.07));
+      }
+
+      .portrait-contact-shadow {
+        display: none;
+      }
+
+      .location-badge {
+        position: absolute;
+        right: 4cqw;
+        bottom: 12cqw;
+        z-index: 4;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px 8px 10px;
+        border: 1px solid rgba(148, 163, 184, 0.42);
+        border-radius: 999px;
+        color: var(--text-secondary);
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 16px 32px -24px rgba(15, 23, 42, 0.32);
+        font-family: var(--font-family-mono);
+        font-size: 11px;
+        line-height: 1;
+      }
+
+      .location-icon {
+        width: 18px;
+        height: 18px;
+        color: var(--primary-color);
+      }
+
+      .hero-bio {
+        margin-bottom: 0;
+      }
+
+      .hero-description {
+        max-width: 64ch;
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 18px;
+        line-height: 1.7;
+        text-align: left;
+      }
+
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 20px;
+        border: 1.5px solid transparent;
+        border-radius: 10px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        border-color: var(--primary-color);
+        color: #fff;
+        background: var(--primary-color);
+        box-shadow: 0 12px 24px -14px rgba(37, 99, 235, 0.65);
+      }
+
+      .btn-secondary {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+        background: transparent;
+      }
+
+      .hero-metrics {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 24px;
+        margin-bottom: 24px;
+      }
+
+      .stat-item {
+        min-width: 120px;
+        padding: 16px;
+        border: 1px solid rgba(37, 99, 235, 0.12);
+        border-radius: 14px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.88);
+      }
+
+      .stat-number {
+        display: block;
+        color: var(--primary-color);
+        font-size: 26px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .social-link {
+        min-width: 132px;
+        padding: 16px 18px;
+        border: 1px solid rgba(37, 99, 235, 0.12);
+        border-radius: 16px;
+        color: var(--text-secondary);
+        text-align: center;
+        background: rgba(255, 255, 255, 0.86);
+        box-shadow: 0 16px 42px -36px rgba(15, 23, 42, 0.42);
+        font-weight: 700;
+      }
+
+      @media (max-width: 900px) {
+        .content-container {
+          padding-top: 72px;
+        }
+
+        .hero-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .portrait-stage {
+          width: 100%;
+          max-width: 480px;
+          aspect-ratio: 5 / 6;
+          height: auto;
+          justify-self: center;
+        }
+
+        .portrait {
+          left: 14cqw;
+          right: auto;
+        }
+
+        .back-title {
+          left: -2cqw;
+          right: auto;
+          width: 100cqw;
+          text-align: left;
+        }
+
+        .location-badge {
+          right: 4cqw;
+          bottom: 12cqw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="main">
+      <div class="content-container">
+        <section class="hero-section" aria-labelledby="hero-heading">
+          <div class="hero-content">
+            <div class="portrait-stage" aria-label="Right-side portrait treatment">
+              <div class="back-title">Architect of Invisible Intelligence</div>
+              <div class="location-badge">
+                <svg class="location-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M3 16.5 8.5 8l3.2 4.8L14 9.5l7 7"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M4 19c2.1-1 4.2-1 6.3 0s4.2 1 6.3 0 3.2-.9 4.4-.3"
+                    fill="none"
+                    stroke="#f59e0b"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <span>Vancouver, BC</span>
+              </div>
+              <div class="portrait-contact-shadow"></div>
+              <img class="portrait" src="../images/profile.png" alt="Mahdiyar Molahasani profile photo" />
+            </div>
+
+            <div class="hero-left">
+              <h1 id="hero-heading" class="hero-title">
+                <span class="greeting">Hello, I'm</span>
+                <span class="name-highlight">Mahdiyar Molahasani</span>
+              </h1>
+              <div class="hero-subtitle">
+                <span class="typing-text">ML Researcher II at Captura</span>
+              </div>
+              <div class="hero-bio">
+                <p class="hero-description">
+                  I develop cutting-edge, efficient ML solutions for the photography industry as an
+                  <strong>ML Researcher II</strong> at <strong>Captura</strong>. My research focuses on
+                  <strong>federated learning</strong>, <strong>domain generalization</strong>, and
+                  <strong>continual learning</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="/research" class="btn btn-primary">View Research</a>
+            <a href="#featured-projects" class="btn btn-secondary">Deep Dives</a>
+            <a href="mailto:m.molahasani.m@gmail.com?subject=Hello%20Mahdiyar" class="btn btn-secondary">
+              Get in Touch
+            </a>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="stat-item">
+              <span class="stat-number">609</span>
+              <span class="stat-label">Citations</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">10</span>
+              <span class="stat-label">H-Index</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">8+</span>
+              <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">18</span>
+              <span class="stat-label">Publications</span>
+            </div>
+          </div>
+
+          <div class="social-links" role="list" aria-label="Social media and professional links">
+            <a href="mailto:m.molahasani.m@gmail.com" role="listitem" class="social-link">Email</a>
+            <a href="https://www.linkedin.com/in/m-molahasani/" role="listitem" class="social-link">LinkedIn</a>
+            <a href="https://scholar.google.com/citations?user=cXDt3NQAAAAJ&hl=en" role="listitem" class="social-link">
+              Scholar
+            </a>
+            <a href="https://github.com/MahdiyarMM" role="listitem" class="social-link">GitHub</a>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

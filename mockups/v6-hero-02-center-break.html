@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero v6 02 - Center Break</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --accent-color: #f59e0b;
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --font-family-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --font-family-mono: "JetBrains Mono", Consolas, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text-primary);
+        font-family: var(--font-family-primary);
+        background:
+          radial-gradient(circle at 20% 22%, rgba(37, 99, 235, 0.09), transparent 25rem),
+          radial-gradient(circle at 82% 78%, rgba(245, 158, 11, 0.09), transparent 23rem), #fff;
+      }
+
+      .site-shell {
+        width: min(1200px, calc(100% - 48px));
+        margin: 0 auto;
+      }
+
+      .hero-section {
+        position: relative;
+        min-height: 810px;
+        padding: 82px 0 0;
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      .hero-section::after {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 142px;
+        z-index: 2;
+        height: 1px;
+        content: "";
+        background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.24), transparent);
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 5;
+        max-width: 650px;
+      }
+
+      .greeting {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--text-secondary);
+        font-size: clamp(18px, 2vw, 22px);
+        letter-spacing: normal;
+        line-height: 1.2;
+      }
+
+      h1 {
+        margin: 0 0 18px;
+        font-size: clamp(42px, 6vw, 76px);
+        font-weight: 800;
+        letter-spacing: -0.055em;
+        line-height: 1;
+      }
+
+      .name-highlight {
+        display: block;
+        color: transparent;
+        background: linear-gradient(135deg, var(--primary-color), #6366f1 48%, var(--accent-color));
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      .typing-text {
+        display: inline-block;
+        margin-bottom: 28px;
+        color: var(--text-secondary);
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      .hero-description {
+        max-width: 62ch;
+        margin: 0 0 28px;
+        color: var(--text-secondary);
+        font-size: 18px;
+        line-height: 1.75;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 20px;
+        border: 1.5px solid var(--primary-color);
+        border-radius: 10px;
+        color: var(--primary-color);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        color: #fff;
+        background: var(--primary-color);
+        box-shadow: 0 12px 24px -14px rgba(37, 99, 235, 0.65);
+      }
+
+      .portrait-stage {
+        position: absolute;
+        right: 4%;
+        bottom: 58px;
+        z-index: 4;
+        width: min(560px, 52vw);
+        height: 660px;
+      }
+
+      .back-title {
+        position: absolute;
+        left: -280px;
+        right: -48px;
+        bottom: 320px;
+        z-index: 1;
+        color: rgba(37, 99, 235, 0.12);
+        font-size: clamp(52px, 7.6vw, 112px);
+        font-weight: 800;
+        letter-spacing: -0.07em;
+        line-height: 0.86;
+        pointer-events: none;
+      }
+
+      .portrait-stage::before {
+        position: absolute;
+        right: -16px;
+        top: 148px;
+        z-index: 2;
+        width: 330px;
+        height: 430px;
+        border-radius: 46%;
+        content: "";
+        background: linear-gradient(90deg, rgba(15, 23, 42, 0), rgba(15, 23, 42, 0.16));
+        filter: blur(28px);
+        transform: rotate(-10deg);
+      }
+
+      .portrait-stage::after {
+        position: absolute;
+        right: 80px;
+        bottom: 54px;
+        z-index: 2;
+        width: 340px;
+        height: 74px;
+        border-radius: 50%;
+        content: "";
+        background: rgba(15, 23, 42, 0.14);
+        filter: blur(21px);
+      }
+
+      .portrait {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 4;
+        width: min(470px, 100%);
+        filter: drop-shadow(28px 28px 32px rgba(15, 23, 42, 0.23));
+      }
+
+      .orbit-text {
+        position: absolute;
+        right: 94px;
+        top: 176px;
+        z-index: 5;
+        width: 310px;
+        height: 310px;
+        animation: spin 28s linear infinite;
+        overflow: visible;
+      }
+
+      .orbit-text text {
+        fill: var(--primary-color);
+        font-family: var(--font-family-mono);
+        font-size: 10px;
+        letter-spacing: 0.3em;
+      }
+
+      .location {
+        position: absolute;
+        right: 10px;
+        top: 126px;
+        z-index: 7;
+        padding: 8px 13px;
+        border: 1px solid rgba(148, 163, 184, 0.42);
+        border-radius: 999px;
+        color: var(--text-secondary);
+        background: rgba(255, 255, 255, 0.9);
+        font-family: var(--font-family-mono);
+        font-size: 11px;
+      }
+
+      .below-hero {
+        position: relative;
+        z-index: 6;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        margin-top: 218px;
+        padding-top: 24px;
+      }
+
+      .stat {
+        padding: 18px;
+        border: 1px solid rgba(37, 99, 235, 0.12);
+        border-radius: 16px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.86);
+      }
+
+      .stat strong {
+        display: block;
+        color: var(--primary-color);
+        font-size: 30px;
+        line-height: 1;
+      }
+
+      .stat span {
+        color: var(--text-secondary);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hero-section {
+          min-height: auto;
+        }
+
+        .hero-copy {
+          text-align: center;
+          margin: 0 auto;
+        }
+
+        .hero-actions {
+          justify-content: center;
+        }
+
+        .portrait-stage {
+          position: relative;
+          right: auto;
+          bottom: auto;
+          width: 100%;
+          height: 540px;
+          margin-top: 36px;
+        }
+
+        .portrait {
+          left: 50%;
+          right: auto;
+          transform: translateX(-50%);
+        }
+
+        .back-title {
+          left: 0;
+          text-align: center;
+        }
+
+        .below-hero {
+          grid-template-columns: repeat(2, 1fr);
+          margin-top: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="site-shell">
+      <section class="hero-section" aria-labelledby="hero-heading">
+        <div class="hero-copy">
+          <h1 id="hero-heading">
+            <span class="greeting">Hello, I'm</span>
+            <span class="name-highlight">Mahdiyar Molahasani</span>
+          </h1>
+          <div class="typing-text">ML Researcher II at Captura</div>
+          <p class="hero-description">
+            I develop cutting-edge, efficient ML solutions for the photography industry as an
+            <strong>ML Researcher II</strong> at <strong>Captura</strong>. My research focuses on
+            <strong>federated learning</strong>, <strong>domain generalization</strong>, and
+            <strong>continual learning</strong>.
+          </p>
+          <div class="hero-actions">
+            <a href="/research" class="btn btn-primary">View Research</a>
+            <a href="#featured-projects" class="btn">Deep Dives</a>
+            <a href="mailto:m.molahasani.m@gmail.com" class="btn">Get in Touch</a>
+          </div>
+        </div>
+
+        <div class="portrait-stage" aria-label="Centered portrait bridging the section break">
+          <div class="back-title">Architect of Invisible Intelligence</div>
+          <div class="location">Vancouver, BC</div>
+          <svg class="orbit-text" viewBox="0 0 310 310" aria-hidden="true">
+            <defs>
+              <path id="orbit-2" d="M155,155 m-121,0 a121,121 0 1,1 242,0 a121,121 0 1,1 -242,0" />
+            </defs>
+            <text>
+              <textPath href="#orbit-2">Computer Vision - Foundation Models - Applied AI -</textPath>
+            </text>
+          </svg>
+          <img class="portrait" src="../images/profile.png" alt="Mahdiyar Molahasani" />
+        </div>
+      </section>
+
+      <div class="below-hero" aria-label="Hero metrics preview">
+        <div class="stat"><strong>609+</strong><span>Citations</span></div>
+        <div class="stat"><strong>10</strong><span>H-Index</span></div>
+        <div class="stat"><strong>8+</strong><span>Years</span></div>
+        <div class="stat"><strong>18</strong><span>Publications</span></div>
+      </div>
+    </main>
+  </body>
+</html>

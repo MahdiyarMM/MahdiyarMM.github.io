@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero v6 03 - Left Portrait</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --accent-color: #f59e0b;
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --font-family-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --font-family-mono: "JetBrains Mono", Consolas, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text-primary);
+        font-family: var(--font-family-primary);
+        background:
+          radial-gradient(circle at 18% 76%, rgba(245, 158, 11, 0.09), transparent 24rem),
+          radial-gradient(circle at 76% 20%, rgba(37, 99, 235, 0.08), transparent 25rem), #fff;
+      }
+
+      .site-shell {
+        width: min(1200px, calc(100% - 48px));
+        margin: 0 auto;
+      }
+
+      .hero-section {
+        min-height: 790px;
+        padding: 96px 0 0;
+        isolation: isolate;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(360px, 1.02fr) minmax(0, 0.98fr);
+        gap: clamp(44px, 6vw, 84px);
+        align-items: center;
+      }
+
+      .portrait-stage {
+        position: relative;
+        min-height: 620px;
+      }
+
+      .back-title {
+        position: absolute;
+        left: 20px;
+        right: -220px;
+        top: 82px;
+        z-index: 1;
+        color: rgba(37, 99, 235, 0.115);
+        font-size: clamp(50px, 7vw, 106px);
+        font-weight: 800;
+        letter-spacing: -0.07em;
+        line-height: 0.86;
+        pointer-events: none;
+      }
+
+      .portrait-stage::before {
+        position: absolute;
+        left: 258px;
+        top: 116px;
+        z-index: 2;
+        width: 280px;
+        height: 420px;
+        border-radius: 46%;
+        content: "";
+        background: linear-gradient(90deg, rgba(15, 23, 42, 0), rgba(15, 23, 42, 0.17));
+        filter: blur(26px);
+        transform: rotate(-8deg);
+      }
+
+      .portrait-stage::after {
+        position: absolute;
+        left: 88px;
+        bottom: 54px;
+        z-index: 1;
+        width: 330px;
+        height: 72px;
+        border-radius: 50%;
+        content: "";
+        background: rgba(15, 23, 42, 0.14);
+        filter: blur(21px);
+      }
+
+      .portrait {
+        position: absolute;
+        left: 8px;
+        bottom: -8px;
+        z-index: 3;
+        width: min(460px, 88vw);
+        filter: drop-shadow(24px 30px 32px rgba(15, 23, 42, 0.24));
+      }
+
+      .orbit-text {
+        position: absolute;
+        left: 94px;
+        top: 142px;
+        z-index: 5;
+        width: 310px;
+        height: 310px;
+        animation: spin 27s linear infinite reverse;
+        overflow: visible;
+      }
+
+      .orbit-text text {
+        fill: var(--primary-color);
+        font-family: var(--font-family-mono);
+        font-size: 10px;
+        letter-spacing: 0.3em;
+      }
+
+      .location {
+        position: absolute;
+        left: 300px;
+        top: 72px;
+        z-index: 6;
+        padding: 8px 13px;
+        border: 1px solid rgba(148, 163, 184, 0.42);
+        border-radius: 999px;
+        color: var(--text-secondary);
+        background: rgba(255, 255, 255, 0.9);
+        font-family: var(--font-family-mono);
+        font-size: 11px;
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 7;
+      }
+
+      .greeting {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--text-secondary);
+        font-size: clamp(18px, 2vw, 22px);
+        letter-spacing: normal;
+        line-height: 1.2;
+      }
+
+      h1 {
+        margin: 0 0 18px;
+        font-size: clamp(42px, 6vw, 76px);
+        font-weight: 800;
+        letter-spacing: -0.055em;
+        line-height: 1;
+      }
+
+      .name-highlight {
+        display: block;
+        color: transparent;
+        background: linear-gradient(135deg, var(--primary-color), #6366f1 48%, var(--accent-color));
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      .typing-text {
+        display: inline-block;
+        margin-bottom: 28px;
+        color: var(--text-secondary);
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      .hero-description {
+        max-width: 64ch;
+        margin: 0 0 28px;
+        color: var(--text-secondary);
+        font-size: 18px;
+        line-height: 1.75;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 20px;
+        border: 1.5px solid var(--primary-color);
+        border-radius: 10px;
+        color: var(--primary-color);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        color: #fff;
+        background: var(--primary-color);
+        box-shadow: 0 12px 24px -14px rgba(37, 99, 235, 0.65);
+      }
+
+      .below-hero {
+        position: relative;
+        z-index: 6;
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        margin-top: -70px;
+        padding: 24px 0 0;
+        border-top: 1px solid rgba(37, 99, 235, 0.15);
+      }
+
+      .social-pill {
+        min-width: 132px;
+        padding: 16px 18px;
+        border: 1px solid rgba(37, 99, 235, 0.12);
+        border-radius: 16px;
+        color: var(--text-secondary);
+        text-align: center;
+        background: rgba(255, 255, 255, 0.86);
+        box-shadow: 0 16px 42px -36px rgba(15, 23, 42, 0.42);
+        font-weight: 700;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hero-section {
+          min-height: auto;
+          padding-top: 72px;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .portrait-stage {
+          order: 2;
+          min-height: 540px;
+        }
+
+        .hero-copy {
+          order: 1;
+        }
+
+        .portrait {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .back-title {
+          left: 0;
+          right: 0;
+          text-align: center;
+        }
+
+        .hero-actions,
+        .below-hero {
+          justify-content: center;
+        }
+
+        .below-hero {
+          flex-wrap: wrap;
+          margin-top: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="site-shell">
+      <section class="hero-section" aria-labelledby="hero-heading">
+        <div class="hero-grid">
+          <div class="portrait-stage" aria-label="Left transparent portrait with orbit text">
+            <div class="back-title">Architect of Invisible Intelligence</div>
+            <div class="location">Vancouver, BC</div>
+            <svg class="orbit-text" viewBox="0 0 310 310" aria-hidden="true">
+              <defs>
+                <path id="orbit-3" d="M155,155 m-121,0 a121,121 0 1,1 242,0 a121,121 0 1,1 -242,0" />
+              </defs>
+              <text>
+                <textPath href="#orbit-3">Applied AI - Vision Systems - Research - Builder -</textPath>
+              </text>
+            </svg>
+            <img class="portrait" src="../images/profile.png" alt="Mahdiyar Molahasani" />
+          </div>
+
+          <div class="hero-copy">
+            <h1 id="hero-heading">
+              <span class="greeting">Hello, I'm</span>
+              <span class="name-highlight">Mahdiyar Molahasani</span>
+            </h1>
+            <div class="typing-text">Top Reviewer, NeurIPS 2024</div>
+            <p class="hero-description">
+              I develop cutting-edge, efficient ML solutions for the photography industry as an
+              <strong>ML Researcher II</strong> at <strong>Captura</strong>. My research focuses on
+              <strong>federated learning</strong>, <strong>domain generalization</strong>, and
+              <strong>continual learning</strong>.
+            </p>
+            <div class="hero-actions">
+              <a href="/research" class="btn btn-primary">View Research</a>
+              <a href="#featured-projects" class="btn">Deep Dives</a>
+              <a href="mailto:m.molahasani.m@gmail.com" class="btn">Get in Touch</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="below-hero" aria-label="Social links preview">
+        <div class="social-pill">Email</div>
+        <div class="social-pill">LinkedIn</div>
+        <div class="social-pill">Scholar</div>
+        <div class="social-pill">GitHub</div>
+      </div>
+    </main>
+  </body>
+</html>
