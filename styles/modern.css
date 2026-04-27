@@ -342,7 +342,7 @@ papertitle {
   font-size: clamp(2.2rem, 4.9vw, 4.35rem);
   font-weight: 700;
   line-height: 1.04;
-  margin: 0 0 var(--space-5);
+  margin: 0 0 var(--space-4);
   color: var(--text-primary);
 }
 
@@ -360,30 +360,110 @@ papertitle {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: block;
-  font-size: clamp(2.15rem, 3.35vw, 3.25rem);
+  font-size: clamp(3rem, 5.5vw, 5.8rem);
   font-weight: 800;
   line-height: 1.02;
-  margin-bottom: var(--space-3);
 }
 
-.hero-punchline {
+.hero-manifesto {
   color: var(--text-primary);
-  display: block;
-  font-size: clamp(2.35rem, 4.6vw, 4.25rem);
+  max-width: 34rem;
+}
+
+.hero-manifesto-title {
+  color: var(--text-primary);
+  font-size: clamp(1.85rem, 3.2vw, 3rem);
   font-weight: 800;
   letter-spacing: 0;
-  max-width: 12.4ch;
+  line-height: 1.04;
+  margin: 0 0 var(--space-3);
+}
+
+.hero-manifesto p:not(.hero-manifesto-title) {
+  color: var(--text-secondary);
+  font-size: clamp(1.25rem, 2.25vw, 1.85rem);
+  line-height: 1.36;
+  margin: 0 0 var(--space-5);
+}
+
+.hero-manifesto .kick-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.hero-manifesto .kick-sequence {
+  display: inline;
+  margin-left: 0;
+  vertical-align: baseline;
+  animation: kick-fade-in 2.8s ease-out both;
+}
+
+.hero-manifesto .kick-word {
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: italic;
+  letter-spacing: inherit;
+  line-height: inherit;
+  animation: none;
+  background-image: none;
+  text-transform: none;
+  -webkit-background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+  background-clip: border-box;
+}
+
+@keyframes kick-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-manifesto .kick-word-silent {
+  animation-delay: 0s;
+}
+
+.hero-manifesto .kick-word-unbreakable {
+  animation-delay: 0s;
+}
+
+.hero-manifesto .kick-word-inevitable {
+  animation-delay: 0s;
+}
+
+@keyframes kick-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.72;
+    filter: saturate(1);
+  }
+  50% {
+    transform: scale(1.045);
+    opacity: 1;
+    filter: saturate(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-manifesto .kick-sequence,
+  .hero-manifesto .kick-word {
+    animation: none;
+  }
 }
 
 .hero-subtitle {
-  margin-bottom: var(--space-6);
+  margin: var(--space-6) auto 0;
   min-height: 2.5rem;
+  text-align: center;
 }
 
 .typing-text {
-  font-size: var(--font-size-xl);
+  font-size: clamp(1rem, 1.65vw, 1.35rem);
   color: var(--text-secondary);
-  font-weight: 500;
+  font-weight: 600;
   border-right: 2px solid var(--primary-color);
   animation: blink 1s infinite;
 }
@@ -533,6 +613,8 @@ papertitle {
 
 .hero-image {
   display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
   justify-content: center;
   align-items: center;
   position: relative;
@@ -1718,7 +1800,7 @@ img:hover {
     justify-content: center;
   }
 
-  .hero-punchline {
+  .hero-manifesto {
     margin-left: auto;
     margin-right: auto;
   }
@@ -1788,14 +1870,25 @@ img:hover {
   }
 
   .name-highlight {
-    font-size: var(--font-size-4xl);
+    font-size: clamp(2.8rem, 9vw, 4.25rem);
   }
 
-  .hero-punchline {
-    font-size: clamp(2rem, 10vw, 3.4rem);
+  .hero-manifesto {
     margin-left: auto;
     margin-right: auto;
-    max-width: 10.5ch;
+    max-width: 38rem;
+  }
+
+  .hero-manifesto-title {
+    font-size: clamp(1.85rem, 5.6vw, 2.75rem);
+  }
+
+  .hero-manifesto p:not(.hero-manifesto-title) {
+    font-size: clamp(1.1rem, 3.3vw, 1.45rem);
+  }
+
+  .hero-manifesto .kick-line {
+    font-size: clamp(0.86rem, 2.6vw, 1.1rem);
   }
 
   .hero-image {
@@ -2335,6 +2428,38 @@ html[data-theme='dark'] .typing-text,
 body[data-theme='dark'] .typing-text {
   color: var(--text-secondary) !important;
   border-color: var(--text-secondary) !important;
+}
+
+html[data-theme='dark'] .hero-manifesto-title,
+html[data-theme='dark'] .hero-manifesto-title strong,
+body[data-theme='dark'] .hero-manifesto-title,
+body[data-theme='dark'] .hero-manifesto-title strong {
+  color: #ffffff !important;
+}
+
+html[data-theme='dark'] .hero-manifesto p:not(.hero-manifesto-title),
+body[data-theme='dark'] .hero-manifesto p:not(.hero-manifesto-title) {
+  color: #e5e7eb !important;
+}
+
+html[data-theme='dark'] .hero-manifesto .kick-word,
+body[data-theme='dark'] .hero-manifesto .kick-word {
+  filter: none !important;
+}
+
+html[data-theme='dark'] .hero-manifesto .kick-word-silent,
+body[data-theme='dark'] .hero-manifesto .kick-word-silent {
+  background-image: none !important;
+}
+
+html[data-theme='dark'] .hero-manifesto .kick-word-unbreakable,
+body[data-theme='dark'] .hero-manifesto .kick-word-unbreakable {
+  background-image: none !important;
+}
+
+html[data-theme='dark'] .hero-manifesto .kick-word-inevitable,
+body[data-theme='dark'] .hero-manifesto .kick-word-inevitable {
+  background-image: none !important;
 }
 
 html[data-theme='dark'] .credential-pill,
@@ -3068,11 +3193,24 @@ body[data-theme='dark'] .theme-toggle-segmented .theme-option-light {
   }
 
   .name-highlight {
-    font-size: var(--font-size-3xl);
+    font-size: clamp(2.25rem, 12vw, 3.2rem);
   }
 
-  .hero-punchline {
-    font-size: clamp(1.85rem, 11vw, 2.65rem);
+  .hero-manifesto-title {
+    font-size: clamp(1.45rem, 7vw, 2rem);
+  }
+
+  .hero-manifesto p:not(.hero-manifesto-title) {
+    font-size: 1.05rem;
+    line-height: 1.42;
+  }
+
+  .hero-manifesto .kick-line {
+    font-size: 0.85rem;
+  }
+
+  .typing-text {
+    font-size: 0.95rem;
   }
 
   .hero-credentials,

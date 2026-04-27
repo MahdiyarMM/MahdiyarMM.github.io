@@ -171,11 +171,12 @@ class WebsiteEnhancer {
     }
 
     let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
+    let charIndex = texts[0].length;
+    let isDeleting = true;
     let typeSpeed = 100;
     const deleteSpeed = 50;
     const pauseTime = 2000;
+    typingElement.textContent = texts[0];
 
     document.addEventListener('sitedata:typing', (e) => {
       const incoming = e?.detail?.texts;
@@ -214,7 +215,7 @@ class WebsiteEnhancer {
       setTimeout(type, typeSpeed);
     };
 
-    setTimeout(type, 1000);
+    setTimeout(type, pauseTime);
   }
 
   setupPerformanceOptimizations() {
