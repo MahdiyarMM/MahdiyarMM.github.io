@@ -364,7 +364,9 @@ class WebsiteEnhancer {
     // Initialize typewriter elements by splitting text into spans
     const typewriterElements = document.querySelectorAll('[data-typewriter]');
     typewriterElements.forEach((el) => {
-      const text = el.textContent.trim();
+      // Normalize all whitespace so HTML formatting/indentation does not
+      // create visual gaps between words when wrapped in span elements.
+      const text = el.textContent.replace(/\s+/g, ' ').trim();
       const words = text.split(' ');
       el.innerHTML = words.map((word) => `<span class="word">${word}</span>`).join(' ');
     });
