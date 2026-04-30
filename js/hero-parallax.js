@@ -1,16 +1,16 @@
 /**
  * Layered hero parallax controller.
  *
- * Drives three CSS custom properties on the sticky stage:
+ * Drives three CSS custom properties on the layered hero section:
  *   --hero-px : pointer X, normalized to [-1, 1]
  *   --hero-py : pointer Y, normalized to [-1, 1]
  *   --hero-sp : scroll progress through the outer scroll container, [0, 1]
  *
- * Also includes a one-shot "snap-through" so the user is never stranded in
- * the dead zone between the faded hero and the supporting block: if they
- * pause with the hero mostly faded but the supporting block still below
- * the viewport, we smooth-scroll them so the supporting block top aligns
- * with the viewport top.
+ * The properties are set on `.hero-section--layered` (the section root) so
+ * both `.hero-stage` (the fading visuals) and `.hero-supporting` (the
+ * crossfading bio block) can read them via inheritance — the two blocks
+ * crossfade against each other on a single scroll axis, so there is no
+ * "dead zone" between the faded hero and the supporting content.
  *
  * Design constraints:
  *   - rAF-throttled, single loop per channel.
@@ -23,10 +23,10 @@
 (function () {
   if (typeof window === 'undefined' || typeof document === 'undefined') return;
 
+  const section = document.querySelector('.hero-section--layered');
   const stage = document.querySelector('[data-hero-stage]');
   const scroller = stage ? stage.closest('.hero-scroll') : null;
-  const supporting = document.querySelector('.hero-section--layered .hero-supporting');
-  if (!stage || !scroller) return;
+  if (!section || !stage || !scroller) return;
 
   const reduced =
     window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -52,8 +52,8 @@
     pointerFrame = 0;
     currPx += (targetPx - currPx) * PX_EASE;
     currPy += (targetPy - currPy) * PX_EASE;
-    stage.style.setProperty('--hero-px', currPx.toFixed(3));
-    stage.style.setProperty('--hero-py', currPy.toFixed(3));
+    section.style.setProperty('--hero-px', currPx.toFixed(3));
+    section.style.setProperty('--hero-py', currPy.toFixed(3));
     if (visible && (Math.abs(currPx - targetPx) > PX_EPS || Math.abs(currPy - targetPy) > PX_EPS)) {
       pointerFrame = requestAnimationFrame(tickPointer);
     }
@@ -77,80 +77,57 @@
   }
 
   // ---- Scroll progress ----
+  // sp drives both the hero fade-out AND the supporting block fade-in.
+  // The stage is position:fixed (no layout cost) and the supporting block
+  // sits in normal flow right after the .hero-scroll placeholder (60vh tall),
+  // so the supporting block reaches the viewport top exactly when sp hits 1.
+  //
+  // The CSS opacity formulas are tuned for an *overlapping* crossfade:
+  //   composition: 1 - sp*2     (fully gone at sp ≈ 0.50)
+  //   supporting:  (sp-0.1)*2.2 (fully visible at sp ≈ 0.55)
+  //
+  // The two arcs overlap through sp 0.10 → 0.55, so there is no dead zone in
+  // the middle of the scroll range — the user always sees one block on its
+  // way out and the other on its way in.
+  //
+  // Because .hero-scroll is smaller than the viewport, the original sp
+  // formula (rect.height - viewport.height) goes negative; instead we use
+  // rect.height itself as the parallax range.
   let scrollFrame = 0;
-  let currentSp = 0;
+
+  // Toggles for CSS hooks. supporting-active flips pointer-events when the
+  // supporting block becomes interactive (≥ ~70% opacity). faded hides the
+  // fixed stage once it's fully invisible so it stops intercepting clicks
+  // and covering subsequent sections.
+  const SUPPORTING_ACTIVE_AT = 0.4;
+  const STAGE_FADED_AT = 0.95;
+  let supportingActive = false;
+  let stageFaded = false;
 
   function tickScroll() {
     scrollFrame = 0;
     const rect = scroller.getBoundingClientRect();
-    const total = rect.height - window.innerHeight;
+    const total = rect.height; // parallax range (height of placeholder)
     let progress = total > 0 ? -rect.top / total : 0;
     if (progress < 0) progress = 0;
     else if (progress > 1) progress = 1;
-    currentSp = progress;
-    stage.style.setProperty('--hero-sp', progress.toFixed(3));
-    // Re-arm the snap as soon as the user has scrolled meaningfully back up
-    // past the fade midpoint, so a subsequent downward pass can snap again.
-    if (progress < 0.5) snapped = false;
-  }
+    section.style.setProperty('--hero-sp', progress.toFixed(3));
 
-  // ---- Snap-through to supporting block ----
-  // Why: the sticky stage occupies ~100vh of layout space. After the layers
-  // have fully faded (sp ≈ 1), the user must still scroll through that 100vh
-  // of empty layout before the supporting block reaches the viewport top.
-  // That gap reads as "an empty page". When the user pauses inside that gap
-  // with the hero mostly faded, we smooth-scroll once to bridge it.
-  const SNAP_SP_THRESHOLD = 0.7; // hero must be substantially faded
-  const SNAP_DEBOUNCE_MS = 280; // wait for the user to actually stop
-  const SNAP_TARGET_TOLERANCE_PX = 8; // already aligned, no need to snap
-  let snapTimeout = 0;
-  let snapped = false; // one-shot per downward pass; reset in tickScroll
+    const shouldBeActive = progress >= SUPPORTING_ACTIVE_AT;
+    if (shouldBeActive !== supportingActive) {
+      supportingActive = shouldBeActive;
+      section.toggleAttribute('data-hero-supporting-active', supportingActive);
+    }
 
-  // Sticky header overlaps the top of the viewport; offset the snap target so
-  // the first line of the supporting block isn't tucked behind it.
-  const header = document.querySelector('header.header, header[role="banner"], .header');
-
-  function getHeaderOffset() {
-    if (!header) return 0;
-    const r = header.getBoundingClientRect();
-    return r.top <= 4 ? Math.max(0, r.height) : 0;
-  }
-
-  function maybeSnap() {
-    snapTimeout = 0;
-    if (snapped || !supporting) return;
-    if (currentSp < SNAP_SP_THRESHOLD) return;
-
-    const rect = supporting.getBoundingClientRect();
-    const headerOffset = getHeaderOffset();
-    // Already at (or above) the resting position — nothing to do.
-    if (rect.top - headerOffset <= SNAP_TARGET_TOLERANCE_PX) return;
-    // Far below the viewport — user is somewhere unrelated; don't pull them.
-    if (rect.top > window.innerHeight + 4) return;
-
-    snapped = true;
-    const targetY = Math.round(window.scrollY + rect.top - headerOffset);
-    if (typeof window.scrollTo === 'function') {
-      try {
-        window.scrollTo({ top: targetY, behavior: 'smooth' });
-      } catch (_) {
-        window.scrollTo(0, targetY);
-      }
+    const shouldBeFaded = progress >= STAGE_FADED_AT;
+    if (shouldBeFaded !== stageFaded) {
+      stageFaded = shouldBeFaded;
+      section.toggleAttribute('data-hero-faded', stageFaded);
     }
   }
 
-  function scheduleSnap() {
-    if (snapTimeout) clearTimeout(snapTimeout);
-    if (snapped) return;
-    snapTimeout = setTimeout(maybeSnap, SNAP_DEBOUNCE_MS);
-  }
-
-  // Always run on scroll. The earlier `visible` gate caused sp to stay stale
-  // when the scroller was leaving the viewport — leaving partial fades on
-  // background layers as the supporting block came into view.
   function onScroll() {
     if (!scrollFrame) scrollFrame = requestAnimationFrame(tickScroll);
-    scheduleSnap();
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
