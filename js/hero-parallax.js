@@ -7,10 +7,9 @@
  *   --hero-sp : scroll progress through the outer scroll container, [0, 1]
  *
  * The properties are set on `.hero-section--layered` (the section root) so
- * both `.hero-stage` (the fading visuals) and `.hero-supporting` (the
- * crossfading bio block) can read them via inheritance — the two blocks
- * crossfade against each other on a single scroll axis, so there is no
- * "dead zone" between the faded hero and the supporting content.
+ * both `.hero-stage` (the hero slide) and `.hero-supporting` (the next slide)
+ * can read them via inheritance. The handoff is intentionally simple: a
+ * scroll-linked crossfade, like a presentation fade transition.
  *
  * Design constraints:
  *   - rAF-throttled, single loop per channel.
@@ -77,18 +76,14 @@
   }
 
   // ---- Scroll progress ----
-  // sp drives both the hero fade-out AND the supporting block fade-in.
+  // sp drives a simple hero → supporting crossfade.
   // The stage is position:fixed (no layout cost) and the supporting block
-  // sits in normal flow right after the .hero-scroll placeholder (60vh tall),
+  // sits in normal flow right after the .hero-scroll placeholder (72vh tall),
   // so the supporting block reaches the viewport top exactly when sp hits 1.
   //
-  // The CSS opacity formulas are tuned for an *overlapping* crossfade:
-  //   composition: 1 - sp*2     (fully gone at sp ≈ 0.50)
-  //   supporting:  (sp-0.1)*2.2 (fully visible at sp ≈ 0.55)
-  //
-  // The two arcs overlap through sp 0.10 → 0.55, so there is no dead zone in
-  // the middle of the scroll range — the user always sees one block on its
-  // way out and the other on its way in.
+  // The CSS formulas intentionally avoid snap points, forced landing, or extra
+  // choreography. If the user stops mid-scroll, the page simply shows the
+  // corresponding crossfade frame.
   //
   // Because .hero-scroll is smaller than the viewport, the original sp
   // formula (rect.height - viewport.height) goes negative; instead we use
@@ -99,7 +94,7 @@
   // supporting block becomes interactive (≥ ~70% opacity). faded hides the
   // fixed stage once it's fully invisible so it stops intercepting clicks
   // and covering subsequent sections.
-  const SUPPORTING_ACTIVE_AT = 0.4;
+  const SUPPORTING_ACTIVE_AT = 0.45;
   const STAGE_FADED_AT = 0.95;
   let supportingActive = false;
   let stageFaded = false;

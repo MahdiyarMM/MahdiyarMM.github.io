@@ -1150,7 +1150,23 @@ papertitle {
 }
 
 .experience-timeline-section {
+  position: relative;
   scroll-margin-top: 110px;
+}
+
+.industry-home .experience-timeline-section {
+  padding-top: var(--space-4);
+}
+
+.industry-home .experience-timeline-section[data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+.industry-home .experience-timeline-section .timeline-item,
+.industry-home .experience-timeline-section .timeline.stagger-container > * {
+  opacity: 1;
+  transform: none;
 }
 
 .timeline {
@@ -3056,7 +3072,7 @@ body[data-theme='dark'] .theme-toggle-segmented .theme-option-light {
 /* Skip link for accessibility */
 .skip-link {
   position: absolute;
-  top: -40px;
+  top: 0;
   left: 6px;
   background: var(--primary-color);
   color: white;
@@ -3064,11 +3080,12 @@ body[data-theme='dark'] .theme-toggle-segmented .theme-option-light {
   text-decoration: none;
   border-radius: 4px;
   z-index: 10000;
-  transition: top 0.3s;
+  transform: translateY(-120%);
+  transition: transform 0.2s ease;
 }
 
 .skip-link:focus {
-  top: 6px;
+  transform: translateY(6px);
 }
 
 /* Mobile Responsiveness */
@@ -3402,7 +3419,7 @@ body[data-theme='dark'] .theme-toggle-segmented .theme-option-light {
 
 .skip-link {
   position: absolute;
-  top: -40px;
+  top: 0;
   left: 0;
   background: var(--primary, #2563eb);
   color: #fff;
@@ -3411,9 +3428,11 @@ body[data-theme='dark'] .theme-toggle-segmented .theme-option-light {
   text-decoration: none;
   z-index: 10000;
   font-weight: 600;
+  transform: translateY(-120%);
+  transition: transform 0.2s ease;
 }
 .skip-link:focus {
-  top: 0;
+  transform: translateY(0);
   outline: 2px solid #fff;
   outline-offset: 2px;
 }
@@ -5064,21 +5083,14 @@ html[data-theme='dark'] .btn-secondary:hover {
 }
 
 .industry-home .hero-section--layered {
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-10);
 }
 
 .hero-section--layered .hero-scroll {
-  /* Parallax range. The stage is position:fixed below (no layout cost), so
-   * this min-height is purely the scroll distance over which sp goes 0 → 1
-   * (the hero fade-out + supporting fade-in arc).
-   *
-   * 60vh keeps the crossfade tight — long enough for the lift-and-fade to
-   * feel deliberate, short enough that the user is never waiting for it. The
-   * section's total layout is 60vh + supporting (~50vh) ≈ 110vh, still more
-   * than one viewport, so the next section can't bleed through the fixed
-   * stage at scroll = 0. */
+  /* Crossfade range. The stage is fixed, so this is the scroll distance over
+   * which the hero slide fades out and the supporting slide fades in. */
   position: relative;
-  min-height: 60vh;
+  min-height: 58vh;
 }
 
 .hero-section--layered .hero-stage {
@@ -5108,13 +5120,13 @@ html[data-theme='dark'] .btn-secondary:hover {
    * the fade and only thins out near the end (sp ≈ 0.7 → 1), by which
    * point the supporting block has crossfaded in over the stage and covers
    * the same vertical band. */
-  background-color: rgba(255, 255, 255, calc(1 - max(var(--hero-sp, 0) - 0.7, 0) * 3.4));
+  background-color: rgba(255, 255, 255, calc(1 - max(var(--hero-sp, 0) - 0.78, 0) * 4.6));
   transition: visibility 0s linear 200ms;
 }
 
 html[data-theme='dark'] .hero-section--layered .hero-stage,
 body[data-theme='dark'] .hero-section--layered .hero-stage {
-  background-color: rgba(30, 30, 30, calc(1 - max(var(--hero-sp, 0) - 0.7, 0) * 3.4));
+  background-color: rgba(30, 30, 30, calc(1 - max(var(--hero-sp, 0) - 0.78, 0) * 4.6));
 }
 
 /* Hide the stage once it has fully faded so it stops covering subsequent
@@ -5154,14 +5166,8 @@ body[data-theme='dark'] .hero-section--layered .hero-stage {
     radial-gradient(34vmax 30vmax at 50% 50%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 72%);
   -webkit-mask-image: radial-gradient(ellipse 92% 88% at 50% 50%, #000 50%, transparent 100%);
   mask-image: radial-gradient(ellipse 92% 88% at 50% 50%, #000 50%, transparent 100%);
-  transform: translate3d(
-    calc(var(--hero-px) * 4px),
-    calc(var(--hero-py) * 4px - var(--hero-sp) * 32px),
-    0
-  );
-  /* Fade ~2x faster than full scroll so the warm/cool blooms don't linger
-   * as ghosts past the composition. Clamps to 0 once sp ≥ 0.5. */
-  opacity: calc(1 - var(--hero-sp) * 2);
+  transform: translate3d(calc(var(--hero-px) * 4px), calc(var(--hero-py) * 4px), 0);
+  opacity: calc(1 - var(--hero-sp) * 1.45);
 }
 
 /* ----- Layer 2: structural intelligence (grid + faint lattice) ----- */
@@ -5179,14 +5185,8 @@ body[data-theme='dark'] .hero-section--layered .hero-stage {
   -webkit-mask-image: radial-gradient(ellipse 72% 65% at 50% 50%, #000 35%, transparent 92%);
   mask-image: radial-gradient(ellipse 72% 65% at 50% 50%, #000 35%, transparent 92%);
   color: rgba(15, 23, 42, 0.42); /* drives currentColor in the SVG */
-  transform: translate3d(
-    calc(var(--hero-px) * -10px),
-    calc(var(--hero-py) * -8px - var(--hero-sp) * 56px),
-    0
-  );
-  /* Lattice strokes contrast strongly with the white wash; fade ahead of the
-   * composition so they don't read as leftover scaffolding when scrolling out. */
-  opacity: calc(0.85 - var(--hero-sp) * 1.7);
+  transform: translate3d(calc(var(--hero-px) * -10px), calc(var(--hero-py) * -8px), 0);
+  opacity: calc(0.85 - var(--hero-sp) * 1.25);
 }
 
 .hero-section--layered .hero-lattice-svg {
@@ -5203,23 +5203,14 @@ body[data-theme='dark'] .hero-section--layered .hero-stage {
 }
 
 /* ----- Layer 4: composition (existing content) -----
- * Lift-and-fade. Fade rate is ~2x so the composition is fully invisible by
- * sp ≈ 0.5 and the supporting block (which starts crossfading in at sp ≈ 0.1
- * and reaches full opacity at sp ≈ 0.55) takes over with the two blocks
- * cross-dissolving smoothly through the middle of the scroll range — no
- * dead zone, no double-presence at half opacity in the same vertical band
- * (the supporting block sits in the lower half of the viewport during the
- * crossfade, so visual conflict is minimal). */
+ * PowerPoint-style fade: no vertical choreography, just dissolve the hero
+ * slide while the supporting slide appears in normal flow. */
 .hero-section--layered .hero-layer--composition {
   position: relative;
   z-index: 3;
   width: 100%;
-  transform: translate3d(
-    calc(var(--hero-px) * 3px),
-    calc(var(--hero-py) * -2px - var(--hero-sp) * 110px),
-    0
-  );
-  opacity: calc(1 - var(--hero-sp) * 2);
+  transform: translate3d(calc(var(--hero-px) * 3px), calc(var(--hero-py) * -2px), 0);
+  opacity: calc(1 - var(--hero-sp) * 1.45);
 }
 
 /* Content layout overrides inside the stage: stop the legacy hero-content
@@ -5340,22 +5331,8 @@ body[data-theme='dark'] .hero-section--layered .hero-stage {
 
 /* ----- Supporting block: bio + topics + CTAs + social.
  *
- * Sits in normal flow directly after the 60vh .hero-scroll placeholder, which
- * is exactly the parallax range. Because the stage is position:fixed (no
- * layout cost), the supporting block's top is at doc-y = 60vh — the scroll
- * position where sp = 1. As the user scrolls, the block slides up from the
- * lower viewport into the top, while opacity crossfades in:
- *
- *   sp 0.00 → 0.10  : invisible (composition fully present)
- *   sp 0.10 → 0.55  : crossfade — composition fades out, supporting fades in
- *   sp 0.55 → 1.00  : composition gone, supporting fully present and sliding
- *                     up into final docked position
- *
- * Both halves of the crossfade share the same vertical band, but the
- * supporting block sits in the LOWER half of the viewport during the overlap
- * (the hero composition centers in the middle), so there is no visual
- * conflict — the eye reads the swap as a continuous handoff with no dead
- * zone in either direction.
+ * Sits in normal flow after the scroll placeholder. Its opacity is the other
+ * half of the hero crossfade; no extra motion or chrome.
  *
  * Falls back to opacity:1 (via the var() default) when JS hasn't set --hero-sp,
  * e.g. on mobile / reduced-motion / before script load. ----- */
@@ -5369,12 +5346,7 @@ body[data-theme='dark'] .hero-section--layered .hero-stage {
   flex-direction: column;
   align-items: center;
   gap: var(--space-5);
-  /* Crossfade in early and finish before the parallax range ends. Mirrors the
-   * composition fade-out (which clears at sp ≈ 0.5) so the two are dissolving
-   * at the same time — eliminates the dead zone the previous late-fade
-   * caused. The remaining sp 0.55 → 1.00 is just the supporting block
-   * sliding into its docked position at full opacity. */
-  opacity: calc((var(--hero-sp, 1) - 0.1) * 2.2);
+  opacity: calc((var(--hero-sp, 1) - 0.06) * 1.55);
   pointer-events: none;
   transition: opacity 80ms linear;
 }
@@ -5531,6 +5503,7 @@ body[data-theme='dark'] .hero-section--layered .hero-topic-pills > span {
     padding: 0 var(--space-4);
     opacity: 1;
     pointer-events: auto;
+    transform: none;
   }
 }
 
@@ -5540,6 +5513,10 @@ body[data-theme='dark'] .hero-section--layered .hero-topic-pills > span {
  * Particles continue to react to the existing global canvas.
  * ============================================================ */
 @media (max-width: 768px) {
+  .industry-home .experience-timeline-section {
+    margin-top: 0;
+    padding-top: var(--space-6);
+  }
   .hero-section--layered .hero-scroll {
     min-height: auto;
   }
@@ -5573,6 +5550,7 @@ body[data-theme='dark'] .hero-section--layered .hero-topic-pills > span {
     gap: var(--space-4);
     opacity: 1;
     pointer-events: auto;
+    transform: none;
   }
   .hero-section--layered .hero-eyebrow {
     justify-content: center;
