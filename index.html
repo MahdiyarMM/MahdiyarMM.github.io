@@ -90,7 +90,7 @@
     </script>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="/styles/modern.css?v=20260426-3" />
+    <link rel="stylesheet" type="text/css" href="/styles/modern.css?v=20260430-8" />
 
     <!-- Prefetch the icon sprite so first paint is decorated -->
     <link rel="prefetch" href="/images/icons.svg" as="image" type="image/svg+xml" />
@@ -213,124 +213,204 @@
 
     <main id="main" class="body-background">
       <div class="content-container">
-        <!-- Hero Section -->
-        <section class="hero-section" aria-labelledby="hero-heading">
-          <div class="hero-content">
-            <!-- Left: Name, thesis, and position -->
-            <div class="hero-left">
-              <h1 id="hero-heading" class="hero-title">
-                <span class="name-highlight">Mahdiyar Molahasani</span>
-              </h1>
-              <div class="hero-manifesto">
-                <p class="hero-manifesto-title"><strong>Architect of Invisible Intelligence</strong></p>
-                <p>
-                  <span class="kick-line">I don’t build models that impress for a season.</span>
-                  <span class="kick-line">I forge AI that conquers industries and then</span>
-                  <span class="kick-line">vanishes into their bloodstream</span>
-                  <span class="kick-sequence">
-                    <span class="kick-word kick-word-silent">silent,</span>
-                    <span class="kick-word kick-word-unbreakable">unbreakable,</span>
-                    <span class="kick-word kick-word-inevitable">inevitable</span>
-                  </span>
-                </p>
-              </div>
-              <div class="hero-credentials hero-credentials-bottom">
-                <span class="credential-pill credential-pill-current">ML Researcher II at Captura</span>
-                <span class="credential-pill">PhD, Queen's University</span>
-                <span class="credential-pill">Computer Vision + Generalization</span>
-                <span class="credential-pill credential-pill-location">Vancouver, BC</span>
-              </div>
-            </div>
+        <!-- Hero Section — Layered "Invisible Intelligence" scene.
+             Outer .hero-scroll provides extra scroll length so the inner
+             sticky .hero-stage can play out a layered parallax exit; the
+             supporting block (.hero-supporting) appears in normal flow once
+             the stage releases, becoming the polished transition into the
+             timeline below. -->
+        <section class="hero-section hero-section--layered" aria-labelledby="hero-heading">
+          <div class="hero-scroll">
+            <div class="hero-stage" data-hero-stage>
+              <!-- Layer 1: ambient base — soft brand-tinted blooms. -->
+              <div class="hero-layer hero-layer--ambient" aria-hidden="true"></div>
 
-            <!-- Right: Image -->
-            <div class="hero-image">
-              <div class="image-container">
-                <div class="portrait-wall" aria-hidden="true"></div>
-                <img
-                  src="/images/profile_pic.png"
-                  alt="Mahdiyar Molahasani profile photo"
-                  class="profile-photo"
-                  width="1023"
-                  height="1285"
-                  fetchpriority="high"
-                  decoding="async"
-                />
+              <!-- Layer 2: structural intelligence — quiet grid + faint
+                   node/edge lattice. The interactive #particles-js canvas
+                   (fixed behind the page) is the live counterpart of this
+                   "invisible system" and shows through the translucent
+                   layers. -->
+              <div class="hero-layer hero-layer--lattice" aria-hidden="true">
+                <svg
+                  class="hero-lattice-svg"
+                  viewBox="0 0 1200 800"
+                  preserveAspectRatio="xMidYMid slice"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <defs>
+                    <linearGradient id="hero-lattice-stroke" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="currentColor" stop-opacity="0.0" />
+                      <stop offset="50%" stop-color="currentColor" stop-opacity="0.55" />
+                      <stop offset="100%" stop-color="currentColor" stop-opacity="0.0" />
+                    </linearGradient>
+                  </defs>
+                  <g fill="none" stroke="url(#hero-lattice-stroke)" stroke-width="1" stroke-linecap="round">
+                    <!-- Long horizontal guideline -->
+                    <path d="M40 360 L1160 360" />
+                    <!-- Diagonal traces between nodes -->
+                    <path d="M120 220 L420 360 L760 220 L1080 420" />
+                    <path d="M180 600 L520 480 L880 620 L1120 540" />
+                    <path d="M260 140 L260 660" />
+                    <path d="M940 120 L940 700" />
+                  </g>
+                  <g fill="currentColor">
+                    <circle cx="120" cy="220" r="2.5" opacity="0.55" />
+                    <circle cx="420" cy="360" r="2.5" opacity="0.55" />
+                    <circle cx="760" cy="220" r="2.5" opacity="0.55" />
+                    <circle cx="1080" cy="420" r="2.5" opacity="0.55" />
+                    <circle cx="180" cy="600" r="2" opacity="0.4" />
+                    <circle cx="520" cy="480" r="2" opacity="0.4" />
+                    <circle cx="880" cy="620" r="2" opacity="0.4" />
+                    <circle cx="1120" cy="540" r="2" opacity="0.4" />
+                    <circle cx="260" cy="140" r="1.5" opacity="0.32" />
+                    <circle cx="260" cy="660" r="1.5" opacity="0.32" />
+                    <circle cx="940" cy="120" r="1.5" opacity="0.32" />
+                    <circle cx="940" cy="700" r="1.5" opacity="0.32" />
+                  </g>
+                </svg>
               </div>
+
+              <!-- Layer 3 sits naturally above: existing portrait + content,
+                   wrapped so subtle pointer/scroll parallax can apply. -->
+              <div class="hero-layer hero-layer--composition">
+                <div class="hero-content">
+                  <!-- Left: Name, thesis, and position -->
+                  <div class="hero-left">
+                    <p class="hero-eyebrow" aria-hidden="true">
+                      <span class="hero-eyebrow-mark"></span>
+                      <span class="hero-eyebrow-text">Invisible Intelligence</span>
+                    </p>
+                    <h1 id="hero-heading" class="hero-title">
+                      <span class="name-highlight">Mahdiyar Molahasani</span>
+                    </h1>
+                    <div class="hero-manifesto">
+                      <p class="hero-manifesto-title"><strong>Architect of Invisible Intelligence</strong></p>
+                      <p>
+                        <span class="kick-line">I don’t build models that impress for a season.</span>
+                        <span class="kick-line">I forge AI that conquers industries and then</span>
+                        <span class="kick-line">vanishes into their bloodstream</span>
+                        <span class="kick-sequence">
+                          <span class="kick-word kick-word-silent">silent,</span>
+                          <span class="kick-word kick-word-unbreakable">unbreakable,</span>
+                          <span class="kick-word kick-word-inevitable">inevitable</span>
+                        </span>
+                      </p>
+                    </div>
+                    <div class="hero-credentials hero-credentials-bottom">
+                      <span class="credential-pill credential-pill-current">ML Researcher II at Captura</span>
+                      <span class="credential-pill">PhD, Queen's University</span>
+                      <span class="credential-pill">Computer Vision + Generalization</span>
+                      <span class="credential-pill credential-pill-location">Vancouver, BC</span>
+                    </div>
+                  </div>
+
+                  <!-- Right: Image -->
+                  <div class="hero-image">
+                    <div class="image-container">
+                      <div class="portrait-wall" aria-hidden="true"></div>
+                      <div class="portrait-frame" aria-hidden="true"></div>
+                      <img
+                        src="/images/profile_pic.png"
+                        alt="Mahdiyar Molahasani profile photo"
+                        class="profile-photo"
+                        width="1023"
+                        height="1285"
+                        fetchpriority="high"
+                        decoding="async"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quiet scroll cue, fades out as the stage releases. -->
+              <div class="hero-cue" aria-hidden="true">
+                <span class="hero-cue-line"></span>
+                <span class="hero-cue-label">Scroll</span>
+              </div>
+
+              <!-- Edge fade for a clean handoff to .hero-supporting / next section. -->
+              <div class="hero-edge" aria-hidden="true"></div>
             </div>
           </div>
 
-          <!-- Bio Section -->
-          <div class="hero-bio">
-            <p class="hero-description">
-              ML Researcher II at <strong>Captura</strong>, where I build computer-vision and multimodal systems for the
-              photography industry. PhD from <strong>Queen's University</strong>; published at
-              <strong>ICCV, AAAI, and NeurIPS Workshop</strong>. I translate raw intelligence into production empires
-              that survive domain shifts, regulatory storms, and human chaos.
-            </p>
-            <div class="hero-topic-pills">
-              <span><span class="topic-dot topic-dot-blue" aria-hidden="true"></span>Vision-Language Models</span>
-              <span><span class="topic-dot topic-dot-teal" aria-hidden="true"></span>Federated Learning</span>
-              <span><span class="topic-dot topic-dot-amber" aria-hidden="true"></span>Domain Generalization</span>
-              <span><span class="topic-dot topic-dot-rose" aria-hidden="true"></span>Fairness</span>
-              <span><span class="topic-dot topic-dot-green" aria-hidden="true"></span>Continual Learning</span>
+          <!-- Supporting block: bio, topics, CTAs, social. Lives outside the
+               sticky stage so it appears as the stage releases, giving the
+               first scroll an intentional, composed transition. -->
+          <div class="hero-supporting">
+            <div class="hero-bio">
+              <p class="hero-description">
+                ML Researcher II at <strong>Captura</strong>, where I build computer-vision and multimodal systems for
+                the photography industry. PhD from <strong>Queen's University</strong>; published at
+                <strong>ICCV, AAAI, and NeurIPS Workshop</strong>. I translate raw intelligence into production empires
+                that survive domain shifts, regulatory storms, and human chaos.
+              </p>
+              <div class="hero-topic-pills">
+                <span><span class="topic-dot topic-dot-blue" aria-hidden="true"></span>Vision-Language Models</span>
+                <span><span class="topic-dot topic-dot-teal" aria-hidden="true"></span>Federated Learning</span>
+                <span><span class="topic-dot topic-dot-amber" aria-hidden="true"></span>Domain Generalization</span>
+                <span><span class="topic-dot topic-dot-rose" aria-hidden="true"></span>Fairness</span>
+                <span><span class="topic-dot topic-dot-green" aria-hidden="true"></span>Continual Learning</span>
+              </div>
             </div>
-          </div>
 
-          <!-- Actions and Social -->
-          <div class="hero-actions">
-            <a href="/research" class="btn btn-primary">View Research</a>
-            <a href="#featured-projects" class="btn btn-secondary">Deep Dives</a>
-            <a href="mailto:m.molahasani.m@gmail.com?subject=Hello%20Mahdiyar" class="btn btn-secondary"
-              >Get in Touch</a
-            >
-          </div>
+            <!-- Actions and Social -->
+            <div class="hero-actions">
+              <a href="/research" class="btn btn-primary">View Research</a>
+              <a href="#featured-projects" class="btn btn-secondary">Deep Dives</a>
+              <a href="mailto:m.molahasani.m@gmail.com?subject=Hello%20Mahdiyar" class="btn btn-secondary"
+                >Get in Touch</a
+              >
+            </div>
 
-          <div class="social-links" role="list" aria-label="Social media and professional links">
-            <a href="mailto:m.molahasani.m@gmail.com" role="listitem" aria-label="Send email" class="social-link">
-              <svg class="icon icon-email" aria-hidden="true" focusable="false">
-                <use href="/images/icons.svg#i-email" />
-              </svg>
-              <span class="social-label">Email</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/m-molahasani/"
-              target="_blank"
-              rel="noopener noreferrer"
-              role="listitem"
-              aria-label="LinkedIn profile"
-              class="social-link"
-            >
-              <svg class="icon icon-linkedin" aria-hidden="true" focusable="false">
-                <use href="/images/icons.svg#i-linkedin" />
-              </svg>
-              <span class="social-label">LinkedIn</span>
-            </a>
-            <a
-              href="https://scholar.google.com/citations?user=cXDt3NQAAAAJ&hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-              role="listitem"
-              aria-label="Google Scholar profile"
-              class="social-link"
-            >
-              <svg class="icon icon-scholar" aria-hidden="true" focusable="false">
-                <use href="/images/icons.svg#i-scholar" />
-              </svg>
-              <span class="social-label">Scholar</span>
-            </a>
-            <a
-              href="https://github.com/MahdiyarMM"
-              target="_blank"
-              rel="noopener noreferrer"
-              role="listitem"
-              aria-label="GitHub profile"
-              class="social-link"
-            >
-              <svg class="icon icon-github" aria-hidden="true" focusable="false">
-                <use href="/images/icons.svg#i-github" />
-              </svg>
-              <span class="social-label">GitHub</span>
-            </a>
+            <div class="social-links" role="list" aria-label="Social media and professional links">
+              <a href="mailto:m.molahasani.m@gmail.com" role="listitem" aria-label="Send email" class="social-link">
+                <svg class="icon icon-email" aria-hidden="true" focusable="false">
+                  <use href="/images/icons.svg#i-email" />
+                </svg>
+                <span class="social-label">Email</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/m-molahasani/"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="listitem"
+                aria-label="LinkedIn profile"
+                class="social-link"
+              >
+                <svg class="icon icon-linkedin" aria-hidden="true" focusable="false">
+                  <use href="/images/icons.svg#i-linkedin" />
+                </svg>
+                <span class="social-label">LinkedIn</span>
+              </a>
+              <a
+                href="https://scholar.google.com/citations?user=cXDt3NQAAAAJ&hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="listitem"
+                aria-label="Google Scholar profile"
+                class="social-link"
+              >
+                <svg class="icon icon-scholar" aria-hidden="true" focusable="false">
+                  <use href="/images/icons.svg#i-scholar" />
+                </svg>
+                <span class="social-label">Scholar</span>
+              </a>
+              <a
+                href="https://github.com/MahdiyarMM"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="listitem"
+                aria-label="GitHub profile"
+                class="social-link"
+              >
+                <svg class="icon icon-github" aria-hidden="true" focusable="false">
+                  <use href="/images/icons.svg#i-github" />
+                </svg>
+                <span class="social-label">GitHub</span>
+              </a>
+            </div>
           </div>
         </section>
 
@@ -951,6 +1031,7 @@
     <script src="/js/site-data.js?v=20260426-3" defer></script>
     <script src="/particles.js?v=20260426-3" defer></script>
     <script src="/js/app.js?v=20260426-3" defer></script>
+    <script src="/js/hero-parallax.js?v=20260430-5" defer></script>
     <script src="/js/modern.js?v=20260426-3" defer></script>
   </body>
 </html>
