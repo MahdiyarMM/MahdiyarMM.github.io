@@ -9,7 +9,6 @@ class WebsiteEnhancer {
 
   init() {
     this.setupThemeToggle();
-    this.setupTypingAnimation();
     this.setupPerformanceOptimizations();
     this.setupAccessibilityFeatures();
     this.setupModernInteractions();
@@ -141,81 +140,6 @@ class WebsiteEnhancer {
     if (metaThemeColor) {
       metaThemeColor.content = theme === 'dark' ? '#1e1e1e' : '#ffffff';
     }
-  }
-
-  setupTypingAnimation() {
-    const typingElement = document.getElementById('typing-text');
-    if (!typingElement) return;
-
-    const fallbackTexts = [
-      'ML Researcher II at Captura',
-      'Applied AI & Computer Vision',
-      'Federated Learning Researcher',
-      "PhD from Queen's University",
-      'Top Reviewer, NeurIPS 2024',
-    ];
-    let texts = fallbackTexts;
-
-    if (typingElement.dataset.typingTexts) {
-      try {
-        const configuredTexts = JSON.parse(typingElement.dataset.typingTexts);
-        if (
-          Array.isArray(configuredTexts) &&
-          configuredTexts.every((text) => typeof text === 'string')
-        ) {
-          texts = configuredTexts;
-        }
-      } catch (error) {
-        texts = fallbackTexts;
-      }
-    }
-
-    let textIndex = 0;
-    let charIndex = texts[0].length;
-    let isDeleting = true;
-    let typeSpeed = 100;
-    const deleteSpeed = 50;
-    const pauseTime = 2000;
-    typingElement.textContent = texts[0];
-
-    document.addEventListener('sitedata:typing', (e) => {
-      const incoming = e?.detail?.texts;
-      if (
-        Array.isArray(incoming) &&
-        incoming.length &&
-        incoming.every((t) => typeof t === 'string')
-      ) {
-        texts = incoming;
-        if (textIndex >= texts.length) textIndex = 0;
-      }
-    });
-
-    const type = () => {
-      const currentText = texts[textIndex];
-
-      if (isDeleting) {
-        typingElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-        typeSpeed = deleteSpeed;
-      } else {
-        typingElement.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-        typeSpeed = 100;
-      }
-
-      if (!isDeleting && charIndex === currentText.length) {
-        typeSpeed = pauseTime;
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % texts.length;
-        typeSpeed = 500;
-      }
-
-      setTimeout(type, typeSpeed);
-    };
-
-    setTimeout(type, pauseTime);
   }
 
   setupPerformanceOptimizations() {
