@@ -36,8 +36,8 @@
   const GRID_HALF = 1.42;
   // Edge mask in world units (radial). Inside MASK_KEEP everything is
   // kept; past MASK_GONE everything is fully erased to alpha=0.
-  const MASK_KEEP = 0.91;
-  const MASK_GONE = 1.3;
+  const MASK_KEEP = 0.84;
+  const MASK_GONE = 1.22;
 
   // Reference projection scale (≈ what we hit on a typical 1440-wide
   // desktop). Drives amplitude → world-units conversion and the per-element
@@ -233,7 +233,8 @@
     light: {
       // Slate stroke for the grid; reads cleanly on near-white pages.
       gridRgb: '71, 85, 120',
-      gridAlpha: 0.26,
+      gridAlpha: 0.22,
+      textRelief: 1,
       probeAccent: '37, 99, 235', // blue-600
       probeWarm: '194, 134, 42', // amber-700
     },
@@ -241,7 +242,8 @@
       // Cool light-blue grid for a dark page; slightly brighter alpha to
       // hold against a near-black background without becoming loud.
       gridRgb: '186, 211, 246',
-      gridAlpha: 0.18,
+      gridAlpha: 0.32,
+      textRelief: 0.25,
       probeAccent: '96, 165, 250', // blue-400
       probeWarm: '251, 191, 36', // amber-400
     },
@@ -262,8 +264,8 @@
         interactive: true,
         autoSpawn: true,
         trails: true,
-        density: 30,
-        amplitude: 110,
+        density: 25,
+        amplitude: 94,
         speed: 100,
         pointCount: 2,
         reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
@@ -461,8 +463,30 @@
       if (w === 0 || h === 0) return;
       ctx.clearRect(0, 0, w, h);
       this._drawGrid(w, h);
-      this._drawEdgeMask(w, h);
       this._drawProbes();
+      this._drawTextReliefMask(w, h);
+      this._drawEdgeMask(w, h);
+    }
+
+    _drawTextReliefMask(w, h) {
+      const ctx = this.ctx;
+      const reliefX = w * 0.25;
+      const reliefY = h * 0.45;
+      const innerR = Math.min(w, h) * 0.2;
+      const outerR = Math.min(w, h) * 0.47;
+      const reliefStrength = this.palette.textRelief ?? 1;
+
+      ctx.save();
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.translate(reliefX, reliefY);
+      ctx.scale(1.32, 0.72);
+      const grad = ctx.createRadialGradient(0, 0, innerR, 0, 0, outerR);
+      grad.addColorStop(0, `rgba(0, 0, 0, ${(0.28 * reliefStrength).toFixed(3)})`);
+      grad.addColorStop(0.45, `rgba(0, 0, 0, ${(0.16 * reliefStrength).toFixed(3)})`);
+      grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(-outerR, -outerR, outerR * 2, outerR * 2);
+      ctx.restore();
     }
 
     _drawEdgeMask(w, h) {

@@ -76,28 +76,9 @@
   }
 
   // ---- Scroll progress ----
-  // sp drives a simple hero → supporting crossfade.
-  // The stage is position:fixed (no layout cost) and the supporting block
-  // sits in normal flow right after the .hero-scroll placeholder (72vh tall),
-  // so the supporting block reaches the viewport top exactly when sp hits 1.
-  //
-  // The CSS formulas intentionally avoid snap points, forced landing, or extra
-  // choreography. If the user stops mid-scroll, the page simply shows the
-  // corresponding crossfade frame.
-  //
-  // Because .hero-scroll is smaller than the viewport, the original sp
-  // formula (rect.height - viewport.height) goes negative; instead we use
-  // rect.height itself as the parallax range.
+  // sp remains available for small scroll-linked details, while the hero
+  // itself now hands off through normal document flow rather than a crossfade.
   let scrollFrame = 0;
-
-  // Toggles for CSS hooks. supporting-active flips pointer-events when the
-  // supporting block becomes interactive (≥ ~70% opacity). faded hides the
-  // fixed stage once it's fully invisible so it stops intercepting clicks
-  // and covering subsequent sections.
-  const SUPPORTING_ACTIVE_AT = 0.45;
-  const STAGE_FADED_AT = 0.95;
-  let supportingActive = false;
-  let stageFaded = false;
 
   function tickScroll() {
     scrollFrame = 0;
@@ -107,18 +88,6 @@
     if (progress < 0) progress = 0;
     else if (progress > 1) progress = 1;
     section.style.setProperty('--hero-sp', progress.toFixed(3));
-
-    const shouldBeActive = progress >= SUPPORTING_ACTIVE_AT;
-    if (shouldBeActive !== supportingActive) {
-      supportingActive = shouldBeActive;
-      section.toggleAttribute('data-hero-supporting-active', supportingActive);
-    }
-
-    const shouldBeFaded = progress >= STAGE_FADED_AT;
-    if (shouldBeFaded !== stageFaded) {
-      stageFaded = shouldBeFaded;
-      section.toggleAttribute('data-hero-faded', stageFaded);
-    }
   }
 
   function onScroll() {

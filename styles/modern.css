@@ -5054,7 +5054,7 @@ html[data-theme='dark'] .btn-secondary:hover {
  * ------------------------------------------------------------
  * A scroll-driven, layered hero scene scoped under
  * `.hero-section--layered`. Inner sticky `.hero-stage` pins to
- * the viewport for the first ~60vh of scroll while four planes
+ * the viewport for the first screen while four planes
  * (ambient, lattice, particles[global], composition) drift at
  * different rates and fade out on exit. The supporting block
  * (bio + CTAs + social) lives outside the stage so it appears
@@ -5076,10 +5076,21 @@ html[data-theme='dark'] .btn-secondary:hover {
   --hero-sp: 0;
 
   /* Stage owns the vertical rhythm; reset legacy outer padding. */
-  margin-top: 0;
+  margin-top: -120px;
   margin-bottom: var(--space-16);
   padding: 0;
   position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #ffffff calc(100% - 180px),
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 .industry-home .hero-section--layered {
@@ -5087,55 +5098,42 @@ html[data-theme='dark'] .btn-secondary:hover {
 }
 
 .hero-section--layered .hero-scroll {
-  /* Crossfade range. The stage is fixed, so this is the scroll distance over
-   * which the hero slide fades out and the supporting slide fades in. */
+  /* First screen: the hero owns the viewport, then the page naturally
+   * continues into the supporting content below. */
   position: relative;
-  min-height: 58vh;
+  min-height: 100svh;
 }
 
 .hero-section--layered .hero-stage {
-  /* Fixed (not sticky) so the 100vh visual area doesn't add 100vh of layout
-   * space below the supporting block. JS hides the stage once sp ≈ 1 so it
-   * doesn't sit on top of subsequent sections. */
-  position: fixed;
+  position: relative;
   top: 0;
-  left: 0;
-  right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100vh;
-  /* Cap on very tall monitors so the composition stays editorial. */
-  max-height: 920px;
+  height: 100svh;
+  max-height: none;
   min-height: 600px;
   overflow: hidden;
   isolation: isolate; /* layer z-index is local to the stage */
-  /* Below the navbar (1000), above page content but under the supporting
-   * block (which gets z-index 200) so the supporting block can crossfade
-   * in over the stage instead of behind it. */
   z-index: 100;
-  /* Opaque page-bg backdrop — keeps later sections from bleeding through
-   * the transparent stage layers during the fade. Stays solid for most of
-   * the fade and only thins out near the end (sp ≈ 0.7 → 1), by which
-   * point the supporting block has crossfaded in over the stage and covers
-   * the same vertical band. */
-  background-color: rgba(255, 255, 255, calc(1 - max(var(--hero-sp, 0) - 0.78, 0) * 4.6));
-  transition: visibility 0s linear 200ms;
+  background-color: #ffffff;
 }
 
 html[data-theme='dark'] .hero-section--layered .hero-stage,
 body[data-theme='dark'] .hero-section--layered .hero-stage {
-  background-color: rgba(30, 30, 30, calc(1 - max(var(--hero-sp, 0) - 0.78, 0) * 4.6));
+  background-color: #1e1e1e;
 }
 
-/* Hide the stage once it has fully faded so it stops covering subsequent
- * sections and stops intercepting clicks. The transition delay above
- * matches the fade duration so visibility flips after the fade completes. */
-.hero-section--layered[data-hero-faded] .hero-stage {
-  visibility: hidden;
-  pointer-events: none;
-  transition-delay: 0s;
+html[data-theme='dark'] .hero-section--layered,
+body[data-theme='dark'] .hero-section--layered {
+  background: linear-gradient(
+    to bottom,
+    #1e1e1e 0%,
+    #1e1e1e calc(100% - 180px),
+    rgba(30, 30, 30, 0) 100%
+  );
 }
 
 .hero-section--layered .hero-layer {
@@ -5167,7 +5165,7 @@ body[data-theme='dark'] .hero-section--layered .hero-stage {
   -webkit-mask-image: radial-gradient(ellipse 92% 88% at 50% 50%, #000 50%, transparent 100%);
   mask-image: radial-gradient(ellipse 92% 88% at 50% 50%, #000 50%, transparent 100%);
   transform: translate3d(calc(var(--hero-px) * 4px), calc(var(--hero-py) * 4px), 0);
-  opacity: calc(1 - var(--hero-sp) * 1.45);
+  opacity: 1;
 }
 
 /* ----- Layer 2: structural intelligence — interactive loss landscape -----
@@ -5179,7 +5177,7 @@ body[data-theme='dark'] .hero-section--layered .hero-stage {
 .hero-section--layered .hero-layer--lattice {
   z-index: 1;
   transform: translate3d(calc(var(--hero-px) * -10px), calc(var(--hero-py) * -8px), 0);
-  opacity: calc(1 - var(--hero-sp) * 1.25);
+  opacity: 1;
 }
 
 .hero-section--layered .hero-loss-canvas {
@@ -5200,15 +5198,13 @@ body[data-theme='dark'] .hero-section--layered .hero-stage {
   mix-blend-mode: multiply;
 }
 
-/* ----- Layer 4: composition (existing content) -----
- * PowerPoint-style fade: no vertical choreography, just dissolve the hero
- * slide while the supporting slide appears in normal flow. */
+/* ----- Layer 4: composition (existing content). ----- */
 .hero-section--layered .hero-layer--composition {
   position: relative;
   z-index: 3;
   width: 100%;
   transform: translate3d(calc(var(--hero-px) * 3px), calc(var(--hero-py) * -2px), 0);
-  opacity: calc(1 - var(--hero-sp) * 1.45);
+  opacity: 1;
 }
 
 /* Content layout overrides inside the stage: stop the legacy hero-content
@@ -5301,8 +5297,7 @@ body[data-theme='dark'] .hero-section--layered .hero-stage {
   font-weight: 600;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  /* Fades out quickly as soon as the user starts scrolling. */
-  opacity: calc(1 - var(--hero-sp) * 2.5);
+  opacity: 1;
   transform: translate3d(-50%, 0, 0);
   pointer-events: none;
 }
@@ -5329,27 +5324,17 @@ body[data-theme='dark'] .hero-section--layered .hero-stage {
 
 /* ----- Supporting block: bio + topics + CTAs + social.
  *
- * Sits in normal flow after the scroll placeholder. Its opacity is the other
- * half of the hero crossfade; no extra motion or chrome.
- *
- * Falls back to opacity:1 (via the var() default) when JS hasn't set --hero-sp,
- * e.g. on mobile / reduced-motion / before script load. ----- */
+ * Sits in normal flow after the first-screen hero. No crossfade: the user
+ * simply scrolls from the hero into the content section. ----- */
 .hero-section--layered .hero-supporting {
   position: relative;
-  /* Above the fixed stage (z-index 100) so the block crossfades in over
-   * the still-fading stage layers, not behind them. */
-  z-index: 200;
-  padding: var(--space-6) var(--space-4) 0;
+  z-index: 1;
+  padding: var(--space-8) var(--space-4) 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-5);
-  opacity: calc((var(--hero-sp, 1) - 0.06) * 1.55);
-  pointer-events: none;
-  transition: opacity 80ms linear;
-}
-
-.hero-section--layered[data-hero-supporting-active] .hero-supporting {
+  opacity: 1;
   pointer-events: auto;
 }
 
@@ -5508,6 +5493,9 @@ body[data-theme='dark'] .hero-section--layered .hero-topic-pills > span {
     margin-top: 0;
     padding-top: var(--space-6);
   }
+  .hero-section--layered {
+    margin-top: 0;
+  }
   .hero-section--layered .hero-scroll {
     min-height: auto;
   }
@@ -5517,7 +5505,7 @@ body[data-theme='dark'] .hero-section--layered .hero-topic-pills > span {
     min-height: 0;
     max-height: none;
     overflow: visible;
-    padding: var(--space-8) 0 var(--space-4);
+    padding: calc(var(--space-8) + 32px) 0 var(--space-4);
   }
   .hero-section--layered .hero-layer--composition,
   .hero-section--layered .hero-image {
@@ -5564,5 +5552,11 @@ body[data-theme='dark'] .hero-section--layered .hero-topic-pills > span {
   .hero-section--layered .hero-left {
     align-items: center;
     text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section--layered .hero-stage {
+    padding-top: calc(var(--space-10) + 44px);
   }
 }
