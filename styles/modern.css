@@ -5561,7 +5561,7 @@ body[data-theme='dark'] .hero-section--layered .hero-topic-pills > span {
   }
 }
 
-@media (orientation: landscape) and (max-height: 700px) and (max-width: 1200px) {
+@media (max-height: 820px) and (max-width: 1300px) {
   .hero-section--layered {
     margin-top: 0;
   }
