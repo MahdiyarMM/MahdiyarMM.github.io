@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loss Landscape — Responsive preview</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        background: #0e1117;
+        color: #e2e8f0;
+        min-height: 100vh;
+      }
+      header {
+        padding: 24px 28px 16px;
+        border-bottom: 1px solid #1e293b;
+      }
+      header h1 {
+        margin: 0 0 4px;
+        font-weight: 600;
+        font-size: 18px;
+        letter-spacing: -0.01em;
+      }
+      header p {
+        margin: 0;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #64748b;
+      }
+      header a {
+        color: #60a5fa;
+        text-decoration: none;
+        margin-left: 12px;
+      }
+      .stage {
+        display: flex;
+        gap: 28px;
+        padding: 28px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .device {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .device .label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #94a3b8;
+      }
+      .device .frame {
+        background: #fff;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 18px 50px -20px rgba(0, 0, 0, 0.55);
+        border: 1px solid #1e293b;
+      }
+      .device iframe {
+        display: block;
+        border: 0;
+        background: #f6f8fb;
+      }
+      .desktop iframe {
+        width: 1280px;
+        height: 720px;
+      }
+      .tablet iframe {
+        width: 768px;
+        height: 1024px;
+      }
+      .mobile iframe {
+        width: 390px;
+        height: 760px;
+      }
+      /* Scale-to-fit so all three fit on a desktop monitor at once */
+      .desktop {
+        transform: scale(0.5);
+        transform-origin: top center;
+        margin-bottom: -360px; /* compensate for scale */
+      }
+      .tablet {
+        transform: scale(0.55);
+        transform-origin: top center;
+        margin-bottom: -460px;
+      }
+      .mobile {
+        transform: scale(0.85);
+        transform-origin: top center;
+        margin-bottom: -114px;
+      }
+      .legend {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 24px 28px 60px;
+        color: #94a3b8;
+        font-size: 13.5px;
+        line-height: 1.6;
+      }
+      .legend code {
+        background: #1e293b;
+        color: #e2e8f0;
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Loss Landscape · Responsive preview</h1>
+      <p>
+        desktop · tablet · mobile
+        <a href="loss-landscape.html">→ open standalone</a>
+      </p>
+    </header>
+
+    <div class="stage">
+      <div class="device desktop">
+        <span class="label">1280 × 720 — desktop</span>
+        <div class="frame">
+          <iframe src="loss-landscape.html" title="Desktop"></iframe>
+        </div>
+      </div>
+      <div class="device tablet">
+        <span class="label">768 × 1024 — tablet</span>
+        <div class="frame">
+          <iframe src="loss-landscape.html" title="Tablet"></iframe>
+        </div>
+      </div>
+      <div class="device mobile">
+        <span class="label">390 × 760 — phone</span>
+        <div class="frame">
+          <iframe src="loss-landscape.html" title="Phone"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="legend">
+      All three iframes load the same file. The visible mesh, line density, and probe motion should look like a
+      uniformly scaled-down version of the desktop layout. Descents should take the same wall-clock time at any size.
+    </div>
+  </body>
+</html>
