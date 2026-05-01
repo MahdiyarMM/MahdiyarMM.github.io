@@ -5561,7 +5561,7 @@ body[data-theme='dark'] .hero-section--layered .hero-topic-pills > span {
   }
 }
 
-@media (orientation: landscape) and (max-height: 520px) and (max-width: 950px) {
+@media (orientation: landscape) and (max-height: 700px) and (max-width: 1200px) {
   .hero-section--layered {
     margin-top: 0;
   }
@@ -5579,7 +5579,22 @@ body[data-theme='dark'] .hero-section--layered .hero-topic-pills > span {
   }
 
   .hero-section--layered .hero-content {
-    max-width: 900px;
+    grid-template-columns: minmax(0, 1fr) minmax(170px, 0.52fr);
+    gap: clamp(var(--space-4), 4vw, var(--space-8));
+    margin-bottom: 0;
+    max-width: 980px;
+    text-align: left;
+  }
+
+  .hero-section--layered .hero-left {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .hero-section--layered .hero-eyebrow {
+    justify-content: flex-start;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .hero-section--layered .hero-layer--composition,
@@ -5608,6 +5623,7 @@ body[data-theme='dark'] .hero-section--layered .hero-topic-pills > span {
   }
 
   .hero-section--layered .hero-credentials {
+    justify-content: flex-start;
     margin-bottom: var(--space-3);
   }
 
@@ -5617,6 +5633,6 @@ body[data-theme='dark'] .hero-section--layered .hero-topic-pills > span {
   }
 
   .hero-section--layered .image-container {
-    --portrait-width: min(28vw, 230px);
+    --portrait-width: min(22vw, 210px);
   }
 }
