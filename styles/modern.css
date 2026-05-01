@@ -5170,36 +5170,34 @@ body[data-theme='dark'] .hero-section--layered .hero-stage {
   opacity: calc(1 - var(--hero-sp) * 1.45);
 }
 
-/* ----- Layer 2: structural intelligence (grid + faint lattice) ----- */
+/* ----- Layer 2: structural intelligence — interactive loss landscape -----
+ * The previous static CSS grid + SVG lattice has been replaced by a canvas
+ * that paints a tilted optimization landscape with descending probes (see
+ * /js/loss-landscape.js). The layer container still drives parallax and
+ * scroll-fade; the canvas itself opts back into pointer events so clicks
+ * can drop new probes. */
 .hero-section--layered .hero-layer--lattice {
   z-index: 1;
-  /* Faint grid that hints at underlying structure. The grid is masked
-   * to a centered ellipse so it never draws hard edges at the viewport. */
-  background-image:
-    linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
-  background-size:
-    64px 64px,
-    64px 64px;
-  background-position: 50% 50%;
-  -webkit-mask-image: radial-gradient(ellipse 72% 65% at 50% 50%, #000 35%, transparent 92%);
-  mask-image: radial-gradient(ellipse 72% 65% at 50% 50%, #000 35%, transparent 92%);
-  color: rgba(15, 23, 42, 0.42); /* drives currentColor in the SVG */
   transform: translate3d(calc(var(--hero-px) * -10px), calc(var(--hero-py) * -8px), 0);
-  opacity: calc(0.85 - var(--hero-sp) * 1.25);
+  opacity: calc(1 - var(--hero-sp) * 1.25);
 }
 
-.hero-section--layered .hero-lattice-svg {
+.hero-section--layered .hero-loss-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
+  display: block;
+  /* The .hero-layer parent disables pointer events so it never blocks the
+   * composition above. The canvas opts back in because click-to-spawn is
+   * a first-class interaction. The composition layer above remains
+   * pointer-transparent, so clicks over the title text still pass through
+   * to the canvas. */
+  pointer-events: auto;
+  /* Subtle multiply blend lets the soft ambient blooms below tint the
+   * grid lines, the way a faint pencil sketch would catch background
+   * color — keeps it from feeling pasted on. Falls back gracefully. */
   mix-blend-mode: multiply;
-  /* The SVG itself receives a slightly stronger pointer offset for
-   * a hint of depth between the grid and the diagram traces. */
-  transform: translate3d(calc(var(--hero-px) * -6px), calc(var(--hero-py) * -4px), 0);
-  opacity: 0.75;
 }
 
 /* ----- Layer 4: composition (existing content) -----
@@ -5430,18 +5428,12 @@ body[data-theme='dark'] .hero-section--layered .hero-layer--ambient {
     radial-gradient(30vmax 26vmax at 50% 52%, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 72%);
 }
 
-html[data-theme='dark'] .hero-section--layered .hero-layer--lattice,
-body[data-theme='dark'] .hero-section--layered .hero-layer--lattice {
-  background-image:
-    linear-gradient(rgba(226, 232, 240, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(226, 232, 240, 0.05) 1px, transparent 1px);
-  color: rgba(186, 211, 246, 0.5);
-}
-
-html[data-theme='dark'] .hero-section--layered .hero-lattice-svg,
-body[data-theme='dark'] .hero-section--layered .hero-lattice-svg {
+/* In dark mode the canvas paints lighter strokes (handled inside
+ * /js/loss-landscape.js), but multiply darkens them too far on a near-black
+ * page — switch to screen so the lines lift clear of the background. */
+html[data-theme='dark'] .hero-section--layered .hero-loss-canvas,
+body[data-theme='dark'] .hero-section--layered .hero-loss-canvas {
   mix-blend-mode: screen;
-  opacity: 0.85;
 }
 
 html[data-theme='dark'] .hero-section--layered .hero-edge,
@@ -5484,8 +5476,7 @@ body[data-theme='dark'] .hero-section--layered .hero-topic-pills > span {
   .hero-section--layered .hero-layer--composition,
   .hero-section--layered .hero-layer--ambient,
   .hero-section--layered .hero-layer--lattice,
-  .hero-section--layered .hero-image,
-  .hero-section--layered .hero-lattice-svg {
+  .hero-section--layered .hero-image {
     transform: none;
     opacity: 1;
   }
@@ -5536,9 +5527,21 @@ body[data-theme='dark'] .hero-section--layered .hero-topic-pills > span {
   .hero-section--layered .hero-layer--ambient {
     opacity: 0.55;
   }
-  .hero-section--layered .hero-layer--lattice,
   .hero-section--layered .hero-cue {
     display: none;
+  }
+  /* On mobile the stage becomes static (height: auto) and the lattice
+   * layer fills only the content area. Pin the layer to the viewport
+   * width and give it explicit height so the canvas always has space
+   * to render the landscape behind the stacked hero content. */
+  .hero-section--layered .hero-layer--lattice {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    /* Slightly subdued on mobile — still recognisable, never noisy
+     * behind the dense stacked content above it. */
+    opacity: 0.85;
+    transform: none;
   }
   .hero-section--layered .hero-edge {
     display: none;

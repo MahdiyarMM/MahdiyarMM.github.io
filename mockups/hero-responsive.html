@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero — Responsive preview</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: system-ui, sans-serif;
+        background: #0e1117;
+        color: #e2e8f0;
+        min-height: 100vh;
+      }
+      header {
+        padding: 18px 24px;
+        border-bottom: 1px solid #1e293b;
+      }
+      header h1 {
+        margin: 0 0 4px;
+        font-weight: 600;
+        font-size: 16px;
+      }
+      header p {
+        margin: 0;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #64748b;
+      }
+      .stage {
+        display: flex;
+        gap: 28px;
+        padding: 28px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .device {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .device .label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #94a3b8;
+      }
+      .device .frame {
+        background: #fff;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 18px 50px -20px rgba(0, 0, 0, 0.55);
+        border: 1px solid #1e293b;
+      }
+      .device iframe {
+        display: block;
+        border: 0;
+        background: #f6f8fb;
+      }
+      .desktop iframe {
+        width: 1280px;
+        height: 720px;
+      }
+      .tablet iframe {
+        width: 820px;
+        height: 1024px;
+      }
+      .mobile iframe {
+        width: 390px;
+        height: 760px;
+      }
+      .desktop {
+        transform: scale(0.5);
+        transform-origin: top center;
+        margin-bottom: -360px;
+      }
+      .tablet {
+        transform: scale(0.55);
+        transform-origin: top center;
+        margin-bottom: -460px;
+      }
+      .mobile {
+        transform: scale(0.85);
+        transform-origin: top center;
+        margin-bottom: -114px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Hero — Responsive preview</h1>
+      <p>desktop · tablet · mobile</p>
+    </header>
+    <div class="stage">
+      <div class="device desktop">
+        <span class="label">1280 × 720 — desktop</span>
+        <div class="frame"><iframe src="/" title="Desktop"></iframe></div>
+      </div>
+      <div class="device tablet">
+        <span class="label">820 × 1024 — tablet</span>
+        <div class="frame"><iframe src="/" title="Tablet"></iframe></div>
+      </div>
+      <div class="device mobile">
+        <span class="label">390 × 760 — phone</span>
+        <div class="frame"><iframe src="/" title="Phone"></iframe></div>
+      </div>
+    </div>
+  </body>
+</html>

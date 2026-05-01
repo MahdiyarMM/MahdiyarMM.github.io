@@ -90,7 +90,7 @@
     </script>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="/styles/modern.css?v=20260430-16" />
+    <link rel="stylesheet" type="text/css" href="/styles/modern.css?v=20260430-18" />
 
     <!-- Prefetch the icon sprite so first paint is decorated -->
     <link rel="prefetch" href="/images/icons.svg" as="image" type="image/svg+xml" />
@@ -225,50 +225,15 @@
               <!-- Layer 1: ambient base — soft brand-tinted blooms. -->
               <div class="hero-layer hero-layer--ambient" aria-hidden="true"></div>
 
-              <!-- Layer 2: structural intelligence — quiet grid + faint
-                   node/edge lattice. The interactive #particles-js canvas
-                   (fixed behind the page) is the live counterpart of this
-                   "invisible system" and shows through the translucent
-                   layers. -->
+              <!-- Layer 2: structural intelligence — interactive loss
+                   landscape. A faint, tilted optimization surface where
+                   gradient-descent probes spawn periodically (and on
+                   click) and converge toward local minima. The canvas
+                   lives inside this layer so the existing parallax
+                   transform + scroll-fade apply, and the canvas
+                   overrides pointer-events so clicks can drop probes. -->
               <div class="hero-layer hero-layer--lattice" aria-hidden="true">
-                <svg
-                  class="hero-lattice-svg"
-                  viewBox="0 0 1200 800"
-                  preserveAspectRatio="xMidYMid slice"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <defs>
-                    <linearGradient id="hero-lattice-stroke" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stop-color="currentColor" stop-opacity="0.0" />
-                      <stop offset="50%" stop-color="currentColor" stop-opacity="0.55" />
-                      <stop offset="100%" stop-color="currentColor" stop-opacity="0.0" />
-                    </linearGradient>
-                  </defs>
-                  <g fill="none" stroke="url(#hero-lattice-stroke)" stroke-width="1" stroke-linecap="round">
-                    <!-- Long horizontal guideline -->
-                    <path d="M40 360 L1160 360" />
-                    <!-- Diagonal traces between nodes -->
-                    <path d="M120 220 L420 360 L760 220 L1080 420" />
-                    <path d="M180 600 L520 480 L880 620 L1120 540" />
-                    <path d="M260 140 L260 660" />
-                    <path d="M940 120 L940 700" />
-                  </g>
-                  <g fill="currentColor">
-                    <circle cx="120" cy="220" r="2.5" opacity="0.55" />
-                    <circle cx="420" cy="360" r="2.5" opacity="0.55" />
-                    <circle cx="760" cy="220" r="2.5" opacity="0.55" />
-                    <circle cx="1080" cy="420" r="2.5" opacity="0.55" />
-                    <circle cx="180" cy="600" r="2" opacity="0.4" />
-                    <circle cx="520" cy="480" r="2" opacity="0.4" />
-                    <circle cx="880" cy="620" r="2" opacity="0.4" />
-                    <circle cx="1120" cy="540" r="2" opacity="0.4" />
-                    <circle cx="260" cy="140" r="1.5" opacity="0.32" />
-                    <circle cx="260" cy="660" r="1.5" opacity="0.32" />
-                    <circle cx="940" cy="120" r="1.5" opacity="0.32" />
-                    <circle cx="940" cy="700" r="1.5" opacity="0.32" />
-                  </g>
-                </svg>
+                <canvas class="hero-loss-canvas" data-loss-landscape></canvas>
               </div>
 
               <!-- Layer 3 sits naturally above: existing portrait + content,
@@ -1032,6 +997,7 @@
     <script src="/particles.js?v=20260426-3" defer></script>
     <script src="/js/app.js?v=20260426-3" defer></script>
     <script src="/js/hero-parallax.js?v=20260430-20" defer></script>
+    <script src="/js/loss-landscape.js?v=20260430-1" defer></script>
     <script src="/js/modern.js?v=20260426-3" defer></script>
   </body>
 </html>
