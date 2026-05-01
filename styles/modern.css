@@ -5560,3 +5560,63 @@ body[data-theme='dark'] .hero-section--layered .hero-topic-pills > span {
     padding-top: calc(var(--space-10) + 44px);
   }
 }
+
+@media (orientation: landscape) and (max-height: 520px) and (max-width: 950px) {
+  .hero-section--layered {
+    margin-top: 0;
+  }
+
+  .hero-section--layered .hero-scroll {
+    min-height: auto;
+  }
+
+  .hero-section--layered .hero-stage {
+    align-items: flex-start;
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+    padding: calc(var(--space-8) + 48px) 0 var(--space-4);
+  }
+
+  .hero-section--layered .hero-content {
+    max-width: 900px;
+  }
+
+  .hero-section--layered .hero-layer--composition,
+  .hero-section--layered .hero-image {
+    transform: none;
+  }
+
+  .hero-section--layered .hero-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .hero-section--layered .name-highlight {
+    font-size: clamp(2.15rem, 7vw, 3.2rem);
+  }
+
+  .hero-section--layered .hero-manifesto-title {
+    font-size: clamp(1.35rem, 4.2vw, 2rem);
+  }
+
+  .hero-section--layered .hero-manifesto p:not(.hero-manifesto-title) {
+    font-size: clamp(0.96rem, 2.6vw, 1.2rem);
+  }
+
+  .hero-section--layered .hero-manifesto .kick-line {
+    font-size: clamp(0.78rem, 2vw, 0.95rem);
+  }
+
+  .hero-section--layered .hero-credentials {
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-section--layered .credential-pill {
+    font-size: 0.66rem;
+    padding: 0.32rem 0.55rem;
+  }
+
+  .hero-section--layered .image-container {
+    --portrait-width: min(28vw, 230px);
+  }
+}
