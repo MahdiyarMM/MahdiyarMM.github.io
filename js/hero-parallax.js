@@ -27,6 +27,55 @@
   const scroller = stage ? stage.closest('.hero-scroll') : null;
   if (!section || !stage || !scroller) return;
 
+  let shortWideActive = false;
+  let shortWideFrame = 0;
+
+  function visualViewportSize() {
+    const viewport = window.visualViewport;
+    return {
+      width: viewport?.width || window.innerWidth || document.documentElement.clientWidth || 0,
+      height: viewport?.height || window.innerHeight || document.documentElement.clientHeight || 0,
+    };
+  }
+
+  function hasTouchViewport() {
+    const coarse =
+      window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    return coarse || navigator.maxTouchPoints > 0;
+  }
+
+  function syncShortWideMode() {
+    shortWideFrame = 0;
+    const { width, height } = visualViewportSize();
+    const shortWide =
+      hasTouchViewport() && width >= 680 && height > 0 && height <= 560 && width / height >= 1.25;
+    const enteringShortWide = shortWide && !shortWideActive;
+    shortWideActive = shortWide;
+    section.toggleAttribute('data-hero-short-wide', shortWide);
+
+    // iOS browsers can preserve a portrait scroll offset when rotating into
+    // landscape, leaving the top of the hero above the visible viewport. If
+    // the user is still within the hero, restore the intended first frame.
+    if (enteringShortWide && window.scrollY > 0 && window.scrollY < scroller.offsetHeight) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }
+  }
+
+  function scheduleShortWideModeSync() {
+    if (!shortWideFrame) shortWideFrame = requestAnimationFrame(syncShortWideMode);
+  }
+
+  syncShortWideMode();
+  window.addEventListener('resize', scheduleShortWideModeSync, { passive: true });
+  window.addEventListener('orientationchange', () => {
+    scheduleShortWideModeSync();
+    window.setTimeout(scheduleShortWideModeSync, 250);
+  });
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', scheduleShortWideModeSync, { passive: true });
+    window.visualViewport.addEventListener('scroll', scheduleShortWideModeSync, { passive: true });
+  }
+
   const reduced =
     window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced) return;
